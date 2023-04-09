@@ -13,6 +13,6 @@ const {
     headers: {
         'X-GitHub-Api-Version': '2022-11-28'
     }
-})
+});
 
-module.exports=issues
+module.exports=issues;
