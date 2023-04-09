@@ -1,18 +1,26 @@
 // Issues.js
-import { Octokit, App } from "octokit";
+const ok = require('@octokit/core');
+const core = require('@actions/core');
 
-const octokit = new Octokit({
-    auth: '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'
-  });
+async function issues(token, owner, repo) {
+  try {
+    const octokit = new ok.Octokit({
+      auth: token
+    });
 
-const {
-  data: { login },
-} = await octokit.request('GET /repos/{owner}/{repo}/pulls', {
-    owner: 'stenjo',
-    repo: 'SbankenToYNAB',
-    headers: {
-        'X-GitHub-Api-Version': '2022-11-28'
-    }
-});
+    var result = await octokit.request('GET /repos/{owner}/{repo}/issues', {
+      owner: owner,
+      repo: repo,
+      headers: {
+          'X-GitHub-Api-Version': '2022-11-28'
+      }
+    });
+
+    return Promise.resolve(result.data);
+
+  } catch (e) {
+    core.setFailed(e.message);
+  }
+}
 
 module.exports=issues;

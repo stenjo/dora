@@ -1,5 +1,7 @@
 const core = require('@actions/core');
 const wait = require('./wait');
+// const ok = require('@octokit/core');
+// import { Octokit} from "octokit";
 
 
 // most @actions toolkit packages have async methods
