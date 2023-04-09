@@ -1,3 +1,29 @@
+# Get DORA Metrics from GitHub project issues and releases
+
+This GitHub Action will calculate a set of DevOps Research and Assessment (DORA) metrics based on status and dates from commits and issues
+
+## Inputs
+
+### 'repo'
+
+Repository from where to read issues and statuses. Default is current repository where action is installed.
+
+### 'owner'
+
+Owner of the repository. Default is current repository owner or organisation.
+
+## Outputs
+
+### 'deploy-frequency'
+
+Rate of deploys per week
+
+### 'lead-time'
+
+Time from issue is set to status doing until linked pull-requestis merged to main
+
+
+
 # Create a JavaScript Action
 
 <p align="center">

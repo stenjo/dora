@@ -1,4 +1,4 @@
-const issues = require('./issues');
+const issues = require('../src/issues');
 
 test('fetches issues', async () => {
 
