@@ -2,7 +2,7 @@ const tags = require('../src/tags');
 
 test('fetches tags', async () => {
 
-    let il = await tags(process.env['GH_TOKEN'], 'stenjo', 'dora');
+    let tl = await tags(process.env['GH_TOKEN'], 'stenjo', 'dora');
 
-    expect(il.length).toBeGreaterThan(-1);
+    expect(tl.length).toBeGreaterThan(-1);
 });
