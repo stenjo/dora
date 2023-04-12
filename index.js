@@ -1,5 +1,8 @@
 const core = require('@actions/core');
 const wait = require('./wait');
+const github = require('@actions/github');
+// const ok = require('@octokit/core');
+// import { Octokit} from "octokit";
 
 
 // most @actions toolkit packages have async methods
@@ -13,6 +16,10 @@ async function run() {
     core.info((new Date()).toTimeString());
 
     core.setOutput('time', new Date().toTimeString());
+
+    const payload = JSON.stringify(github.context.payload, undefined, 2)
+    console.log(`The event payload: ${payload}`);
+    
   } catch (error) {
     core.setFailed(error.message);
   }

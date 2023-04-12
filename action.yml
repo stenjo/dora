@@ -1,11 +1,14 @@
-name: 'Wait'
-description: 'Wait a designated number of milliseconds'
+name: 'DORA Metrics'
+author: 'Sten Otto Johnsen'
+description: 'Outputs a set of key metrics as by State of DevOps report'
 inputs:
   milliseconds:  # id of input
     description: 'number of milliseconds to wait'
     required: true
     default: '1000'
 outputs:
+  deploy_rate: # pull requests merged to main per week
+    description: 'Deployment rate'
   time: # output will be available to future steps
     description: 'The current time after waiting'
 runs:
