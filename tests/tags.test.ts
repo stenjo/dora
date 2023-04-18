@@ -1,6 +1,6 @@
-const tags = require('../src/tags');
+import { tags } from '../src/tags';
 
-test('fetches tags', async () => {
+test.skip('fetches tags', async () => {
 
     let tl = await tags(process.env['GH_TOKEN'], 'stenjo', 'dora');
 
