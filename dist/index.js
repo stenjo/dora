@@ -10816,7 +10816,9 @@ function run() {
             }
             core.info(`${owner}-${repo}`);
             let rel = new Releases();
-            core.setOutput('deploy_rate', new DeployFrequency().weekly(yield rel.list(process.env['GH_TOKEN'], owner, repo)));
+            let deploysPerMonth = new DeployFrequency().monthly(yield rel.list(process.env['GH_TOKEN'], owner, repo));
+            let weekly = deploysPerMonth * 7 / 31;
+            core.setOutput('deploy_rate', weekly);
             // const payload: string = JSON.stringify(github.context.payload, undefined, 2);
             // console.log(`The event payload: ${payload}`);
         }
