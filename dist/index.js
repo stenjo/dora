@@ -10757,14 +10757,22 @@ class DeployFrequency {
         var releasecount = 0;
         rels.releases.forEach(element => {
             var relDate = new Date(element.published_at);
-            if (this.days_between(this.today, relDate) < 7) {
+            if (this.days_between(this.today, relDate) < 8) {
                 releasecount++;
             }
         });
         return releasecount;
     }
-    monthly(releases) {
-        return 0;
+    monthly(json) {
+        var rels = JSON.parse(json);
+        var releasecount = 0;
+        rels.releases.forEach(element => {
+            var relDate = new Date(element.published_at);
+            if (this.days_between(this.today, relDate) < 31) {
+                releasecount++;
+            }
+        });
+        return releasecount;
     }
     days_between(date1, date2) {
         // The number of milliseconds in one day
