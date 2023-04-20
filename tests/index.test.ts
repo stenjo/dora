@@ -19,6 +19,30 @@ test('wait 500 ms', async () => {
 test.skip('test runs', () => {
   process.env['INPUT_MILLISECONDS'] = '100';
   const ip: string = path.join(__dirname, '../src/index.ts');
-  const result: string = cp.execSync(`node ${ip}`, { env: process.env }).toString();
+  const result: string = cp.execSync(`npx ts-node ${ip}`, { env: process.env }).toString();
   console.log(result);
+});
+
+describe('Deployrate weekly should', ()=>{
+  test('read inputs when set', ()=>{
+    process.env['INPUT_REPO'] = 'repository';
+    process.env['GITHUB_REPOSITORY'] = 'owner/repo';
+  
+    const ip: string = path.join(__dirname, '../src/index.ts');
+    const result: string = cp.execSync(`npx ts-node ${ip}`, { env: process.env }).toString();
+  
+    expect(result).toContain('repository');
+  
+  });
+  
+  test('use default repo when no repo input ', ()=>{
+    process.env['INPUT_REPO'] = '';
+    process.env['GITHUB_REPOSITORY'] = 'owner/repo';
+    
+      const ip: string = path.join(__dirname, '../src/index.ts');
+      const result: string = cp.execSync(`npx ts-node ${ip}`, { env: process.env }).toString();
+    
+      expect(result).toContain('repo');
+    
+    });
 });

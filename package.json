@@ -6,7 +6,6 @@
   "directories": {
     "test": "test"
   },
-  "type": "module",
   "scripts": {
     "build": "npx tsc",
     "lint": "eslint src/*.ts",

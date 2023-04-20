@@ -1,20 +1,35 @@
 import * as core from '@actions/core';
-import { wait } from './wait';
 import * as github from '@actions/github';
+import { Releases } from './Releases';
+import { DeployFrequency } from './DeployFrequency';
+
 
 async function run(): Promise<void> {
   try {
-    const ms: string = core.getInput('milliseconds');
-    core.info(`Waiting ${ms} milliseconds ...`);
+    // const ms: string = core.getInput('milliseconds');
+    // core.info(`Waiting ${ms} milliseconds ...`);
 
-    core.debug(new Date().toTimeString()); // debug is only output if you set the secret `ACTIONS_RUNNER_DEBUG` to true
-    await wait(parseInt(ms));
-    core.info(new Date().toTimeString());
+    // core.debug(new Date().toTimeString()); // debug is only output if you set the secret `ACTIONS_RUNNER_DEBUG` to true
+    // await wait(parseInt(ms));
+    // core.info(new Date().toTimeString());
+    var repo: string = core.getInput('repo');
+    if (repo == '' || repo == null) {
+      repo = github.context.repo.repo
+    }
 
-    core.setOutput('time', new Date().toTimeString());
+    var owner: string = core.getInput('owner');
+    if (owner == '' || owner == null) {
+      owner = github.context.repo.owner
+    }
 
-    const payload: string = JSON.stringify(github.context.payload, undefined, 2);
-    console.log(`The event payload: ${payload}`);
+    core.info(`${owner}-${repo}`);
+
+    let rel = new Releases();
+
+    core.setOutput('deploy_rate', new DeployFrequency().weekly(await rel.list(process.env['GH_TOKEN'], owner, repo)));
+
+    // const payload: string = JSON.stringify(github.context.payload, undefined, 2);
+    // console.log(`The event payload: ${payload}`);
   } catch (error: any) {
     core.setFailed(error.message);
   }

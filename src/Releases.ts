@@ -3,7 +3,7 @@ import * as core from '@actions/core';
 
 export class Releases {
 
-  async list(token : string | undefined, owner:string, repo: string) {
+  async list(token : string | undefined, owner:string, repo: string): Promise<any> {
     const octokit = new Octokit({
       auth: token
     });

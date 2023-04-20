@@ -2,15 +2,15 @@ name: 'DORA Metrics'
 author: 'Sten Otto Johnsen'
 description: 'Outputs a set of key metrics as by State of DevOps report'
 inputs:
-  milliseconds:  # id of input
-    description: 'number of milliseconds to wait'
-    required: true
-    default: '1000'
+  owner:  # organisation
+    description: 'Owner of the repo. Org or user'
+    required: false
+  repo:  # repository
+    description: 'Repository name'
+    required: false
 outputs:
   deploy_rate: # pull requests merged to main per week
     description: 'Deployment rate'
-  time: # output will be available to future steps
-    description: 'The current time after waiting'
 runs:
   using: 'node16'
   main: 'dist/index.js'
