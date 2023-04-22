@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "JavaScript Action Template",
   "main": "src/index.js",
+  "type": "module",
   "directories": {
     "test": "test"
   },
@@ -25,7 +26,7 @@
   "keywords": [
     "GitHub",
     "Actions",
-    "JavaScript"
+    "Typescript"
   ],
   "author": "",
   "license": "MIT",
