@@ -1,4 +1,4 @@
-// @typescript-eslint/no-explicit-any
+/* eslint-disable @typescript-eslint/no-explicit-any */
 interface Author {
     login: string;
     id: number;
@@ -19,7 +19,7 @@ interface Author {
     site_admin: boolean;
 }
 
-interface ReleaseObj {
+export interface ReleaseObj {
     url: string;
     uploadUrl: string;
     id: number;

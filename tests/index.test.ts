@@ -1,19 +1,6 @@
-import { wait } from '../src/wait';
 import * as process from 'process';
 import * as cp from 'child_process';
 import * as path from 'path';
-
-test.skip('throws invalid number', async () => {
-  await expect(wait('foo')).rejects.toThrow('milliseconds not a number');
-});
-
-test.skip('wait 500 ms', async () => {
-  const start: Date = new Date();
-  await wait(500);
-  const end: Date = new Date();
-  const delta: number = Math.abs(end.valueOf() - start.valueOf());
-  expect(delta).toBeGreaterThanOrEqual(500);
-});
 
 // shows how the runner will run a javascript action with env / stdout protocol
 test.skip('test runs', () => {

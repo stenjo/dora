@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Octokit } from '@octokit/core';
 import * as core from '@actions/core';
 

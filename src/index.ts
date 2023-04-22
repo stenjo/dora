@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as core from '@actions/core';
 import * as github from '@actions/github';
 import { Releases } from './Releases';
@@ -25,12 +26,10 @@ async function run(): Promise<void> {
     core.info(`${owner}-${repo}`);
 
     const rel = new Releases();
-    const deploysPerMonth =  new DeployFrequency().monthly(await rel.list(process.env['GH_TOKEN'], owner, repo));
-    const weekly = deploysPerMonth * 7 / 31;
-    core.setOutput('deploy_rate', weekly);
+    const releaselist =  await rel.list(process.env['GH_TOKEN'], owner, repo);
+    const df = new DeployFrequency(releaselist);
+    core.setOutput('deploy_rate', df.rate());
 
-    // const payload: string = JSON.stringify(github.context.payload, undefined, 2);
-    // console.log(`The event payload: ${payload}`);
   } catch (error: any) {
     core.setFailed(error.message);
   }

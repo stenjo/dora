@@ -10632,6 +10632,7 @@ var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argume
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 
 class Releases {
@@ -10660,16 +10661,17 @@ class Releases {
 ;// CONCATENATED MODULE: ./src/DeployFrequency.ts
 // 
 class DeployFrequency {
-    constructor(dateString = null) {
+    constructor(releases, dateString = null) {
         this.today = new Date();
+        this.rlist = new Array();
+        this.rlist = releases;
         if (dateString !== null) {
             this.today = new Date(dateString);
         }
     }
-    weekly(json) {
-        const rels = JSON.parse(json);
+    weekly() {
         let releasecount = 0;
-        rels.releases.forEach(element => {
+        this.rlist.forEach(element => {
             const relDate = new Date(element.published_at);
             if (this.days_between(this.today, relDate) < 8) {
                 releasecount++;
@@ -10677,16 +10679,18 @@ class DeployFrequency {
         });
         return releasecount;
     }
-    monthly(json) {
-        const rels = JSON.parse(json);
+    monthly() {
         let releasecount = 0;
-        rels.releases.forEach(element => {
+        this.rlist.forEach(element => {
             const relDate = new Date(element.published_at);
             if (this.days_between(this.today, relDate) < 31) {
                 releasecount++;
             }
         });
         return releasecount;
+    }
+    rate() {
+        return (Math.round(this.monthly() * 700) / 3000).toFixed(2);
     }
     days_between(date1, date2) {
         // The number of milliseconds in one day
@@ -10708,6 +10712,7 @@ var src_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argu
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 
 
@@ -10730,11 +10735,9 @@ function run() {
             }
             core.info(`${owner}-${repo}`);
             const rel = new Releases();
-            const deploysPerMonth = new DeployFrequency().monthly(yield rel.list(process.env['GH_TOKEN'], owner, repo));
-            const weekly = deploysPerMonth * 7 / 31;
-            core.setOutput('deploy_rate', weekly);
-            // const payload: string = JSON.stringify(github.context.payload, undefined, 2);
-            // console.log(`The event payload: ${payload}`);
+            const releaselist = yield rel.list(process.env['GH_TOKEN'], owner, repo);
+            const df = new DeployFrequency(releaselist);
+            core.setOutput('deploy_rate', df.rate());
         }
         catch (error) {
             core.setFailed(error.message);

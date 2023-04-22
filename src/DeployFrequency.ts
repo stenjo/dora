@@ -1,18 +1,23 @@
 // 
 
-import { ReleaseList } from "./IReleaseList";
+import { ReleaseObj } from "./IReleaseList";
 
 export class DeployFrequency {
     today: Date = new Date();
-    constructor(dateString: string|null = null) {
+    rlist: Array<ReleaseObj> = new Array<ReleaseObj>();
+
+    constructor(releases: Array<ReleaseObj>, dateString: string|null = null) {
+        this.rlist = releases;
         if (dateString !== null) {
             this.today = new Date(dateString)
         }
     }
-    weekly(json: any): number {
-        const rels: ReleaseList = JSON.parse(json);
+
+
+
+    weekly(): number {
         let releasecount = 0;
-        rels.releases.forEach(element => {
+        this.rlist.forEach(element => {
             const relDate = new Date(element.published_at)
             if (this.days_between(this.today, relDate) < 8) {
                 releasecount++;
@@ -22,10 +27,9 @@ export class DeployFrequency {
         return releasecount;
     }
 
-    monthly(json: any): number {
-        const rels: ReleaseList = JSON.parse(json);
+    monthly(): number {
         let releasecount = 0;
-        rels.releases.forEach(element => {
+        this.rlist.forEach(element => {
             const relDate = new Date(element.published_at)
             if (this.days_between(this.today, relDate) < 31) {
                 releasecount++;
@@ -34,6 +38,10 @@ export class DeployFrequency {
 
         return releasecount;
     }
+
+    rate(): string {
+        return (Math.round(this.monthly() * 700) / 3000).toFixed(2);
+    }    
 
     private days_between(date1: Date, date2: Date): number {
 
