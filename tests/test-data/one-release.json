@@ -1,0 +1,40 @@
+[
+  {
+    "url": "https://api.github.com/repos/stenjo/dora/releases/99219318",
+    "upload_url": "https://uploads.github.com/repos/stenjo/dora/releases/99219318/assets{?name,label}",
+    "html_url": "https://github.com/stenjo/dora/releases/tag/v0.0.1",
+    "id": 99219318,
+    "author": {
+      "login": "github-actions[bot]",
+      "id": 41898282,
+      "node_id": "MDM6Qm90NDE4OTgyODI=",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/github-actions%5Bbot%5D",
+      "html_url": "https://github.com/apps/github-actions",
+      "followers_url": "https://api.github.com/users/github-actions%5Bbot%5D/followers",
+      "following_url": "https://api.github.com/users/github-actions%5Bbot%5D/following{/other_user}",
+      "gists_url": "https://api.github.com/users/github-actions%5Bbot%5D/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/github-actions%5Bbot%5D/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/github-actions%5Bbot%5D/subscriptions",
+      "organizations_url": "https://api.github.com/users/github-actions%5Bbot%5D/orgs",
+      "repos_url": "https://api.github.com/users/github-actions%5Bbot%5D/repos",
+      "events_url": "https://api.github.com/users/github-actions%5Bbot%5D/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/github-actions%5Bbot%5D/received_events",
+      "type": "Bot",
+      "site_admin": false
+    },
+    "node_id": "RE_kwDOJTf0as4F6fd2",
+    "tag_name": "v0.0.1",
+    "target_commitish": "167c3dc7df5008954e1e6f9b3f4aa7f446e759ba",
+    "name": "v0.0.1",
+    "draft": false,
+    "prerelease": false,
+    "created_at": "2023-04-12T22:33:11Z",
+    "published_at": "2023-04-12T22:33:24Z",
+    "assets": [],
+    "tarball_url": "https://api.github.com/repos/stenjo/dora/tarball/v0.0.1",
+    "zipball_url": "https://api.github.com/repos/stenjo/dora/zipball/v0.0.1",
+    "body": "## 0.0.1 (2023-04-12)\n\n\n### Features\n\n* add tags ([00bb263](https://github.com/stenjo/dora/commit/00bb2635dd6f1ba48d4ddd60495a4ff7571c1452))\n\n\n### Bug Fixes\n\n* tags test ([b9d7318](https://github.com/stenjo/dora/commit/b9d7318893d5dc66c9ea5549507788d88f3bc406))\n\n\n### Miscellaneous Chores\n\n* release 0.0.1 ([9d38f27](https://github.com/stenjo/dora/commit/9d38f275d29ae453b733a3b365c46217ad8088ef))"
+  }
+]
+

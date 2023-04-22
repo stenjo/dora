@@ -1,4 +1,5 @@
 node_modules/
+out/
 
 # Editors
 .vscode/
@@ -65,3 +66,4 @@ typings/
 
 # next.js build output
 .next
+out/index.js
