@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.2](https://github.com/stenjo/dora/compare/v0.0.1...v0.0.2) (2023-04-22)
+
+
+### Bug Fixes
+
+* **workflow:** update release and dora workflows ([0dfc0d6](https://github.com/stenjo/dora/commit/0dfc0d61c946b28808aa9d5a9dae1e34b312b2dc))
+
 ## 0.0.1 (2023-04-12)
 
 
