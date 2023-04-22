@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-interface Author {
+export interface Author {
     login: string;
     id: number;
     node_id: string;
