@@ -10,7 +10,7 @@ export class Releases {
   
     try {
 
-      var result = await octokit.request('GET /repos/{owner}/{repo}/releases', {
+      const result = await octokit.request('GET /repos/{owner}/{repo}/releases', {
         owner: owner,
         repo: repo,
         headers: {

@@ -10,10 +10,10 @@ export class DeployFrequency {
         }
     }
     weekly(json: any): number {
-        var rels: ReleaseList = JSON.parse(json);
-        var releasecount = 0;
+        const rels: ReleaseList = JSON.parse(json);
+        let releasecount = 0;
         rels.releases.forEach(element => {
-            var relDate = new Date(element.published_at)
+            const relDate = new Date(element.published_at)
             if (this.days_between(this.today, relDate) < 8) {
                 releasecount++;
             }
@@ -23,10 +23,10 @@ export class DeployFrequency {
     }
 
     monthly(json: any): number {
-        var rels: ReleaseList = JSON.parse(json);
-        var releasecount = 0;
+        const rels: ReleaseList = JSON.parse(json);
+        let releasecount = 0;
         rels.releases.forEach(element => {
-            var relDate = new Date(element.published_at)
+            const relDate = new Date(element.published_at)
             if (this.days_between(this.today, relDate) < 31) {
                 releasecount++;
             }

@@ -10727,7 +10727,7 @@ class Releases {
                 auth: token
             });
             try {
-                var result = yield octokit.request('GET /repos/{owner}/{repo}/releases', {
+                const result = yield octokit.request('GET /repos/{owner}/{repo}/releases', {
                     owner: owner,
                     repo: repo,
                     headers: {
@@ -10753,10 +10753,10 @@ class DeployFrequency {
         }
     }
     weekly(json) {
-        var rels = JSON.parse(json);
-        var releasecount = 0;
+        const rels = JSON.parse(json);
+        let releasecount = 0;
         rels.releases.forEach(element => {
-            var relDate = new Date(element.published_at);
+            const relDate = new Date(element.published_at);
             if (this.days_between(this.today, relDate) < 8) {
                 releasecount++;
             }
@@ -10764,10 +10764,10 @@ class DeployFrequency {
         return releasecount;
     }
     monthly(json) {
-        var rels = JSON.parse(json);
-        var releasecount = 0;
+        const rels = JSON.parse(json);
+        let releasecount = 0;
         rels.releases.forEach(element => {
-            var relDate = new Date(element.published_at);
+            const relDate = new Date(element.published_at);
             if (this.days_between(this.today, relDate) < 31) {
                 releasecount++;
             }
@@ -10806,18 +10806,18 @@ function run() {
             // core.debug(new Date().toTimeString()); // debug is only output if you set the secret `ACTIONS_RUNNER_DEBUG` to true
             // await wait(parseInt(ms));
             // core.info(new Date().toTimeString());
-            var repo = core.getInput('repo');
+            let repo = core.getInput('repo');
             if (repo == '' || repo == null) {
                 repo = github.context.repo.repo;
             }
-            var owner = core.getInput('owner');
+            let owner = core.getInput('owner');
             if (owner == '' || owner == null) {
                 owner = github.context.repo.owner;
             }
             core.info(`${owner}-${repo}`);
-            let rel = new Releases();
-            let deploysPerMonth = new DeployFrequency().monthly(yield rel.list(process.env['GH_TOKEN'], owner, repo));
-            let weekly = deploysPerMonth * 7 / 31;
+            const rel = new Releases();
+            const deploysPerMonth = new DeployFrequency().monthly(yield rel.list(process.env['GH_TOKEN'], owner, repo));
+            const weekly = deploysPerMonth * 7 / 31;
             core.setOutput('deploy_rate', weekly);
             // const payload: string = JSON.stringify(github.context.payload, undefined, 2);
             // console.log(`The event payload: ${payload}`);
