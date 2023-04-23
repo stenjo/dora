@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Person } from "./IPerson";
 
 export interface ReleaseObject {

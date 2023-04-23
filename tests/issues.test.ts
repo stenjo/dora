@@ -50,7 +50,7 @@ describe("Issues interface should", () => {
           item.labels.forEach(function (label) {
               if (label.name === "bug") {
                 found = true;
-              };
+              }
             });
           return found;
         },
