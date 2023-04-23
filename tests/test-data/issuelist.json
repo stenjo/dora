@@ -52,8 +52,7 @@
     "closed_at": null,
     "author_association": "OWNER",
     "active_lock_reason": null,
-    "body": "Simply count the issues marked as bug over the number of deploys\r\nNumber of bugs are all open + closed ones 
-during the same period as deploys are counted",
+    "body": "Simply count the issues marked as bug over the number of deploys\r\nNumber of bugs are all open + closed ones during the same period as deploys are counted",
     "reactions": {
       "url": "https://api.github.com/repos/stenjo/dora/issues/18/reactions",
       "total_count": 0,
@@ -420,8 +419,7 @@ during the same period as deploys are counted",
     "closed_at": null,
     "author_association": "OWNER",
     "active_lock_reason": null,
-    "body": "On Github projects  it is feasible that the issues may be used as the source. Have to calculate time from 
-issue is started working on until closed and deployed in main.",
+    "body": "On Github projects  it is feasible that the issues may be used as the source. \r\nHave to calculate time from issue is started working on until closed and deployed in main.\r\n",
     "reactions": {
       "url": "https://api.github.com/repos/stenjo/dora/issues/14/reactions",
       "total_count": 0,

@@ -1,6 +1,6 @@
 import { Person } from "./IPerson";
 
-export interface ReleaseObj {
+export interface ReleaseObject {
     url: string;
     uploadUrl: string;
     id: number;
@@ -20,5 +20,5 @@ export interface ReleaseObj {
 }
 
 export interface ReleaseList {
-    releases: Array<ReleaseObj>;
+    releases: Array<ReleaseObject>;
 }
