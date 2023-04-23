@@ -1,4 +1,4 @@
-import { Author } from "./IReleaseList";
+import { Person } from "./IPerson";
 
 interface CommitPerson {
     name: string;   // "Sten Otto Johnsen",
@@ -33,7 +33,7 @@ export interface CommitObject {
     url: string;        // "https://api.github.com/repos/stenjo/dora/commits/5265568661241b8be64cf7df2ea455ba736908ee",
     html_url: string;   // "https://github.com/stenjo/dora/commit/5265568661241b8be64cf7df2ea455ba736908ee",
     comments_url: string;// "https://api.github.com/repos/stenjo/dora/commits/5265568661241b8be64cf7df2ea455ba736908ee/comments",
-    author: Author;
-    committer: Author;
+    author: Person;
+    committer: Person;
     parents: Array<CommitTree>;
 }
