@@ -1,12 +1,12 @@
 // 
 
-import { ReleaseObj } from "./IReleaseList";
+import { ReleaseObject } from "./IReleaseList";
 
 export class DeployFrequency {
     today: Date = new Date();
-    rlist: Array<ReleaseObj> = new Array<ReleaseObj>();
+    rlist: Array<ReleaseObject> = new Array<ReleaseObject>();
 
-    constructor(releases: Array<ReleaseObj>, dateString: string|null = null) {
+    constructor(releases: Array<ReleaseObject>, dateString: string|null = null) {
         this.rlist = releases;
         if (dateString !== null) {
             this.today = new Date(dateString)
