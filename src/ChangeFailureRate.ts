@@ -34,4 +34,8 @@ export class ChangeFailureRate {
 
     return bugs.length;
   }
+
+  getCfrPercentage(deploys: number): number {
+    return Math.round(this.getBugCount() * 100 / deploys);
+  }
 }
