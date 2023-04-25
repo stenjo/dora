@@ -5,7 +5,7 @@ import { Releases } from './Releases';
 import { DeployFrequency } from './DeployFrequency';
 import { ChangeFailureRate } from './ChangeFailureRate';
 import { IssueObject } from './IIssue';
-import { Issues } from './Issues';
+import { IssuesList } from './IssuesList';
 
 
 async function run(): Promise<void> {
@@ -28,7 +28,7 @@ async function run(): Promise<void> {
     const df = new DeployFrequency(releaselist);
     core.setOutput('deploy-rate', df.rate());
 
-    const iss = new Issues();
+    const iss = new IssuesList();
     const issuelist: IssueObject[] = await iss.issueList(process.env['GH_TOKEN'], owner, repo);
     const cfr = new ChangeFailureRate(issuelist);
     core.setOutput('change-failure-rate', cfr.getCfrPercentage(df.monthly()));
