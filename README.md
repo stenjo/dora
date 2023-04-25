@@ -16,12 +16,15 @@ Owner of the repository. Default is current repository owner or organisation.
 
 ### 'deploy-frequency'
 
-Rate of deploys per week
+Rate of deploys (tagged releases) per week
 
 ### 'lead-time'
 
 Time from issue is set to status doing until linked pull-requestis merged to main
 
+### 'change-falure-rate
+
+Number of registered issues tagged as bugs divided by number of release tags last month 
 
 
 # Create a JavaScript Action

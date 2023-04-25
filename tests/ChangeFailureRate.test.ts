@@ -24,5 +24,15 @@ describe("ChangeFailureRate should", () => {
 
     })
 
+    it("get percentage rate", () => {
+        const bugs: IssueObject[] = JSON.parse(fs.readFileSync('./tests/test-data/issuelist.json', 'utf8'));
+        const cfr = new ChangeFailureRate(bugs, new Date("2023-04-23T16:50:53Z"));
+
+        const cfrPercentage = cfr.getCfrPercentage(4);
+
+        expect(cfrPercentage).toBe(25);
+
+
+    })
 
 })

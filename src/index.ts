@@ -3,16 +3,14 @@ import * as core from '@actions/core';
 import * as github from '@actions/github';
 import { Releases } from './Releases';
 import { DeployFrequency } from './DeployFrequency';
+import { ChangeFailureRate } from './ChangeFailureRate';
+import { IssueObject } from './IIssue';
+import { Issues } from './Issues';
 
 
 async function run(): Promise<void> {
   try {
-    // const ms: string = core.getInput('milliseconds');
-    // core.info(`Waiting ${ms} milliseconds ...`);
-
-    // core.debug(new Date().toTimeString()); // debug is only output if you set the secret `ACTIONS_RUNNER_DEBUG` to true
-    // await wait(parseInt(ms));
-    // core.info(new Date().toTimeString());
+   
     let repo: string = core.getInput('repo');
     if (repo == '' || repo == null) {
       repo = github.context.repo.repo
@@ -28,7 +26,12 @@ async function run(): Promise<void> {
     const rel = new Releases();
     const releaselist =  await rel.list(process.env['GH_TOKEN'], owner, repo);
     const df = new DeployFrequency(releaselist);
-    core.setOutput('deploy_rate', df.rate());
+    core.setOutput('deploy-rate', df.rate());
+
+    const iss = new Issues();
+    const issuelist: IssueObject[] = await iss.issueList(process.env['GH_TOKEN'], owner, repo);
+    const cfr = new ChangeFailureRate(issuelist);
+    core.setOutput('change-failure-rate', cfr.getCfrPercentage(df.monthly()));
 
   } catch (error: any) {
     core.setFailed(error.message);

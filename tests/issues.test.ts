@@ -57,7 +57,7 @@ describe("Issues interface should", () => {
       },
     }).value;
 
-    console.log(bugs);
+    // console.log(bugs);
     expect(bugs.length).toBe(1);
   });
 
