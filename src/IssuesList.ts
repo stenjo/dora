@@ -2,7 +2,7 @@
 import { Octokit } from '@octokit/core';
 import * as core from '@actions/core';
 
-export class Issues {
+export class IssuesList {
   
   async issueList(token: string|undefined, owner: string, repo: string): Promise<any> {
     try {

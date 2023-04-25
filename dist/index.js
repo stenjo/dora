@@ -11543,8 +11543,8 @@ class ChangeFailureRate {
     }
 }
 
-;// CONCATENATED MODULE: ./src/Issues.ts
-var Issues_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+;// CONCATENATED MODULE: ./src/IssuesList.ts
+var IssuesList_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -11556,9 +11556,9 @@ var Issues_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _a
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 
-class Issues {
+class IssuesList {
     issueList(token, owner, repo) {
-        return Issues_awaiter(this, void 0, void 0, function* () {
+        return IssuesList_awaiter(this, void 0, void 0, function* () {
             try {
                 const octokit = new dist_node/* Octokit */.v({
                     auth: token
@@ -11612,7 +11612,7 @@ function run() {
             const releaselist = yield rel.list(process.env['GH_TOKEN'], owner, repo);
             const df = new DeployFrequency(releaselist);
             core.setOutput('deploy-rate', df.rate());
-            const iss = new Issues();
+            const iss = new IssuesList();
             const issuelist = yield iss.issueList(process.env['GH_TOKEN'], owner, repo);
             const cfr = new ChangeFailureRate(issuelist);
             core.setOutput('change-failure-rate', cfr.getCfrPercentage(df.monthly()));
