@@ -27,14 +27,14 @@ jobs:
       - name: Get current date
         id: date
         run: |
-          echo "{date}={$(date +'%m-%d')}" >> $GITHUB_ENV
+          echo "DT=$(date +'%m-%d')" >> $GITHUB_ENV
 
       - name: Run jq
         uses: sergeysova/jq-action@v2
         id: jq
         with:
           multiline: true
-          cmd: 'jq ".values[.values | length] |= . + {\"date\":\"${{ env.date }}\", \"rate\":${{ steps.dora.outputs.deploy-rate }}}" deployrate-values.json'
+          cmd: 'jq .values[.values | length] |= . + {"date":"$DT", "rate":${{ steps.dora.outputs.deploy-rate }}} deployrate-values.json'
  
       - name: Store in json file
         run: |
