@@ -41,7 +41,7 @@ jobs:
  
       - name: Store in json file
         run: |
-          jq ".values[.values | length] |= . + {'date':'${{ steps.date.outputs.date }}', 'rate':${{ steps.dora.outputs.deploy-rate }}}" deployrate-values.json
+          jq `.values[.values | length] |= . + {"date":"${{ steps.date.outputs.date }}", "rate":${{ steps.dora.outputs.deploy-rate }}}` deployrate-values.json
           rm deployrate-values.json
           echo ${{ steps.jq.ouputs.value}} >> deployrate-values.json
           ls  -al
