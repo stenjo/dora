@@ -34,7 +34,7 @@ jobs:
         id: jq
         with:
           multiline: true
-          cmd: 'jq .values[.values | length] |= . + {"date":"$DT", "rate":${{ steps.dora.outputs.deploy-rate }}} deployrate-values.json'
+          cmd: 'jq ".values[.values | length] |= . + {\"date\":\"$DT\", \"rate\":${{ steps.dora.outputs.deploy-rate }}}" deployrate-values.json'
  
       - name: Store in json file
         run: |
