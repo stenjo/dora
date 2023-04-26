@@ -23,3 +23,23 @@ jobs:
         run: echo "The deploy rate was ${{ steps.dora.outputs.deploy-rate }}"      # Use the output from the `dora` step
       - name: Get the change failure rate
         run: echo "The change failure rate was ${{ steps.dora.outputs.change-failure-rate }}"
+
+      - name: Get current date
+        id: date
+        run: |
+          echo "{date}={$(date +'%m-%d')}" >> $GITHUB_STATE
+
+      - name: Run jq
+        uses: sergeysova/jq-action@v2
+        id: jq
+        with:
+          multiline: true
+          cmd: 'jq .values[.values | length] |= . + {"date":"${{ env.date }}", "rate":${{ steps.dora.outputs.deploy-rate }}} deployrate-values.json'
+ 
+      - name: Store in json file
+        run: |
+          rm deployrate-values.json
+          echo ${{ steps.jq.ouputs.value}} >> deployrate-values.json
+          ls  -al
+          cat deployrate-values.json
+ 
