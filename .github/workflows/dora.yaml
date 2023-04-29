@@ -41,6 +41,9 @@ jobs:
         with:
           gistURL: "https://gist.github.com/stenjo/73bb1ba5fe7f17151197d27cfe2d9b41" 
 
+      - name: Get gist update status
+        id: gist-status
+        run: echo "depl_exists=$(jq '[.[]| select(.date == "${{ steps.date.outputs.date }}")] | length > 0' ${{ steps.gist.outputs.file }})"" >> $GITHUB_ENV
       
       # - name: Update json file if date already recorded
       #   if: jq '[.values[]| select(.date == "${{ steps.date.outputs.date }}")] | length > 0' ${{ steps.gist.outputs.file }}
@@ -50,8 +53,9 @@ jobs:
       - name: Store in json file if date is not recorded
         # if: jq '[.values[]| select(.date == "${{ steps.date.outputs.date }}")] | length == 0' ${{ steps.gist.outputs.file }}
         run: |
+          echo ${{ env.depl_exists }}
           cat ${{ steps.gist.outputs.file }}
-          jq '.values[.values | length] |= . + {"date":"${{ steps.date.outputs.date }}", "rate":"${{ steps.dora.outputs.deploy-rate }}", "target":"7"}' ${{ steps.gist.outputs.file }} >> deploy-rate.json
+          jq '.[. | length] |= . + {"date":"${{ steps.date.outputs.date }}", "rate":"${{ steps.dora.outputs.deploy-rate }}", "target":"7"}' ${{ steps.gist.outputs.file }} >> deploy-rate.json
 
       - name: Get existing deploy history
         uses: popsiclestick/gist-sync-action@v1.2.0
