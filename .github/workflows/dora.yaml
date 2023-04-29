@@ -45,7 +45,7 @@ jobs:
         id: gist-status
         run: |
           gist-state=$(jq '[.[]| select(.date == "${{ steps.date.outputs.date }}")] | length > 0' ${{ steps.gist.outputs.file }})
-          echo "depl_exists=$gist-state >> $GITHUB_ENV
+          echo "depl_exists=$gist-state" >> $GITHUB_ENV
       
       # - name: Update json file if date already recorded
       #   if: jq '[.values[]| select(.date == "${{ steps.date.outputs.date }}")] | length > 0' ${{ steps.gist.outputs.file }}
