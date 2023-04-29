@@ -9,8 +9,10 @@ inputs:
     description: 'Repository name'
     required: false
 outputs:
-  deploy_rate: # pull requests merged to main per week
+  deploy-rate: # pull requests merged to main per week
     description: 'Deployment rate'
+  change-failure-rate: # Issues tagged with "bug" on deploys
+    description: 'Change failure rate'
 runs:
   using: 'node16'
   main: 'dist/index.js'
