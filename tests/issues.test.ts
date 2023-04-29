@@ -1,10 +1,11 @@
 import fs from "fs";
-//import { issues } from "../src/issues";
+import { IssuesList } from "../src/IssuesList";
 import { IssueObject } from "../src/IIssue";
 
 test.skip("fetches issues", async () => {
-  // const il = await issues(process.env["GH_TOKEN"], "stenjo", "dora");
-  // expect(il?.length).toBeGreaterThan(0);
+  const issueObject = new IssuesList();
+  const il = await issueObject.issueList(process.env["GH_TOKEN"], "stenjo", "dora");
+  expect(il?.length).toBeGreaterThan(2);
 });
 
 describe("Issues interface should", () => {
