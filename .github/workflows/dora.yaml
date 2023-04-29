@@ -50,6 +50,7 @@ jobs:
       - name: Store in json file if date is not recorded
         # if: jq '[.values[]| select(.date == "${{ steps.date.outputs.date }}")] | length == 0' ${{ steps.gist.outputs.file }}
         run: |
+          cat ${{ steps.gist.outputs.file }}
           jq '.values[.values | length] |= . + {"date":"${{ steps.date.outputs.date }}", "rate":"${{ steps.dora.outputs.deploy-rate }}", "target":"7"}' ${{ steps.gist.outputs.file }} >> deploy-rate.json
 
       - name: Get existing deploy history
