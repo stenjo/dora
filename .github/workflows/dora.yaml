@@ -53,7 +53,7 @@ jobs:
       #     jq '(.values[] | select(.date == "${{ steps.date.outputs.date }}") ).rate |= "${{ steps.dora.outputs.deploy-rate }}"' ${{ steps.gist.outputs.file }} >> deploy-rate.json
       
       - name: Store in json file if date is not recorded
-        if: ${{ env.depl_exists }} == false
+        if: ${{ env.depl_exists }} == 'false'
         run: |
           echo ${{ env.depl_exists }}
           cat ${{ steps.gist.outputs.file }}
