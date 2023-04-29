@@ -50,7 +50,7 @@ jobs:
       - name: Update json file if date already recorded
         if: ${{ env.depl_exists == 'true' }}
         run: |
-          jq '(.values[] | select(.date == "${{ steps.date.outputs.date }}") ).rate |= "${{ steps.dora.outputs.deploy-rate }}"' ${{ steps.gist.outputs.file }} >> deploy-rate.json
+          jq '(.[] | select(.date == "${{ steps.date.outputs.date }}") ).rate |= "${{ steps.dora.outputs.deploy-rate }}"' ${{ steps.gist.outputs.file }} >> deploy-rate.json
       
       - name: Store in json file if date is not recorded
         if: ${{ env.depl_exists == 'false' }}
