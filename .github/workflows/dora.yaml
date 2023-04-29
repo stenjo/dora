@@ -40,7 +40,7 @@ jobs:
 
       - name: Store in json file
         run: |
-          jq '.values[.values | length] |= . + {"date":"${{ steps.date.outputs.date }}", "rate":"${{ steps.dora.outputs.deploy-rate }}"", "target":"7"}' ${{ steps.gist.outputs.file }} >> deploy-rate.json
+          jq '.values[.values | length] |= . + {"date":"${{ steps.date.outputs.date }}", "rate":"${{ steps.dora.outputs.deploy-rate }}", "target":"7"}' ${{ steps.gist.outputs.file }} >> deploy-rate.json
           ls  -al
           cat deploy-rate.json
 
