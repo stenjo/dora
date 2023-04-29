@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.1.0](https://github.com/stenjo/dora/compare/v0.0.2...v0.1.0) (2023-04-29)
+
+
+### Features
+
+* **deploy:** fixed gist write ([ab5b737](https://github.com/stenjo/dora/commit/ab5b73791ef2d3247038a4c0b7f4afc573a9fc80))
+
+
+### Bug Fixes
+
+* clean up ([5265568](https://github.com/stenjo/dora/commit/5265568661241b8be64cf7df2ea455ba736908ee))
+
 ## [0.0.2](https://github.com/stenjo/dora/compare/v0.0.1...v0.0.2) (2023-04-22)
 
 
