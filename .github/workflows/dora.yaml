@@ -44,8 +44,9 @@ jobs:
       - name: Get gist update status
         id: gist-status
         run: |
-          gist-state=$(jq '[.[]| select(.date == "${{ steps.date.outputs.date }}")] | length > 0' ${{ steps.gist.outputs.file }})
-          echo "depl_exists=$gist-state" >> $GITHUB_ENV
+          deploys=$(jq '[.[]| select(.date == "${{ steps.date.outputs.date }}")] | length > 0' ${{ steps.gist.outputs.file }})
+          echo "::set-output name=deploys::$deploys"
+          echo "depl_exists=$deploys" >> "$GITHUB_ENV"
       
       # - name: Update json file if date already recorded
       #   if: jq '[.values[]| select(.date == "${{ steps.date.outputs.date }}")] | length > 0' ${{ steps.gist.outputs.file }}
@@ -56,6 +57,7 @@ jobs:
         # if: jq '[.values[]| select(.date == "${{ steps.date.outputs.date }}")] | length == 0' ${{ steps.gist.outputs.file }}
         run: |
           echo ${{ env.depl_exists }}
+          echo ${{ steps.gist-status.outputs.deploys}}
           cat ${{ steps.gist.outputs.file }}
           jq '.[. | length] |= . + {"date":"${{ steps.date.outputs.date }}", "rate":"${{ steps.dora.outputs.deploy-rate }}", "target":"7"}' ${{ steps.gist.outputs.file }} >> deploy-rate.json
 
