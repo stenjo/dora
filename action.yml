@@ -1,6 +1,6 @@
-name: 'DORA Metrics'
+name: 'DevOps Metrics'
 author: 'Sten Otto Johnsen'
-description: 'Outputs a set of key metrics as by State of DevOps report'
+description: 'Outputs a set of key metrics based on GitHub issues and releases'
 inputs:
   owner:  # organisation
     description: 'Owner of the repo. Org or user'
@@ -11,8 +11,16 @@ inputs:
 outputs:
   deploy-rate: # pull requests merged to main per week
     description: 'Deployment rate'
-  change-failure-rate: # Issues tagged with "bug" on deploys
+
+  lead-time: # Average time between first commit on a feature and its deployment into production
+    description: 'Feature lead-time'
+
+  change-failure-rate: # Percentage of releases causing an Issue tagged with "bug"
     description: 'Change failure rate'
+
+  mttr: # Average time between releases where "bug" is created and closed
+    description: 'Mean time to restore'
+
 runs:
   using: 'node16'
   main: 'dist/index.js'

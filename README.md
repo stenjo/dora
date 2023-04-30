@@ -1,46 +1,37 @@
-# Get DORA Metrics from GitHub project issues and releases
+# Get DevOps Metrics from GitHub project issues and releases
 
 This GitHub Action will calculate a set of DevOps Research and Assessment (DORA) metrics based on status and dates from commits and issues
 
 ## Inputs
 
-### 'repo'
+### `repo`
 
 Repository from where to read issues and statuses. Default is current repository where action is installed.
 
-### 'owner'
+### `owner`
 
 Owner of the repository. Default is current repository owner or organisation.
 
 ## Outputs
 
-### 'deploy-frequency'
+### `deploy-frequency`
 
-Rate of deploys (tagged releases) per week
+Rate of deploys (tagged releases) per week.
+Decimal number. Elite performing teams has 7 as target (daily- or on-demand release)
 
-### 'lead-time'
+### `lead-time`
 
-Time from issue is set to status doing until linked pull-requestis merged to main
+Time from issue is set to status doing until linked pull-requestis merged to main branch.
+Number in days (Integer)
 
-### 'change-falure-rate
+### `change-falure-rate`
 
-Number of registered issues tagged as bugs divided by number of release tags last month 
+Number of registered issues tagged as bugs divided by number of release tags last month. 
+By counting the bugs (github issues tagged as `bug`) between releases the last month and average this, we get the failures over releases rate.
+Number in range 0 - 100 (%)
 
+### `mttr`
 
-```vegalite
-{
-  "description": "A simple bar chart with embedded data.",
-  "data": {
-    "values": [
-      {"a": "A", "b": 28}, {"a": "B", "b": 55}, {"a": "C", "b": 43},
-      {"a": "D", "b": 91}, {"a": "E", "b": 81}, {"a": "F", "b": 53},
-      {"a": "G", "b": 19}, {"a": "H", "b": 87}, {"a": "I", "b": 52}
-    ]
-  },
-  "mark": {"type": "bar", "tooltip": true},
-  "encoding": {
-    "x": {"field": "a", "type": "nominal", "axis": {"labelAngle": 0}},
-    "y": {"field": "b", "type": "quantitative"}
-  }
-}
-```
+Mean time to restore. This metric is calculated based on the time between the last release before an issue tagged as a bug and the first release after the bug is closed.
+For this to work correctly we must assume github issues are created for all unwanted issues in production and that all changes to production is done through releases.
+Number in hours (integer)

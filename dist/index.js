@@ -13353,16 +13353,19 @@ var IssuesList_awaiter = (undefined && undefined.__awaiter) || function (thisArg
 class IssuesList {
     issueList(token, owner, repo) {
         return IssuesList_awaiter(this, void 0, void 0, function* () {
+            const today = new Date();
+            const since = new Date(today.valueOf() - (61 * 24 * 60 * 60 * 1000)); // Go two months back
             try {
                 const octokit = new dist_node/* Octokit */.v({
                     auth: token
                 });
-                const result = yield octokit.request('GET /repos/{owner}/{repo}/issues', {
+                const result = yield octokit.request('GET /repos/{owner}/{repo}/issues?state=all&since={since}', {
                     owner,
                     repo,
                     headers: {
                         'X-GitHub-Api-Version': '2022-11-28'
-                    }
+                    },
+                    since: since.toISOString(),
                 });
                 return Promise.resolve(result.data);
             }
