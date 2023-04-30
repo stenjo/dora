@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.1](https://github.com/stenjo/devops-metrics-action/compare/v0.2.0...v0.2.1) (2023-04-30)
+
+
+### Bug Fixes
+
+* action name ([fe47197](https://github.com/stenjo/devops-metrics-action/commit/fe47197c927d0beac003c0bdc7eeb6991f43a5aa))
+* version ans name ([defd735](https://github.com/stenjo/devops-metrics-action/commit/defd7354072c3e7d750326cc23713a1238fadbad))
+
 ## [0.2.0](https://github.com/stenjo/devops-metrics-action/compare/v0.1.0...v0.2.0) (2023-04-30)
 
 
