@@ -11,6 +11,9 @@ inputs:
   repo:  # repository
     description: 'Repository name'
     required: false
+  token:  # repository
+    description: 'Repository access token'
+    required: false
 outputs:
   deploy-rate: # pull requests merged to main per week
     description: 'Deployment rate'

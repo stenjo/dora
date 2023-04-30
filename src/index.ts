@@ -21,15 +21,21 @@ async function run(): Promise<void> {
       owner = github.context.repo.owner
     }
 
+    let token: string | undefined = core.getInput('token');
+    if (token == '' || token == null) {
+      // token = github.context.token;
+      token = process.env['GH_TOKEN']
+    }
+
     core.info(`${owner}-${repo}`);
 
     const rel = new Releases();
-    const releaselist =  await rel.list(process.env['GH_TOKEN'], owner, repo);
+    const releaselist =  await rel.list(token, owner, repo);
     const df = new DeployFrequency(releaselist);
     core.setOutput('deploy-rate', df.rate());
 
     const iss = new IssuesList();
-    const issuelist: IssueObject[] = await iss.issueList(process.env['GH_TOKEN'], owner, repo);
+    const issuelist: IssueObject[] = await iss.issueList(token, owner, repo);
     const cfr = new ChangeFailureRate(issuelist);
     core.setOutput('change-failure-rate', cfr.getCfrPercentage(df.monthly()));
 
