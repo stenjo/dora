@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.1-beta](https://github.com/stenjo/devops-metrics-action/compare/v0.3.0-beta...v0.3.1-beta) (2023-04-30)
+
+
+### Bug Fixes
+
+* added token input to param ([#32](https://github.com/stenjo/devops-metrics-action/issues/32)) ([ff2b1cb](https://github.com/stenjo/devops-metrics-action/commit/ff2b1cbb473b7616e2055561882e66f94102ec65))
+
 ## [0.2.1](https://github.com/stenjo/devops-metrics-action/compare/v0.2.0...v0.2.1) (2023-04-30)
 
 
