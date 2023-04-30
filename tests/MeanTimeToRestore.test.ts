@@ -6,7 +6,7 @@ import { MeanTimeToRestore } from "../src/MeanTimeToRestore";
 describe("MeanTimeToRestore should", ()=> {
     const issues: IssueObject[] = JSON.parse(fs.readFileSync('./tests/test-data/issue-list.json'));
     const releases: ReleaseObject[] = JSON.parse(fs.readFileSync('./tests/test-data/releases.json'))
-    const mttr = new MeanTimeToRestore(issues, new Date("2023-04-30T16:50:53Z"));
+    const mttr = new MeanTimeToRestore(issues, releases, new Date("2023-04-30T16:50:53Z"));
 
     it("get bugs last month", ()=> {
         const bugCount = mttr.getBugCount();
@@ -17,7 +17,7 @@ describe("MeanTimeToRestore should", ()=> {
     })
 
     it("get release times", () => {
-        const releaseTimes: string[] = mttr.getReleaseTimes(releases);
+        const releaseTimes: string[] = mttr.getReleaseTimes();
 
         expect(releaseTimes[0]).toEqual("2023-04-30T17:29:44Z");
     })

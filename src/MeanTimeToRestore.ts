@@ -4,14 +4,16 @@ import { ReleaseObject } from "./IReleaseList";
 export class MeanTimeToRestore {
     today: Date;
     issues: IssueObject[];
+    releases: ReleaseObject[];
 
-    constructor(issues: IssueObject[], today: Date | null = null) {
+    constructor(issues: IssueObject[], releases: ReleaseObject[], today: Date | null = null) {
         if (today === null) {
             this.today = new Date();
           } else {
             this.today = today;
           }
           this.issues = issues;  
+          this.releases = releases;
     }
 
     getBugCount(): Array<{start:string, end:string}> {
@@ -34,18 +36,21 @@ export class MeanTimeToRestore {
         locals: filters,
         }).value;
 
+        // eslint-disable-next-line prefer-const
         let values:Array<{start:string, end:string}> = [];
         bugs.forEach(function (element: IssueObject) {
-            values.push({start: element.created_at, end: element.closed_at});
+            if(element.closed_at !== null) {
+                values.push({start: element.created_at, end: element.closed_at});
+            }
         }, this );
 
         return values;
     }
-    getReleaseTimes(releases: ReleaseObject[]): string[] {
+    getReleaseTimes(): string[] {
         // eslint-disable-next-line @typescript-eslint/no-var-requires
         const jsonQuery = require("json-query");
         const dates = jsonQuery("[*].published_at", {
-            data: releases,
+            data: this.releases,
         }).value;
 
         return dates;
