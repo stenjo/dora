@@ -26,7 +26,7 @@ Number in days (Integer)
 
 ### `change-falure-rate`
 
-Number of registered issues tagged as bugs divided by number of release tags last month. 
+Number of registered issues tagged as bugs divided by number of release tags last month.
 By counting the bugs (github issues tagged as `bug`) between releases the last month and average this, we get the failures over releases rate.
 Number in range 0 - 100 (%)
 
