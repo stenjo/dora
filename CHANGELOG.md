@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.2.0](https://github.com/stenjo/devops-metrics-action/compare/v0.1.0...v0.2.0) (2023-04-30)
+
+
+### Features
+
+* first publish as action ([ec0ccbb](https://github.com/stenjo/devops-metrics-action/commit/ec0ccbbfef5d62657d9ff3e5db9070bb1089c957))
+
+
+### Bug Fixes
+
+* action.yaml with correct outputs ([f61f630](https://github.com/stenjo/devops-metrics-action/commit/f61f6309f831d5f5d07d494f23e90445f2402fd7))
+* **issues:** include all issues two months back ([#28](https://github.com/stenjo/devops-metrics-action/issues/28)) ([b77df3f](https://github.com/stenjo/devops-metrics-action/commit/b77df3f1c470216904c792eac2d0bbbdbd959e21))
+* README.md ([389371d](https://github.com/stenjo/devops-metrics-action/commit/389371db595eb5145c9a70577546f97913d360dd))
+* **workflow:** update json when updated before ([8f99709](https://github.com/stenjo/devops-metrics-action/commit/8f997097aeb75e73d9063452f97c2f5f3cd21d5d))
+
 ## [0.1.0](https://github.com/stenjo/dora/compare/v0.0.2...v0.1.0) (2023-04-29)
 
 
