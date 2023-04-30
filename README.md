@@ -12,6 +12,10 @@ Repository from where to read issues and statuses. Default is current repository
 
 Owner of the repository. Default is current repository owner or organisation.
 
+### `token`
+
+Access token for the repository.
+
 ## Outputs
 
 ### `deploy-frequency`
