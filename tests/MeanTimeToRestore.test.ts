@@ -5,10 +5,10 @@ import { BugTimes, MeanTimeToRestore } from "../src/MeanTimeToRestore";
 
 describe("MeanTimeToRestore should", () => {
   const issues: IssueObject[] = JSON.parse(
-    fs.readFileSync("./tests/test-data/issue-list.json")
+    fs.readFileSync("./tests/test-data/issue-list.json").toString()
   );
   const releases: ReleaseObject[] = JSON.parse(
-    fs.readFileSync("./tests/test-data/releases.json")
+    fs.readFileSync("./tests/test-data/releases.json").toString()
   );
   const mttr = new MeanTimeToRestore(
     issues,
