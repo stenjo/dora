@@ -128,4 +128,14 @@ describe("MeanTimeToRestore should", () => {
     expect(t).toThrow("Empty release list");
         
   })
+
+  it("return 0 when no bugs", () => {
+    const emptyBugList : IssueObject[] = [];
+
+    const mttrEmpty = new MeanTimeToRestore(emptyBugList, releases);
+    const meanTime = mttrEmpty.mttr();
+
+    expect(meanTime).toBe(0);
+
+  })
 });
