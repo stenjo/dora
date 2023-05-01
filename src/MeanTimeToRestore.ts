@@ -2,15 +2,15 @@ import { IssueObject } from "./IIssue";
 import { ReleaseObject } from "./IReleaseList";
 
 export interface BugTimes {
-  start: string;
-  end: string;
+  start: number;
+  end: number;
 }
 
 export class MeanTimeToRestore {
   today: Date;
   issues: IssueObject[];
   releases: ReleaseObject[];
-  releaseDates: number[];
+  releaseDates: number[]; // array of unix times
 
   constructor(
     issues: IssueObject[],
@@ -24,9 +24,11 @@ export class MeanTimeToRestore {
     }
     this.issues = issues;
     this.releases = releases;
-    this.releaseDates = this.getReleaseTimes().map(function (value) {
-      return +new Date(value);
-    }).sort(); // Sort ascending
+    this.releaseDates = this.getReleaseTimes()
+      .map(function (value) {
+        return +new Date(value);
+      })
+      .sort(); // Sort ascending
   }
 
   getTimeDiff(bugTime: BugTimes): number {
@@ -60,7 +62,10 @@ export class MeanTimeToRestore {
     let values: Array<BugTimes> = [];
     bugs.forEach(function (element: IssueObject) {
       if (element.closed_at !== null) {
-        values.push({ start: element.created_at, end: element.closed_at });
+        values.push({
+          start: +new Date(element.created_at),
+          end: +new Date(element.closed_at),
+        });
       }
     }, this);
 
@@ -78,8 +83,10 @@ export class MeanTimeToRestore {
   }
 
   getReleaseBefore(date: number): number {
-    const decDates: number[] = this.releaseDates.sort((a,b) => (a > b ? -1 : 1)); // Sort decending
-    const bugDate: number = +(new Date(date));
+    const decDates: number[] = this.releaseDates.sort((a, b) =>
+      a > b ? -1 : 1
+    ); // Sort decending
+    const bugDate: number = +new Date(date);
 
     for (const index in decDates) {
       if (decDates[index] < bugDate) {
@@ -92,26 +99,41 @@ export class MeanTimeToRestore {
 
   getReleaseAfter(date: number): number {
     const ascDates: number[] = this.releaseDates.sort(); // Sort ascending
-  
-      for (const index in ascDates) {
-        if (ascDates[index] > date) {
-          return ascDates[index];
-        }
+
+    for (const index in ascDates) {
+      if (ascDates[index] > date) {
+        return ascDates[index];
       }
-  
-      throw new Error("No later releases");
+    }
+
+    throw new Error("No later releases");
   }
 
-    hasLaterRelease(date: number) : boolean {
-      const decDates: number[] = this.releaseDates.sort((a,b) => (a > b ? -1 : 1)); // Sort decending
+  hasLaterRelease(date: number): boolean {
+    const decDates: number[] = this.releaseDates.sort((a, b) =>
+      a > b ? -1 : 1
+    ); // Sort decending
 
-        return decDates[0] > date;
+    return decDates[0] > date;
+  }
+
+  getRestoreTime(bug: BugTimes): number {
+    const prevRel = this.getReleaseBefore(bug.start);
+    const nextRel = this.getReleaseAfter(bug.end);
+
+    return nextRel - prevRel;
+  }
+
+  mttr(): number {
+    const ttr: number[] = this.getBugCount().map( (bug) => {
+      return this.getRestoreTime(bug);
+    }, this);
+
+    let sum = 0;
+    for (let i = 0; i < ttr.length; i++) {
+      sum += ttr[i];
     }
 
-    getRestoreTime(bug: BugTimes) : number {
-      const prevRel = this.getReleaseBefore(bug.start);
-      const nextRel = this.getReleaseAfter(bug.end);
-
-      return nextRel - prevRel;
-    }
+    return sum / ttr.length / (1000 * 60 * 60 * 24);
+  }
 }

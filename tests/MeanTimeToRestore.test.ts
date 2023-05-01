@@ -20,8 +20,8 @@ describe("MeanTimeToRestore should", () => {
     const bugCount = mttr.getBugCount();
 
     expect(bugCount.length).toBe(2);
-    expect(bugCount[0].start).toBe("2023-04-25T21:21:49Z");
-    expect(bugCount[1].end).toBe("2023-04-23T16:47:40Z");
+    expect(bugCount[0].start).toBe(+new Date("2023-04-25T21:21:49Z"));
+    expect(bugCount[1].end).toBe(+new Date("2023-04-23T16:47:40Z"));
   });
 
   it("get release times", () => {
@@ -32,8 +32,8 @@ describe("MeanTimeToRestore should", () => {
 
   it("calculate time for a bug", () => {
     const bugTime: BugTimes = {
-      start: "2023-04-25T21:21:49Z",
-      end: "2023-04-26T21:21:49Z",
+      start: +new Date("2023-04-25T21:21:49Z"),
+      end: +new Date("2023-04-26T21:21:49Z"),
     };
     const restoreTime: number = mttr.getTimeDiff(bugTime);
 
@@ -72,8 +72,31 @@ describe("MeanTimeToRestore should", () => {
 
     const bug:BugTimes = {start:(+new Date("2023-04-22T21:44:06Z")), end:(+new Date("2023-04-23T16:47:40Z"))};
     const releaseDiff = +new Date("2023-04-29T06:18:36Z") - +new Date("2023-04-22T20:28:29Z");
+
     const fixTime:number = mttr.getRestoreTime(bug);
 
     expect(fixTime).toBe(releaseDiff);
+    console.log(fixTime/(1000*60*60*24))
+  })
+  it("get time for a bug 2", () => {
+
+    const bug:BugTimes = {start:(+new Date("2023-04-25T21:21:49Z")), end:(+new Date("2023-04-29T12:54:45Z"))};
+    const releaseDiff = +new Date("2023-04-30T16:06:06Z") - +new Date("2023-04-22T20:28:29Z");
+
+    const fixTime:number = mttr.getRestoreTime(bug);
+
+    expect(fixTime).toBe(releaseDiff);
+
+    console.log(fixTime/(1000*60*60*24))
+  })
+
+  it("get average time to repair", () => {
+
+    const avMttr: number = mttr.mttr();
+
+    expect(avMttr).toBeGreaterThan(6.4);
+    expect(avMttr).toBeLessThan(7.9);
+
+    console.log(avMttr);
   })
 });
