@@ -37,9 +37,6 @@ jobs:
           valColorRange: ${{ steps.dora.outputs.deploy-rate }}
           maxColorRange: 7
           minColorRange: 1
-          invertColorRange: true
-          # color: ${{ steps.dora.outputs.color }}
-          # namedLogo: 
 
       - name: Create the Badge for Change Failure Rate
         uses: Schneegans/dynamic-badges-action@v1.6.0
@@ -48,11 +45,11 @@ jobs:
           gistID: ebb0efc5ab5afb32eae4d0cdc60d563a
           filename: change-failure-rate.json
           label: Change Failure Rate
-          message: ${{ steps.dora.outputs.change-failure-rate }}
+          message: ${{ steps.dora.outputs.change-failure-rate }}%
           valColorRange: ${{ steps.dora.outputs.change-failure-rate }}
           maxColorRange: 50
           minColorRange: 15
-          # invertColorRange: true
+          invertColorRange: true
 
       - name: Create the Badge for Mean time to Restore
         uses: Schneegans/dynamic-badges-action@v1.6.0
