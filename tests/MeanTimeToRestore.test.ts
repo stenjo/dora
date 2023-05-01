@@ -76,7 +76,7 @@ describe("MeanTimeToRestore should", () => {
     const fixTime:number = mttr.getRestoreTime(bug);
 
     expect(fixTime).toBe(releaseDiff);
-    console.log(fixTime/(1000*60*60*24))
+    // console.log(fixTime/(1000*60*60*24))
   })
   it("get time for a bug 2", () => {
 
@@ -87,7 +87,7 @@ describe("MeanTimeToRestore should", () => {
 
     expect(fixTime).toBe(releaseDiff);
 
-    console.log(fixTime/(1000*60*60*24))
+    // console.log(fixTime/(1000*60*60*24))
   })
 
   it("get average time to repair", () => {
@@ -97,6 +97,6 @@ describe("MeanTimeToRestore should", () => {
     expect(avMttr).toBeGreaterThan(6.4);
     expect(avMttr).toBeLessThan(7.9);
 
-    console.log(avMttr);
+    // console.log(avMttr);
   })
 });

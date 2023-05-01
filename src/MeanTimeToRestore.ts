@@ -134,6 +134,6 @@ export class MeanTimeToRestore {
       sum += ttr[i];
     }
 
-    return sum / ttr.length / (1000 * 60 * 60 * 24);
+    return Math.round(sum / ttr.length / (10 * 60 * 60 * 24))/100; // Two decimals
   }
 }
