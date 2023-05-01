@@ -21,4 +21,10 @@ describe("MeanTimeToRestore should", ()=> {
 
         expect(releaseTimes[0]).toEqual("2023-04-30T17:29:44Z");
     })
+    it("calculate time for a bug", ()=>{
+
+        const restoreTime: number = mttr.getTimeDiff("2023-04-25T21:21:49Z", "2023-04-26T21:21:49Z");
+
+        expect(restoreTime).toBe(1);
+    })
 })

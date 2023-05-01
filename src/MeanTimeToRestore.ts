@@ -1,6 +1,12 @@
 import { IssueObject } from "./IIssue";
 import { ReleaseObject } from "./IReleaseList";
 
+export interface BugTimes
+{
+    start: string;
+    end: string;
+}
+
 export class MeanTimeToRestore {
     today: Date;
     issues: IssueObject[];
@@ -14,6 +20,13 @@ export class MeanTimeToRestore {
           }
           this.issues = issues;  
           this.releases = releases;
+    }
+
+    getTimeDiff(start: string, end: string): number {
+        const startTime = +(new Date(start));
+        const endTime = +(new Date(end));
+
+        return (endTime - startTime) / (1000*60*60*24);
     }
 
     getBugCount(): Array<{start:string, end:string}> {

@@ -19,7 +19,7 @@ jobs:
         id: dora
         with:
           owner: 'stenjo'
-          repo: 'dora'
+          repo: 'devops-metrics-action'
 
       # Use the output from the `dora` step
       - name: Get the output rate
