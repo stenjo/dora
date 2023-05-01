@@ -50,8 +50,8 @@ jobs:
           label: Change Failure Rate
           message: ${{ steps.dora.outputs.change-failure-rate }}
           valColorRange: ${{ steps.dora.outputs.change-failure-rate }}
-          maxColorRange: 50
-          minColorRange: 15
+          maxColorRange: 15
+          minColorRange: 50
           invertColorRange: true
 
       - name: Create the Badge for Mean time to Restore
