@@ -13387,6 +13387,9 @@ class MeanTimeToRestore {
         }
         this.issues = issues;
         this.releases = releases;
+        if (this.releases == null || this.releases.length == 0) {
+            throw new Error("Empty release list");
+        }
         this.releaseDates = this.getReleaseTimes()
             .map(function (value) {
             return +new Date(value);

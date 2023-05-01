@@ -36,4 +36,14 @@ describe('Deploy frequency should', () => {
 
         expect(rr).toBe('0.00');
     })
+    it("throw excepiton when no releases", ()=>{
+        const emptyReleaseList : ReleaseObject[] = [];
+    
+        const t = () => {
+          new DeployFrequency(emptyReleaseList);
+        }
+    
+        expect(t).toThrow("Empty release list");
+            
+    })
 })
