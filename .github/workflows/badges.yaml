@@ -1,0 +1,68 @@
+name: Create Badge on DevOps Metrics
+
+on: 
+  push:
+  schedule:
+  - cron: '30 0 * * *'
+
+jobs:
+  update-metrics:
+    runs-on: ubuntu-latest
+    name: Checking the dora metrics
+    steps:
+      - name: DevOps Metrics from GitHub
+        uses: stenjo/devops-metrics-action@v0.4.0-beta
+        id: dora
+        with:
+          owner: 'stenjo'
+          repo: 'devops-metrics-action'
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # Use the output from the `dora` step
+      - name: Get the output rate
+        run: echo "The deploy rate was ${{ steps.dora.outputs.deploy-rate }}"      # Use the output from the `dora` step
+      - name: Get the change failure rate
+        run: echo "The change failure rate was ${{ steps.dora.outputs.change-failure-rate }}"
+      - name: Get the mean time to restore
+        run: echo "The mean time to restore was ${{ steps.dora.outputs.mttr }}"
+
+      - name: Create the Badge for Deploy Rate
+        uses: Schneegans/dynamic-badges-action@v1.6.0
+        with:
+          auth: ${{ secrets.GIST_AUTH_TOKEN }}
+          gistID: ebb0efc5ab5afb32eae4d0cdc60d563a
+          filename: deploy-rate.json
+          label: Deploy Rate
+          message: ${{ steps.dora.outputs.deploy-rate }}
+          valColorRange: ${{ steps.dora.outputs.deploy-rate }}
+          maxColorRange: 7
+          minColorRange: 1
+          invertColorRange: true
+          # color: ${{ steps.dora.outputs.color }}
+          # namedLogo: 
+
+      - name: Create the Badge for Change Failure Rate
+        uses: Schneegans/dynamic-badges-action@v1.6.0
+        with:
+          auth: ${{ secrets.GIST_AUTH_TOKEN }}
+          gistID: ebb0efc5ab5afb32eae4d0cdc60d563a
+          filename: change-failure-rate.json
+          label: Change Failure Rate
+          message: ${{ steps.dora.outputs.change-failure-rate }}
+          valColorRange: ${{ steps.dora.outputs.change-failure-rate }}
+          maxColorRange: 50
+          minColorRange: 15
+          # invertColorRange: true
+
+      - name: Create the Badge for Mean time to Restore
+        uses: Schneegans/dynamic-badges-action@v1.6.0
+        with:
+          auth: ${{ secrets.GIST_AUTH_TOKEN }}
+          gistID: ebb0efc5ab5afb32eae4d0cdc60d563a
+          filename: mean-time-to-restore.json
+          label: Mean time to Restore
+          message: ${{ steps.dora.outputs.mttr }}
+          valColorRange: ${{ steps.dora.outputs.mttr }}
+          maxColorRange: 1
+          minColorRange: 7
+          invertColorRange: true

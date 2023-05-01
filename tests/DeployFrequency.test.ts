@@ -30,7 +30,7 @@ describe('Deploy frequency should', () => {
 
         expect(rr).toBe('0.47');
     })
-    it('calculate release rate last month', () => {
+    it('calculate release rate next month', () => {
         const df = new DeployFrequency(releaselist, "2023-05-23T22:33:11Z");
         const rr = df.rate();
 
