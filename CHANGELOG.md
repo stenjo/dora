@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.1-beta](https://github.com/stenjo/devops-metrics-action/compare/v0.4.0-beta...v0.4.1-beta) (2023-05-01)
+
+
+### Bug Fixes
+
+* handle empty release list ([#42](https://github.com/stenjo/devops-metrics-action/issues/42)) ([ce04048](https://github.com/stenjo/devops-metrics-action/commit/ce040485974f9b17b4e70cc676d2f41211a906f5))
+* report 0 mttr when no bugs ([fad1064](https://github.com/stenjo/devops-metrics-action/commit/fad1064456834164ea75f1dda44259a184339cd6))
+
 ## [0.4.0-beta](https://github.com/stenjo/devops-metrics-action/compare/v0.3.1-beta...v0.4.0-beta) (2023-05-01)
 
 
