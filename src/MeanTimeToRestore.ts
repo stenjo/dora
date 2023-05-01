@@ -62,6 +62,7 @@ export class MeanTimeToRestore {
 
     return values;
   }
+
   getReleaseTimes(): string[] {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const jsonQuery = require("json-query");
@@ -70,5 +71,20 @@ export class MeanTimeToRestore {
     }).value;
 
     return dates;
+  }
+
+  getReleaseBefore(date: string): number {
+    const releaseDates: number[] = this.getReleaseTimes().map(function (value) {
+      return +new Date(value);
+    }).sort((a,b) => (a > b ? -1 : 1)); // Sort decending
+    const bugDate: number = +(new Date(date));
+
+    for (const index in releaseDates) {
+      if (releaseDates[index] < bugDate) {
+        return releaseDates[index];
+      }
+    }
+
+    return 0;
   }
 }

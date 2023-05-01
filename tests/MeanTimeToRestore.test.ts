@@ -29,7 +29,7 @@ describe("MeanTimeToRestore should", () => {
 
     expect(releaseTimes[0]).toEqual("2023-04-30T17:29:44Z");
   });
-  
+
   it("calculate time for a bug", () => {
     const bugTime: BugTimes = {
       start: "2023-04-25T21:21:49Z",
@@ -39,4 +39,13 @@ describe("MeanTimeToRestore should", () => {
 
     expect(restoreTime).toBe(1);
   });
+
+  it("find release time before date", () => {
+
+    const before1: number = mttr.getReleaseBefore("2023-04-25T21:21:49Z");
+    const before2: number = mttr.getReleaseBefore("2023-04-29T12:54:45Z");
+
+    expect(before1).toBe(+(new Date("2023-04-22T20:28:29Z")));
+    expect(before2).toBe(+(new Date("2023-04-29T06:18:36Z")));
+  })
 });
