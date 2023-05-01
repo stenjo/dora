@@ -10,6 +10,7 @@ export class MeanTimeToRestore {
   today: Date;
   issues: IssueObject[];
   releases: ReleaseObject[];
+  releaseDates: number[];
 
   constructor(
     issues: IssueObject[],
@@ -23,6 +24,9 @@ export class MeanTimeToRestore {
     }
     this.issues = issues;
     this.releases = releases;
+    this.releaseDates = this.getReleaseTimes().map(function (value) {
+      return +new Date(value);
+    }).sort(); // Sort ascending
   }
 
   getTimeDiff(bugTime: BugTimes): number {
@@ -74,28 +78,24 @@ export class MeanTimeToRestore {
   }
 
   getReleaseBefore(date: number): number {
-    const releaseDates: number[] = this.getReleaseTimes().map(function (value) {
-      return +new Date(value);
-    }).sort((a,b) => (a > b ? -1 : 1)); // Sort decending
+    const decDates: number[] = this.releaseDates.sort((a,b) => (a > b ? -1 : 1)); // Sort decending
     const bugDate: number = +(new Date(date));
 
-    for (const index in releaseDates) {
-      if (releaseDates[index] < bugDate) {
-        return releaseDates[index];
+    for (const index in decDates) {
+      if (decDates[index] < bugDate) {
+        return decDates[index];
       }
     }
 
     throw new Error("No previous releases");
   }
-  
+
   getReleaseAfter(date: number): number {
-    const releaseDates: number[] = this.getReleaseTimes().map(function (value) {
-        return +new Date(value);
-      }).sort(); // Sort ascending
+    const ascDates: number[] = this.releaseDates.sort(); // Sort ascending
   
-      for (const index in releaseDates) {
-        if (releaseDates[index] > date) {
-          return releaseDates[index];
+      for (const index in ascDates) {
+        if (ascDates[index] > date) {
+          return ascDates[index];
         }
       }
   
@@ -103,10 +103,8 @@ export class MeanTimeToRestore {
   }
 
     hasLaterRelease(date: number) : boolean {
-        const releaseDates: number[] = this.getReleaseTimes().map(function (value) {
-            return +new Date(value);
-          }).sort((a,b) => (a > b ? -1 : 1)); // Sort decending
+      const decDates: number[] = this.releaseDates.sort((a,b) => (a > b ? -1 : 1)); // Sort decending
 
-        return releaseDates[0] > date;
+        return decDates[0] > date;
     }
 }
