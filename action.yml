@@ -16,16 +16,16 @@ inputs:
     required: false
 outputs:
   deploy-rate: # pull requests merged to main per week
-    description: 'Deployment rate'
+    description: 'Deployment rate (deploys/week)'
 
   lead-time: # Average time between first commit on a feature and its deployment into production
-    description: 'Feature lead-time'
+    description: 'Feature lead-time (days)'
 
   change-failure-rate: # Percentage of releases causing an Issue tagged with "bug"
-    description: 'Change failure rate'
+    description: 'Change failure rate (%)'
 
   mttr: # Average time between releases where "bug" is created and closed
-    description: 'Mean time to restore'
+    description: 'Mean time to restore (days)'
 
 runs:
   using: 'node16'

@@ -13376,6 +13376,107 @@ class IssuesList {
     }
 }
 
+;// CONCATENATED MODULE: ./src/MeanTimeToRestore.ts
+class MeanTimeToRestore {
+    constructor(issues, releases, today = null) {
+        if (today === null) {
+            this.today = new Date();
+        }
+        else {
+            this.today = today;
+        }
+        this.issues = issues;
+        this.releases = releases;
+        this.releaseDates = this.getReleaseTimes()
+            .map(function (value) {
+            return +new Date(value);
+        })
+            .sort(); // Sort ascending
+    }
+    getTimeDiff(bugTime) {
+        const startTime = +new Date(bugTime.start);
+        const endTime = +new Date(bugTime.end);
+        return (endTime - startTime) / (1000 * 60 * 60 * 24);
+    }
+    getBugCount() {
+        const filters = {
+            labeledBug: function (item, today) {
+                let found = false;
+                item.labels.forEach(function (label) {
+                    if (label.name === "bug") {
+                        found = true;
+                    }
+                });
+                const d = new Date(item.created_at);
+                return found && d.getTime() > today - 30 * 24 * 60 * 60 * 1000;
+            },
+        };
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
+        const jsonQuery = __nccwpck_require__(8634);
+        const bugs = jsonQuery("[*:labeledBug(" + this.today.getTime() + ")]", {
+            data: this.issues,
+            locals: filters,
+        }).value;
+        // eslint-disable-next-line prefer-const
+        let values = [];
+        bugs.forEach(function (element) {
+            if (element.closed_at !== null) {
+                values.push({
+                    start: +new Date(element.created_at),
+                    end: +new Date(element.closed_at),
+                });
+            }
+        }, this);
+        return values;
+    }
+    getReleaseTimes() {
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
+        const jsonQuery = __nccwpck_require__(8634);
+        const dates = jsonQuery("[*].published_at", {
+            data: this.releases,
+        }).value;
+        return dates;
+    }
+    getReleaseBefore(date) {
+        const decDates = this.releaseDates.sort((a, b) => a > b ? -1 : 1); // Sort decending
+        const bugDate = +new Date(date);
+        for (const index in decDates) {
+            if (decDates[index] < bugDate) {
+                return decDates[index];
+            }
+        }
+        throw new Error("No previous releases");
+    }
+    getReleaseAfter(date) {
+        const ascDates = this.releaseDates.sort(); // Sort ascending
+        for (const index in ascDates) {
+            if (ascDates[index] > date) {
+                return ascDates[index];
+            }
+        }
+        throw new Error("No later releases");
+    }
+    hasLaterRelease(date) {
+        const decDates = this.releaseDates.sort((a, b) => a > b ? -1 : 1); // Sort decending
+        return decDates[0] > date;
+    }
+    getRestoreTime(bug) {
+        const prevRel = this.getReleaseBefore(bug.start);
+        const nextRel = this.getReleaseAfter(bug.end);
+        return nextRel - prevRel;
+    }
+    mttr() {
+        const ttr = this.getBugCount().map((bug) => {
+            return this.getRestoreTime(bug);
+        }, this);
+        let sum = 0;
+        for (let i = 0; i < ttr.length; i++) {
+            sum += ttr[i];
+        }
+        return Math.round(sum / ttr.length / (10 * 60 * 60 * 24)) / 100; // Two decimals
+    }
+}
+
 ;// CONCATENATED MODULE: ./src/index.ts
 var src_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -13387,6 +13488,7 @@ var src_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argu
     });
 };
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
 
 
 
@@ -13418,6 +13520,8 @@ function run() {
             const issuelist = yield iss.issueList(token, owner, repo);
             const cfr = new ChangeFailureRate(issuelist);
             core.setOutput('change-failure-rate', cfr.getCfrPercentage(df.monthly()));
+            const mttr = new MeanTimeToRestore(issuelist, releaselist);
+            core.setOutput('mttr', mttr.mttr());
         }
         catch (error) {
             core.setFailed(error.message);

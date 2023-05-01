@@ -6,6 +6,7 @@ import { DeployFrequency } from './DeployFrequency';
 import { ChangeFailureRate } from './ChangeFailureRate';
 import { IssueObject } from './IIssue';
 import { IssuesList } from './IssuesList';
+import { MeanTimeToRestore } from './MeanTimeToRestore';
 
 
 async function run(): Promise<void> {
@@ -38,6 +39,9 @@ async function run(): Promise<void> {
     const issuelist: IssueObject[] = await iss.issueList(token, owner, repo);
     const cfr = new ChangeFailureRate(issuelist);
     core.setOutput('change-failure-rate', cfr.getCfrPercentage(df.monthly()));
+
+    const mttr = new MeanTimeToRestore(issuelist, releaselist);
+    core.setOutput('mttr', mttr.mttr());
 
   } catch (error: any) {
     core.setFailed(error.message);
