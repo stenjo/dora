@@ -13264,6 +13264,9 @@ class DeployFrequency {
         this.today = new Date();
         this.rlist = new Array();
         this.rlist = releases;
+        if (this.rlist == null || this.rlist.length == 0) {
+            throw new Error("Empty release list");
+        }
         if (dateString !== null) {
             this.today = new Date(dateString);
         }
