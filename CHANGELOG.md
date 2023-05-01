@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0-beta](https://github.com/stenjo/devops-metrics-action/compare/v0.3.1-beta...v0.4.0-beta) (2023-05-01)
+
+
+### Features
+
+* mean time to restore mttr ([#34](https://github.com/stenjo/devops-metrics-action/issues/34)) ([a145705](https://github.com/stenjo/devops-metrics-action/commit/a145705c0d8a6c2331ffbda7652080e22a13d8ce))
+
 ## [0.3.1-beta](https://github.com/stenjo/devops-metrics-action/compare/v0.3.0-beta...v0.3.1-beta) (2023-04-30)
 
 
