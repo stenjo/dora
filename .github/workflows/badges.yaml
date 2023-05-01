@@ -11,7 +11,7 @@ jobs:
     name: Checking the dora metrics
     steps:
       - name: DevOps Metrics from GitHub
-        uses: stenjo/devops-metrics-action@v0.3.0-beta
+        uses: stenjo/devops-metrics-action@v0.3.1-beta
         id: dora
         with:
           owner: 'stenjo'
@@ -27,7 +27,7 @@ jobs:
         run: echo "The mean time to restore was ${{ steps.dora.outputs.mttr }}"
 
       - name: Create the Badge
-        uses: schneegans/dynamic-badges-action@v1.0.0
+        uses: Schneegans/dynamic-badges-action@v1.6.0
         with:
           auth: ${{ secrets.GIST_AUTH_TOKEN }}
           gistID: ebb0efc5ab5afb32eae4d0cdc60d563a
