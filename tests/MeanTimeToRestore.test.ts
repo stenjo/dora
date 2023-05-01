@@ -48,4 +48,23 @@ describe("MeanTimeToRestore should", () => {
     expect(before1).toBe(+(new Date("2023-04-22T20:28:29Z")));
     expect(before2).toBe(+(new Date("2023-04-29T06:18:36Z")));
   })
+
+  it("find release time after date", () => {
+
+    const after1: number = mttr.getReleaseAfter(+new Date("2023-04-25T21:21:49Z"));
+    const after2: number = mttr.getReleaseAfter(+new Date("2023-04-29T12:54:45Z"));
+
+    expect(after1).toBe(+(new Date("2023-04-29T06:18:36Z")));
+    expect(after2).toBe(+(new Date("2023-04-30T16:06:06Z")));
+  })
+
+  it("check if there are later releases", () => {
+
+    const hasLaterRelease:boolean = mttr.hasLaterRelease(+new Date("2023-04-29T12:54:45Z"));
+    const hasNoLaterRelease:boolean = mttr.hasLaterRelease(+new Date("2023-04-30T17:29:44Z"));
+
+    expect(hasLaterRelease).toBe(true);
+    expect(hasNoLaterRelease).toBe(false);
+
+  })
 });

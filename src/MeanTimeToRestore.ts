@@ -85,6 +85,28 @@ export class MeanTimeToRestore {
       }
     }
 
-    return 0;
+    throw new Error("No previous releases");
   }
+  
+  getReleaseAfter(date: number): number {
+    const releaseDates: number[] = this.getReleaseTimes().map(function (value) {
+        return +new Date(value);
+      }).sort(); // Sort ascending
+  
+      for (const index in releaseDates) {
+        if (releaseDates[index] > date) {
+          return releaseDates[index];
+        }
+      }
+  
+      throw new Error("No later releases");
+  }
+
+    hasLaterRelease(date: number) : boolean {
+        const releaseDates: number[] = this.getReleaseTimes().map(function (value) {
+            return +new Date(value);
+          }).sort((a,b) => (a > b ? -1 : 1)); // Sort decending
+
+        return releaseDates[0] > date;
+    }
 }
