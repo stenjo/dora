@@ -42,8 +42,8 @@ describe("MeanTimeToRestore should", () => {
 
   it("find release time before date", () => {
 
-    const before1: number = mttr.getReleaseBefore("2023-04-25T21:21:49Z");
-    const before2: number = mttr.getReleaseBefore("2023-04-29T12:54:45Z");
+    const before1: number = mttr.getReleaseBefore(+new Date("2023-04-25T21:21:49Z"));
+    const before2: number = mttr.getReleaseBefore(+new Date("2023-04-29T12:54:45Z"));
 
     expect(before1).toBe(+(new Date("2023-04-22T20:28:29Z")));
     expect(before2).toBe(+(new Date("2023-04-29T06:18:36Z")));

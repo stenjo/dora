@@ -73,7 +73,7 @@ export class MeanTimeToRestore {
     return dates;
   }
 
-  getReleaseBefore(date: string): number {
+  getReleaseBefore(date: number): number {
     const releaseDates: number[] = this.getReleaseTimes().map(function (value) {
       return +new Date(value);
     }).sort((a,b) => (a > b ? -1 : 1)); // Sort decending
