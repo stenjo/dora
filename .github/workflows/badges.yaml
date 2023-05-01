@@ -16,7 +16,7 @@ jobs:
         with:
           owner: 'stenjo'
           repo: 'devops-metrics-action'
-          token: $GITHUB_TOKEN
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       # Use the output from the `dora` step
       - name: Get the output rate

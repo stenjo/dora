@@ -49,7 +49,7 @@ jobs:
         with:
           owner: 'stenjo'
           repo: 'devops-metrics-action'
-          token: $GITHUB_TOKEN
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create the Badge
         uses: Schneegans/dynamic-badges-action@v1.6.0
