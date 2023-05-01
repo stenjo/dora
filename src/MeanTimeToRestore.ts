@@ -107,4 +107,11 @@ export class MeanTimeToRestore {
 
         return decDates[0] > date;
     }
+
+    getRestoreTime(bug: BugTimes) : number {
+      const prevRel = this.getReleaseBefore(bug.start);
+      const nextRel = this.getReleaseAfter(bug.end);
+
+      return nextRel - prevRel;
+    }
 }

@@ -67,4 +67,13 @@ describe("MeanTimeToRestore should", () => {
     expect(hasNoLaterRelease).toBe(false);
 
   })
+
+  it("get time for a bug 1", () => {
+
+    const bug:BugTimes = {start:(+new Date("2023-04-22T21:44:06Z")), end:(+new Date("2023-04-23T16:47:40Z"))};
+    const releaseDiff = +new Date("2023-04-29T06:18:36Z") - +new Date("2023-04-22T20:28:29Z");
+    const fixTime:number = mttr.getRestoreTime(bug);
+
+    expect(fixTime).toBe(releaseDiff);
+  })
 });
