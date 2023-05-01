@@ -49,6 +49,15 @@ describe("MeanTimeToRestore should", () => {
     expect(before2).toBe(+(new Date("2023-04-29T06:18:36Z")));
   })
 
+  it("throw error when no earlier dates", () => {
+
+    const t = () => {
+      mttr.getReleaseBefore(+new Date("2023-04-05T21:21:49Z"));
+    }
+
+    expect(t).toThrow("No previous releases");
+  })
+
   it("find release time after date", () => {
 
     const after1: number = mttr.getReleaseAfter(+new Date("2023-04-25T21:21:49Z"));
@@ -56,6 +65,15 @@ describe("MeanTimeToRestore should", () => {
 
     expect(after1).toBe(+(new Date("2023-04-29T06:18:36Z")));
     expect(after2).toBe(+(new Date("2023-04-30T16:06:06Z")));
+  })
+
+  it("throw error when no later dates", () => {
+
+    const t = () => {
+      mttr.getReleaseAfter(+new Date("2023-05-05T21:21:49Z"));
+    }
+
+    expect(t).toThrow("No later releases");
   })
 
   it("check if there are later releases", () => {
@@ -98,5 +116,16 @@ describe("MeanTimeToRestore should", () => {
     expect(avMttr).toBeLessThan(7.9);
 
     // console.log(avMttr);
+  })
+
+  it("throw excepiton when no releases", ()=>{
+    const emptyReleaseList : ReleaseObject[] = [];
+
+    const t = () => {
+      new MeanTimeToRestore(issues, emptyReleaseList);
+    }
+
+    expect(t).toThrow("Empty release list");
+        
   })
 });

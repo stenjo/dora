@@ -8,6 +8,10 @@ export class DeployFrequency {
 
     constructor(releases: Array<ReleaseObject>, dateString: string|null = null) {
         this.rlist = releases;
+        if (this.rlist == null || this.rlist.length == 0) {
+            throw new Error("Empty release list");
+        }
+
         if (dateString !== null) {
             this.today = new Date(dateString)
         }
