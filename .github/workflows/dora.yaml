@@ -79,6 +79,7 @@ jobs:
           cfrs=$(jq '[.[]| select(.date == "${{ steps.date.outputs.date }}")] | length > 0' change-failure-rate.json)
           echo "cfr_exists=$cfrs" >> "$GITHUB_ENV"
           mv change-failure-rate.json tmp/change-failure-rate.json
+          ls -al tmp
       
       - name: Update json file if date already recorded
         if: ${{ env.cfr_exists == 'true' }}
@@ -110,6 +111,7 @@ jobs:
           mttrs=$(jq '[.[]| select(.date == "${{ steps.date.outputs.date }}")] | length > 0' mttr.json)
           echo "mttr_exists=$mttrs" >> "$GITHUB_ENV"
           mv mttr.json tmp/mttr.json
+          ls -al tmp
       
       - name: Update json file if date already recorded
         if: ${{ env.mttr_exists == 'true' }}
