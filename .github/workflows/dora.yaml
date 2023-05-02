@@ -93,7 +93,7 @@ jobs:
 
       - name: Get existing deploy history
         uses: popsiclestick/gist-sync-action@v1.2.0
-        id: sync-out
+        id: sync-cfr
         with:
           auth: ${{ secrets.GIST_AUTH_TOKEN }}
           gist_url: https://gist.github.com/stenjo/73bb1ba5fe7f17151197d27cfe2d9b41
