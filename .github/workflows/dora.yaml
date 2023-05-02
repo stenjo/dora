@@ -84,7 +84,7 @@ jobs:
       - name: Update json file if date already recorded
         if: ${{ env.cfr_exists == 'true' }}
         run: |
-          jq '(.[] | select(.date == "${{ steps.date.outputs.date }}") ).rate |= "${{ steps.dora.outputs.change-failure-rate }}"' tmp/change-failure-rate.json} >> change-failure-rate.json
+          jq '(.[] | select(.date == "${{ steps.date.outputs.date }}") ).rate |= "${{ steps.dora.outputs.change-failure-rate }}"' tmp/change-failure-rate.json >> change-failure-rate.json
       
       - name: Store in json file if date is not recorded
         if: ${{ env.cfr_exists == 'false' }}
@@ -116,7 +116,7 @@ jobs:
       - name: Update json file if date already recorded
         if: ${{ env.mttr_exists == 'true' }}
         run: |
-          jq '(.[] | select(.date == "${{ steps.date.outputs.date }}") ).rate |= "${{ steps.dora.outputs.mttr }}"' tmp/mttr.json} >> mttr.json
+          jq '(.[] | select(.date == "${{ steps.date.outputs.date }}") ).rate |= "${{ steps.dora.outputs.mttr }}"' tmp/mttr.json >> mttr.json
       
       - name: Store in json file if date is not recorded
         if: ${{ env.mttr_exists == 'false' }}
