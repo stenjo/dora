@@ -98,3 +98,34 @@ jobs:
           gist_url: https://gist.github.com/stenjo/73bb1ba5fe7f17151197d27cfe2d9b41
           gist_title: change-failure-rate.json
           github_file: ./change-failure-rate.json     
+
+      # Store Mean time to Repair
+      - name: Get MTTR Gist
+        id: gist-mttr
+        run: curl -O https://gist.githubusercontent.com/stenjo/73bb1ba5fe7f17151197d27cfe2d9b41/raw/mttr.json
+
+      - name: Get mttr gist update status
+        id: gist-mttr-status
+        run: |
+          mttrs=$(jq '[.[]| select(.date == "${{ steps.date.outputs.date }}")] | length > 0' mttr.json)
+          echo "mttr_exists=$mttrs" >> "$GITHUB_ENV"
+          mv mttr.json tmp/mttr.json
+      
+      - name: Update json file if date already recorded
+        if: ${{ env.mttr_exists == 'true' }}
+        run: |
+          jq '(.[] | select(.date == "${{ steps.date.outputs.date }}") ).rate |= "${{ steps.dora.outputs.mttr }}"' tmp/mttr.json} >> mttr.json
+      
+      - name: Store in json file if date is not recorded
+        if: ${{ env.mttr_exists == 'false' }}
+        run: |
+          jq '.[. | length] |= . + {"date":"${{ steps.date.outputs.date }}", "rate":"${{ steps.dora.outputs.mttr }}", "target":"1"}' tmp/mttr.json >> mttr.json
+
+      - name: Save MTTR history
+        uses: popsiclestick/gist-sync-action@v1.2.0
+        id: sync-mttr
+        with:
+          auth: ${{ secrets.GIST_AUTH_TOKEN }}
+          gist_url: https://gist.github.com/stenjo/73bb1ba5fe7f17151197d27cfe2d9b41
+          gist_title: mttr.json
+          github_file: ./mttr.json     
