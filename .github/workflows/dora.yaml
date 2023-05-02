@@ -46,6 +46,7 @@ jobs:
         run: |
           deploys=$(jq '[.[]| select(.date == "${{ steps.date.outputs.date }}")] | length > 0' deploy-rate.json)
           echo "depl_exists=$deploys" >> "$GITHUB_ENV"
+          mkdir tmp
           mv deploy-rate.json tmp/deploy-rate.json
       
       - name: Update json file if date already recorded
