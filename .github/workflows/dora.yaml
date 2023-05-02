@@ -43,6 +43,7 @@ jobs:
         with:
           gistURL: "https://gist.github.com/stenjo/73bb1ba5fe7f17151197d27cfe2d9b41" 
 
+      # Store Deploy Rate history
       - name: Get gist update status
         id: gist-status
         run: |
@@ -67,3 +68,34 @@ jobs:
           gist_url: https://gist.github.com/stenjo/73bb1ba5fe7f17151197d27cfe2d9b41
           gist_title: deploy-rate.json
           github_file: ./deploy-rate.json     
+
+      # Store Change Failure Rate
+      - name: Gist Actions
+        id: gist-cfr
+        run: curl -O https://gist.githubusercontent.com/stenjo/73bb1ba5fe7f17151197d27cfe2d9b41/raw/change-failure-rate.json"
+
+      - name: Get gist update status
+        id: gist-cfr-status
+        run: |
+          cfrs=$(jq '[.[]| select(.date == "${{ steps.date.outputs.date }}")] | length > 0' change-failure-rate.json)
+          echo "cfr_exists=$cfrs" >> "$GITHUB_ENV"
+          mv change-failure-rate.json tmp/change-failure-rate.json
+      
+      - name: Update json file if date already recorded
+        if: ${{ env.cfr_exists == 'true' }}
+        run: |
+          jq '(.[] | select(.date == "${{ steps.date.outputs.date }}") ).rate |= "${{ steps.dora.outputs.change-failure-rate }}"' tmp/change-failure-rate.json} >> change-failure-rate.json
+      
+      - name: Store in json file if date is not recorded
+        if: ${{ env.cfr_exists == 'false' }}
+        run: |
+          jq '.[. | length] |= . + {"date":"${{ steps.date.outputs.date }}", "rate":"${{ steps.dora.outputs.change-failure-rate }}", "target":"15"}' tmp/change-failure-rate.json >> change-failure-rate.json
+
+      - name: Get existing deploy history
+        uses: popsiclestick/gist-sync-action@v1.2.0
+        id: sync-out
+        with:
+          auth: ${{ secrets.GIST_AUTH_TOKEN }}
+          gist_url: https://gist.github.com/stenjo/73bb1ba5fe7f17151197d27cfe2d9b41
+          gist_title: change-failure-rate.json
+          github_file: ./change-failure-rate.json     
