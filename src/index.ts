@@ -37,8 +37,8 @@ async function run(): Promise<void> {
 
     const iss = new IssuesList();
     const issuelist: IssueObject[] = await iss.issueList(token, owner, repo);
-    const cfr = new ChangeFailureRate(issuelist);
-    core.setOutput('change-failure-rate', cfr.getCfrPercentage(df.monthly()));
+    const cfr = new ChangeFailureRate(issuelist, releaselist);
+    core.setOutput('change-failure-rate', cfr.Cfr());
 
     const mttr = new MeanTimeToRestore(issuelist, releaselist);
     core.setOutput('mttr', mttr.mttr());
