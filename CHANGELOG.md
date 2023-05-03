@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.4.2-beta](https://github.com/stenjo/devops-metrics-action/compare/v0.4.1-beta...v0.4.2-beta) (2023-05-03)
+
+
+### Bug Fixes
+
+* change failure rate store in gist ([19f98bb](https://github.com/stenjo/devops-metrics-action/commit/19f98bbde299c118e0485d07f123acf71a9f9e36))
+* change failure rate was calculated wrong ([#49](https://github.com/stenjo/devops-metrics-action/issues/49)) ([9eb8f9b](https://github.com/stenjo/devops-metrics-action/commit/9eb8f9b4baeb17a49224ae5b21dab6d08078584c))
+* colorscale on deploy rate ([14fd18b](https://github.com/stenjo/devops-metrics-action/commit/14fd18b70946c60dd1ae070059be54cd93fb07f0))
+* swapped max and min color range on CFR ([a82f534](https://github.com/stenjo/devops-metrics-action/commit/a82f5340cbf29070290caa0fa1c23be44f18c23f))
+
 ## [0.4.1-beta](https://github.com/stenjo/devops-metrics-action/compare/v0.4.0-beta...v0.4.1-beta) (2023-05-01)
 
 
