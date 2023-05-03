@@ -13306,7 +13306,7 @@ class DeployFrequency {
 
 ;// CONCATENATED MODULE: ./src/ChangeFailureRate.ts
 class ChangeFailureRate {
-    constructor(issues, today = null) {
+    constructor(issues, rels, today = null) {
         if (today === null) {
             this.today = new Date();
         }
@@ -13314,29 +13314,70 @@ class ChangeFailureRate {
             this.today = today;
         }
         this.issues = issues;
+        this.releases = rels
+            .sort((a, b) => +new Date(a.published_at) < +new Date(b.published_at) ? -1 : 1)
+            .filter((r) => +new Date(r.published_at) >
+            this.today.valueOf() - 31 * 24 * 60 * 60 * 1000);
     }
-    getBugCount() {
+    // getBugCount(): number {
+    //   // eslint-disable-next-line @typescript-eslint/no-var-requires
+    //   const jsonQuery = require("json-query");
+    //   const bugs = jsonQuery(
+    //     "[*:labeledBug(" + this.today.valueOf() + ")].created_at ",
+    //     {
+    //       data: this.issues,
+    //       locals: {
+    //         labeledBug: function (item: IssueObject, today: number): boolean {
+    //           let found = false;
+    //           item.labels.forEach(function (label) {
+    //             if (label.name === "bug") {
+    //               found = true;
+    //             }
+    //           });
+    //           const d = new Date(item.created_at);
+    //           return found && d.valueOf() > today - 30 * 24 * 60 * 60 * 1000;
+    //         },
+    //       },
+    //     }
+    //   ).value;
+    //   return bugs.length;
+    // }
+    // getCfrPercentage(deploys: number): number {
+    //   return Math.round((this.getBugCount() * 100) / deploys);
+    // }
+    getBugs() {
         // eslint-disable-next-line @typescript-eslint/no-var-requires
         const jsonQuery = __nccwpck_require__(8634);
-        const bugs = jsonQuery("[*:labeledBug(" + this.today.valueOf() + ")].created_at ", {
+        const bugs = jsonQuery("[*:labeledBug]", {
             data: this.issues,
             locals: {
-                labeledBug: function (item, today) {
+                labeledBug: function (item) {
                     let found = false;
                     item.labels.forEach(function (label) {
                         if (label.name === "bug") {
                             found = true;
                         }
                     });
-                    const d = new Date(item.created_at);
-                    return found && d.valueOf() > today - (30 * 24 * 60 * 60 * 1000);
-                }
+                    return found;
+                },
             },
         }).value;
-        return bugs.length;
+        return bugs;
     }
-    getCfrPercentage(deploys) {
-        return Math.round(this.getBugCount() * 100 / deploys);
+    Cfr() {
+        if (this.issues.length === 0 || this.releases.length === 0) {
+            return 0;
+        }
+        const bugDates = this.getBugs().map((issue) => +new Date(issue.created_at));
+        const releaseDates = this.releases.map((release) => +new Date(release.published_at));
+        releaseDates.push(Date.now());
+        let failedDeploys = 0;
+        for (let i = 0; i < releaseDates.length - 1; i++) {
+            if (bugDates.filter((value) => value > releaseDates[i] && value < releaseDates[i + 1]).length > 0) {
+                failedDeploys += 1;
+            }
+        }
+        return Math.round((failedDeploys / this.releases.length) * 100);
     }
 }
 
@@ -13527,8 +13568,8 @@ function run() {
             core.setOutput('deploy-rate', df.rate());
             const iss = new IssuesList();
             const issuelist = yield iss.issueList(token, owner, repo);
-            const cfr = new ChangeFailureRate(issuelist);
-            core.setOutput('change-failure-rate', cfr.getCfrPercentage(df.monthly()));
+            const cfr = new ChangeFailureRate(issuelist, releaselist);
+            core.setOutput('change-failure-rate', cfr.Cfr());
             const mttr = new MeanTimeToRestore(issuelist, releaselist);
             core.setOutput('mttr', mttr.mttr());
         }
