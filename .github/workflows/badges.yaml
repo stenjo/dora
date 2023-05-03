@@ -11,7 +11,7 @@ jobs:
     name: Checking the dora metrics
     steps:
       - name: DevOps Metrics from GitHub
-        uses: stenjo/devops-metrics-action@v0.4.0-beta
+        uses: stenjo/devops-metrics-action@main
         id: dora
         with:
           owner: 'stenjo'
@@ -48,7 +48,7 @@ jobs:
           message: ${{ steps.dora.outputs.change-failure-rate }}%
           valColorRange: ${{ steps.dora.outputs.change-failure-rate }}
           maxColorRange: 15
-          minColorRange: 46
+          minColorRange: 1
           invertColorRange: true
 
       - name: Create the Badge for Mean time to Restore
