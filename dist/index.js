@@ -13319,32 +13319,6 @@ class ChangeFailureRate {
             .filter((r) => +new Date(r.published_at) >
             this.today.valueOf() - 31 * 24 * 60 * 60 * 1000);
     }
-    // getBugCount(): number {
-    //   // eslint-disable-next-line @typescript-eslint/no-var-requires
-    //   const jsonQuery = require("json-query");
-    //   const bugs = jsonQuery(
-    //     "[*:labeledBug(" + this.today.valueOf() + ")].created_at ",
-    //     {
-    //       data: this.issues,
-    //       locals: {
-    //         labeledBug: function (item: IssueObject, today: number): boolean {
-    //           let found = false;
-    //           item.labels.forEach(function (label) {
-    //             if (label.name === "bug") {
-    //               found = true;
-    //             }
-    //           });
-    //           const d = new Date(item.created_at);
-    //           return found && d.valueOf() > today - 30 * 24 * 60 * 60 * 1000;
-    //         },
-    //       },
-    //     }
-    //   ).value;
-    //   return bugs.length;
-    // }
-    // getCfrPercentage(deploys: number): number {
-    //   return Math.round((this.getBugCount() * 100) / deploys);
-    // }
     getBugs() {
         // eslint-disable-next-line @typescript-eslint/no-var-requires
         const jsonQuery = __nccwpck_require__(8634);
