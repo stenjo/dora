@@ -11,7 +11,7 @@ jobs:
     name: Checking the dora metrics
     steps:
       - name: DevOps Metrics from GitHub
-        uses: stenjo/devops-metrics-action@v0.4.0-beta
+        uses: stenjo/devops-metrics-action@main
         id: dora
         with:
           owner: 'stenjo'
