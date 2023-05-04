@@ -24,8 +24,8 @@ jobs:
       # Use the output from the `dora` step
       - name: Get the output rate
         run: echo "The deploy rate was ${{ steps.dora.outputs.deploy-rate }}"      # Use the output from the `dora` step
-      - name: Get the output rate
-        run: echo "The deploy rate was ${{ steps.dora.outputs.lead-time }}"      # Use the output from the `dora` step
+      - name: Get the lead time
+        run: echo "The lead time was ${{ steps.dora.outputs.lead-time }}"      # Use the output from the `dora` step
       - name: Get the change failure rate
         run: echo "The change failure rate was ${{ steps.dora.outputs.change-failure-rate }}"
       - name: Get the mean time to restore

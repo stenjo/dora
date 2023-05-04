@@ -44,7 +44,7 @@ async function run(): Promise<void> {
     const lt = new LeadTime(pulls, async (pullNumber: number) => {
         return await cmts.getCommitsByPullNumber(pullNumber);
     });
-    core.setOutput('lead-time', lt.getLeadTime());
+    core.setOutput('lead-time', await lt.getLeadTime());
 
     const iss = new IssuesList();
     const issuelist: IssueObject[] = await iss.issueList(token, owner, repo);
