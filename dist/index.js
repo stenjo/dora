@@ -13501,6 +13501,138 @@ class MeanTimeToRestore {
     }
 }
 
+;// CONCATENATED MODULE: ./src/PullRequests.ts
+var PullRequests_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+
+class PullRequests {
+    constructor(token, owner, repo) {
+        this.token = token;
+        this.owner = owner;
+        this.repo = repo;
+    }
+    list() {
+        return PullRequests_awaiter(this, void 0, void 0, function* () {
+            const octokit = new dist_node/* Octokit */.v({
+                auth: this.token,
+            });
+            try {
+                const result = yield octokit.request("GET /repos/{owner}/{repo}/pulls?state=closed", {
+                    owner: this.owner,
+                    repo: this.repo,
+                    headers: {
+                        "X-GitHub-Api-Version": "2022-11-28",
+                    },
+                });
+                return Promise.resolve(result.data);
+            }
+            catch (e) {
+                core.setFailed(e.message);
+            }
+        });
+    }
+}
+
+;// CONCATENATED MODULE: ./src/LeadTime.ts
+var LeadTime_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+const ONE_DAY = 24 * 60 * 60 * 1000;
+class LeadTime {
+    constructor(pulls, getCommits, today = null) {
+        if (today === null) {
+            this.today = new Date();
+        }
+        else {
+            this.today = today;
+        }
+        this.pulls = pulls.filter((p) => +new Date(p.merged_at) > this.today.valueOf() - 31 * ONE_DAY);
+        this.getCommits = getCommits;
+    }
+    getLeadTime() {
+        return LeadTime_awaiter(this, void 0, void 0, function* () {
+            if (this.pulls.length === 0) {
+                return 0;
+            }
+            const leadTimes = [];
+            for (let i = 0; i < this.pulls.length; i++) {
+                const pull = this.pulls[i];
+                if (typeof pull.merged_at === "string" &&
+                    pull.merged_at &&
+                    pull.base.ref === "main") {
+                    const mergeTime = +new Date(pull.merged_at);
+                    const commmmits = yield this.getCommits(pull.number);
+                    const commitTime = commmmits
+                        .map((c) => +new Date(c.commit.committer.date))
+                        .sort()[0];
+                    leadTimes.push((mergeTime - commitTime) / ONE_DAY);
+                }
+            }
+            if (leadTimes.length === 0) {
+                return 0;
+            }
+            return leadTimes.reduce((p, c) => p + c) / leadTimes.length;
+        });
+    }
+}
+
+;// CONCATENATED MODULE: ./src/Commits.ts
+var Commits_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+
+class Commits {
+    constructor(token, owner, repo) {
+        this.token = token;
+        this.owner = owner;
+        this.repo = repo;
+    }
+    getCommitsByPullNumber(pullNumber) {
+        return Commits_awaiter(this, void 0, void 0, function* () {
+            try {
+                const octokit = new dist_node/* Octokit */.v({
+                    auth: this.token,
+                });
+                const result = yield octokit.request("GET /repos/{owner}/{repo}/pulls/{pull}/commits", {
+                    owner: this.owner,
+                    repo: this.repo,
+                    pull: pullNumber,
+                    headers: {
+                        "X-GitHub-Api-Version": "2022-11-28",
+                    },
+                });
+                return Promise.resolve(result.data);
+            }
+            catch (e) {
+                core.setFailed(e.message);
+            }
+        });
+    }
+}
+
 ;// CONCATENATED MODULE: ./src/index.ts
 var src_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
@@ -13512,6 +13644,9 @@ var src_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argu
     });
 };
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
+
+
 
 
 
@@ -13540,6 +13675,13 @@ function run() {
             const releaselist = yield rel.list(token, owner, repo);
             const df = new DeployFrequency(releaselist);
             core.setOutput('deploy-rate', df.rate());
+            const prs = new PullRequests(token, owner, repo);
+            const cmts = new Commits(token, owner, repo);
+            const pulls = yield prs.list();
+            const lt = new LeadTime(pulls, (pullNumber) => src_awaiter(this, void 0, void 0, function* () {
+                return yield cmts.getCommitsByPullNumber(pullNumber);
+            }));
+            core.setOutput('lead-time', lt.getLeadTime());
             const iss = new IssuesList();
             const issuelist = yield iss.issueList(token, owner, repo);
             const cfr = new ChangeFailureRate(issuelist, releaselist);

@@ -7,6 +7,9 @@ import { ChangeFailureRate } from './ChangeFailureRate';
 import { IssueObject } from './IIssue';
 import { IssuesList } from './IssuesList';
 import { MeanTimeToRestore } from './MeanTimeToRestore';
+import { PullRequests } from './PullRequests';
+import { LeadTime } from './LeadTime';
+import { Commits } from './Commits';
 
 
 async function run(): Promise<void> {
@@ -34,6 +37,14 @@ async function run(): Promise<void> {
     const releaselist =  await rel.list(token, owner, repo);
     const df = new DeployFrequency(releaselist);
     core.setOutput('deploy-rate', df.rate());
+
+    const prs = new PullRequests(token, owner, repo);
+    const cmts = new Commits(token, owner, repo);
+    const pulls = await prs.list();
+    const lt = new LeadTime(pulls, async (pullNumber: number) => {
+        return await cmts.getCommitsByPullNumber(pullNumber);
+    });
+    core.setOutput('lead-time', lt.getLeadTime());
 
     const iss = new IssuesList();
     const issuelist: IssueObject[] = await iss.issueList(token, owner, repo);

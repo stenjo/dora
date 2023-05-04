@@ -5,24 +5,24 @@ const ONE_DAY = 24 * 60 * 60 * 1000;
 export class LeadTime {
   pulls: PullRequestObject[];
   today: Date;
-  getCommits: (pullNo: number) => CommitObject[];
+  getCommits: (pullNo: number) => Promise<CommitObject[]>;
 
   constructor(
     pulls: PullRequestObject[],
-    getCommits: (pullNo: number) => CommitObject[],
+    getCommits: (pullNo: number) => Promise<CommitObject[]>,
     today: Date | null = null
   ) {
-    this.pulls = pulls;
     if (today === null) {
       this.today = new Date();
     } else {
       this.today = today;
     }
 
+    this.pulls = pulls.filter((p)=>+new Date(p.merged_at) > this.today.valueOf() - 31 * ONE_DAY);
     this.getCommits = getCommits;
   }
 
-  getLeadTime() {
+  async getLeadTime(): Promise<number> {
     if (this.pulls.length === 0) {
       return 0;
     }
@@ -35,7 +35,8 @@ export class LeadTime {
         pull.base.ref === "main"
       ) {
         const mergeTime = +new Date(pull.merged_at);
-        const commitTime = this.getCommits(pull.number)
+        const commmmits = await this.getCommits(pull.number);
+        const commitTime = commmmits
           .map((c) => +new Date(c.commit.committer.date))
           .sort()[0];
         leadTimes.push((mergeTime - commitTime) / ONE_DAY);
