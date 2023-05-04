@@ -13657,37 +13657,38 @@ var src_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argu
 function run() {
     return src_awaiter(this, void 0, void 0, function* () {
         try {
-            let repo = core.getInput('repo');
-            if (repo == '' || repo == null) {
+            let repo = core.getInput("repo");
+            if (repo == "" || repo == null) {
                 repo = github.context.repo.repo;
             }
-            let owner = core.getInput('owner');
-            if (owner == '' || owner == null) {
+            let owner = core.getInput("owner");
+            if (owner == "" || owner == null) {
                 owner = github.context.repo.owner;
             }
-            let token = core.getInput('token');
-            if (token == '' || token == null) {
+            let token = core.getInput("token");
+            if (token == "" || token == null) {
                 // token = github.context.token;
-                token = process.env['GH_TOKEN'];
+                token = process.env["GH_TOKEN"];
             }
             core.info(`${owner}-${repo}`);
             const rel = new Releases();
             const releaselist = yield rel.list(token, owner, repo);
             const df = new DeployFrequency(releaselist);
-            core.setOutput('deploy-rate', df.rate());
+            core.setOutput("deploy-rate", df.rate());
             const prs = new PullRequests(token, owner, repo);
-            const cmts = new Commits(token, owner, repo);
             const pulls = yield prs.list();
             const lt = new LeadTime(pulls, (pullNumber) => src_awaiter(this, void 0, void 0, function* () {
+                const cmts = new Commits(token, owner, repo);
                 return yield cmts.getCommitsByPullNumber(pullNumber);
             }));
-            core.setOutput('lead-time', lt.getLeadTime());
+            const leadTime = yield lt.getLeadTime();
+            core.setOutput("lead-time", leadTime);
             const iss = new IssuesList();
             const issuelist = yield iss.issueList(token, owner, repo);
             const cfr = new ChangeFailureRate(issuelist, releaselist);
-            core.setOutput('change-failure-rate', cfr.Cfr());
+            core.setOutput("change-failure-rate", cfr.Cfr());
             const mttr = new MeanTimeToRestore(issuelist, releaselist);
-            core.setOutput('mttr', mttr.mttr());
+            core.setOutput("mttr", mttr.mttr());
         }
         catch (error) {
             core.setFailed(error.message);
