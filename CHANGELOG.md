@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.5.0-beta](https://github.com/stenjo/devops-metrics-action/compare/v0.4.2-beta...v0.5.0-beta) (2023-05-05)
+
+
+### Features
+
+* calculate lead time of issues ([a48f642](https://github.com/stenjo/devops-metrics-action/commit/a48f6423b8079f62801b1bcb39416eaefb3b5a39))
+
+
+### Bug Fixes
+
+* lead-time is null when unreleased pulls ([a53ed24](https://github.com/stenjo/devops-metrics-action/commit/a53ed243ba337f70f5f93039b8a9610c99861356))
+* MTTR Exception on no release after bug ([96c42a0](https://github.com/stenjo/devops-metrics-action/commit/96c42a0fbb54ba9fc6a9b73caea9a1cab75c6064))
+
 ## [0.4.2-beta](https://github.com/stenjo/devops-metrics-action/compare/v0.4.1-beta...v0.4.2-beta) (2023-05-03)
 
 
