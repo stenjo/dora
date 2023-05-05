@@ -13554,7 +13554,7 @@ var LeadTime_awaiter = (undefined && undefined.__awaiter) || function (thisArg, 
 };
 const ONE_DAY = 24 * 60 * 60 * 1000;
 class LeadTime {
-    constructor(pulls, getCommits, today = null) {
+    constructor(pulls, releases, getCommits, today = null) {
         if (today === null) {
             this.today = new Date();
         }
@@ -13562,11 +13562,12 @@ class LeadTime {
             this.today = today;
         }
         this.pulls = pulls.filter((p) => +new Date(p.merged_at) > this.today.valueOf() - 31 * ONE_DAY);
+        this.releases = releases.map((r) => +new Date(r.published_at));
         this.getCommits = getCommits;
     }
     getLeadTime() {
         return LeadTime_awaiter(this, void 0, void 0, function* () {
-            if (this.pulls.length === 0) {
+            if (this.pulls.length === 0 || this.releases.length === 0) {
                 return 0;
             }
             const leadTimes = [];
@@ -13576,17 +13577,18 @@ class LeadTime {
                     pull.merged_at &&
                     pull.base.ref === "main") {
                     const mergeTime = +new Date(pull.merged_at);
+                    const deployTime = this.releases.filter((r) => r > mergeTime)[0];
                     const commmmits = yield this.getCommits(pull.number);
                     const commitTime = commmmits
                         .map((c) => +new Date(c.commit.committer.date))
                         .sort()[0];
-                    leadTimes.push((mergeTime - commitTime) / ONE_DAY);
+                    leadTimes.push((deployTime - commitTime) / ONE_DAY);
                 }
             }
             if (leadTimes.length === 0) {
                 return 0;
             }
-            return leadTimes.reduce((p, c) => p + c) / leadTimes.length;
+            return Math.round(leadTimes.reduce((p, c) => p + c) / leadTimes.length * 100) / 100;
         });
     }
 }
@@ -13677,7 +13679,7 @@ function run() {
             core.setOutput("deploy-rate", df.rate());
             const prs = new PullRequests(token, owner, repo);
             const pulls = yield prs.list();
-            const lt = new LeadTime(pulls, (pullNumber) => src_awaiter(this, void 0, void 0, function* () {
+            const lt = new LeadTime(pulls, releaselist, (pullNumber) => src_awaiter(this, void 0, void 0, function* () {
                 const cmts = new Commits(token, owner, repo);
                 return yield cmts.getCommitsByPullNumber(pullNumber);
             }));

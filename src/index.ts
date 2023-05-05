@@ -38,7 +38,7 @@ async function run(): Promise<void> {
 
     const prs = new PullRequests(token, owner, repo);
     const pulls = await prs.list();
-    const lt = new LeadTime(pulls, async (pullNumber: number) => {
+    const lt = new LeadTime(pulls, releaselist, async (pullNumber: number) => {
       const cmts = new Commits(token, owner, repo);
       return await cmts.getCommitsByPullNumber(pullNumber);
     });
