@@ -1,6 +1,6 @@
 # Create badges for metrics output
 
-![badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/stenjo/ebb0efc5ab5afb32eae4d0cdc60d563a/raw/deploy-rate.json) ![badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/stenjo/ebb0efc5ab5afb32eae4d0cdc60d563a/raw/change-failure-rate.json) ![badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/stenjo/ebb0efc5ab5afb32eae4d0cdc60d563a/raw/mean-time-to-restore.json)
+![badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/stenjo/ebb0efc5ab5afb32eae4d0cdc60d563a/raw/deploy-rate.json) ![badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/stenjo/ebb0efc5ab5afb32eae4d0cdc60d563a/raw/lead-time.json) ![badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/stenjo/ebb0efc5ab5afb32eae4d0cdc60d563a/raw/change-failure-rate.json) ![badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/stenjo/ebb0efc5ab5afb32eae4d0cdc60d563a/raw/mean-time-to-restore.json)
 
 One way of making metrics transparent is through badges to be displayed on pages by choice.
 

@@ -29,7 +29,7 @@ interface CommitItem {
 export interface CommitObject {
     sha: string;        // "5265568661241b8be64cf7df2ea455ba736908ee",
     node_id: string;    // "C_kwDOJTf0atoAKDUyNjU1Njg2NjEyNDFiOGJlNjRjZjdkZjJlYTQ1NWJhNzM2OTA4ZWU",
-    commitItem: CommitItem;
+    commit: CommitItem;
     url: string;        // "https://api.github.com/repos/stenjo/dora/commits/5265568661241b8be64cf7df2ea455ba736908ee",
     html_url: string;   // "https://github.com/stenjo/dora/commit/5265568661241b8be64cf7df2ea455ba736908ee",
     comments_url: string;// "https://api.github.com/repos/stenjo/dora/commits/5265568661241b8be64cf7df2ea455ba736908ee/comments",
