@@ -50,7 +50,7 @@ jobs:
           message: ${{ steps.dora.outputs.lead-time }}
           valColorRange: ${{ steps.dora.outputs.lead-time }}
           maxColorRange: 7
-          minColorRange: 1
+          minColorRange: 3
           invertColorRange: true
 
       - name: Create the Badge for Change Failure Rate
