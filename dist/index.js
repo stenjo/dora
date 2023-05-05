@@ -13395,6 +13395,7 @@ class IssuesList {
 }
 
 ;// CONCATENATED MODULE: ./src/MeanTimeToRestore.ts
+const ONE_DAY = 1000 * 60 * 60 * 24;
 class MeanTimeToRestore {
     constructor(issues, releases, today = null) {
         if (today === null) {
@@ -13417,7 +13418,7 @@ class MeanTimeToRestore {
     getTimeDiff(bugTime) {
         const startTime = +new Date(bugTime.start);
         const endTime = +new Date(bugTime.end);
-        return (endTime - startTime) / (1000 * 60 * 60 * 24);
+        return (endTime - startTime) / ONE_DAY;
     }
     getBugCount() {
         const filters = {
@@ -13429,7 +13430,7 @@ class MeanTimeToRestore {
                     }
                 });
                 const d = new Date(item.created_at);
-                return found && d.getTime() > today - 30 * 24 * 60 * 60 * 1000;
+                return found && d.getTime() > today - 30 * ONE_DAY;
             },
         };
         // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -13440,15 +13441,20 @@ class MeanTimeToRestore {
         }).value;
         // eslint-disable-next-line prefer-const
         let values = [];
-        bugs.forEach(function (element) {
-            if (element.closed_at !== null) {
+        for (let i = 0; i < bugs.length; i++) {
+            if (bugs[i].closed_at != null &&
+                this.hasLaterRelease(+new Date(bugs[i].closed_at)) &&
+                this.hasPreviousRelease(+new Date(bugs[i].created_at))) {
                 values.push({
-                    start: +new Date(element.created_at),
-                    end: +new Date(element.closed_at),
+                    start: +new Date(bugs[i].created_at),
+                    end: +new Date(bugs[i].closed_at),
                 });
             }
-        }, this);
+        }
         return values;
+    }
+    hasPreviousRelease(date) {
+        return this.releaseDates.filter((r) => r < date).length > 0;
     }
     getReleaseTimes() {
         // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -13459,27 +13465,21 @@ class MeanTimeToRestore {
         return dates;
     }
     getReleaseBefore(date) {
-        const decDates = this.releaseDates.sort((a, b) => a > b ? -1 : 1); // Sort decending
-        const bugDate = +new Date(date);
-        for (const index in decDates) {
-            if (decDates[index] < bugDate) {
-                return decDates[index];
-            }
+        const rdates = this.releaseDates.filter((r) => r < date);
+        if (rdates.length === 0) {
+            throw new Error("No previous releases");
         }
-        throw new Error("No previous releases");
+        return rdates.pop();
     }
     getReleaseAfter(date) {
-        const ascDates = this.releaseDates.sort(); // Sort ascending
-        for (const index in ascDates) {
-            if (ascDates[index] > date) {
-                return ascDates[index];
-            }
+        const rdates = this.releaseDates.filter((r) => r > date);
+        if (rdates.length === 0) {
+            throw new Error("No later releases");
         }
-        throw new Error("No later releases");
+        return rdates.reverse().pop();
     }
     hasLaterRelease(date) {
-        const decDates = this.releaseDates.sort((a, b) => a > b ? -1 : 1); // Sort decending
-        return decDates[0] > date;
+        return this.releaseDates.filter((r) => r > date).length > 0;
     }
     getRestoreTime(bug) {
         const prevRel = this.getReleaseBefore(bug.start);
@@ -13497,7 +13497,7 @@ class MeanTimeToRestore {
         for (let i = 0; i < ttr.length; i++) {
             sum += ttr[i];
         }
-        return Math.round(sum / ttr.length / (10 * 60 * 60 * 24)) / 100; // Two decimals
+        return Math.round((sum / ttr.length / ONE_DAY) * 100) / 100; // Two decimals
     }
 }
 
@@ -13552,7 +13552,7 @@ var LeadTime_awaiter = (undefined && undefined.__awaiter) || function (thisArg, 
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-const ONE_DAY = 24 * 60 * 60 * 1000;
+const LeadTime_ONE_DAY = 24 * 60 * 60 * 1000;
 class LeadTime {
     constructor(pulls, releases, getCommits, today = null) {
         if (today === null) {
@@ -13561,7 +13561,7 @@ class LeadTime {
         else {
             this.today = today;
         }
-        this.pulls = pulls.filter((p) => +new Date(p.merged_at) > this.today.valueOf() - 31 * ONE_DAY);
+        this.pulls = pulls.filter((p) => +new Date(p.merged_at) > this.today.valueOf() - 31 * LeadTime_ONE_DAY);
         this.releases = releases.map((r) => +new Date(r.published_at));
         this.getCommits = getCommits;
     }
@@ -13586,7 +13586,7 @@ class LeadTime {
                     const commitTime = commmmits
                         .map((c) => +new Date(c.commit.committer.date))
                         .sort()[0];
-                    leadTimes.push((deployTime - commitTime) / ONE_DAY);
+                    leadTimes.push((deployTime - commitTime) / LeadTime_ONE_DAY);
                 }
             }
             if (leadTimes.length === 0) {
