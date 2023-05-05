@@ -275,6 +275,51 @@ describe("LeadTime should", () => {
 
   });
 
+  it("return 6,67 on three pullrequests with one commit each and latest not released", async () => {
+    // getCommits()
+    // Returning commits from (10)=>22/4, (15)=>27/4 and (47)=>19/4
+
+    const pulls = [
+      { 
+        merged_at: "2023-04-29T17:50:53Z",  // Has a commit 19/4, first release is 30/4 -> Lead time 11 days
+        number: 47,
+        base: {
+          ref: "main",
+        },
+      },
+      {
+        merged_at: "2023-04-27T17:50:53Z", //  Has a commit 22/4, first release is 28/4 -> Lead time 6 days
+        number: 10,
+        base: {
+          ref: "main",
+        },
+      },
+      {
+        merged_at: "2023-04-29T17:50:53Z", //  Has a commit 27/4, first release is 30/4 -> Lead time 3 days
+        number: 15,
+        base: {
+          ref: "main",
+        },
+      },
+    ] as PullRequestObject[];
+
+    const rels = [
+      {
+        published_at: "2023-04-28T17:50:53Z",
+      },
+      {
+        published_at: "2023-04-02T17:50:53Z",
+      },
+    ] as ReleaseObject[];
+
+    const lt = new LeadTime(pulls, rels, getCommits, new Date());
+
+    const leadTime = await lt.getLeadTime();
+
+    expect(leadTime).toBe(6); // (6)/1 
+
+  });
+
   // Returning commits from (10)=>22/4, (15)=>27/4 and (47)=>19/4
   async function getCommits(pullId: number): Promise<CommitObject[]> {
     if (pullId === 10) {
