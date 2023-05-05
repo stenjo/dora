@@ -6,6 +6,8 @@ export interface BugTimes {
   end: number;
 }
 
+const ONE_DAY = 1000 * 60 * 60 * 24;
+
 export class MeanTimeToRestore {
   today: Date;
   issues: IssueObject[];
@@ -38,7 +40,7 @@ export class MeanTimeToRestore {
     const startTime = +new Date(bugTime.start);
     const endTime = +new Date(bugTime.end);
 
-    return (endTime - startTime) / (1000 * 60 * 60 * 24);
+    return (endTime - startTime) / ONE_DAY;
   }
 
   getBugCount(): Array<BugTimes> {
@@ -51,7 +53,7 @@ export class MeanTimeToRestore {
           }
         });
         const d = new Date(item.created_at);
-        return found && d.getTime() > today - 30 * 24 * 60 * 60 * 1000;
+        return found && d.getTime() > today - 30 * ONE_DAY;
       },
     };
     // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -63,16 +65,23 @@ export class MeanTimeToRestore {
 
     // eslint-disable-next-line prefer-const
     let values: Array<BugTimes> = [];
-    bugs.forEach(function (element: IssueObject) {
-      if (element.closed_at !== null) {
+    for (let i = 0; i < bugs.length; i++) {
+      if (
+        bugs[i].closed_at != null &&
+        this.hasLaterRelease(+new Date(bugs[i].closed_at)) &&
+        this.hasPreviousRelease(+new Date(bugs[i].created_at))
+      ) {
         values.push({
-          start: +new Date(element.created_at),
-          end: +new Date(element.closed_at),
+          start: +new Date(bugs[i].created_at),
+          end: +new Date(bugs[i].closed_at),
         });
       }
-    }, this);
+    }
 
     return values;
+  }
+  hasPreviousRelease(date: number): boolean {
+    return this.releaseDates.filter((r) => r < date).length > 0;
   }
 
   getReleaseTimes(): string[] {
@@ -86,38 +95,27 @@ export class MeanTimeToRestore {
   }
 
   getReleaseBefore(date: number): number {
-    const decDates: number[] = this.releaseDates.sort((a, b) =>
-      a > b ? -1 : 1
-    ); // Sort decending
-    const bugDate: number = +new Date(date);
+    const rdates: number[] = this.releaseDates.filter((r) => r < date);
 
-    for (const index in decDates) {
-      if (decDates[index] < bugDate) {
-        return decDates[index];
-      }
+    if (rdates.length === 0) {
+      throw new Error("No previous releases");
     }
 
-    throw new Error("No previous releases");
+    return rdates.pop() as number;
   }
 
   getReleaseAfter(date: number): number {
-    const ascDates: number[] = this.releaseDates.sort(); // Sort ascending
+    const rdates: number[] = this.releaseDates.filter((r) => r > date);
 
-    for (const index in ascDates) {
-      if (ascDates[index] > date) {
-        return ascDates[index];
-      }
+    if (rdates.length === 0) {
+      throw new Error("No later releases");
     }
 
-    throw new Error("No later releases");
+    return rdates.reverse().pop() as number;
   }
 
   hasLaterRelease(date: number): boolean {
-    const decDates: number[] = this.releaseDates.sort((a, b) =>
-      a > b ? -1 : 1
-    ); // Sort decending
-
-    return decDates[0] > date;
+    return this.releaseDates.filter((r) => r > date).length > 0;
   }
 
   getRestoreTime(bug: BugTimes): number {
@@ -128,7 +126,7 @@ export class MeanTimeToRestore {
   }
 
   mttr(): number {
-    const ttr: number[] = this.getBugCount().map( (bug) => {
+    const ttr: number[] = this.getBugCount().map((bug) => {
       return this.getRestoreTime(bug);
     }, this);
 
@@ -141,6 +139,6 @@ export class MeanTimeToRestore {
       sum += ttr[i];
     }
 
-    return Math.round(sum / ttr.length / (10 * 60 * 60 * 24))/100; // Two decimals
+    return Math.round((sum / ttr.length / ONE_DAY) * 100) / 100; // Two decimals
   }
 }

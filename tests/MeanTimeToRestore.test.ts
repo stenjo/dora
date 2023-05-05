@@ -108,6 +108,46 @@ describe("MeanTimeToRestore should", () => {
     // console.log(fixTime/(1000*60*60*24))
   })
 
+  it("get mttr for bug 1 when no release after bug 2", () => {
+
+    const bugList:IssueObject[] = [
+      {created_at:"2023-04-22T21:44:06Z", closed_at:"2023-04-23T16:47:40Z", labels:[{name:"bug"}]},
+      {created_at:"2023-04-25T21:21:49Z", closed_at:"2023-04-29T12:54:45Z", labels:[{name:"bug"}]}
+    ] as IssueObject[];
+    const releases = [
+      {published_at:"2023-04-25T00:00:00Z"},
+      {published_at:"2023-04-24T00:00:00Z"},
+      {published_at:"2023-04-20T00:00:00Z"}
+    ] as ReleaseObject[];
+    
+    // console.log(fixTime/(1000*60*60*24))
+    const mttrEmpty = new MeanTimeToRestore(bugList, releases);
+    const meanTime = mttrEmpty.mttr();
+
+    expect(meanTime).toBe(4);
+
+  })
+
+  it("get mttr for 2 bugS when release after bug 2", () => {
+
+    const bugList:IssueObject[] = [
+      {created_at:"2023-04-22T21:44:06Z", closed_at:"2023-04-23T16:47:40Z", labels:[{name:"bug"}]},
+      {created_at:"2023-04-25T21:21:49Z", closed_at:"2023-04-29T12:54:45Z", labels:[{name:"bug"}]}
+    ] as IssueObject[];
+    const releases = [
+      {published_at:"2023-04-30T00:00:00Z"},
+      {published_at:"2023-04-24T00:00:00Z"},
+      {published_at:"2023-04-20T00:00:00Z"}
+    ] as ReleaseObject[];
+    
+    // console.log(fixTime/(1000*60*60*24))
+    const mttrEmpty = new MeanTimeToRestore(bugList, releases);
+    const meanTime = mttrEmpty.mttr();
+
+    expect(meanTime).toBe(5);
+
+  })
+
   it("get average time to repair", () => {
 
     const avMttr: number = mttr.mttr();
