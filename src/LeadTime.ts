@@ -39,7 +39,11 @@ export class LeadTime {
         pull.base.ref === "main"
       ) {
         const mergeTime = +new Date(pull.merged_at);
-        const deployTime = this.releases.filter((r)=>r > mergeTime)[0];
+        const laterReleases = this.releases.filter((r)=>r > mergeTime);
+        if (laterReleases.length === 0) {
+          continue;
+        }
+        const deployTime = laterReleases[0];
         const commmmits = await this.getCommits(pull.number);
         const commitTime = commmmits
           .map((c) => +new Date(c.commit.committer.date))
