@@ -24,3 +24,4 @@ jobs:
       with:
         owner: stenjo
         repo: dora
+        token: ${{ secrets.GITHUB_TOKEN }}

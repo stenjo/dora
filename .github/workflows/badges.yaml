@@ -21,6 +21,8 @@ jobs:
       # Use the output from the `dora` step
       - name: Get the output rate
         run: echo "The deploy rate was ${{ steps.dora.outputs.deploy-rate }}"      # Use the output from the `dora` step
+      - name: Get the lead time
+        run: echo "The lead time was ${{ steps.dora.outputs.lead-time }}"      # Use the output from the `dora` step
       - name: Get the change failure rate
         run: echo "The change failure rate was ${{ steps.dora.outputs.change-failure-rate }}"
       - name: Get the mean time to restore
@@ -37,6 +39,19 @@ jobs:
           valColorRange: ${{ steps.dora.outputs.deploy-rate }}
           maxColorRange: 7
           minColorRange: 1
+
+      - name: Create the Badge for Lead Time
+        uses: Schneegans/dynamic-badges-action@v1.6.0
+        with:
+          auth: ${{ secrets.GIST_AUTH_TOKEN }}
+          gistID: ebb0efc5ab5afb32eae4d0cdc60d563a
+          filename: lead-time.json
+          label: Lead Time
+          message: ${{ steps.dora.outputs.lead-time }}
+          valColorRange: ${{ steps.dora.outputs.lead-time }}
+          maxColorRange: 7
+          minColorRange: 1
+          invertColorRange: true
 
       - name: Create the Badge for Change Failure Rate
         uses: Schneegans/dynamic-badges-action@v1.6.0
@@ -60,6 +75,6 @@ jobs:
           label: Mean time to Restore
           message: ${{ steps.dora.outputs.mttr }}
           valColorRange: ${{ steps.dora.outputs.mttr }}
-          maxColorRange: 1
-          minColorRange: 7
+          maxColorRange: 3
+          minColorRange: 1
           invertColorRange: true
