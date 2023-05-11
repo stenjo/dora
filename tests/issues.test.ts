@@ -1,12 +1,20 @@
 import fs from "fs";
 import { IssuesList } from "../src/IssuesList";
 import { IssueObject } from "../src/IIssue";
+import * as dotenv from 'dotenv';
 
-test.skip("fetches issues", async () => {
-  const issueObject = new IssuesList();
-  const il = await issueObject.issueList(process.env["GH_TOKEN"], "stenjo", "dora");
-  expect(il?.length).toBeGreaterThan(2);
-});
+dotenv.config();
+
+describe.skip("Real Issues API should", () => {
+
+  const issueAdapter = new IssuesList(process.env["GH_TOKEN"], "stenjo", "dora");
+
+  test("fetch issues", async () => {
+    const il = await issueAdapter.GetAllIssuesLastMonth();
+    expect(il?.length).toBe(66);
+  });
+  
+})
 
 describe("Issues interface should", () => {
   const data: string = fs.readFileSync("./tests/test-data/issuelist.json", {

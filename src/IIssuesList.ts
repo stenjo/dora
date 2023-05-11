@@ -1,3 +1,5 @@
+import { IssueObject } from "./IIssue";
+
 export interface IIssuesList {
-    issueList(token: string|undefined, owner: string, repo: string): Promise<unknown>;
+    GetAllIssuesLastMonth(): Promise<IssueObject[]|undefined>;
 }

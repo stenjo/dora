@@ -13258,7 +13258,9 @@ class Releases {
 }
 
 ;// CONCATENATED MODULE: ./src/DeployFrequency.ts
-// 
+//
+// The number of milliseconds in one day
+const ONE_DAY = 1000 * 60 * 60 * 24;
 class DeployFrequency {
     constructor(releases, dateString = null) {
         this.today = new Date();
@@ -13273,7 +13275,7 @@ class DeployFrequency {
     }
     weekly() {
         let releasecount = 0;
-        this.rlist.forEach(element => {
+        this.rlist.forEach((element) => {
             const relDate = new Date(element.published_at);
             if (this.days_between(this.today, relDate) < 8) {
                 releasecount++;
@@ -13283,7 +13285,7 @@ class DeployFrequency {
     }
     monthly() {
         let releasecount = 0;
-        this.rlist.forEach(element => {
+        this.rlist.forEach((element) => {
             const relDate = new Date(element.published_at);
             if (this.days_between(this.today, relDate) < 31) {
                 releasecount++;
@@ -13295,8 +13297,6 @@ class DeployFrequency {
         return (Math.round(this.monthly() * 700) / 3000).toFixed(2);
     }
     days_between(date1, date2) {
-        // The number of milliseconds in one day
-        const ONE_DAY = 1000 * 60 * 60 * 24;
         // Calculate the difference in milliseconds
         const differenceMs = Math.abs(date1.valueOf() - date2.valueOf());
         // Convert back to days and return
@@ -13307,12 +13307,7 @@ class DeployFrequency {
 ;// CONCATENATED MODULE: ./src/ChangeFailureRate.ts
 class ChangeFailureRate {
     constructor(issues, rels, today = null) {
-        if (today === null) {
-            this.today = new Date();
-        }
-        else {
-            this.today = today;
-        }
+        today === null ? this.today = new Date() : this.today = today;
         this.issues = issues;
         this.releases = rels
             .sort((a, b) => +new Date(a.published_at) < +new Date(b.published_at) ? -1 : 1)
@@ -13369,33 +13364,52 @@ var IssuesList_awaiter = (undefined && undefined.__awaiter) || function (thisArg
 
 
 class IssuesList {
-    issueList(token, owner, repo) {
+    constructor(token, owner, repo) {
+        this.token = token;
+        this.owner = owner;
+        this.repo = repo;
+        this.pageNo = 1;
+    }
+    GetAllIssuesLastMonth() {
         return IssuesList_awaiter(this, void 0, void 0, function* () {
             const today = new Date();
             const since = new Date(today.valueOf() - (61 * 24 * 60 * 60 * 1000)); // Go two months back
             try {
                 const octokit = new dist_node/* Octokit */.v({
-                    auth: token
+                    auth: this.token
                 });
-                const result = yield octokit.request('GET /repos/{owner}/{repo}/issues?state=all&since={since}', {
-                    owner,
-                    repo,
-                    headers: {
-                        'X-GitHub-Api-Version': '2022-11-28'
-                    },
-                    since: since.toISOString(),
-                });
-                return Promise.resolve(result.data);
+                let result = yield this.GetIssues(octokit, since, 1);
+                let nextPage = result;
+                for (let page = 2; page < 100 && nextPage.length > 0; page++) {
+                    nextPage = yield this.GetIssues(octokit, since, page);
+                    result = result.concat(nextPage);
+                }
+                return result;
             }
             catch (e) {
                 core.setFailed(e.message);
             }
         });
     }
+    GetIssues(octokit, since, page) {
+        return IssuesList_awaiter(this, void 0, void 0, function* () {
+            const result = yield octokit.request('GET /repos/{owner}/{repo}/issues?state=all&since={since}&per_page={per_page}&page={page}', {
+                owner: this.owner,
+                repo: this.repo,
+                headers: {
+                    'X-GitHub-Api-Version': '2022-11-28'
+                },
+                since: since.toISOString(),
+                per_page: 100,
+                page: page,
+            });
+            return Promise.resolve(result.data);
+        });
+    }
 }
 
 ;// CONCATENATED MODULE: ./src/MeanTimeToRestore.ts
-const ONE_DAY = 1000 * 60 * 60 * 24;
+const MeanTimeToRestore_ONE_DAY = 1000 * 60 * 60 * 24;
 class MeanTimeToRestore {
     constructor(issues, releases, today = null) {
         if (today === null) {
@@ -13418,7 +13432,7 @@ class MeanTimeToRestore {
     getTimeDiff(bugTime) {
         const startTime = +new Date(bugTime.start);
         const endTime = +new Date(bugTime.end);
-        return (endTime - startTime) / ONE_DAY;
+        return (endTime - startTime) / MeanTimeToRestore_ONE_DAY;
     }
     getBugCount() {
         const filters = {
@@ -13430,7 +13444,7 @@ class MeanTimeToRestore {
                     }
                 });
                 const d = new Date(item.created_at);
-                return found && d.getTime() > today - 30 * ONE_DAY;
+                return found && d.getTime() > today - 30 * MeanTimeToRestore_ONE_DAY;
             },
         };
         // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -13497,7 +13511,7 @@ class MeanTimeToRestore {
         for (let i = 0; i < ttr.length; i++) {
             sum += ttr[i];
         }
-        return Math.round((sum / ttr.length / ONE_DAY) * 100) / 100; // Two decimals
+        return Math.round((sum / ttr.length / MeanTimeToRestore_ONE_DAY) * 100) / 100; // Two decimals
     }
 }
 
@@ -13689,12 +13703,18 @@ function run() {
             }));
             const leadTime = yield lt.getLeadTime();
             core.setOutput("lead-time", leadTime);
-            const iss = new IssuesList();
-            const issuelist = yield iss.issueList(token, owner, repo);
-            const cfr = new ChangeFailureRate(issuelist, releaselist);
-            core.setOutput("change-failure-rate", cfr.Cfr());
-            const mttr = new MeanTimeToRestore(issuelist, releaselist);
-            core.setOutput("mttr", mttr.mttr());
+            const issueAdapter = new IssuesList(token, owner, repo);
+            const issuelist = yield issueAdapter.GetAllIssuesLastMonth();
+            if (issuelist) {
+                const cfr = new ChangeFailureRate(issuelist, releaselist);
+                core.setOutput("change-failure-rate", cfr.Cfr());
+                const mttr = new MeanTimeToRestore(issuelist, releaselist);
+                core.setOutput("mttr", mttr.mttr());
+            }
+            else {
+                core.setOutput("change-failure-rate", "empty issue list");
+                core.setOutput("mttr", "empty issue list");
+            }
         }
         catch (error) {
             core.setFailed(error.message);

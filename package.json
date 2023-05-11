@@ -39,6 +39,7 @@
     "@octokit/core": "^4.2.0",
     "@types/babel-core": "^6.25.7",
     "@types/json-query": "^2.2.3",
+    "dotenv": "^16.0.3",
     "jshint": "^2.13.6",
     "json-query": "^2.2.2",
     "node-fetch": "^3.3.1",
