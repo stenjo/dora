@@ -2,6 +2,8 @@ name: Calculate DORA Metrics
 
 on: 
   push:
+    branches:
+    - main
   schedule:
   - cron: '30 0 * * *'
 

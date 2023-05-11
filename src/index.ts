@@ -45,13 +45,19 @@ async function run(): Promise<void> {
     const leadTime = await lt.getLeadTime();
     core.setOutput("lead-time", leadTime);
 
-    const iss = new IssuesList();
-    const issuelist: IssueObject[] = await iss.issueList(token, owner, repo);
-    const cfr = new ChangeFailureRate(issuelist, releaselist);
-    core.setOutput("change-failure-rate", cfr.Cfr());
+    const issueAdapter = new IssuesList(token, owner, repo);
+    const issuelist: IssueObject[] | undefined = await issueAdapter.GetAllIssuesLastMonth();
+    if (issuelist) {
+      const cfr = new ChangeFailureRate(issuelist, releaselist);
+      core.setOutput("change-failure-rate", cfr.Cfr());
+      const mttr = new MeanTimeToRestore(issuelist, releaselist);
+      core.setOutput("mttr", mttr.mttr());
+      }
+    else {
+      core.setOutput("change-failure-rate", "empty issue list");
+      core.setOutput("mttr", "empty issue list");
+    }
 
-    const mttr = new MeanTimeToRestore(issuelist, releaselist);
-    core.setOutput("mttr", mttr.mttr());
   } catch (error: any) {
     core.setFailed(error.message);
   }

@@ -11,21 +11,17 @@ export class ChangeFailureRate {
     rels: ReleaseObject[],
     today: Date | null = null
   ) {
-    if (today === null) {
-      this.today = new Date();
-    } else {
-      this.today = today;
-    }
-    this.issues = issues;
-    this.releases = rels
-      .sort((a, b) =>
-        +new Date(a.published_at) < +new Date(b.published_at) ? -1 : 1
-      )
-      .filter(
-        (r) =>
-          +new Date(r.published_at) >
-          this.today.valueOf() - 31 * 24 * 60 * 60 * 1000
-      );
+      today === null ? this.today = new Date() : this.today = today;
+      this.issues = issues;
+      this.releases = rels
+        .sort((a, b) =>
+          +new Date(a.published_at) < +new Date(b.published_at) ? -1 : 1
+        )
+        .filter(
+          (r) =>
+            +new Date(r.published_at) >
+            this.today.valueOf() - 31 * 24 * 60 * 60 * 1000
+        );
   }
 
   getBugs(): IssueObject[] {
