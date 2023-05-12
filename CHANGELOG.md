@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.5.1-beta](https://github.com/stenjo/devops-metrics-action/compare/v0.5.0-beta...v0.5.1-beta) (2023-05-11)
+
+
+### Bug Fixes
+
+* change min color range on lead-time ([c139bc6](https://github.com/stenjo/devops-metrics-action/commit/c139bc692b37ba3954f1e8fde282e5faa52b0e38))
+* **issues:** not all issues are fetched going back 1 month ([#66](https://github.com/stenjo/devops-metrics-action/issues/66)) ([5b36db8](https://github.com/stenjo/devops-metrics-action/commit/5b36db871a2251c9aff41054dda03ef0d8b7f0d2))
+
 ## [0.5.0-beta](https://github.com/stenjo/devops-metrics-action/compare/v0.4.2-beta...v0.5.0-beta) (2023-05-05)
 
 
