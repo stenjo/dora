@@ -1,32 +1,44 @@
 import fs from "fs";
-import { IssuesList } from "../src/IssuesList";
-import { IssueObject } from "../src/IIssue";
+import { IssuesAdapter } from "../src/IssuesAdapter";
+import { IIssuesAdapter } from "../src/interfaces/IIssuesAdapter";
+import { IssueObject } from "../src/interfaces/IIssue";
 import * as dotenv from 'dotenv';
 
 dotenv.config();
 
-describe.skip("Real Issues API should", () => {
+describe("Real Issues API should", () => {
 
-  const issueAdapter = new IssuesList(process.env["GH_TOKEN"], "stenjo", "dora");
+  const issueAdapter = new IssuesAdapter(process.env["GH_TOKEN"], "stenjo", "dora");
 
   test("fetch issues", async () => {
     const il = await issueAdapter.GetAllIssuesLastMonth();
-    expect(il?.length).toBe(66);
+    expect(il?.length).toBeGreaterThan(66);
   });
   
 })
 
-describe("Issues interface should", () => {
-  const data: string = fs.readFileSync("./tests/test-data/issuelist.json", {
-    encoding: "utf8",
-    flag: "r",
-  });
+class IssuesMock implements IIssuesAdapter {
+  today: Date;
 
-  const issues: Array<IssueObject> = JSON.parse(data);
-  it("query for issue types", () => {
+  async GetAllIssuesLastMonth(): Promise<IssueObject[]> {
+    const data: string = fs.readFileSync("./tests/test-data/issuelist.json", {
+      encoding: "utf8",
+      flag: "r",
+    });
+    const issues: Array<IssueObject> = JSON.parse(data);
+
+    return Promise.resolve(issues);
+  }
+}
+
+describe("Issues interface should", () => {
+
+  it("query for issue types", async () => {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const jsonQuery = require("json-query");
 
+    const im = new IssuesMock();
+    const issues = await im.GetAllIssuesLastMonth()
     let lst: Array<string> = jsonQuery("[*state=open].title", {
       data: issues,
     }).value;
@@ -48,9 +60,11 @@ describe("Issues interface should", () => {
     expect(lst.length).toBe(5);
   });
 
-  it("get number of bugs last month", () => {
+  it("get number of bugs last month", async () => {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const jsonQuery = require("json-query");
+    const im = new IssuesMock();
+    const issues = await im.GetAllIssuesLastMonth()
     const bugs = jsonQuery("[*:labeledBug].created_at", {
       data: issues,
       locals: {

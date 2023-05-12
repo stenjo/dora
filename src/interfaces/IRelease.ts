@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Person } from "./IPerson";
+import { Person } from "../IPerson";
 
 export interface ReleaseObject {
     url: string;
@@ -18,8 +18,4 @@ export interface ReleaseObject {
     tarball_url: string;
     zipball_url: string;
     body: string;
-}
-
-export interface ReleaseList {
-    releases: Array<ReleaseObject>;
 }

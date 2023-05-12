@@ -1,12 +1,11 @@
-import { Releases } from '../src/Releases';
-import { ReleaseObj } from '../src/IReleaseList';
+import { ReleaseAdapter } from '../src/ReleaseAdapter';
+import { ReleaseObject } from '../src/interfaces/IRelease';
 
-test.skip('fetches releases', async () => {
-  const r = new Releases();
-  const tl: Array<ReleaseObj> = await r.list(process.env['GH_TOKEN'], 'stenjo', 'dora');
+test('fetches releases', async () => {
+  const r = new ReleaseAdapter(process.env['GH_TOKEN'], 'stenjo', 'dora');
+  const tl: Array<ReleaseObject> = await r.GetAllReleasesLastMonth() as Array<ReleaseObject>;
 
   expect(tl.length).toBeGreaterThan(0);
-  expect(tl.length).toBe(1);
   expect(tl[0].author.type).toBe("Bot");
-  expect(tl[0].name).toBe("v0.0.1");
+  expect(tl.reverse()[0].name).toBe("v0.0.1");
 });

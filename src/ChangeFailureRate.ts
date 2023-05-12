@@ -1,5 +1,5 @@
-import { IssueObject } from "./IIssue";
-import { ReleaseObject } from "./IReleaseList";
+import { IssueObject } from "./interfaces/IIssue";
+import { ReleaseObject } from "./interfaces/IRelease";
 
 export class ChangeFailureRate {
   today: Date;

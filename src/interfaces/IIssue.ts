@@ -1,4 +1,4 @@
-import { Person } from "./IPerson";
+import { Person } from "../IPerson";
 export interface Label {
     id: number; // 5382688746,
     node_id: string; // "LA_kwDOJTf0as8AAAABQNVP6g",

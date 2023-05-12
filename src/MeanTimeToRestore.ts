@@ -1,5 +1,5 @@
-import { IssueObject } from "./IIssue";
-import { ReleaseObject } from "./IReleaseList";
+import { IssueObject } from "./interfaces/IIssue";
+import { ReleaseObject } from "./interfaces/IRelease";
 
 export interface BugTimes {
   start: number;
