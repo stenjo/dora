@@ -13804,6 +13804,12 @@ function run() {
             if (repo == "" || repo == null) {
                 repo = github.context.repo.repo;
             }
+            // Allow for multiple repos, ex: [val1, val2, val3]
+            const repos = repo
+                .split(/[[\]\n,]+/)
+                .map((s) => s.trim())
+                .filter((x) => x !== "");
+            core.info(repos.length + " repositor(y|ies) registered.");
             let owner = core.getInput("owner");
             if (owner == "" || owner == null) {
                 owner = github.context.repo.owner;
@@ -13813,13 +13819,13 @@ function run() {
                 // token = github.context.token;
                 token = process.env["GH_TOKEN"];
             }
-            core.info(`${owner}-${repo}`);
+            core.info(`${owner}-${repos}`);
             const rel = new ReleaseAdapter(token, owner, repo);
-            const releaselist = yield rel.GetAllReleasesLastMonth();
+            const releaselist = (yield rel.GetAllReleasesLastMonth());
             const df = new DeployFrequency(releaselist);
             core.setOutput("deploy-rate", df.rate());
             const prs = new PullRequestsAdapter(token, owner, repo);
-            const pulls = yield prs.GetAllPRsLastMonth();
+            const pulls = (yield prs.GetAllPRsLastMonth());
             const lt = new LeadTime(pulls, releaselist, (pullNumber) => src_awaiter(this, void 0, void 0, function* () {
                 const cmts = new Commits(token, owner, repo);
                 return yield cmts.getCommitsByPullNumber(pullNumber);

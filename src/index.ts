@@ -19,6 +19,13 @@ async function run(): Promise<void> {
     if (repo == "" || repo == null) {
       repo = github.context.repo.repo;
     }
+    // Allow for multiple repos, ex: [val1, val2, val3]
+    const repos = repo
+      .split(/[[\]\n,]+/)
+      .map((s) => s.trim())
+      .filter((x) => x !== "");
+
+    core.info(repos.length + " repositor(y|ies) registered.")
 
     let owner: string = core.getInput("owner");
     if (owner == "" || owner == null) {
@@ -31,15 +38,16 @@ async function run(): Promise<void> {
       token = process.env["GH_TOKEN"];
     }
 
-    core.info(`${owner}-${repo}`);
+    core.info(`${owner}-${repos}`);
 
     const rel = new ReleaseAdapter(token, owner, repo);
-    const releaselist = await rel.GetAllReleasesLastMonth() as ReleaseObject[];
+    const releaselist =
+      (await rel.GetAllReleasesLastMonth()) as ReleaseObject[];
     const df = new DeployFrequency(releaselist);
     core.setOutput("deploy-rate", df.rate());
 
     const prs = new PullRequestsAdapter(token, owner, repo);
-    const pulls = await prs.GetAllPRsLastMonth() as PullRequestObject[];
+    const pulls = (await prs.GetAllPRsLastMonth()) as PullRequestObject[];
     const lt = new LeadTime(pulls, releaselist, async (pullNumber: number) => {
       const cmts = new Commits(token, owner, repo);
       return await cmts.getCommitsByPullNumber(pullNumber);
@@ -48,18 +56,17 @@ async function run(): Promise<void> {
     core.setOutput("lead-time", leadTime);
 
     const issueAdapter = new IssuesAdapter(token, owner, repo);
-    const issuelist: IssueObject[] | undefined = await issueAdapter.GetAllIssuesLastMonth();
+    const issuelist: IssueObject[] | undefined =
+      await issueAdapter.GetAllIssuesLastMonth();
     if (issuelist) {
       const cfr = new ChangeFailureRate(issuelist, releaselist);
       core.setOutput("change-failure-rate", cfr.Cfr());
       const mttr = new MeanTimeToRestore(issuelist, releaselist);
       core.setOutput("mttr", mttr.mttr());
-      }
-    else {
+    } else {
       core.setOutput("change-failure-rate", "empty issue list");
       core.setOutput("mttr", "empty issue list");
     }
-
   } catch (error: any) {
     core.setFailed(error.message);
   }
