@@ -6,7 +6,7 @@ import * as dotenv from 'dotenv';
 
 dotenv.config();
 
-describe("Real Issues API should", () => {
+describe.skip("Real Issues API should", () => {
 
   const issueAdapter = new IssuesAdapter(process.env["GH_TOKEN"], "stenjo", "dora");
 

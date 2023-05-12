@@ -1,7 +1,7 @@
 import { ReleaseAdapter } from '../src/ReleaseAdapter';
 import { ReleaseObject } from '../src/interfaces/IRelease';
 
-test('fetches releases', async () => {
+test.skip('fetches releases', async () => {
   const r = new ReleaseAdapter(process.env['GH_TOKEN'], 'stenjo', 'dora');
   const tl: Array<ReleaseObject> = await r.GetAllReleasesLastMonth() as Array<ReleaseObject>;
 

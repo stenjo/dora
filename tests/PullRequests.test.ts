@@ -2,7 +2,7 @@ import { PullRequestsAdapter } from "../src/PullRequestsAdapter";
 
 const ONE_DAY = 24 * 60 * 60 * 1000;
 
-test("fetches tags", async () => {
+test.skip("fetches tags", async () => {
   const prs = new PullRequestsAdapter(process.env["GH_TOKEN"], "stenjo", "dora");
   const prlist = await prs.GetAllPRsLastMonth();
 
