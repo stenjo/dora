@@ -1,5 +1,6 @@
 import { IssueObject } from "./IIssue";
 
-export interface IIssuesList {
+export interface IIssuesAdapter {
+    today: Date;
     GetAllIssuesLastMonth(): Promise<IssueObject[]|undefined>;
 }

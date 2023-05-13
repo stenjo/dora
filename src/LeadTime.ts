@@ -1,6 +1,6 @@
-import { CommitObject } from "./ICommitsList";
-import { PullRequestObject } from "./IPullRequest";
-import { ReleaseObject } from "./IReleaseList";
+import { CommitObject } from "./ICommit";
+import { PullRequestObject } from "./IPullRequestObject";
+import { ReleaseObject } from "./interfaces/IRelease";
 
 const ONE_DAY = 24 * 60 * 60 * 1000;
 export class LeadTime {

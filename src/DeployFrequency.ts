@@ -1,6 +1,6 @@
 //
 
-import { ReleaseObject } from "./IReleaseList";
+import { ReleaseObject } from "./interfaces/IRelease";
 
 // The number of milliseconds in one day
 const ONE_DAY = 1000 * 60 * 60 * 24;

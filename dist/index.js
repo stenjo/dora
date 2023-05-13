@@ -13221,7 +13221,7 @@ var core = __nccwpck_require__(2186);
 var github = __nccwpck_require__(5438);
 // EXTERNAL MODULE: ./node_modules/@octokit/core/dist-node/index.js
 var dist_node = __nccwpck_require__(6762);
-;// CONCATENATED MODULE: ./src/Releases.ts
+;// CONCATENATED MODULE: ./src/ReleaseAdapter.ts
 var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -13234,25 +13234,46 @@ var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argume
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 
-class Releases {
-    list(token, owner, repo) {
+class ReleaseAdapter {
+    constructor(token, owner, repo) {
+        this.token = token;
+        this.owner = owner;
+        this.repo = repo;
+        this.today = new Date();
+    }
+    GetAllReleasesLastMonth() {
         return __awaiter(this, void 0, void 0, function* () {
-            const octokit = new dist_node/* Octokit */.v({
-                auth: token
-            });
+            const since = new Date(this.today.valueOf() - 61 * 24 * 60 * 60 * 1000); // Go two months back
             try {
-                const result = yield octokit.request('GET /repos/{owner}/{repo}/releases', {
-                    owner: owner,
-                    repo: repo,
-                    headers: {
-                        'X-GitHub-Api-Version': '2022-11-28'
-                    }
+                const octokit = new dist_node/* Octokit */.v({
+                    auth: this.token,
                 });
-                return Promise.resolve(result.data);
+                let result = yield this.getReleases(octokit, since, 1);
+                let nextPage = result;
+                for (let page = 2; page < 100 && nextPage.length === 100; page++) {
+                    nextPage = yield this.getReleases(octokit, since, page);
+                    result = result.concat(nextPage);
+                }
+                return result;
             }
             catch (e) {
                 core.setFailed(e.message);
             }
+        });
+    }
+    getReleases(octokit, since, page) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield octokit.request("GET /repos/{owner}/{repo}/releases?state=all&since={since}&per_page={per_page}&page={page}", {
+                owner: this.owner,
+                repo: this.repo,
+                headers: {
+                    "X-GitHub-Api-Version": "2022-11-28",
+                },
+                since: since.toISOString(),
+                per_page: 100,
+                page: page,
+            });
+            return Promise.resolve(result.data);
         });
     }
 }
@@ -13350,8 +13371,8 @@ class ChangeFailureRate {
     }
 }
 
-;// CONCATENATED MODULE: ./src/IssuesList.ts
-var IssuesList_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+;// CONCATENATED MODULE: ./src/IssuesAdapter.ts
+var IssuesAdapter_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -13363,25 +13384,24 @@ var IssuesList_awaiter = (undefined && undefined.__awaiter) || function (thisArg
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 
-class IssuesList {
+class IssuesAdapter {
     constructor(token, owner, repo) {
         this.token = token;
         this.owner = owner;
         this.repo = repo;
-        this.pageNo = 1;
+        this.today = new Date();
     }
     GetAllIssuesLastMonth() {
-        return IssuesList_awaiter(this, void 0, void 0, function* () {
-            const today = new Date();
-            const since = new Date(today.valueOf() - (61 * 24 * 60 * 60 * 1000)); // Go two months back
+        return IssuesAdapter_awaiter(this, void 0, void 0, function* () {
+            const since = new Date(this.today.valueOf() - 61 * 24 * 60 * 60 * 1000); // Go two months back
             try {
                 const octokit = new dist_node/* Octokit */.v({
-                    auth: this.token
+                    auth: this.token,
                 });
-                let result = yield this.GetIssues(octokit, since, 1);
+                let result = yield this.getIssues(octokit, since, 1);
                 let nextPage = result;
-                for (let page = 2; page < 100 && nextPage.length > 0; page++) {
-                    nextPage = yield this.GetIssues(octokit, since, page);
+                for (let page = 2; page < 100 && nextPage.length === 100; page++) {
+                    nextPage = yield this.getIssues(octokit, since, page);
                     result = result.concat(nextPage);
                 }
                 return result;
@@ -13391,13 +13411,13 @@ class IssuesList {
             }
         });
     }
-    GetIssues(octokit, since, page) {
-        return IssuesList_awaiter(this, void 0, void 0, function* () {
-            const result = yield octokit.request('GET /repos/{owner}/{repo}/issues?state=all&since={since}&per_page={per_page}&page={page}', {
+    getIssues(octokit, since, page) {
+        return IssuesAdapter_awaiter(this, void 0, void 0, function* () {
+            const result = yield octokit.request("GET /repos/{owner}/{repo}/issues?state=all&since={since}&per_page={per_page}&page={page}", {
                 owner: this.owner,
                 repo: this.repo,
                 headers: {
-                    'X-GitHub-Api-Version': '2022-11-28'
+                    "X-GitHub-Api-Version": "2022-11-28",
                 },
                 since: since.toISOString(),
                 per_page: 100,
@@ -13515,8 +13535,8 @@ class MeanTimeToRestore {
     }
 }
 
-;// CONCATENATED MODULE: ./src/PullRequests.ts
-var PullRequests_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+;// CONCATENATED MODULE: ./src/PullRequestsAdapter.ts
+var PullRequestsAdapter_awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -13528,30 +13548,46 @@ var PullRequests_awaiter = (undefined && undefined.__awaiter) || function (thisA
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 
-class PullRequests {
+class PullRequestsAdapter {
     constructor(token, owner, repo) {
         this.token = token;
         this.owner = owner;
         this.repo = repo;
+        this.today = new Date();
     }
-    list() {
-        return PullRequests_awaiter(this, void 0, void 0, function* () {
-            const octokit = new dist_node/* Octokit */.v({
-                auth: this.token,
-            });
+    GetAllPRsLastMonth() {
+        return PullRequestsAdapter_awaiter(this, void 0, void 0, function* () {
+            const since = new Date(this.today.valueOf() - 61 * 24 * 60 * 60 * 1000); // Go two months back
             try {
-                const result = yield octokit.request("GET /repos/{owner}/{repo}/pulls?state=closed", {
-                    owner: this.owner,
-                    repo: this.repo,
-                    headers: {
-                        "X-GitHub-Api-Version": "2022-11-28",
-                    },
+                const octokit = new dist_node/* Octokit */.v({
+                    auth: this.token,
                 });
-                return Promise.resolve(result.data);
+                let result = yield this.getPRs(octokit, since, 1);
+                let nextPage = result;
+                for (let page = 2; page < 100 && nextPage.length === 100; page++) {
+                    nextPage = yield this.getPRs(octokit, since, page);
+                    result = result.concat(nextPage);
+                }
+                return result;
             }
             catch (e) {
                 core.setFailed(e.message);
             }
+        });
+    }
+    getPRs(octokit, since, page) {
+        return PullRequestsAdapter_awaiter(this, void 0, void 0, function* () {
+            const result = yield octokit.request("GET /repos/{owner}/{repo}/pulls?state=closed&since={since}&per_page={per_page}&page={page}", {
+                owner: this.owner,
+                repo: this.repo,
+                headers: {
+                    "X-GitHub-Api-Version": "2022-11-28",
+                },
+                since: since.toISOString(),
+                per_page: 100,
+                page: page,
+            });
+            return Promise.resolve(result.data);
         });
     }
 }
@@ -13681,6 +13717,12 @@ function run() {
             if (repo == "" || repo == null) {
                 repo = github.context.repo.repo;
             }
+            // Allow for multiple repos, ex: [val1, val2, val3]
+            const repos = repo
+                .split(/[[\]\n,]+/)
+                .map((s) => s.trim())
+                .filter((x) => x !== "");
+            core.info(repos.length + " repositor(y|ies) registered.");
             let owner = core.getInput("owner");
             if (owner == "" || owner == null) {
                 owner = github.context.repo.owner;
@@ -13690,20 +13732,20 @@ function run() {
                 // token = github.context.token;
                 token = process.env["GH_TOKEN"];
             }
-            core.info(`${owner}-${repo}`);
-            const rel = new Releases();
-            const releaselist = yield rel.list(token, owner, repo);
+            core.info(`${owner}-${repos}`);
+            const rel = new ReleaseAdapter(token, owner, repo);
+            const releaselist = (yield rel.GetAllReleasesLastMonth());
             const df = new DeployFrequency(releaselist);
             core.setOutput("deploy-rate", df.rate());
-            const prs = new PullRequests(token, owner, repo);
-            const pulls = yield prs.list();
+            const prs = new PullRequestsAdapter(token, owner, repo);
+            const pulls = (yield prs.GetAllPRsLastMonth());
             const lt = new LeadTime(pulls, releaselist, (pullNumber) => src_awaiter(this, void 0, void 0, function* () {
                 const cmts = new Commits(token, owner, repo);
                 return yield cmts.getCommitsByPullNumber(pullNumber);
             }));
             const leadTime = yield lt.getLeadTime();
             core.setOutput("lead-time", leadTime);
-            const issueAdapter = new IssuesList(token, owner, repo);
+            const issueAdapter = new IssuesAdapter(token, owner, repo);
             const issuelist = yield issueAdapter.GetAllIssuesLastMonth();
             if (issuelist) {
                 const cfr = new ChangeFailureRate(issuelist, releaselist);
