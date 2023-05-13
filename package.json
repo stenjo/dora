@@ -3,6 +3,7 @@
   "version": "0.5.1",
   "description": "TypeScript Action Template",
   "main": "src/index.ts",
+  "type": "commonjs",
   "directories": {
     "test": "test"
   },
