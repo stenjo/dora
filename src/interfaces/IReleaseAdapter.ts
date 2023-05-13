@@ -1,6 +1,6 @@
-import { ReleaseObject } from "./IRelease";
+import {Release} from './Release'
 
 export interface IReleaseAdapter {
-    today: Date;
-    GetAllReleasesLastMonth(): Promise<ReleaseObject[]|undefined>;
+  today: Date
+  GetAllReleasesLastMonth(): Promise<Release[] | undefined>
 }
