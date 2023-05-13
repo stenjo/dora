@@ -3,7 +3,6 @@
   "version": "0.5.1",
   "description": "TypeScript Action Template",
   "main": "src/index.ts",
-  "type": "commonjs",
   "directories": {
     "test": "test"
   },
@@ -12,7 +11,6 @@
     "format": "prettier --write **/*.ts",
     "format-check": "prettier --check **/*.ts",
     "lint": "eslint src/**/*.ts --fix",
-    "prepare": "ncc build src/index.ts -o dist --source-map --license licenses.txt",
     "test": "jest --coverage",
     "package": "ncc build --source-map --license licenses.txt",
     "all": "npm run build && npm run format && npm run lint && npm run package && npm test"
