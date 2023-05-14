@@ -1,5 +1,4 @@
-require('./sourcemap-register.js');import { createRequire as __WEBPACK_EXTERNAL_createRequire } from "module";
-/******/ (() => { // webpackBootstrap
+require('./sourcemap-register.js');/******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ 7351:
@@ -12304,7 +12303,7 @@ function wrappy (fn, cb) {
 
 /***/ }),
 
-/***/ 8474:
+/***/ 2723:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -12365,7 +12364,7 @@ exports.ChangeFailureRate = ChangeFailureRate;
 
 /***/ }),
 
-/***/ 6812:
+/***/ 735:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 "use strict";
@@ -12440,7 +12439,7 @@ exports.Commits = Commits;
 
 /***/ }),
 
-/***/ 4918:
+/***/ 6832:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -12497,7 +12496,7 @@ exports.DeployFrequency = DeployFrequency;
 
 /***/ }),
 
-/***/ 3117:
+/***/ 9251:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 "use strict";
@@ -12587,7 +12586,7 @@ exports.IssuesAdapter = IssuesAdapter;
 
 /***/ }),
 
-/***/ 284:
+/***/ 2670:
 /***/ (function(__unused_webpack_module, exports) {
 
 "use strict";
@@ -12652,7 +12651,7 @@ exports.LeadTime = LeadTime;
 
 /***/ }),
 
-/***/ 3491:
+/***/ 3395:
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
@@ -12773,7 +12772,7 @@ exports.MeanTimeToRestore = MeanTimeToRestore;
 
 /***/ }),
 
-/***/ 3755:
+/***/ 8505:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 "use strict";
@@ -12863,7 +12862,7 @@ exports.PullRequestsAdapter = PullRequestsAdapter;
 
 /***/ }),
 
-/***/ 3424:
+/***/ 1861:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 "use strict";
@@ -12953,7 +12952,7 @@ exports.ReleaseAdapter = ReleaseAdapter;
 
 /***/ }),
 
-/***/ 6144:
+/***/ 9148:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 "use strict";
@@ -12994,14 +12993,14 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const core = __importStar(__nccwpck_require__(2186));
 const github = __importStar(__nccwpck_require__(5438));
-const ReleaseAdapter_1 = __nccwpck_require__(3424);
-const DeployFrequency_1 = __nccwpck_require__(4918);
-const ChangeFailureRate_1 = __nccwpck_require__(8474);
-const IssuesAdapter_1 = __nccwpck_require__(3117);
-const MeanTimeToRestore_1 = __nccwpck_require__(3491);
-const PullRequestsAdapter_1 = __nccwpck_require__(3755);
-const LeadTime_1 = __nccwpck_require__(284);
-const Commits_1 = __nccwpck_require__(6812);
+const ReleaseAdapter_1 = __nccwpck_require__(1861);
+const DeployFrequency_1 = __nccwpck_require__(6832);
+const ChangeFailureRate_1 = __nccwpck_require__(2723);
+const IssuesAdapter_1 = __nccwpck_require__(9251);
+const MeanTimeToRestore_1 = __nccwpck_require__(3395);
+const PullRequestsAdapter_1 = __nccwpck_require__(8505);
+const LeadTime_1 = __nccwpck_require__(2670);
+const Commits_1 = __nccwpck_require__(735);
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -13075,7 +13074,7 @@ module.exports = eval("require")("encoding");
 /***/ ((module) => {
 
 "use strict";
-module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("assert");
+module.exports = require("assert");
 
 /***/ }),
 
@@ -13083,7 +13082,7 @@ module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("assert");
 /***/ ((module) => {
 
 "use strict";
-module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("crypto");
+module.exports = require("crypto");
 
 /***/ }),
 
@@ -13091,7 +13090,7 @@ module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("crypto");
 /***/ ((module) => {
 
 "use strict";
-module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("events");
+module.exports = require("events");
 
 /***/ }),
 
@@ -13099,7 +13098,7 @@ module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("events");
 /***/ ((module) => {
 
 "use strict";
-module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("fs");
+module.exports = require("fs");
 
 /***/ }),
 
@@ -13107,7 +13106,7 @@ module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("fs");
 /***/ ((module) => {
 
 "use strict";
-module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("http");
+module.exports = require("http");
 
 /***/ }),
 
@@ -13115,7 +13114,7 @@ module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("http");
 /***/ ((module) => {
 
 "use strict";
-module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("https");
+module.exports = require("https");
 
 /***/ }),
 
@@ -13123,7 +13122,7 @@ module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("https");
 /***/ ((module) => {
 
 "use strict";
-module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("net");
+module.exports = require("net");
 
 /***/ }),
 
@@ -13131,7 +13130,7 @@ module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("net");
 /***/ ((module) => {
 
 "use strict";
-module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("os");
+module.exports = require("os");
 
 /***/ }),
 
@@ -13139,7 +13138,7 @@ module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("os");
 /***/ ((module) => {
 
 "use strict";
-module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("path");
+module.exports = require("path");
 
 /***/ }),
 
@@ -13147,7 +13146,7 @@ module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("path");
 /***/ ((module) => {
 
 "use strict";
-module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("punycode");
+module.exports = require("punycode");
 
 /***/ }),
 
@@ -13155,7 +13154,7 @@ module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("punycode");
 /***/ ((module) => {
 
 "use strict";
-module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("stream");
+module.exports = require("stream");
 
 /***/ }),
 
@@ -13163,7 +13162,7 @@ module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("stream");
 /***/ ((module) => {
 
 "use strict";
-module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("tls");
+module.exports = require("tls");
 
 /***/ }),
 
@@ -13171,7 +13170,7 @@ module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("tls");
 /***/ ((module) => {
 
 "use strict";
-module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("url");
+module.exports = require("url");
 
 /***/ }),
 
@@ -13179,7 +13178,7 @@ module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("url");
 /***/ ((module) => {
 
 "use strict";
-module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("util");
+module.exports = require("util");
 
 /***/ }),
 
@@ -13187,7 +13186,7 @@ module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("util");
 /***/ ((module) => {
 
 "use strict";
-module.exports = __WEBPACK_EXTERNAL_createRequire(import.meta.url)("zlib");
+module.exports = require("zlib");
 
 /***/ }),
 
@@ -13241,7 +13240,7 @@ module.exports = JSON.parse('[[[0,44],"disallowed_STD3_valid"],[[45,46],"valid"]
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = __nccwpck_require__(6144);
+/******/ 	var __webpack_exports__ = __nccwpck_require__(9148);
 /******/ 	module.exports = __webpack_exports__;
 /******/ 	
 /******/ })()

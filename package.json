@@ -2,7 +2,7 @@
   "name": "devops-metrics-action",
   "version": "0.5.1",
   "description": "TypeScript Action Template",
-  "main": "src/index.ts",
+  "main": "out/index.js",
   "directories": {
     "test": "test"
   },
@@ -24,7 +24,7 @@
     "DORA",
     "DevOps metrics"
   ],
-  "author": "",
+  "author": "Sten Otto Johnsen",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/actions/devops-metrics-action/issues"
