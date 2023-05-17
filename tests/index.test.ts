@@ -6,10 +6,9 @@ import * as dotenv from 'dotenv'
 dotenv.config()
 
 describe.skip('Deployrate weekly should', () => {
-  test('read inputs when set', () => {
+  test('read newline separated repo inputs', () => {
     process.env['INPUT_REPO'] = 'Middager \n devops-metrics-action'
     process.env['INPUT_OWNER'] = 'stenjo'
-    process.env['GITHUB_REPOSITORY'] = 'owner/repo'
 
     const ip: string = path.join(__dirname, '../src/index.ts')
     const result: string = cp
@@ -17,13 +16,11 @@ describe.skip('Deployrate weekly should', () => {
       .toString()
 
     expect(result).toContain('2 repositor(y|ies) registered.')
-    console.log(result)
   })
 
-  test('use default repo when no repo input ', () => {
+  test('use repo array list input ', () => {
     process.env['INPUT_REPO'] = '[Middager, dora]'
     process.env['INPUT_OWNER'] = 'stenjo'
-    process.env['GITHUB_REPOSITORY'] = 'owner/repo'
 
     // const ip: string = path.join(__dirname, '../src/index.ts');
 
@@ -37,6 +34,23 @@ describe.skip('Deployrate weekly should', () => {
 
     expect(result).toContain('stenjo/Middager')
     expect(result).toContain('stenjo/dora')
-    console.log(result)
+    // console.log(result)
+  })
+
+  test('use single repo input ', () => {
+    process.env['INPUT_REPO'] = 'Middager'
+    process.env['INPUT_OWNER'] = 'stenjo'
+
+    const np = process.execPath
+    const ip = path.join(__dirname, '..', 'out', 'index.js')
+    const options: cp.ExecFileSyncOptions = {
+      env: process.env
+    }
+
+    const result: string = cp.execFileSync(np, [ip], options).toString()
+
+    expect(result).toContain('stenjo/Middager')
+    expect(result).toContain('name=lead-time::0')
+    // console.log(result)
   })
 })

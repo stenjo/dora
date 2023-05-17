@@ -12608,9 +12608,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.LeadTime = void 0;
 const ONE_DAY = 24 * 60 * 60 * 1000;
 class LeadTime {
-    constructor(pulls, releases, 
-    // getCommits: (pullNo: number) => Promise<Commit[]>,
-    commitsAdapter, today = null) {
+    constructor(pulls, releases, commitsAdapter, today = null) {
         if (today === null) {
             this.today = new Date();
         }
@@ -12618,8 +12616,9 @@ class LeadTime {
             this.today = today;
         }
         this.pulls = pulls.filter(p => +new Date(p.merged_at) > this.today.valueOf() - 31 * ONE_DAY);
-        this.releases = releases.map(r => +new Date(r.published_at));
-        // this.getCommits = getCommits
+        this.releases = releases.map(r => {
+            return { published: +new Date(r.published_at), url: r.url };
+        });
         this.commitsAdapter = commitsAdapter;
     }
     getLeadTime() {
@@ -12631,14 +12630,15 @@ class LeadTime {
             for (const pull of this.pulls) {
                 if (typeof pull.merged_at === 'string' &&
                     pull.merged_at &&
+                    typeof pull.base.repo.name === 'string' &&
+                    pull.base.repo.name &&
                     pull.base.ref === 'main') {
                     const mergeTime = +new Date(pull.merged_at);
-                    const laterReleases = this.releases.filter(r => r > mergeTime);
+                    const laterReleases = this.releases.filter(r => r.published > mergeTime && r.url.includes(pull.base.repo.name));
                     if (laterReleases.length === 0) {
                         continue;
                     }
-                    const deployTime = laterReleases[0];
-                    // const commmmits = await this.getCommits(pull.number)
+                    const deployTime = laterReleases[0].published;
                     const commmmits = (yield this.commitsAdapter.getCommitsFromUrl(pull.commits_url));
                     const commitTime = commmmits
                         .map(c => +new Date(c.commit.committer.date))

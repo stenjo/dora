@@ -1,8 +1,20 @@
 import {ReleaseAdapter} from '../src/ReleaseAdapter'
 import {Release} from '../src/types/Release'
+import fs from 'fs'
 
-test.skip('fetches releases', async () => {
+test('fetches releases', async () => {
   const r = new ReleaseAdapter(process.env['GH_TOKEN'], 'stenjo', ['dora'])
+  const getReleasesMock = jest.spyOn(
+    ReleaseAdapter.prototype as any,
+    'getReleases'
+  )
+  getReleasesMock.mockImplementation((): Promise<Release[]> => {
+    return Promise.resolve(
+      JSON.parse(
+        fs.readFileSync('./tests/test-data/releases.json').toString()
+      ) as Release[]
+    )
+  })
   const tl: Array<Release> =
     (await r.GetAllReleasesLastMonth()) as Array<Release>
 

@@ -7,15 +7,13 @@ import {Commit} from './types/Commit'
 const ONE_DAY = 24 * 60 * 60 * 1000
 export class LeadTime {
   pulls: PullRequest[]
-  releases: number[]
+  releases: {published: number; url: string}[]
   today: Date
-  // getCommits: (pullNo: number) => Promise<Commit[]>
   commitsAdapter: ICommitsAdapter
 
   constructor(
     pulls: PullRequest[],
     releases: Release[],
-    // getCommits: (pullNo: number) => Promise<Commit[]>,
     commitsAdapter: ICommitsAdapter,
     today: Date | null = null
   ) {
@@ -28,8 +26,9 @@ export class LeadTime {
     this.pulls = pulls.filter(
       p => +new Date(p.merged_at) > this.today.valueOf() - 31 * ONE_DAY
     )
-    this.releases = releases.map(r => +new Date(r.published_at))
-    // this.getCommits = getCommits
+    this.releases = releases.map(r => {
+      return {published: +new Date(r.published_at), url: r.url}
+    })
     this.commitsAdapter = commitsAdapter
   }
 
@@ -42,19 +41,22 @@ export class LeadTime {
       if (
         typeof pull.merged_at === 'string' &&
         pull.merged_at &&
+        typeof pull.base.repo.name === 'string' &&
+        pull.base.repo.name &&
         pull.base.ref === 'main'
       ) {
         const mergeTime = +new Date(pull.merged_at)
-        const laterReleases = this.releases.filter(r => r > mergeTime)
+        const laterReleases = this.releases.filter(
+          r => r.published > mergeTime && r.url.includes(pull.base.repo.name)
+        )
         if (laterReleases.length === 0) {
           continue
         }
-        const deployTime = laterReleases[0]
-        // const commmmits = await this.getCommits(pull.number)
+        const deployTime: number = laterReleases[0].published
         const commmmits = (await this.commitsAdapter.getCommitsFromUrl(
           pull.commits_url
         )) as Commit[]
-        const commitTime = commmmits
+        const commitTime: number = commmmits
           .map(c => +new Date(c.commit.committer.date))
           .sort((a, b) => a - b)[0]
         leadTimes.push((deployTime - commitTime) / ONE_DAY)

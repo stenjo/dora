@@ -43,7 +43,7 @@ export class PullRequestsAdapter implements IPullRequestsAdapter {
     }
   }
 
-  private async getPRs(
+  async getPRs(
     octokit: Octokit,
     repo: string,
     since: Date,

@@ -5,5 +5,8 @@ export interface PullRequest {
   commits_url: string
   base: {
     ref: string
+    repo: {
+      name: string
+    }
   }
 }

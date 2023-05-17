@@ -1,16 +1,28 @@
-import {Commits} from '../src/Commits'
 import {CommitsAdapter} from '../src/CommitsAdapter'
 import {Commit} from '../src/types/Commit'
+import fs from 'fs'
 import * as dotenv from 'dotenv'
 
 dotenv.config()
 
-test.skip('fetches tags', async () => {
-  const cmts = new Commits(process.env['GH_TOKEN'], 'stenjo', 'dora')
-  const cl = await cmts.getCommitsByPullNumber(10)
+test('fetches commits', async () => {
+  const cmts = new CommitsAdapter(process.env['GH_TOKEN'])
+  const getCommitsMock = jest.spyOn(
+    CommitsAdapter.prototype as any,
+    'getCommits'
+  )
+  getCommitsMock.mockImplementation((): Promise<Commit[] | undefined> => {
+    return Promise.resolve(
+      JSON.parse(
+        fs.readFileSync('./tests/test-data/commits.json').toString()
+      ) as Commit[] | undefined
+    )
+  })
+
+  const cl = (await cmts.getCommitsFromUrl('10')) as Commit[]
 
   expect(cl.length).toBeGreaterThan(-1)
-  expect(cl.length).toBe(15)
+  expect(cl.length).toBe(30)
 })
 
 test.skip('CommitsAdapter should', async () => {
