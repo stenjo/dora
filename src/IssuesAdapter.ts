@@ -7,13 +7,17 @@ import {Issue} from './interfaces/Issue'
 export class IssuesAdapter implements IIssuesAdapter {
   token: string | undefined
   owner: string
-  repo: string
+  repositories: string[]
   today: Date
 
-  constructor(token: string | undefined, owner: string, repo: string) {
+  constructor(
+    token: string | undefined,
+    owner: string,
+    repositories: string[]
+  ) {
     this.token = token
     this.owner = owner
-    this.repo = repo
+    this.repositories = repositories
     this.today = new Date()
   }
 
@@ -24,11 +28,14 @@ export class IssuesAdapter implements IIssuesAdapter {
         auth: this.token
       })
 
-      let result = await this.getIssues(octokit, since, 1)
-      let nextPage = result
-      for (let page = 2; page < 100 && nextPage.length === 100; page++) {
-        nextPage = await this.getIssues(octokit, since, page)
+      let result: Issue[] | undefined = []
+      for (const repo of this.repositories) {
+        let nextPage = await this.getIssues(octokit, repo, since, 1)
         result = result.concat(nextPage)
+        for (let page = 2; page < 100 && nextPage.length === 100; page++) {
+          nextPage = await this.getIssues(octokit, repo, since, page)
+          result = result.concat(nextPage)
+        }
       }
 
       return result
@@ -39,6 +46,7 @@ export class IssuesAdapter implements IIssuesAdapter {
 
   private async getIssues(
     octokit: Octokit,
+    repo: string,
     since: Date,
     page: number
   ): Promise<Issue[]> {
@@ -46,7 +54,7 @@ export class IssuesAdapter implements IIssuesAdapter {
       'GET /repos/{owner}/{repo}/issues?state=all&since={since}&per_page={per_page}&page={page}',
       {
         owner: this.owner,
-        repo: this.repo,
+        repo,
         headers: {
           'X-GitHub-Api-Version': '2022-11-28'
         },

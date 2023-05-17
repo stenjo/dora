@@ -19,7 +19,6 @@
     "type": "git",
     "url": "git+https://github.com/actions/devops-metrics-action.git"
   },
-
   "keywords": [
     "DORA",
     "DevOps metrics"

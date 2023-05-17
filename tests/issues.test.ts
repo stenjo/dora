@@ -6,12 +6,10 @@ import * as dotenv from 'dotenv'
 
 dotenv.config()
 
-describe.skip('Real Issues API should', () => {
-  const issueAdapter = new IssuesAdapter(
-    process.env['GH_TOKEN'],
-    'stenjo',
+describe('Real Issues API should', () => {
+  const issueAdapter = new IssuesAdapter(process.env['GH_TOKEN'], 'stenjo', [
     'dora'
-  )
+  ])
 
   test('fetch issues', async () => {
     const il = await issueAdapter.GetAllIssuesLastMonth()

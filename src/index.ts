@@ -44,12 +44,12 @@ async function run(): Promise<void> {
       token = process.env['GH_TOKEN']
     }
 
-    const rel = new ReleaseAdapter(token, owner, repo)
+    const rel = new ReleaseAdapter(token, owner, repositories)
     const releaselist = (await rel.GetAllReleasesLastMonth()) as Release[]
     const df = new DeployFrequency(releaselist)
     core.setOutput('deploy-rate', df.rate())
 
-    const prs = new PullRequestsAdapter(token, owner, repo)
+    const prs = new PullRequestsAdapter(token, owner, repositories)
     const pulls = (await prs.GetAllPRsLastMonth()) as PullRequest[]
     const lt = new LeadTime(pulls, releaselist, async (pullNumber: number) => {
       const cmts = new Commits(token, owner, repo)
@@ -58,7 +58,7 @@ async function run(): Promise<void> {
     const leadTime = await lt.getLeadTime()
     core.setOutput('lead-time', leadTime)
 
-    const issueAdapter = new IssuesAdapter(token, owner, repo)
+    const issueAdapter = new IssuesAdapter(token, owner, repositories)
     const issuelist: Issue[] | undefined =
       await issueAdapter.GetAllIssuesLastMonth()
     if (issuelist) {

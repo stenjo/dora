@@ -7,13 +7,17 @@ import {IReleaseAdapter} from './interfaces/IReleaseAdapter'
 export class ReleaseAdapter implements IReleaseAdapter {
   token: string | undefined
   owner: string
-  repo: string
+  repositories: string[]
   today: Date
 
-  constructor(token: string | undefined, owner: string, repo: string) {
+  constructor(
+    token: string | undefined,
+    owner: string,
+    repositories: string[]
+  ) {
     this.token = token
     this.owner = owner
-    this.repo = repo
+    this.repositories = repositories
     this.today = new Date()
   }
   async GetAllReleasesLastMonth(): Promise<Release[] | undefined> {
@@ -23,11 +27,14 @@ export class ReleaseAdapter implements IReleaseAdapter {
         auth: this.token
       })
 
-      let result = await this.getReleases(octokit, since, 1)
-      let nextPage = result
-      for (let page = 2; page < 100 && nextPage.length === 100; page++) {
-        nextPage = await this.getReleases(octokit, since, page)
+      let result: Release[] | undefined = []
+      for (const repo of this.repositories) {
+        let nextPage = await this.getReleases(octokit, repo, since, 1)
         result = result.concat(nextPage)
+        for (let page = 2; page < 100 && nextPage.length === 100; page++) {
+          nextPage = await this.getReleases(octokit, repo, since, page)
+          result = result.concat(nextPage)
+        }
       }
 
       return result
@@ -38,6 +45,7 @@ export class ReleaseAdapter implements IReleaseAdapter {
 
   private async getReleases(
     octokit: Octokit,
+    repo: string,
     since: Date,
     page: number
   ): Promise<Release[]> {
@@ -45,7 +53,7 @@ export class ReleaseAdapter implements IReleaseAdapter {
       'GET /repos/{owner}/{repo}/releases?state=all&since={since}&per_page={per_page}&page={page}',
       {
         owner: this.owner,
-        repo: this.repo,
+        repo,
         headers: {
           'X-GitHub-Api-Version': '2022-11-28'
         },

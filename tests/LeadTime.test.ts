@@ -1,15 +1,25 @@
+import {CommitsAdapter} from '../src/CommitsAdapter'
 import {Commit} from '../src/interfaces/Commit'
 import {PullRequest} from '../src/interfaces/PullRequest'
 import {Release} from '../src/interfaces/Release'
 import {LeadTime} from '../src/LeadTime'
+import {expect, jest, test} from '@jest/globals';
 
 describe('LeadTime should', () => {
+
+  jest.mock("CommitsAdapter");
+
   it('return 0 on no pullrequests', async () => {
+    const commitsAdapterMock: jest.Mocked<CommitsAdapter> = {
+      getCommitsFromUrl: jest.fn()
+    }
+
+    commitsAdapterMock.getCommitsFromUrl.mockResolvedValue([{}] as Commit[])
     const pulls = [] as PullRequest[]
     const lt = new LeadTime(
       pulls,
       [{published_at: '2023-04-30T17:50:53Z'}] as Release[],
-      async () => [{}] as Commit[],
+      commitsAdapterMock,
       new Date()
     )
 

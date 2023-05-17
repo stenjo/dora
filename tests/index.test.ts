@@ -17,6 +17,7 @@ describe.skip('Deployrate weekly should', () => {
       .toString()
 
     expect(result).toContain('2 repositor(y|ies) registered.')
+    console.log(result)
   })
 
   test('use default repo when no repo input ', () => {
@@ -36,6 +37,6 @@ describe.skip('Deployrate weekly should', () => {
 
     expect(result).toContain('stenjo/Middager')
     expect(result).toContain('stenjo/dora')
-    // console.log(cp.execFileSync(np, [ip], options).toString())
+    console.log(result)
   })
 })

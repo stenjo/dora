@@ -2,7 +2,7 @@ import {ReleaseAdapter} from '../src/ReleaseAdapter'
 import {Release} from '../src/interfaces/Release'
 
 test.skip('fetches releases', async () => {
-  const r = new ReleaseAdapter(process.env['GH_TOKEN'], 'stenjo', 'dora')
+  const r = new ReleaseAdapter(process.env['GH_TOKEN'], 'stenjo', ['dora'])
   const tl: Array<Release> =
     (await r.GetAllReleasesLastMonth()) as Array<Release>
 

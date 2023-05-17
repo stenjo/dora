@@ -6,14 +6,18 @@ import {PullRequest} from './interfaces/PullRequest'
 
 export class PullRequestsAdapter implements IPullRequestsAdapter {
   token: string | undefined
-  repo: string
+  repositories: string[]
   owner: string
   today: Date
 
-  constructor(token: string | undefined, owner: string, repo: string) {
+  constructor(
+    token: string | undefined,
+    owner: string,
+    repositories: string[]
+  ) {
     this.token = token
     this.owner = owner
-    this.repo = repo
+    this.repositories = repositories
     this.today = new Date()
   }
 
@@ -24,11 +28,13 @@ export class PullRequestsAdapter implements IPullRequestsAdapter {
         auth: this.token
       })
 
-      let result = await this.getPRs(octokit, since, 1)
-      let nextPage = result
-      for (let page = 2; page < 100 && nextPage.length === 100; page++) {
-        nextPage = await this.getPRs(octokit, since, page)
+      let result: PullRequest[] | undefined = []
+      for (const repo of this.repositories) {
+        let nextPage = await this.getPRs(octokit, repo, since, 1)
         result = result.concat(nextPage)
+        for (let page = 2; page < 100 && nextPage.length === 100; page++) {
+          nextPage = await this.getPRs(octokit, repo, since, page)
+        }
       }
 
       return result
@@ -39,6 +45,7 @@ export class PullRequestsAdapter implements IPullRequestsAdapter {
 
   private async getPRs(
     octokit: Octokit,
+    repo: string,
     since: Date,
     page: number
   ): Promise<PullRequest[]> {
@@ -46,7 +53,7 @@ export class PullRequestsAdapter implements IPullRequestsAdapter {
       'GET /repos/{owner}/{repo}/pulls?state=closed&since={since}&per_page={per_page}&page={page}',
       {
         owner: this.owner,
-        repo: this.repo,
+        repo,
         headers: {
           'X-GitHub-Api-Version': '2022-11-28'
         },

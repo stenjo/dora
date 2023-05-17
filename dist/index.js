@@ -12539,10 +12539,10 @@ exports.IssuesAdapter = void 0;
 const core_1 = __nccwpck_require__(6762);
 const core = __importStar(__nccwpck_require__(2186));
 class IssuesAdapter {
-    constructor(token, owner, repo) {
+    constructor(token, owner, repositories) {
         this.token = token;
         this.owner = owner;
-        this.repo = repo;
+        this.repositories = repositories;
         this.today = new Date();
     }
     GetAllIssuesLastMonth() {
@@ -12552,11 +12552,14 @@ class IssuesAdapter {
                 const octokit = new core_1.Octokit({
                     auth: this.token
                 });
-                let result = yield this.getIssues(octokit, since, 1);
-                let nextPage = result;
-                for (let page = 2; page < 100 && nextPage.length === 100; page++) {
-                    nextPage = yield this.getIssues(octokit, since, page);
+                let result = [];
+                for (const repo of this.repositories) {
+                    let nextPage = yield this.getIssues(octokit, repo, since, 1);
                     result = result.concat(nextPage);
+                    for (let page = 2; page < 100 && nextPage.length === 100; page++) {
+                        nextPage = yield this.getIssues(octokit, repo, since, page);
+                        result = result.concat(nextPage);
+                    }
                 }
                 return result;
             }
@@ -12565,11 +12568,11 @@ class IssuesAdapter {
             }
         });
     }
-    getIssues(octokit, since, page) {
+    getIssues(octokit, repo, since, page) {
         return __awaiter(this, void 0, void 0, function* () {
             const result = yield octokit.request('GET /repos/{owner}/{repo}/issues?state=all&since={since}&per_page={per_page}&page={page}', {
                 owner: this.owner,
-                repo: this.repo,
+                repo,
                 headers: {
                     'X-GitHub-Api-Version': '2022-11-28'
                 },
@@ -12815,10 +12818,10 @@ exports.PullRequestsAdapter = void 0;
 const core_1 = __nccwpck_require__(6762);
 const core = __importStar(__nccwpck_require__(2186));
 class PullRequestsAdapter {
-    constructor(token, owner, repo) {
+    constructor(token, owner, repositories) {
         this.token = token;
         this.owner = owner;
-        this.repo = repo;
+        this.repositories = repositories;
         this.today = new Date();
     }
     GetAllPRsLastMonth() {
@@ -12828,11 +12831,13 @@ class PullRequestsAdapter {
                 const octokit = new core_1.Octokit({
                     auth: this.token
                 });
-                let result = yield this.getPRs(octokit, since, 1);
-                let nextPage = result;
-                for (let page = 2; page < 100 && nextPage.length === 100; page++) {
-                    nextPage = yield this.getPRs(octokit, since, page);
+                let result = [];
+                for (const repo of this.repositories) {
+                    let nextPage = yield this.getPRs(octokit, repo, since, 1);
                     result = result.concat(nextPage);
+                    for (let page = 2; page < 100 && nextPage.length === 100; page++) {
+                        nextPage = yield this.getPRs(octokit, repo, since, page);
+                    }
                 }
                 return result;
             }
@@ -12841,11 +12846,11 @@ class PullRequestsAdapter {
             }
         });
     }
-    getPRs(octokit, since, page) {
+    getPRs(octokit, repo, since, page) {
         return __awaiter(this, void 0, void 0, function* () {
             const result = yield octokit.request('GET /repos/{owner}/{repo}/pulls?state=closed&since={since}&per_page={per_page}&page={page}', {
                 owner: this.owner,
-                repo: this.repo,
+                repo,
                 headers: {
                     'X-GitHub-Api-Version': '2022-11-28'
                 },
@@ -12905,10 +12910,10 @@ exports.ReleaseAdapter = void 0;
 const core_1 = __nccwpck_require__(6762);
 const core = __importStar(__nccwpck_require__(2186));
 class ReleaseAdapter {
-    constructor(token, owner, repo) {
+    constructor(token, owner, repositories) {
         this.token = token;
         this.owner = owner;
-        this.repo = repo;
+        this.repositories = repositories;
         this.today = new Date();
     }
     GetAllReleasesLastMonth() {
@@ -12918,11 +12923,14 @@ class ReleaseAdapter {
                 const octokit = new core_1.Octokit({
                     auth: this.token
                 });
-                let result = yield this.getReleases(octokit, since, 1);
-                let nextPage = result;
-                for (let page = 2; page < 100 && nextPage.length === 100; page++) {
-                    nextPage = yield this.getReleases(octokit, since, page);
+                let result = [];
+                for (const repo of this.repositories) {
+                    let nextPage = yield this.getReleases(octokit, repo, since, 1);
                     result = result.concat(nextPage);
+                    for (let page = 2; page < 100 && nextPage.length === 100; page++) {
+                        nextPage = yield this.getReleases(octokit, repo, since, page);
+                        result = result.concat(nextPage);
+                    }
                 }
                 return result;
             }
@@ -12931,11 +12939,11 @@ class ReleaseAdapter {
             }
         });
     }
-    getReleases(octokit, since, page) {
+    getReleases(octokit, repo, since, page) {
         return __awaiter(this, void 0, void 0, function* () {
             const result = yield octokit.request('GET /repos/{owner}/{repo}/releases?state=all&since={since}&per_page={per_page}&page={page}', {
                 owner: this.owner,
-                repo: this.repo,
+                repo,
                 headers: {
                     'X-GitHub-Api-Version': '2022-11-28'
                 },
@@ -13027,11 +13035,11 @@ function run() {
                 // token = github.context.token;
                 token = process.env['GH_TOKEN'];
             }
-            const rel = new ReleaseAdapter_1.ReleaseAdapter(token, owner, repo);
+            const rel = new ReleaseAdapter_1.ReleaseAdapter(token, owner, repositories);
             const releaselist = (yield rel.GetAllReleasesLastMonth());
             const df = new DeployFrequency_1.DeployFrequency(releaselist);
             core.setOutput('deploy-rate', df.rate());
-            const prs = new PullRequestsAdapter_1.PullRequestsAdapter(token, owner, repo);
+            const prs = new PullRequestsAdapter_1.PullRequestsAdapter(token, owner, repositories);
             const pulls = (yield prs.GetAllPRsLastMonth());
             const lt = new LeadTime_1.LeadTime(pulls, releaselist, (pullNumber) => __awaiter(this, void 0, void 0, function* () {
                 const cmts = new Commits_1.Commits(token, owner, repo);
@@ -13039,7 +13047,7 @@ function run() {
             }));
             const leadTime = yield lt.getLeadTime();
             core.setOutput('lead-time', leadTime);
-            const issueAdapter = new IssuesAdapter_1.IssuesAdapter(token, owner, repo);
+            const issueAdapter = new IssuesAdapter_1.IssuesAdapter(token, owner, repositories);
             const issuelist = yield issueAdapter.GetAllIssuesLastMonth();
             if (issuelist) {
                 const cfr = new ChangeFailureRate_1.ChangeFailureRate(issuelist, releaselist);

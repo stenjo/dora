@@ -1,18 +1,21 @@
-import {Commit} from './interfaces/Commit'
+// import {Commit} from './interfaces/Commit'
 import {PullRequest} from './interfaces/PullRequest'
 import {Release} from './interfaces/Release'
-
+import {ICommitsAdapter} from './interfaces/ICommitsAdapter'
+'
 const ONE_DAY = 24 * 60 * 60 * 1000
 export class LeadTime {
   pulls: PullRequest[]
   releases: number[]
   today: Date
-  getCommits: (pullNo: number) => Promise<Commit[]>
+  // getCommits: (pullNo: number) => Promise<Commit[]>
+  commitsAdapter: ICommitsAdapter
 
   constructor(
     pulls: PullRequest[],
     releases: Release[],
-    getCommits: (pullNo: number) => Promise<Commit[]>,
+    // getCommits: (pullNo: number) => Promise<Commit[]>,
+    commitsAdapter: ICommitsAdapter,
     today: Date | null = null
   ) {
     if (today === null) {
@@ -25,7 +28,8 @@ export class LeadTime {
       p => +new Date(p.merged_at) > this.today.valueOf() - 31 * ONE_DAY
     )
     this.releases = releases.map(r => +new Date(r.published_at))
-    this.getCommits = getCommits
+    // this.getCommits = getCommits
+    this.commitsAdapter = commitsAdapter
   }
 
   async getLeadTime(): Promise<number> {
@@ -45,7 +49,8 @@ export class LeadTime {
           continue
         }
         const deployTime = laterReleases[0]
-        const commmmits = await this.getCommits(pull.number)
+        // const commmmits = await this.getCommits(pull.number)
+        const commmmits = await this.commitsAdapter.getCommitsFromUrl(pull.commits_url)
         const commitTime = commmmits
           .map(c => +new Date(c.commit.committer.date))
           .sort((a, b) => a - b)[0]
