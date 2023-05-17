@@ -22,8 +22,6 @@ describe.skip('Deployrate weekly should', () => {
     process.env['INPUT_REPO'] = '[Middager, dora]'
     process.env['INPUT_OWNER'] = 'stenjo'
 
-    // const ip: string = path.join(__dirname, '../src/index.ts');
-
     const np = process.execPath
     const ip = path.join(__dirname, '..', 'out', 'index.js')
     const options: cp.ExecFileSyncOptions = {
@@ -34,7 +32,6 @@ describe.skip('Deployrate weekly should', () => {
 
     expect(result).toContain('stenjo/Middager')
     expect(result).toContain('stenjo/dora')
-    // console.log(result)
   })
 
   test('use single repo input ', () => {
