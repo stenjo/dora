@@ -4,14 +4,14 @@ import * as github from '@actions/github'
 import {ReleaseAdapter} from './ReleaseAdapter'
 import {DeployFrequency} from './DeployFrequency'
 import {ChangeFailureRate} from './ChangeFailureRate'
-import {Issue} from './interfaces/Issue'
+import {Issue} from './types/Issue'
 import {IssuesAdapter} from './IssuesAdapter'
 import {MeanTimeToRestore} from './MeanTimeToRestore'
 import {PullRequestsAdapter} from './PullRequestsAdapter'
+import {CommitsAdapter} from './CommitsAdapter'
 import {LeadTime} from './LeadTime'
-import {Commits} from './Commits'
-import {Release} from './interfaces/Release'
-import {PullRequest} from './interfaces/PullRequest'
+import {Release} from './types/Release'
+import {PullRequest} from './types/PullRequest'
 
 async function run(): Promise<void> {
   try {
@@ -50,11 +50,9 @@ async function run(): Promise<void> {
     core.setOutput('deploy-rate', df.rate())
 
     const prs = new PullRequestsAdapter(token, owner, repositories)
+    const cmts = new CommitsAdapter(token)
     const pulls = (await prs.GetAllPRsLastMonth()) as PullRequest[]
-    const lt = new LeadTime(pulls, releaselist, async (pullNumber: number) => {
-      const cmts = new Commits(token, owner, repo)
-      return await cmts.getCommitsByPullNumber(pullNumber)
-    })
+    const lt = new LeadTime(pulls, releaselist, cmts)
     const leadTime = await lt.getLeadTime()
     core.setOutput('lead-time', leadTime)
 

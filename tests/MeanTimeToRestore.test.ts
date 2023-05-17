@@ -1,5 +1,5 @@
-import {Issue} from '../src/interfaces/Issue'
-import {Release} from '../src/interfaces/Release'
+import {Issue} from '../src/types/Issue'
+import {Release} from '../src/types/Release'
 import fs from 'fs'
 import {BugTimes, MeanTimeToRestore} from '../src/MeanTimeToRestore'
 

@@ -12364,7 +12364,7 @@ exports.ChangeFailureRate = ChangeFailureRate;
 
 /***/ }),
 
-/***/ 735:
+/***/ 592:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 "use strict";
@@ -12402,39 +12402,40 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.Commits = void 0;
+exports.CommitsAdapter = void 0;
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const core_1 = __nccwpck_require__(6762);
 const core = __importStar(__nccwpck_require__(2186));
-class Commits {
-    constructor(token, owner, repo) {
+class CommitsAdapter {
+    constructor(token) {
         this.token = token;
-        this.owner = owner;
-        this.repo = repo;
+        this.octokit = new core_1.Octokit({
+            auth: this.token
+        });
     }
-    getCommitsByPullNumber(pullNumber) {
+    getCommitsFromUrl(url) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const octokit = new core_1.Octokit({
-                    auth: this.token
-                });
-                const result = yield octokit.request('GET /repos/{owner}/{repo}/pulls/{pull}/commits', {
-                    owner: this.owner,
-                    repo: this.repo,
-                    pull: pullNumber,
-                    headers: {
-                        'X-GitHub-Api-Version': '2022-11-28'
-                    }
-                });
-                return Promise.resolve(result.data);
+                const result = yield this.getCommits(this.octokit, url);
+                return result;
             }
             catch (e) {
                 core.setFailed(e.message);
             }
         });
     }
+    getCommits(octokit, url) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const result = yield octokit.request(url, {
+                headers: {
+                    'X-GitHub-Api-Version': '2022-11-28'
+                }
+            });
+            return Promise.resolve(result.data);
+        });
+    }
 }
-exports.Commits = Commits;
+exports.CommitsAdapter = CommitsAdapter;
 
 
 /***/ }),
@@ -12607,7 +12608,9 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.LeadTime = void 0;
 const ONE_DAY = 24 * 60 * 60 * 1000;
 class LeadTime {
-    constructor(pulls, releases, getCommits, today = null) {
+    constructor(pulls, releases, 
+    // getCommits: (pullNo: number) => Promise<Commit[]>,
+    commitsAdapter, today = null) {
         if (today === null) {
             this.today = new Date();
         }
@@ -12616,7 +12619,8 @@ class LeadTime {
         }
         this.pulls = pulls.filter(p => +new Date(p.merged_at) > this.today.valueOf() - 31 * ONE_DAY);
         this.releases = releases.map(r => +new Date(r.published_at));
-        this.getCommits = getCommits;
+        // this.getCommits = getCommits
+        this.commitsAdapter = commitsAdapter;
     }
     getLeadTime() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -12634,7 +12638,8 @@ class LeadTime {
                         continue;
                     }
                     const deployTime = laterReleases[0];
-                    const commmmits = yield this.getCommits(pull.number);
+                    // const commmmits = await this.getCommits(pull.number)
+                    const commmmits = (yield this.commitsAdapter.getCommitsFromUrl(pull.commits_url));
                     const commitTime = commmmits
                         .map(c => +new Date(c.commit.committer.date))
                         .sort((a, b) => a - b)[0];
@@ -13007,8 +13012,8 @@ const ChangeFailureRate_1 = __nccwpck_require__(2723);
 const IssuesAdapter_1 = __nccwpck_require__(9251);
 const MeanTimeToRestore_1 = __nccwpck_require__(3395);
 const PullRequestsAdapter_1 = __nccwpck_require__(8505);
+const CommitsAdapter_1 = __nccwpck_require__(592);
 const LeadTime_1 = __nccwpck_require__(2670);
-const Commits_1 = __nccwpck_require__(735);
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -13040,11 +13045,9 @@ function run() {
             const df = new DeployFrequency_1.DeployFrequency(releaselist);
             core.setOutput('deploy-rate', df.rate());
             const prs = new PullRequestsAdapter_1.PullRequestsAdapter(token, owner, repositories);
+            const cmts = new CommitsAdapter_1.CommitsAdapter(token);
             const pulls = (yield prs.GetAllPRsLastMonth());
-            const lt = new LeadTime_1.LeadTime(pulls, releaselist, (pullNumber) => __awaiter(this, void 0, void 0, function* () {
-                const cmts = new Commits_1.Commits(token, owner, repo);
-                return yield cmts.getCommitsByPullNumber(pullNumber);
-            }));
+            const lt = new LeadTime_1.LeadTime(pulls, releaselist, cmts);
             const leadTime = yield lt.getLeadTime();
             core.setOutput('lead-time', leadTime);
             const issueAdapter = new IssuesAdapter_1.IssuesAdapter(token, owner, repositories);

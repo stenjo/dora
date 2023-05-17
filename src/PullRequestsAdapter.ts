@@ -2,7 +2,7 @@
 import {Octokit} from '@octokit/core'
 import * as core from '@actions/core'
 import {IPullRequestsAdapter} from './IPullRequestsAdapter'
-import {PullRequest} from './interfaces/PullRequest'
+import {PullRequest} from './types/PullRequest'
 
 export class PullRequestsAdapter implements IPullRequestsAdapter {
   token: string | undefined

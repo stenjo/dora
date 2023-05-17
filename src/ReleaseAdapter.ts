@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {Octokit} from '@octokit/core'
 import * as core from '@actions/core'
-import {Release} from './interfaces/Release'
+import {Release} from './types/Release'
 import {IReleaseAdapter} from './interfaces/IReleaseAdapter'
 
 export class ReleaseAdapter implements IReleaseAdapter {

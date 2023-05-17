@@ -1,5 +1,5 @@
 import {ReleaseAdapter} from '../src/ReleaseAdapter'
-import {Release} from '../src/interfaces/Release'
+import {Release} from '../src/types/Release'
 
 test.skip('fetches releases', async () => {
   const r = new ReleaseAdapter(process.env['GH_TOKEN'], 'stenjo', ['dora'])

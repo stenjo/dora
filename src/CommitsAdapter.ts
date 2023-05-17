@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {Octokit} from '@octokit/core'
 import * as core from '@actions/core'
-import {Commit} from './interfaces/Commit'
+import {Commit} from './types/Commit'
 import {ICommitsAdapter} from './interfaces/ICommitsAdapter'
 
 export class CommitsAdapter implements ICommitsAdapter {
@@ -11,9 +11,8 @@ export class CommitsAdapter implements ICommitsAdapter {
   constructor(token: string | undefined) {
     this.token = token
     this.octokit = new Octokit({
-        auth: this.token
-      })
-
+      auth: this.token
+    })
   }
   async getCommitsFromUrl(url: string): Promise<Commit[] | undefined> {
     try {

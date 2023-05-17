@@ -1,7 +1,7 @@
-import {Issue} from '../src/interfaces/Issue'
+import {Issue} from '../src/types/Issue'
 import fs from 'fs'
 import {ChangeFailureRate} from '../src/ChangeFailureRate'
-import {Release} from '../src/interfaces/Release'
+import {Release} from '../src/types/Release'
 
 describe('ChangeFailureRate should', () => {
   it('get number of bugs created', () => {

@@ -1,7 +1,7 @@
 //
 import {DeployFrequency} from '../src/DeployFrequency'
 import fs from 'fs'
-import {Release} from '../src/interfaces/Release'
+import {Release} from '../src/types/Release'
 
 describe('Deploy frequency should', () => {
   // Release v0.0.1:2023-04-14, v0.0.2:2023-04-22

@@ -1,4 +1,4 @@
-import {PullRequest} from '../src/interfaces/PullRequest'
+import {PullRequest} from '../src/types/PullRequest'
 import {PullRequestsAdapter} from '../src/PullRequestsAdapter'
 
 const ONE_DAY = 24 * 60 * 60 * 1000

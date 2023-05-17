@@ -1,8 +1,9 @@
 // import {Commit} from './interfaces/Commit'
-import {PullRequest} from './interfaces/PullRequest'
-import {Release} from './interfaces/Release'
+import {PullRequest} from './types/PullRequest'
+import {Release} from './types/Release'
 import {ICommitsAdapter} from './interfaces/ICommitsAdapter'
-'
+import {Commit} from './types/Commit'
+
 const ONE_DAY = 24 * 60 * 60 * 1000
 export class LeadTime {
   pulls: PullRequest[]
@@ -50,7 +51,9 @@ export class LeadTime {
         }
         const deployTime = laterReleases[0]
         // const commmmits = await this.getCommits(pull.number)
-        const commmmits = await this.commitsAdapter.getCommitsFromUrl(pull.commits_url)
+        const commmmits = (await this.commitsAdapter.getCommitsFromUrl(
+          pull.commits_url
+        )) as Commit[]
         const commitTime = commmmits
           .map(c => +new Date(c.commit.committer.date))
           .sort((a, b) => a - b)[0]

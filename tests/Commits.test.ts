@@ -1,10 +1,9 @@
 import {Commits} from '../src/Commits'
 import {CommitsAdapter} from '../src/CommitsAdapter'
-import {Commit} from '../src/interfaces/Commit'
+import {Commit} from '../src/types/Commit'
 import * as dotenv from 'dotenv'
 
 dotenv.config()
-
 
 test.skip('fetches tags', async () => {
   const cmts = new Commits(process.env['GH_TOKEN'], 'stenjo', 'dora')

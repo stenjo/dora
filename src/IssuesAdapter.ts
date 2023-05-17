@@ -2,7 +2,7 @@
 import {Octokit} from '@octokit/core'
 import * as core from '@actions/core'
 import {IIssuesAdapter} from './interfaces/IIssuesAdapter'
-import {Issue} from './interfaces/Issue'
+import {Issue} from './types/Issue'
 
 export class IssuesAdapter implements IIssuesAdapter {
   token: string | undefined

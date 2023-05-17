@@ -1,5 +1,5 @@
-import {Issue} from './interfaces/Issue'
-import {Release} from './interfaces/Release'
+import {Issue} from './types/Issue'
+import {Release} from './types/Release'
 
 export class ChangeFailureRate {
   today: Date
