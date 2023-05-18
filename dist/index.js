@@ -12680,35 +12680,13 @@ class MeanTimeToRestore {
         if (this.releases === null || this.releases.length === 0) {
             throw new Error('Empty release list');
         }
-        this.releaseDates = this.getReleaseTimes()
-            .map(function (value) {
-            return +new Date(value);
+        this.releaseDates = this.releases
+            .map(function (r) {
+            return { published: +new Date(r.published_at), url: r.url };
         })
-            .sort((a, b) => a - b); // Sort ascending
-    }
-    getTimeDiff(bugTime) {
-        const startTime = +new Date(bugTime.start);
-        const endTime = +new Date(bugTime.end);
-        return (endTime - startTime) / ONE_DAY;
+            .sort((a, b) => a.published - b.published); // Sort ascending
     }
     getBugCount() {
-        // const filters = {
-        //   labeledBug(item: Issue, today: number): boolean {
-        //     let found = false
-        //     for (const label of item.labels) {
-        //       if (label.name === 'bug') {
-        //         found = true
-        //       }
-        //     }
-        //     const d = new Date(item.created_at)
-        //     return found && d.getTime() > today - 30 * ONE_DAY
-        //   }
-        // }
-        // const jsonQuery = require('json-query')
-        // const bugs = jsonQuery(`[*:labeledBug(${this.today.getTime()})]`, {
-        //   data: this.issues,
-        //   locals: filters
-        // }).value
         const bugs = [];
         for (const issue of this.issues) {
             const createdAt = +new Date(issue.created_at);
@@ -12717,49 +12695,49 @@ class MeanTimeToRestore {
                 bugs.push(issue);
             }
         }
-        // eslint-disable-next-line prefer-const
-        let values = [];
+        const values = [];
         for (const bug of bugs) {
             const createdAt = +new Date(bug.created_at);
             const closedAt = +new Date(bug.closed_at);
+            const repoName = bug.repository_url.split('/').reverse()[0];
             if (bug.closed_at != null &&
-                this.hasLaterRelease(closedAt) &&
-                this.hasPreviousRelease(createdAt)) {
+                this.hasLaterRelease(closedAt, repoName) &&
+                this.hasPreviousRelease(createdAt, repoName)) {
                 values.push({
                     start: createdAt,
-                    end: closedAt
+                    end: closedAt,
+                    repo: repoName
                 });
             }
         }
         return values;
     }
-    hasPreviousRelease(date) {
-        return this.releaseDates.filter(r => r < date).length > 0;
+    hasPreviousRelease(date, repo) {
+        return (this.releaseDates.filter(r => r.published < date && r.url.includes(repo))
+            .length > 0);
     }
-    getReleaseTimes() {
-        return this.releases.map(release => release.published_at);
-    }
-    getReleaseBefore(date) {
-        const rdates = this.releaseDates.filter(r => r < date);
+    getReleaseBefore(date, repo) {
+        const rdates = this.releaseDates.filter(r => r.published < date && r.url.includes(repo));
         if (rdates.length === 0) {
             throw new Error('No previous releases');
         }
         return rdates.pop();
     }
-    getReleaseAfter(date) {
-        const rdates = this.releaseDates.filter(r => r > date);
+    getReleaseAfter(date, repo) {
+        const rdates = this.releaseDates.filter(r => r.published > date && r.url.includes(repo));
         if (rdates.length === 0) {
             throw new Error('No later releases');
         }
         return rdates.reverse().pop();
     }
-    hasLaterRelease(date) {
-        return this.releaseDates.filter(r => r > date).length > 0;
+    hasLaterRelease(date, repo) {
+        return (this.releaseDates.filter(r => r.published > date && r.url.includes(repo))
+            .length > 0);
     }
     getRestoreTime(bug) {
-        const prevRel = this.getReleaseBefore(bug.start);
-        const nextRel = this.getReleaseAfter(bug.end);
-        return nextRel - prevRel;
+        const prevRel = this.getReleaseBefore(bug.start, bug.repo);
+        const nextRel = this.getReleaseAfter(bug.end, bug.repo);
+        return nextRel.published - prevRel.published;
     }
     mttr() {
         const ttr = this.getBugCount().map(bug => {

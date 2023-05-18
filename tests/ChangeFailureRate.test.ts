@@ -78,12 +78,41 @@ describe('ChangeFailureRate should', () => {
     const bugs = [
       {
         created_at: '2023-04-30T17:50:53Z',
-        labels: [{name: 'bug'}]
+        labels: [{name: 'bug'}],
+        repository_url: 'https://api.github.com/repos/stenjo/dora'
       }
     ] as Issue[]
 
     const rels = [
       {
+        url: 'https://api.github.com/repos/stenjo/dora/releases/101411508',
+        published_at: '2023-04-30T16:50:53Z'
+      }
+    ] as Release[]
+
+    const cfr = new ChangeFailureRate(
+      bugs,
+      rels,
+      new Date('2023-04-30T17:50:53Z')
+    )
+
+    const value = cfr.Cfr()
+
+    expect(value).toBe(100)
+  })
+
+  it('calculate 0% failures on 1 issues on release on other repo', () => {
+    const bugs = [
+      {
+        created_at: '2023-04-30T17:50:53Z',
+        labels: [{name: 'bug'}],
+        repository_url: 'https://api.github.com/repos/stenjo/dora'
+      }
+    ] as Issue[]
+
+    const rels = [
+      {
+        url: 'https://api.github.com/repos/stenjo/other-repo/releases/101411508',
         published_at: '2023-04-30T16:50:53Z'
       }
     ] as Release[]
