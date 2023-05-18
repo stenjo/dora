@@ -39,17 +39,13 @@ export class MeanTimeToRestore {
   }
 
   getBugCount(): BugTime[] {
-    const bugs: Issue[] = []
-    for (const issue of this.issues) {
-      const createdAt = +new Date(issue.created_at)
-      if (
-        issue.labels.filter(label => label.name === 'bug').length > 0 &&
-        createdAt > this.today.getTime() - 30 * ONE_DAY
-      ) {
-        bugs.push(issue)
-      }
-    }
+    const bugs: Issue[] = this.getIssuesTaggedAsBug()
+    const values: BugTime[] = this.getStartAndEndTimesForBugs(bugs)
 
+    return values
+  }
+
+  private getStartAndEndTimesForBugs(bugs: Issue[]): BugTime[] {
     const values: BugTime[] = []
     for (const bug of bugs) {
       const createdAt = +new Date(bug.created_at)
@@ -67,9 +63,23 @@ export class MeanTimeToRestore {
         })
       }
     }
-
     return values
   }
+
+  private getIssuesTaggedAsBug(): Issue[] {
+    const bugs: Issue[] = []
+    for (const issue of this.issues) {
+      const createdAt = +new Date(issue.created_at)
+      if (
+        issue.labels.filter(label => label.name === 'bug').length > 0 &&
+        createdAt > this.today.getTime() - 30 * ONE_DAY
+      ) {
+        bugs.push(issue)
+      }
+    }
+    return bugs
+  }
+
   hasPreviousRelease(date: number, repo: string): boolean {
     return (
       this.releaseDates.filter(r => r.published < date && r.url.includes(repo))

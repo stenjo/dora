@@ -146,6 +146,34 @@ describe('MeanTimeToRestore should', () => {
     expect(meanTime).toBe(4)
   })
 
+  it('get mttr for bug 1 when release in wrong repo after bug 2', () => {
+    const bugList: Issue[] = [
+      {
+        created_at: '2023-04-22T21:44:06Z',
+        closed_at: '2023-04-23T16:47:40Z',
+        labels: [{name: 'bug'}],
+        repository_url: 'somepath/repository'
+      },
+      {
+        created_at: '2023-04-25T21:21:49Z',
+        closed_at: '2023-04-29T12:54:45Z',
+        labels: [{name: 'bug'}],
+        repository_url: 'somepath/repository'
+      }
+    ] as Issue[]
+    const releases = [
+      {published_at: '2023-04-25T00:00:00Z', url: 'path/with/repository/in/it'},
+      {published_at: '2023-04-24T00:00:00Z', url: 'path/with/repository/in/it'},
+      {published_at: '2023-04-30T00:00:00Z', url: 'path/with/other-repo/in/it'},
+      {published_at: '2023-04-20T00:00:00Z', url: 'path/with/repository/in/it'}
+    ] as Release[]
+
+    const mttrEmpty = new MeanTimeToRestore(bugList, releases)
+    const meanTime = mttrEmpty.mttr()
+
+    expect(meanTime).toBe(4)
+  })
+
   it('get mttr for 2 bugs when release after bug 2', () => {
     const bugList: Issue[] = [
       {
@@ -174,13 +202,71 @@ describe('MeanTimeToRestore should', () => {
     expect(meanTime).toBe(5)
   })
 
+  it('get mttr for 2 bugs on two repos when release after bug 2', () => {
+    const bugList: Issue[] = [
+      {
+        // 21 -> 24 = 3
+        created_at: '2023-04-22T21:44:06Z',
+        closed_at: '2023-04-23T16:47:40Z',
+        labels: [{name: 'bug'}],
+        repository_url: 'somepath/other-repo'
+      },
+      {
+        // 24 -> 30 = 6
+        created_at: '2023-04-25T21:21:49Z',
+        closed_at: '2023-04-29T12:54:45Z',
+        labels: [{name: 'bug'}],
+        repository_url: 'somepath/repository'
+      }
+    ] as Issue[]
+    const releases = [
+      {published_at: '2023-04-30T00:00:00Z', url: 'path/with/repository/in/it'},
+      {published_at: '2023-04-24T00:00:00Z', url: 'path/with/repository/in/it'},
+      {published_at: '2023-04-20T00:00:00Z', url: 'path/with/repository/in/it'},
+      {published_at: '2023-04-21T00:00:00Z', url: 'path/with/other-repo/in/it'},
+      {published_at: '2023-04-24T00:00:00Z', url: 'path/with/other-repo/in/it'}
+    ] as Release[]
+
+    const mttrEmpty = new MeanTimeToRestore(bugList, releases)
+    const meanTime = mttrEmpty.mttr()
+
+    expect(meanTime).toBe(4.5)
+  })
+
+  it('get mttr for 2 bugs on two repos when no release after bug 1', () => {
+    const bugList: Issue[] = [
+      {
+        // 21 -> 24 = 3
+        created_at: '2023-04-22T21:44:06Z',
+        closed_at: '2023-04-23T16:47:40Z',
+        labels: [{name: 'bug'}],
+        repository_url: 'somepath/other-repo'
+      },
+      {
+        // 24 -> 30 = 6
+        created_at: '2023-04-25T21:21:49Z',
+        closed_at: '2023-04-29T12:54:45Z',
+        labels: [{name: 'bug'}],
+        repository_url: 'somepath/repository'
+      }
+    ] as Issue[]
+    const releases = [
+      {published_at: '2023-04-30T00:00:00Z', url: 'path/with/repository/in/it'},
+      {published_at: '2023-04-24T00:00:00Z', url: 'path/with/repository/in/it'},
+      {published_at: '2023-04-20T00:00:00Z', url: 'path/with/repository/in/it'},
+      {published_at: '2023-04-21T00:00:00Z', url: 'path/with/other-repo/in/it'}
+    ] as Release[]
+
+    const mttrEmpty = new MeanTimeToRestore(bugList, releases)
+    const meanTime = mttrEmpty.mttr()
+
+    expect(meanTime).toBe(6)
+  })
   it('get average time to repair', () => {
     const avMttr: number = mttr.mttr()
 
     expect(avMttr).toBeGreaterThan(6.4)
     expect(avMttr).toBeLessThan(7.9)
-
-    // console.log(avMttr);
   })
 
   it('throw excepiton when no releases', () => {

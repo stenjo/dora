@@ -12687,14 +12687,11 @@ class MeanTimeToRestore {
             .sort((a, b) => a.published - b.published); // Sort ascending
     }
     getBugCount() {
-        const bugs = [];
-        for (const issue of this.issues) {
-            const createdAt = +new Date(issue.created_at);
-            if (issue.labels.filter(label => label.name === 'bug').length > 0 &&
-                createdAt > this.today.getTime() - 30 * ONE_DAY) {
-                bugs.push(issue);
-            }
-        }
+        const bugs = this.getIssuesTaggedAsBug();
+        const values = this.getStartAndEndTimesForBugs(bugs);
+        return values;
+    }
+    getStartAndEndTimesForBugs(bugs) {
         const values = [];
         for (const bug of bugs) {
             const createdAt = +new Date(bug.created_at);
@@ -12711,6 +12708,17 @@ class MeanTimeToRestore {
             }
         }
         return values;
+    }
+    getIssuesTaggedAsBug() {
+        const bugs = [];
+        for (const issue of this.issues) {
+            const createdAt = +new Date(issue.created_at);
+            if (issue.labels.filter(label => label.name === 'bug').length > 0 &&
+                createdAt > this.today.getTime() - 30 * ONE_DAY) {
+                bugs.push(issue);
+            }
+        }
+        return bugs;
     }
     hasPreviousRelease(date, repo) {
         return (this.releaseDates.filter(r => r.published < date && r.url.includes(repo))
