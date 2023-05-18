@@ -9,7 +9,7 @@ This GitHub Action will calculate a set of DevOps Research and Assessment (DORA)
 ### `repo`
 
 Repository from where to read issues and statuses. List one or more repositories, either as one single string, as an array or all separated by newlines.
-Valid formats are:
+Valid formats a
 ```yaml
 repo: my-repo
 ```
@@ -21,6 +21,8 @@ repo:
     my-repo
     my-other-repo
 ```
+Default repo value is repo where action is installed if no repos are speciief
+
 
 ### `owner`
 

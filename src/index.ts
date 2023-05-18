@@ -18,8 +18,8 @@ async function run(): Promise<void> {
     let repo: string = core.getInput('repo')
     if (repo === '' || repo === null) {
       repo = github.context.repo.repo
+      core.info(`${github.context.repo.repo} - default repo.`)
     }
-    core.info(`${github.context.repo.repo} - default repo.`)
 
     // Allow for multiple repos, ex: [val1, val2, val3]
     const repositories = repo
@@ -27,20 +27,20 @@ async function run(): Promise<void> {
       .map(s => s.trim())
       .filter(x => x !== '')
 
-    core.info(`${repositories.length.toString()} repositor(y|ies) registered.`)
-
     let owner: string = core.getInput('owner')
     if (owner === '' || owner === null) {
       owner = github.context.repo.owner
+      core.info(`${github.context.repo.owner} - default owner.`)
     }
-    core.info(`${github.context.repo.owner} - default owner.`)
 
     for (const repository of repositories) {
       core.info(`${owner}/${repository}`)
     }
+    core.info(`${repositories.length.toString()} repositor(y|ies) registered.`)
 
     repo = repositories[0]
 
+    core.info(`${github.context.secrets.GITHUB_TOKEN} - default token.`)
     let token: string | undefined = core.getInput('token')
     if (token === '' || token === null) {
       // token = github.context.token;
