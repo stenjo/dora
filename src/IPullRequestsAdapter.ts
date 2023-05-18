@@ -1,5 +1,5 @@
-import { PullRequestObject } from "./IPullRequestObject";
+import {PullRequest} from './types/PullRequest'
 
 export interface IPullRequestsAdapter {
-  GetAllPRsLastMonth():  Promise<PullRequestObject[]|undefined>;  
+  GetAllPRsLastMonth(): Promise<PullRequest[] | undefined>
 }

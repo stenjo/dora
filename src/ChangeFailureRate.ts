@@ -1,70 +1,78 @@
-import { IssueObject } from "./interfaces/IIssue";
-import { ReleaseObject } from "./interfaces/IRelease";
+import {Issue} from './types/Issue'
+import {Release} from './types/Release'
 
 export class ChangeFailureRate {
-  today: Date;
-  issues: IssueObject[];
-  releases: ReleaseObject[];
+  today: Date
+  issues: Issue[]
+  releases: Release[]
+  repos: string[]
 
-  constructor(
-    issues: IssueObject[],
-    rels: ReleaseObject[],
-    today: Date | null = null
-  ) {
-      today === null ? this.today = new Date() : this.today = today;
-      this.issues = issues;
-      this.releases = rels
-        .sort((a, b) =>
-          +new Date(a.published_at) < +new Date(b.published_at) ? -1 : 1
-        )
-        .filter(
-          (r) =>
-            +new Date(r.published_at) >
-            this.today.valueOf() - 31 * 24 * 60 * 60 * 1000
-        );
+  constructor(issues: Issue[], rels: Release[], today: Date | null = null) {
+    today === null ? (this.today = new Date()) : (this.today = today)
+    this.issues = issues
+    this.releases = rels
+      .sort((a, b) =>
+        +new Date(a.published_at) < +new Date(b.published_at) ? -1 : 1
+      )
+      .filter(
+        r =>
+          +new Date(r.published_at) >
+          this.today.valueOf() - 31 * 24 * 60 * 60 * 1000
+      )
+    this.repos = []
   }
 
-  getBugs(): IssueObject[] {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const jsonQuery = require("json-query");
-    const bugs = jsonQuery("[*:labeledBug]", {
-      data: this.issues,
-      locals: {
-        labeledBug: function (item: IssueObject): boolean {
-          let found = false;
-          item.labels.forEach(function (label) {
-            if (label.name === "bug") {
-              found = true;
-            }
-          });
-          return found;
-        },
-      },
-    }).value;
+  getBugs(): Issue[] {
+    const bugs: Issue[] = []
+    for (const issue of this.issues) {
+      if (issue.labels.filter(label => label.name === 'bug').length > 0) {
+        bugs.push(issue)
+      }
+    }
 
-    return bugs;
+    return bugs
   }
 
   Cfr(): number {
     if (this.issues.length === 0 || this.releases.length === 0) {
-      return 0;
+      return 0
     }
-    const bugDates = this.getBugs().map((issue) => +new Date(issue.created_at));
-    const releaseDates = this.releases.map(
-      (release) => +new Date(release.published_at)
-    );
-    releaseDates.push(Date.now());
+    const bugs = this.getBugs()
 
-    let failedDeploys = 0;
-    for (let i = 0; i < releaseDates.length - 1; i++) {
-      if (
-        bugDates.filter(
-          (value) => value > releaseDates[i] && value < releaseDates[i + 1]
-        ).length > 0
-      ) {
-        failedDeploys += 1;
+    for (const bug of bugs) {
+      const repo = bug.repository_url.split('/').reverse()[0]
+      if (!this.repos.includes(repo)) {
+        this.repos.push(repo)
       }
     }
-    return Math.round((failedDeploys / this.releases.length) * 100);
+    // const bugDates = this.getBugs().map(issue => +new Date(issue.created_at))
+    const releaseDates = this.releases.map(function (release) {
+      return {published: +new Date(release.published_at), url: release.url}
+    })
+    for (const repo of this.repos) {
+      releaseDates.push({published: Date.now(), url: repo})
+    }
+
+    let failedDeploys = 0
+    for (const repo of this.repos) {
+      const releasesForRepo = releaseDates.filter(r => r.url.includes(repo))
+      for (let i = 0; i < releasesForRepo.length - 1; i++) {
+        if (
+          bugs.filter(function (bug) {
+            if (bug.repository_url.split('/').reverse()[0] !== repo) {
+              return false
+            }
+            const bugDate = +new Date(bug.created_at)
+            return (
+              bugDate > releasesForRepo[i].published &&
+              bugDate < releasesForRepo[i + 1].published
+            )
+          }).length > 0
+        ) {
+          failedDeploys += 1
+        }
+      }
+    }
+    return Math.round((failedDeploys / this.releases.length) * 100)
   }
 }

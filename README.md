@@ -8,11 +8,28 @@ This GitHub Action will calculate a set of DevOps Research and Assessment (DORA)
 
 ### `repo`
 
-Repository from where to read issues and statuses. Default is current repository where action is installed.
+Repository from where to read issues and statuses. List one or more repositories, either as one single string, as an array or all separated by newlines.
+Valid formats are:
+
+```yaml
+repo: my-repo
+```
+
+```yaml
+repo: [my-repo, my-other-repo]
+```
+
+```yaml
+repo: 
+    my-repo
+    my-other-repo
+```
+
+Default repo value is repo where action is installed if no repos are spefied.
 
 ### `owner`
 
-Owner of the repository. Default is current repository owner or organisation.
+Owner of the repository. Default is current repository owner or organisation. Only one is handled.
 
 ### `token`
 

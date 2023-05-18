@@ -23,5 +23,5 @@ jobs:
     - uses: ./
       with:
         owner: stenjo
-        repo: dora
+        repo: '[dora,Middager]'
         token: ${{ secrets.GITHUB_TOKEN }}
