@@ -13014,7 +13014,7 @@ function run() {
             if (repo === '' || repo === null) {
                 repo = github.context.repo.repo;
             }
-            // core.info(`${github.context.repo.repo} - default repo.`)
+            core.info(`${github.context.repo.repo} - default repo.`);
             // Allow for multiple repos, ex: [val1, val2, val3]
             const repositories = repo
                 .split(/[[\]\n,]+/)
@@ -13025,6 +13025,7 @@ function run() {
             if (owner === '' || owner === null) {
                 owner = github.context.repo.owner;
             }
+            core.info(`${github.context.repo.owner} - default owner.`);
             for (const repository of repositories) {
                 core.info(`${owner}/${repository}`);
             }
