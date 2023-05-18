@@ -64,7 +64,7 @@ Number in hours (integer)
 Simplest possible use of this action is something like this:
 
 ```yaml
-name: Create Badge on DevOps Metrics
+name: Calculate DevOps Metrics
 
 on: 
   schedule:
