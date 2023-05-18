@@ -6,7 +6,7 @@ import {Release} from '../src/types/Release'
 describe('ChangeFailureRate should', () => {
   it('get number of bugs created', () => {
     const issues: Issue[] = JSON.parse(
-      fs.readFileSync('./tests/test-data/issuelist.json', 'utf8')
+      fs.readFileSync('./tests/test-data/issue-list.json', 'utf8')
     )
     const rels: Release[] = JSON.parse(
       fs.readFileSync('./tests/test-data/releases.json', 'utf8')
@@ -19,12 +19,12 @@ describe('ChangeFailureRate should', () => {
 
     const bugs = cfr.getBugs()
 
-    expect(bugs.length).toBe(1)
+    expect(bugs.length).toBe(2)
   })
 
   it('get percentage rate', () => {
     const bugs: Issue[] = JSON.parse(
-      fs.readFileSync('./tests/test-data/issuelist.json', 'utf8')
+      fs.readFileSync('./tests/test-data/issue-list.json', 'utf8')
     )
     const rels: Release[] = JSON.parse(
       fs.readFileSync('./tests/test-data/releases.json', 'utf8')
@@ -125,23 +125,26 @@ describe('ChangeFailureRate should', () => {
 
     const value = cfr.Cfr()
 
-    expect(value).toBe(100)
+    expect(value).toBe(0)
   })
 
   it('calculate 50% failures on 1 issues on 2 releases', () => {
     const bugs = [
       {
         created_at: '2023-04-30T17:50:53Z',
+        repository_url: 'somepath/repository',
         labels: [{name: 'bug'}]
       }
     ] as Issue[]
 
     const rels = [
       {
-        published_at: '2023-04-30T16:50:53Z'
+        published_at: '2023-04-30T16:50:53Z',
+        url: 'path/with/repository/in/it'
       },
       {
-        published_at: '2023-04-29T16:50:53Z'
+        published_at: '2023-04-29T16:50:53Z',
+        url: 'path/with/repository/in/it'
       }
     ] as Release[]
 
@@ -160,16 +163,19 @@ describe('ChangeFailureRate should', () => {
     const bugs = [
       {
         created_at: '2023-04-30T17:50:53Z',
+        repository_url: 'somepath/repository',
         labels: [{name: 'feature'}]
       }
     ] as Issue[]
 
     const rels = [
       {
-        published_at: '2023-04-30T16:50:53Z'
+        published_at: '2023-04-30T16:50:53Z',
+        url: 'path/with/repository/in/it'
       },
       {
-        published_at: '2023-04-29T16:50:53Z'
+        published_at: '2023-04-29T16:50:53Z',
+        url: 'path/with/repository/in/it'
       }
     ] as Release[]
 
@@ -188,20 +194,24 @@ describe('ChangeFailureRate should', () => {
     const bugs = [
       {
         created_at: '2023-04-30T17:50:53Z',
+        repository_url: 'somepath/repository',
         labels: [{name: 'bug'}]
       },
       {
         created_at: '2023-04-30T17:50:53Z',
+        repository_url: 'somepath/repository',
         labels: [{name: 'bug'}]
       }
     ] as Issue[]
 
     const rels = [
       {
-        published_at: '2023-04-30T16:50:53Z'
+        published_at: '2023-04-30T16:50:53Z',
+        url: 'path/with/repository/in/it'
       },
       {
-        published_at: '2023-04-29T16:50:53Z'
+        published_at: '2023-04-29T16:50:53Z',
+        url: 'path/with/repository/in/it'
       }
     ] as Release[]
 
@@ -220,20 +230,24 @@ describe('ChangeFailureRate should', () => {
     const bugs = [
       {
         created_at: '2023-04-29T17:50:53Z',
+        repository_url: 'somepath/repository',
         labels: [{name: 'bug'}]
       },
       {
         created_at: '2023-04-31T17:50:53Z',
+        repository_url: 'somepath/repository',
         labels: [{name: 'bug'}]
       }
     ] as Issue[]
 
     const rels = [
       {
-        published_at: '2023-04-30T16:50:53Z'
+        published_at: '2023-04-30T16:50:53Z',
+        url: 'path/with/repository/in/it'
       },
       {
-        published_at: '2023-04-29T16:50:53Z'
+        published_at: '2023-04-29T16:50:53Z',
+        url: 'path/with/repository/in/it'
       }
     ] as Release[]
 
@@ -252,24 +266,29 @@ describe('ChangeFailureRate should', () => {
     const bugs = [
       {
         created_at: '2023-04-29T17:50:53Z',
+        repository_url: 'somepath/repository',
         labels: [{name: 'bug'}]
       },
       {
         created_at: '2023-04-30T17:50:53Z',
+        repository_url: 'somepath/repository',
         labels: [{name: 'bug'}]
       },
       {
         created_at: '2023-04-30T17:50:53Z',
+        repository_url: 'somepath/repository',
         labels: [{name: 'bug'}]
       }
     ] as Issue[]
 
     const rels = [
       {
-        published_at: '2023-04-30T16:50:53Z'
+        published_at: '2023-04-30T16:50:53Z',
+        url: 'path/with/repository/in/it'
       },
       {
-        published_at: '2023-04-29T16:50:53Z'
+        published_at: '2023-04-29T16:50:53Z',
+        url: 'path/with/repository/in/it'
       }
     ] as Release[]
 
@@ -288,27 +307,33 @@ describe('ChangeFailureRate should', () => {
     const bugs = [
       {
         created_at: '2023-04-29T17:50:53Z',
+        repository_url: 'somepath/repository',
         labels: [{name: 'bug'}]
       },
       {
         created_at: '2023-04-30T17:50:53Z',
+        repository_url: 'somepath/repository',
         labels: [{name: 'bug'}]
       },
       {
         created_at: '2023-04-30T17:50:53Z',
+        repository_url: 'somepath/repository',
         labels: [{name: 'bug'}]
       }
     ] as Issue[]
 
     const rels = [
       {
-        published_at: '2023-04-28T16:50:53Z'
+        published_at: '2023-04-28T16:50:53Z',
+        url: 'path/with/repository/in/it'
       },
       {
-        published_at: '2023-04-30T19:50:53Z'
+        published_at: '2023-04-30T19:50:53Z',
+        url: 'path/with/repository/in/it'
       },
       {
-        published_at: '2023-05-02T16:50:53Z'
+        published_at: '2023-05-02T16:50:53Z',
+        url: 'path/with/repository/in/it'
       }
     ] as Release[]
 
@@ -323,31 +348,74 @@ describe('ChangeFailureRate should', () => {
     expect(value).toBe(33)
   })
 
+  it('calculate 50% failures on 3 issues on two repos on two of 4 releases ', () => {
+    const bugs = [
+      {
+        created_at: '2023-04-29T17:50:53Z', // bug on 28, repository
+        repository_url: 'somepath/repository',
+        labels: [{name: 'bug'}]
+      },
+      {
+        created_at: '2023-04-30T17:50:53Z', // bug on 20, other-repo
+        repository_url: 'somepath/other-repo',
+        labels: [{name: 'bug'}]
+      },
+      {
+        created_at: '2023-04-30T17:50:53Z', // bug on 28, repository
+        repository_url: 'somepath/repository',
+        labels: [{name: 'bug'}]
+      }
+    ] as Issue[]
+
+    const rels = [
+      {published_at: '2023-04-28T16:50:53Z', url: 'path/with/repository/in/it'},
+      {published_at: '2023-04-28T16:50:53Z', url: 'path/with/other-repo/in/it'},
+      {published_at: '2023-04-30T19:50:53Z', url: 'path/with/repository/in/it'},
+      {published_at: '2023-05-02T16:50:53Z', url: 'path/with/repository/in/it'}
+    ] as Release[]
+
+    const cfr = new ChangeFailureRate(
+      bugs,
+      rels,
+      new Date('2023-04-30T17:50:53Z')
+    )
+
+    const value = cfr.Cfr()
+
+    expect(value).toBe(50)
+  })
+
   it('calculate 50% failures on 3 issues after first release no older than a month', () => {
     const bugs = [
       {
         created_at: '2023-04-29T17:50:53Z',
+        repository_url: 'somepath/repository',
         labels: [{name: 'bug'}]
       },
       {
         created_at: '2023-04-30T17:50:53Z',
+        repository_url: 'somepath/repository',
         labels: [{name: 'bug'}]
       },
       {
         created_at: '2023-04-30T17:50:53Z',
+        repository_url: 'somepath/repository',
         labels: [{name: 'bug'}]
       }
     ] as Issue[]
 
     const rels = [
       {
-        published_at: '2023-04-28T16:50:53Z'
+        published_at: '2023-04-28T16:50:53Z',
+        url: 'path/with/repository/in/it'
       },
       {
-        published_at: '2023-04-30T19:50:53Z'
+        published_at: '2023-04-30T19:50:53Z',
+        url: 'path/with/repository/in/it'
       },
       {
-        published_at: '2023-04-02T16:50:53Z'
+        published_at: '2023-04-02T16:50:53Z',
+        url: 'path/with/repository/in/it'
       }
     ] as Release[]
 
