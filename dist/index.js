@@ -13013,21 +13013,27 @@ function run() {
             let repo = core.getInput('repo');
             if (repo === '' || repo === null) {
                 repo = github.context.repo.repo;
+                core.info(`${github.context.repo.repo} - default repo.`);
             }
-            core.info(`${github.context.repo.repo} - default repo.`);
             // Allow for multiple repos, ex: [val1, val2, val3]
             const repositories = repo
                 .split(/[[\]\n,]+/)
                 .map(s => s.trim())
                 .filter(x => x !== '');
-            core.info(`${repositories.length.toString()} repositor(y|ies) registered.`);
             let owner = core.getInput('owner');
             if (owner === '' || owner === null) {
                 owner = github.context.repo.owner;
+                core.info(`${github.context.repo.owner} - default owner.`);
             }
-            core.info(`${github.context.repo.owner} - default owner.`);
             for (const repository of repositories) {
                 core.info(`${owner}/${repository}`);
+            }
+            const repoCount = repositories.length;
+            if (repoCount > 1) {
+                core.info(`${repoCount.toString()} repositories registered.`);
+            }
+            else {
+                core.info(`${repoCount.toString()} repository registered.`);
             }
             repo = repositories[0];
             let token = core.getInput('token');

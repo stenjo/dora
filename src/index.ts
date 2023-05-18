@@ -36,11 +36,16 @@ async function run(): Promise<void> {
     for (const repository of repositories) {
       core.info(`${owner}/${repository}`)
     }
-    core.info(`${repositories.length.toString()} repositor(y|ies) registered.`)
+
+    const repoCount = repositories.length
+    if (repoCount > 1) {
+      core.info(`${repoCount.toString()} repositories registered.`)
+    } else {
+      core.info(`${repoCount.toString()} repository registered.`)
+    }
 
     repo = repositories[0]
 
-    core.info(`${github.context.secrets.GITHUB_TOKEN} - default token.`)
     let token: string | undefined = core.getInput('token')
     if (token === '' || token === null) {
       // token = github.context.token;
