@@ -12,16 +12,10 @@ jobs:
     runs-on: ubuntu-latest
     name: Checking the dora metrics
     steps:
-      # To use this repository's private action,
-      # you must check out the repository
-      - name: Checkout
-        uses: actions/checkout@v3
       - name: Dora metrics
-        uses: ./ # Uses an action in the root directory
+        uses: stenjo/devops-metrics-action@main
         id: dora
         with:
-          owner: 'stenjo'
-          repo: 'devops-metrics-action'
           token: ${{ secrets.GITHUB_TOKEN }}
 
       # Use the output from the `dora` step
