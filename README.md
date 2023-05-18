@@ -58,3 +58,36 @@ Number in range 0 - 100 (%)
 Mean time to restore. This metric is calculated based on the time between the last release before an issue tagged as a bug and the first release after the bug is closed.
 For this to work correctly we must assume github issues are created for all unwanted issues in production and that all changes to production is done through releases.
 Number in hours (integer)
+
+## Usage
+
+Simplest possible use of this action is something like this:
+
+```yaml
+name: Create Badge on DevOps Metrics
+
+on: 
+  schedule:
+  - cron: '30 0 * * *'
+
+jobs:
+  update-metrics:
+    runs-on: ubuntu-latest
+    name: Checking the dora metrics
+    steps:
+      - name: DevOps Metrics from GitHub
+        uses: stenjo/devops-metrics-action@main
+        id: dora
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+```
+
+This will base calculations on the repo where the workflow is installed and run 12:30 AM every day.
+To access the outputs anywhere in the workflow, refer to the output of the calculation step via variable format `${{ steps.dora.outputs.deploy-rate }}`. Something like:
+
+```yaml
+      - name: Get the output rate
+        run: echo "The deploy rate was ${{ steps.dora.outputs.deploy-rate }}"      # Use the output from the `dora` step
+```
+
+More complex examples may be found in [.github/workflows/badges.yaml](https://github.com/stenjo/devops-metrics-action/blob/main/.github/workflows/badges.yaml) and [.github/workflows/dora.yaml](https://github.com/stenjo/devops-metrics-action/blob/main/.github/workflows/dora.yaml)
