@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.0-beta](https://github.com/stenjo/devops-metrics-action/compare/v0.5.1-beta...v0.6.0-beta) (2023-05-18)
+
+
+### Features
+
+* handle several repos ([#69](https://github.com/stenjo/devops-metrics-action/issues/69)) ([0a9c85b](https://github.com/stenjo/devops-metrics-action/commit/0a9c85b62e6a94ce86b85933f8486a6917c7269b))
+
 ## [0.5.1-beta](https://github.com/stenjo/devops-metrics-action/compare/v0.5.0-beta...v0.5.1-beta) (2023-05-11)
 
 
