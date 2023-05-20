@@ -91,3 +91,5 @@ To access the outputs anywhere in the workflow, refer to the output of the calcu
 ```
 
 More complex examples may be found in [.github/workflows/badges.yaml](https://github.com/stenjo/devops-metrics-action/blob/main/.github/workflows/badges.yaml) and [.github/workflows/dora.yaml](https://github.com/stenjo/devops-metrics-action/blob/main/.github/workflows/dora.yaml)
+
+Badges at the top of this file is generated throug the badges.yaml workflow. More on this in [Create badges for metrics output](badges.md)
