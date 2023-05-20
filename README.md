@@ -76,7 +76,7 @@ jobs:
     name: Checking the dora metrics
     steps:
       - name: DevOps Metrics from GitHub
-        uses: stenjo/devops-metrics-action@v1
+        uses: stenjo/devops-metrics-action@v1.0.0
         id: dora
         with:
           token: ${{ secrets.GITHUB_TOKEN }}

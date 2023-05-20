@@ -1,6 +1,6 @@
 {
   "name": "devops-metrics-action",
-  "version": "0.5.1",
+  "version": "v1.0.0",
   "description": "TypeScript Action Template",
   "main": "out/index.js",
   "directories": {
