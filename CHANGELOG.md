@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.0.0](https://github.com/stenjo/devops-metrics-action/compare/v0.6.0-beta...v1.0.0) (2023-05-20)
+
+
+### Bug Fixes
+
+* **workflow:** update versiion reference of actions ([25ba9ec](https://github.com/stenjo/devops-metrics-action/commit/25ba9eca29382cc04fe502de26ffdf6d1e0d1b40))
+
+
+### Miscellaneous Chores
+
+* release 1.0.0 ([1ffc307](https://github.com/stenjo/devops-metrics-action/commit/1ffc3073f9ea241bb2cba6572ff3cffe9b014906))
+
 ## [0.6.0-beta](https://github.com/stenjo/devops-metrics-action/compare/v0.5.1-beta...v0.6.0-beta) (2023-05-18)
 
 
