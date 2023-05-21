@@ -42,7 +42,7 @@ jobs:
         label: Test Coverage
         message: ${{ steps.coverageComment.outputs.coverage }}%
         color: ${{ steps.coverageComment.outputs.color }}
-        namedLogo: cypress
+        namedLogo: jest
 
 
   # test action works running from the graph
