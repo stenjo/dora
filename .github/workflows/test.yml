@@ -13,7 +13,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - run: npm ci
-    - run: npm test
+    - run: npm test | tee ./coverage.txt
 
     - name: Get branch name
       id: branch-name
