@@ -23,6 +23,7 @@ jobs:
       id: coverageComment
       uses: MishaKav/jest-coverage-comment@main
       with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
         summary-title: Jest Coverage (summary)
         title: Test Coverage
         coverage-summary-path: coverage/coverage-summary.json
