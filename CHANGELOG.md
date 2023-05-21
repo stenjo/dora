@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.0.1](https://github.com/stenjo/devops-metrics-action/compare/v1.0.0...v1.0.1) (2023-05-21)
+
+
+### Bug Fixes
+
+* (docs): update version ref in example ([3868fb0](https://github.com/stenjo/devops-metrics-action/commit/3868fb0517ff77af21dbd9c4025c80ae41416274))
+* **release:** tag major and minor versions on release ([1b292d4](https://github.com/stenjo/devops-metrics-action/commit/1b292d4dfbd4a129873548a74cb0143f2adfa5d6))
+* Set badges.yaml to ref version 1 ([26fb5aa](https://github.com/stenjo/devops-metrics-action/commit/26fb5aa75342ae40ed1ae3389bee43bffaf2bc41))
+* update all version to 1.0.0 ([c7d0ba0](https://github.com/stenjo/devops-metrics-action/commit/c7d0ba0d0084cb2badfd39a4a976382db8dbc88f))
+
 ## [1.0.0](https://github.com/stenjo/devops-metrics-action/compare/v0.6.0-beta...v1.0.0) (2023-05-20)
 
 
