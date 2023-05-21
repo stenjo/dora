@@ -2,7 +2,7 @@ module.exports = {
   clearMocks: true,
   moduleFileExtensions: ['js', 'ts'],
   testMatch: ['**/*.test.ts'],
-  coverageReporters: ['json', 'text'],
+  coverageReporters: ['json-summary', 'text'],
   transform: {
     '^.+\\.ts$': 'ts-jest'
   },
