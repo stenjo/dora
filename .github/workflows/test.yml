@@ -25,7 +25,7 @@ jobs:
       with:
         summary-title: Jest Coverage (summary)
         title: Test Coverage
-        coverage-summary-path: coverage/coverage-final.json
+        coverage-summary-path: coverage/coverage-summary.json
 
     - name: Check the output coverage
       run: |
