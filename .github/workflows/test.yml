@@ -13,7 +13,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - run: npm ci
-    - run: npm test | tee ./coverage.txt
+    - name: Run tests
+      run: |
+        npx jest --coverage | tee ./coverage.txt && exit ${PIPESTATUS[0]}
 
     - name: Get branch name
       id: branch-name
@@ -27,6 +29,7 @@ jobs:
         summary-title: Jest Coverage (summary)
         title: Test Coverage
         coverage-summary-path: coverage/coverage-summary.json
+        coverage-path: ./coverage.txt
 
     - name: Check the output coverage
       run: |
