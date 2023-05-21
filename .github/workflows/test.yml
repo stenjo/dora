@@ -23,9 +23,9 @@ jobs:
       id: coverageComment
       uses: MishaKav/jest-coverage-comment@main
       with:
-        summary-title: Cypress Component Coverage (summary)
+        summary-title: Jest Coverage (summary)
         title: Test Coverage
-        coverage-summary-path: coverage/coverage-summary.json
+        coverage-summary-path: coverage/coverage-final.json
 
     - name: Check the output coverage
       run: |
