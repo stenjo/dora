@@ -1,13 +1,14 @@
 {
-  "plugins": ["jest", "@typescript-eslint"],
-  "extends": ["plugin:github/recommended"],
+  "plugins": ["jest", "@typescript-eslint", "prettier", "github"],
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended","plugin:github/recommended", "plugin:prettier/recommended"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaVersion": 12,
+    "ecmaVersion": "latest",
     "sourceType": "module",
     "project": "./tsconfig.json"
   },
   "rules": {
+    "prettier/prettier": "error",
     "i18n-text/no-en": "off",
     "eslint-comments/no-use": "off",
     "import/no-namespace": "off",
@@ -45,8 +46,6 @@
     "@typescript-eslint/promise-function-async": "error",
     "@typescript-eslint/require-array-sort-compare": "error",
     "@typescript-eslint/restrict-plus-operands": "error",
-    "semi": "off",
-    "@typescript-eslint/semi": ["error", "never"],
     "@typescript-eslint/type-annotation-spacing": "error",
     "@typescript-eslint/unbound-method": "error"
   },

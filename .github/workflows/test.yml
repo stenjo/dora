@@ -38,7 +38,7 @@ jobs:
         echo "Summary HTML - ${{ steps.coverageComment.outputs.summaryHtml }}"
 
     - name: Create the Badge
-      uses: schneegans/dynamic-badges-action@v1.0.0
+      uses: schneegans/dynamic-badges-action@v1.6.0
       with:
         auth: ${{ secrets.GIST_AUTH_TOKEN }}
         gistID: 9ce1ad7d8e9db99796e782b244eefa4a

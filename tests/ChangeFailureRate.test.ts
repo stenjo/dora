@@ -368,10 +368,22 @@ describe('ChangeFailureRate should', () => {
     ] as Issue[]
 
     const rels = [
-      {published_at: '2023-04-28T16:50:53Z', url: 'path/with/repository/in/it'},
-      {published_at: '2023-04-28T16:50:53Z', url: 'path/with/other-repo/in/it'},
-      {published_at: '2023-04-30T19:50:53Z', url: 'path/with/repository/in/it'},
-      {published_at: '2023-05-02T16:50:53Z', url: 'path/with/repository/in/it'}
+      {
+        published_at: '2023-04-28T16:50:53Z',
+        url: 'path/with/repository/in/it'
+      },
+      {
+        published_at: '2023-04-28T16:50:53Z',
+        url: 'path/with/other-repo/in/it'
+      },
+      {
+        published_at: '2023-04-30T19:50:53Z',
+        url: 'path/with/repository/in/it'
+      },
+      {
+        published_at: '2023-05-02T16:50:53Z',
+        url: 'path/with/repository/in/it'
+      }
     ] as Release[]
 
     const cfr = new ChangeFailureRate(

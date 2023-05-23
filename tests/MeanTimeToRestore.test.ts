@@ -134,13 +134,26 @@ describe.only('MeanTimeToRestore should', () => {
       }
     ] as Issue[]
     const releases = [
-      {published_at: '2023-04-25T00:00:00Z', url: 'path/with/repository/in/it'},
-      {published_at: '2023-04-24T00:00:00Z', url: 'path/with/repository/in/it'},
-      {published_at: '2023-04-20T00:00:00Z', url: 'path/with/repository/in/it'}
+      {
+        published_at: '2023-04-25T00:00:00Z',
+        url: 'path/with/repository/in/it'
+      },
+      {
+        published_at: '2023-04-24T00:00:00Z',
+        url: 'path/with/repository/in/it'
+      },
+      {
+        published_at: '2023-04-20T00:00:00Z',
+        url: 'path/with/repository/in/it'
+      }
     ] as Release[]
 
     // console.log(fixTime/(1000*60*60*24))
-    const mttrEmpty = new MeanTimeToRestore(bugList, releases, new Date('2023-04-29T12:54:45Z'))
+    const mttrEmpty = new MeanTimeToRestore(
+      bugList,
+      releases,
+      new Date('2023-04-29T12:54:45Z')
+    )
     const meanTime = mttrEmpty.mttr()
 
     expect(meanTime).toBe(4)
@@ -162,13 +175,29 @@ describe.only('MeanTimeToRestore should', () => {
       }
     ] as Issue[]
     const releases = [
-      {published_at: '2023-04-25T00:00:00Z', url: 'path/with/repository/in/it'},
-      {published_at: '2023-04-24T00:00:00Z', url: 'path/with/repository/in/it'},
-      {published_at: '2023-04-30T00:00:00Z', url: 'path/with/other-repo/in/it'},
-      {published_at: '2023-04-20T00:00:00Z', url: 'path/with/repository/in/it'}
+      {
+        published_at: '2023-04-25T00:00:00Z',
+        url: 'path/with/repository/in/it'
+      },
+      {
+        published_at: '2023-04-24T00:00:00Z',
+        url: 'path/with/repository/in/it'
+      },
+      {
+        published_at: '2023-04-30T00:00:00Z',
+        url: 'path/with/other-repo/in/it'
+      },
+      {
+        published_at: '2023-04-20T00:00:00Z',
+        url: 'path/with/repository/in/it'
+      }
     ] as Release[]
 
-    const mttrEmpty = new MeanTimeToRestore(bugList, releases, new Date('2023-04-30T00:00:00Z'))
+    const mttrEmpty = new MeanTimeToRestore(
+      bugList,
+      releases,
+      new Date('2023-04-30T00:00:00Z')
+    )
     const meanTime = mttrEmpty.mttr()
 
     expect(meanTime).toBe(4)
@@ -190,13 +219,26 @@ describe.only('MeanTimeToRestore should', () => {
       }
     ] as Issue[]
     const releases = [
-      {published_at: '2023-04-30T00:00:00Z', url: 'path/with/repository/in/it'},
-      {published_at: '2023-04-24T00:00:00Z', url: 'path/with/repository/in/it'},
-      {published_at: '2023-04-20T00:00:00Z', url: 'path/with/repository/in/it'}
+      {
+        published_at: '2023-04-30T00:00:00Z',
+        url: 'path/with/repository/in/it'
+      },
+      {
+        published_at: '2023-04-24T00:00:00Z',
+        url: 'path/with/repository/in/it'
+      },
+      {
+        published_at: '2023-04-20T00:00:00Z',
+        url: 'path/with/repository/in/it'
+      }
     ] as Release[]
 
     // console.log(fixTime/(1000*60*60*24))
-    const mttrEmpty = new MeanTimeToRestore(bugList, releases, new Date('2023-04-30T00:00:00Z'))
+    const mttrEmpty = new MeanTimeToRestore(
+      bugList,
+      releases,
+      new Date('2023-04-30T00:00:00Z')
+    )
     const meanTime = mttrEmpty.mttr()
 
     expect(meanTime).toBe(5)
@@ -220,14 +262,33 @@ describe.only('MeanTimeToRestore should', () => {
       }
     ] as Issue[]
     const releases = [
-      {published_at: '2023-04-30T00:00:00Z', url: 'path/with/repository/in/it'},
-      {published_at: '2023-04-24T00:00:00Z', url: 'path/with/repository/in/it'},
-      {published_at: '2023-04-20T00:00:00Z', url: 'path/with/repository/in/it'},
-      {published_at: '2023-04-21T00:00:00Z', url: 'path/with/other-repo/in/it'},
-      {published_at: '2023-04-24T00:00:00Z', url: 'path/with/other-repo/in/it'}
+      {
+        published_at: '2023-04-30T00:00:00Z',
+        url: 'path/with/repository/in/it'
+      },
+      {
+        published_at: '2023-04-24T00:00:00Z',
+        url: 'path/with/repository/in/it'
+      },
+      {
+        published_at: '2023-04-20T00:00:00Z',
+        url: 'path/with/repository/in/it'
+      },
+      {
+        published_at: '2023-04-21T00:00:00Z',
+        url: 'path/with/other-repo/in/it'
+      },
+      {
+        published_at: '2023-04-24T00:00:00Z',
+        url: 'path/with/other-repo/in/it'
+      }
     ] as Release[]
 
-    const mttrEmpty = new MeanTimeToRestore(bugList, releases, new Date('2023-04-30T00:00:00Z'))
+    const mttrEmpty = new MeanTimeToRestore(
+      bugList,
+      releases,
+      new Date('2023-04-30T00:00:00Z')
+    )
     const meanTime = mttrEmpty.mttr()
 
     expect(meanTime).toBe(4.5)
@@ -251,13 +312,29 @@ describe.only('MeanTimeToRestore should', () => {
       }
     ] as Issue[]
     const releases = [
-      {published_at: '2023-04-30T00:00:00Z', url: 'path/with/repository/in/it'},
-      {published_at: '2023-04-24T00:00:00Z', url: 'path/with/repository/in/it'},
-      {published_at: '2023-04-20T00:00:00Z', url: 'path/with/repository/in/it'},
-      {published_at: '2023-04-21T00:00:00Z', url: 'path/with/other-repo/in/it'}
+      {
+        published_at: '2023-04-30T00:00:00Z',
+        url: 'path/with/repository/in/it'
+      },
+      {
+        published_at: '2023-04-24T00:00:00Z',
+        url: 'path/with/repository/in/it'
+      },
+      {
+        published_at: '2023-04-20T00:00:00Z',
+        url: 'path/with/repository/in/it'
+      },
+      {
+        published_at: '2023-04-21T00:00:00Z',
+        url: 'path/with/other-repo/in/it'
+      }
     ] as Release[]
 
-    const mttrEmpty = new MeanTimeToRestore(bugList, releases, new Date('2023-04-30T00:00:00Z'))
+    const mttrEmpty = new MeanTimeToRestore(
+      bugList,
+      releases,
+      new Date('2023-04-30T00:00:00Z')
+    )
     const meanTime = mttrEmpty.mttr()
 
     expect(meanTime).toBe(6)
