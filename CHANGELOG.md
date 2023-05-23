@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.2](https://github.com/stenjo/devops-metrics-action/compare/v1.0.1...v1.0.2) (2023-05-23)
+
+
+### Bug Fixes
+
+* **docs:** action version reference ([c23d28a](https://github.com/stenjo/devops-metrics-action/commit/c23d28a11522a5e9dd72b364d19022bb38046824))
+* linting and dynamic-badges-action ref ([000c610](https://github.com/stenjo/devops-metrics-action/commit/000c610b7a3f55a7500e366b2d210aa82dc335da))
+
 ## [1.0.1](https://github.com/stenjo/devops-metrics-action/compare/v1.0.0...v1.0.1) (2023-05-21)
 
 
