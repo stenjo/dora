@@ -3,7 +3,7 @@ import {Release} from '../src/types/Release'
 import fs from 'fs'
 import {BugTime, ReleaseDate, MeanTimeToRestore} from '../src/MeanTimeToRestore'
 
-describe('MeanTimeToRestore should', () => {
+describe.only('MeanTimeToRestore should', () => {
   const issues: Issue[] = JSON.parse(
     fs.readFileSync('./tests/test-data/issue-list.json').toString()
   )
@@ -118,7 +118,7 @@ describe('MeanTimeToRestore should', () => {
     // console.log(fixTime/(1000*60*60*24))
   })
 
-  it('get mttr for bug 1 when no release after bug 2', () => {
+  it.only('get mttr for bug 1 when no release after bug 2', () => {
     const bugList: Issue[] = [
       {
         created_at: '2023-04-22T21:44:06Z',
@@ -140,7 +140,7 @@ describe('MeanTimeToRestore should', () => {
     ] as Release[]
 
     // console.log(fixTime/(1000*60*60*24))
-    const mttrEmpty = new MeanTimeToRestore(bugList, releases)
+    const mttrEmpty = new MeanTimeToRestore(bugList, releases, new Date('2023-04-29T12:54:45Z'))
     const meanTime = mttrEmpty.mttr()
 
     expect(meanTime).toBe(4)
@@ -168,7 +168,7 @@ describe('MeanTimeToRestore should', () => {
       {published_at: '2023-04-20T00:00:00Z', url: 'path/with/repository/in/it'}
     ] as Release[]
 
-    const mttrEmpty = new MeanTimeToRestore(bugList, releases)
+    const mttrEmpty = new MeanTimeToRestore(bugList, releases, new Date('2023-04-30T00:00:00Z'))
     const meanTime = mttrEmpty.mttr()
 
     expect(meanTime).toBe(4)
@@ -196,7 +196,7 @@ describe('MeanTimeToRestore should', () => {
     ] as Release[]
 
     // console.log(fixTime/(1000*60*60*24))
-    const mttrEmpty = new MeanTimeToRestore(bugList, releases)
+    const mttrEmpty = new MeanTimeToRestore(bugList, releases, new Date('2023-04-30T00:00:00Z'))
     const meanTime = mttrEmpty.mttr()
 
     expect(meanTime).toBe(5)
@@ -227,7 +227,7 @@ describe('MeanTimeToRestore should', () => {
       {published_at: '2023-04-24T00:00:00Z', url: 'path/with/other-repo/in/it'}
     ] as Release[]
 
-    const mttrEmpty = new MeanTimeToRestore(bugList, releases)
+    const mttrEmpty = new MeanTimeToRestore(bugList, releases, new Date('2023-04-30T00:00:00Z'))
     const meanTime = mttrEmpty.mttr()
 
     expect(meanTime).toBe(4.5)
@@ -257,7 +257,7 @@ describe('MeanTimeToRestore should', () => {
       {published_at: '2023-04-21T00:00:00Z', url: 'path/with/other-repo/in/it'}
     ] as Release[]
 
-    const mttrEmpty = new MeanTimeToRestore(bugList, releases)
+    const mttrEmpty = new MeanTimeToRestore(bugList, releases, new Date('2023-04-30T00:00:00Z'))
     const meanTime = mttrEmpty.mttr()
 
     expect(meanTime).toBe(6)

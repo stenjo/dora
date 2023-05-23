@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {Octokit} from '@octokit/core'
 import * as core from '@actions/core'
-import {IPullRequestsAdapter} from './IPullRequestsAdapter'
+import {IPullRequestsAdapter} from './interfaces/IPullRequestsAdapter'
 import {PullRequest} from './types/PullRequest'
 
 export class PullRequestsAdapter implements IPullRequestsAdapter {
