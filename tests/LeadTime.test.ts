@@ -6,8 +6,8 @@ import {LeadTime} from '../src/LeadTime'
 import {expect, jest, test} from '@jest/globals'
 
 describe('LeadTime should', () => {
-  const cmtsAdptrMock: CommitsAdapter = new CommitsAdapter('')
-  cmtsAdptrMock.getCommitsFromUrl = jest.fn(
+  const commitsAdapter: CommitsAdapter = new CommitsAdapter('')
+  commitsAdapter.getCommitsFromUrl = jest.fn(
     (url: string): Promise<Commit[] | undefined> => {
       return Promise.resolve([{}] as Commit[])
     }
@@ -18,7 +18,7 @@ describe('LeadTime should', () => {
     const lt = new LeadTime(
       pulls,
       [{published_at: '2023-04-30T17:50:53Z'}] as Release[],
-      cmtsAdptrMock,
+      commitsAdapter,
       new Date()
     )
 
@@ -36,7 +36,7 @@ describe('LeadTime should', () => {
     const lt = new LeadTime(
       pulls,
       [{published_at: '2023-04-30T17:50:53Z'}] as Release[],
-      cmtsAdptrMock,
+      commitsAdapter,
       new Date()
     )
 
@@ -53,7 +53,7 @@ describe('LeadTime should', () => {
       }
     ] as PullRequest[]
 
-    const lt = new LeadTime(pulls, [], cmtsAdptrMock, new Date())
+    const lt = new LeadTime(pulls, [], commitsAdapter, new Date())
 
     const leadTime = await lt.getLeadTime()
 
@@ -69,7 +69,7 @@ describe('LeadTime should', () => {
         }
       }
     ] as PullRequest[]
-    const lt = new LeadTime(pulls, [], cmtsAdptrMock, new Date())
+    const lt = new LeadTime(pulls, [], commitsAdapter, new Date())
 
     const leadTime = await lt.getLeadTime()
 
@@ -78,7 +78,7 @@ describe('LeadTime should', () => {
 
   it('return 0 on 1 pullrequest with no commits', async () => {
     const pulls = [] as PullRequest[]
-    const lt = new LeadTime(pulls, [], cmtsAdptrMock, new Date())
+    const lt = new LeadTime(pulls, [], commitsAdapter, new Date())
 
     const leadTime = await lt.getLeadTime()
 
@@ -98,7 +98,7 @@ describe('LeadTime should', () => {
         published_at: '2023-04-30T17:50:53Z'
       }
     ] as Release[]
-    cmtsAdptrMock.getCommitsFromUrl = jest.fn(
+    commitsAdapter.getCommitsFromUrl = jest.fn(
       (url: string): Promise<Commit[] | undefined> => {
         return Promise.resolve([
           {
@@ -111,7 +111,7 @@ describe('LeadTime should', () => {
         ] as Commit[])
       }
     )
-    const lt = new LeadTime(pullRequests, releases, cmtsAdptrMock, new Date())
+    const lt = new LeadTime(pullRequests, releases, commitsAdapter, new Date())
 
     const leadTime = await lt.getLeadTime()
 
@@ -122,7 +122,8 @@ describe('LeadTime should', () => {
     const pullRequests = [
       {
         merged_at: '2023-04-28T17:50:53Z', // 30-22 = 8
-        base: {ref: 'main', repo: {name: 'devops-metrics-action'}}
+        base: {ref: 'main', repo: {name: 'devops-metrics-action'}},
+        commits_url: 'path/to/commits/1'
       }
     ] as PullRequest[]
     const releases = [
@@ -135,23 +136,19 @@ describe('LeadTime should', () => {
         published_at: '2023-04-30T17:50:53Z'
       }
     ] as Release[]
-    cmtsAdptrMock.getCommitsFromUrl = jest.fn(
+    commitsAdapter.getCommitsFromUrl = jest.fn(
       (url: string): Promise<Commit[] | undefined> => {
         return Promise.resolve([
-          {
-            commit: {
-              committer: {
-                date: '2023-04-22T17:50:53Z'
-              }
-            }
-          }
+          {commit: {committer: {date: '2023-04-22T17:50:53Z'}}}
         ] as Commit[])
       }
     )
-    const lt = new LeadTime(pullRequests, releases, cmtsAdptrMock, new Date())
+    const lt = new LeadTime(pullRequests, releases, commitsAdapter, new Date())
 
     const leadTime = await lt.getLeadTime()
 
+    expect(commitsAdapter.getCommitsFromUrl).toBeCalled()
+    expect(commitsAdapter.getCommitsFromUrl).lastCalledWith('path/to/commits/1')
     expect(leadTime).toBe(8)
   })
 
@@ -168,7 +165,7 @@ describe('LeadTime should', () => {
         published_at: '2023-04-30T17:50:53Z'
       }
     ] as Release[]
-    cmtsAdptrMock.getCommitsFromUrl = jest.fn(
+    commitsAdapter.getCommitsFromUrl = jest.fn(
       (url: string): Promise<Commit[] | undefined> => {
         return Promise.resolve([
           {
@@ -184,7 +181,7 @@ describe('LeadTime should', () => {
     const lt = new LeadTime(
       pulls,
       rels,
-      cmtsAdptrMock,
+      commitsAdapter,
       new Date('2023-06-29T17:50:53Z')
     )
 
@@ -205,7 +202,7 @@ describe('LeadTime should', () => {
         published_at: '2023-04-30T17:50:53Z'
       }
     ] as Release[]
-    cmtsAdptrMock.getCommitsFromUrl = jest.fn(
+    commitsAdapter.getCommitsFromUrl = jest.fn(
       (url: string): Promise<Commit[] | undefined> => {
         return Promise.resolve([
           {commit: {committer: {date: '2023-04-22T17:50:53Z'}}},
@@ -214,7 +211,7 @@ describe('LeadTime should', () => {
       }
     )
 
-    const lt = new LeadTime(pulls, rels, cmtsAdptrMock, new Date())
+    const lt = new LeadTime(pulls, rels, commitsAdapter, new Date())
 
     const leadTime = await lt.getLeadTime()
 
@@ -242,7 +239,7 @@ describe('LeadTime should', () => {
         published_at: '2023-04-29T17:50:53Z'
       }
     ] as Release[]
-    cmtsAdptrMock.getCommitsFromUrl = jest.fn(
+    commitsAdapter.getCommitsFromUrl = jest.fn(
       (url: string): Promise<Commit[] | undefined> => {
         return Promise.resolve([
           {commit: {committer: {date: '2023-04-22T17:50:53Z'}}},
@@ -251,7 +248,7 @@ describe('LeadTime should', () => {
       }
     )
 
-    const lt = new LeadTime(pulls, rels, cmtsAdptrMock, new Date())
+    const lt = new LeadTime(pulls, rels, commitsAdapter, new Date())
 
     const leadTime = await lt.getLeadTime()
 
@@ -259,7 +256,7 @@ describe('LeadTime should', () => {
   })
 
   it('return 8.5 on two pullrequests with two commits', async () => {
-    cmtsAdptrMock.getCommitsFromUrl = jest.fn(
+    commitsAdapter.getCommitsFromUrl = jest.fn(
       (url: string): Promise<Commit[] | undefined> => {
         return Promise.resolve(getCommits(url))
       }
@@ -292,7 +289,7 @@ describe('LeadTime should', () => {
         published_at: '2023-04-02T17:50:53Z'
       }
     ] as Release[]
-    const lt = new LeadTime(pulls, rels, cmtsAdptrMock, new Date())
+    const lt = new LeadTime(pulls, rels, commitsAdapter, new Date())
 
     const leadTime = await lt.getLeadTime()
 
@@ -300,7 +297,7 @@ describe('LeadTime should', () => {
   })
 
   it('return 6,67 on three pullrequests with one commit each', async () => {
-    cmtsAdptrMock.getCommitsFromUrl = jest.fn(
+    commitsAdapter.getCommitsFromUrl = jest.fn(
       (url: string): Promise<Commit[] | undefined> => {
         return Promise.resolve(getCommits(url))
       }
@@ -341,7 +338,7 @@ describe('LeadTime should', () => {
       }
     ] as Release[]
 
-    const lt = new LeadTime(pulls, rels, cmtsAdptrMock, new Date())
+    const lt = new LeadTime(pulls, rels, commitsAdapter, new Date())
 
     const leadTime = await lt.getLeadTime()
 
@@ -349,7 +346,7 @@ describe('LeadTime should', () => {
   })
 
   it('return 6 on three pullrequests with one commit each and two latest not released', async () => {
-    cmtsAdptrMock.getCommitsFromUrl = jest.fn(
+    commitsAdapter.getCommitsFromUrl = jest.fn(
       (url: string): Promise<Commit[] | undefined> => {
         return Promise.resolve(getCommits(url))
       }
@@ -386,7 +383,7 @@ describe('LeadTime should', () => {
       }
     ] as Release[]
 
-    const lt = new LeadTime(pulls, rels, cmtsAdptrMock, new Date())
+    const lt = new LeadTime(pulls, rels, commitsAdapter, new Date())
 
     const leadTime = await lt.getLeadTime()
 
@@ -394,7 +391,7 @@ describe('LeadTime should', () => {
   })
 
   it('return 8 on three pullrequests with one commit each and two repos, latest not released', async () => {
-    cmtsAdptrMock.getCommitsFromUrl = jest.fn(
+    commitsAdapter.getCommitsFromUrl = jest.fn(
       (url: string): Promise<Commit[] | undefined> => {
         return Promise.resolve(getCommits(url))
       }
@@ -435,7 +432,7 @@ describe('LeadTime should', () => {
       }
     ] as Release[]
 
-    const lt = new LeadTime(pulls, rels, cmtsAdptrMock, new Date())
+    const lt = new LeadTime(pulls, rels, commitsAdapter, new Date())
 
     const leadTime = await lt.getLeadTime()
 
