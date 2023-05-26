@@ -39,6 +39,7 @@ jobs:
 
     - name: Create the Badge
       uses: schneegans/dynamic-badges-action@v1.6.0
+      if: steps.branch-name.outputs.current_branch == 'main'
       with:
         auth: ${{ secrets.GIST_AUTH_TOKEN }}
         gistID: 9ce1ad7d8e9db99796e782b244eefa4a
