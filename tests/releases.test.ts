@@ -4,15 +4,15 @@ import fs from 'fs'
 
 describe('Mocked Release API should', () => {
   it('return releases', async () => {
-    const r = new ReleaseAdapter(process.env['GH_TOKEN'], 'stenjo', ['dora'])
+    const r = new ReleaseAdapter(undefined, 'testowner', ['project1'])
     mockedGetReleasesReturns('./tests/test-data/releases.json')
 
-    const tl: Array<Release> =
+    const releases: Array<Release> =
       (await r.GetAllReleasesLastMonth()) as Array<Release>
 
-    expect(tl.length).toBeGreaterThan(0)
-    expect(tl[0].author.type).toBe('Bot')
-    expect(tl.reverse()[0].name).toBe('v0.0.1')
+    expect(releases.length).toBeGreaterThan(0)
+    expect(releases[0].author.type).toBe('Bot')
+    expect(releases.reverse()[0].name).toBe('v0.0.1')
   })
 })
 
