@@ -111,7 +111,12 @@ describe('LeadTime should', () => {
         ] as Commit[])
       }
     )
-    const lt = new LeadTime(pullRequests, releases, commitsAdapter, new Date())
+    const lt = new LeadTime(
+      pullRequests,
+      releases,
+      commitsAdapter,
+      new Date('2023-05-01')
+    )
 
     const leadTime = await lt.getLeadTime()
 
@@ -143,7 +148,12 @@ describe('LeadTime should', () => {
         ] as Commit[])
       }
     )
-    const lt = new LeadTime(pullRequests, releases, commitsAdapter, new Date())
+    const lt = new LeadTime(
+      pullRequests,
+      releases,
+      commitsAdapter,
+      new Date('2023-05-01')
+    )
 
     const leadTime = await lt.getLeadTime()
 
@@ -211,7 +221,7 @@ describe('LeadTime should', () => {
       }
     )
 
-    const lt = new LeadTime(pulls, rels, commitsAdapter, new Date())
+    const lt = new LeadTime(pulls, rels, commitsAdapter, new Date('2023-05-01'))
 
     const leadTime = await lt.getLeadTime()
 
@@ -248,7 +258,7 @@ describe('LeadTime should', () => {
       }
     )
 
-    const lt = new LeadTime(pulls, rels, commitsAdapter, new Date())
+    const lt = new LeadTime(pulls, rels, commitsAdapter, new Date('2023-05-01'))
 
     const leadTime = await lt.getLeadTime()
 
@@ -289,7 +299,7 @@ describe('LeadTime should', () => {
         published_at: '2023-04-02T17:50:53Z'
       }
     ] as Release[]
-    const lt = new LeadTime(pulls, rels, commitsAdapter, new Date())
+    const lt = new LeadTime(pulls, rels, commitsAdapter, new Date('2023-05-01'))
 
     const leadTime = await lt.getLeadTime()
 
@@ -338,7 +348,7 @@ describe('LeadTime should', () => {
       }
     ] as Release[]
 
-    const lt = new LeadTime(pulls, rels, commitsAdapter, new Date())
+    const lt = new LeadTime(pulls, rels, commitsAdapter, new Date('2023-05-01'))
 
     const leadTime = await lt.getLeadTime()
 
@@ -383,7 +393,7 @@ describe('LeadTime should', () => {
       }
     ] as Release[]
 
-    const lt = new LeadTime(pulls, rels, commitsAdapter, new Date())
+    const lt = new LeadTime(pulls, rels, commitsAdapter, new Date('2023-05-01'))
 
     const leadTime = await lt.getLeadTime()
 
@@ -432,7 +442,7 @@ describe('LeadTime should', () => {
       }
     ] as Release[]
 
-    const lt = new LeadTime(pulls, rels, commitsAdapter, new Date())
+    const lt = new LeadTime(pulls, rels, commitsAdapter, new Date('2023-05-01'))
 
     const leadTime = await lt.getLeadTime()
 
