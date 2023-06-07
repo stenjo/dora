@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.3](https://github.com/stenjo/devops-metrics-action/compare/v1.0.2...v1.0.3) (2023-06-07)
+
+
+### Miscellaneous Chores
+
+* release 1.0.3 ([9833933](https://github.com/stenjo/devops-metrics-action/commit/9833933d21417e5d893c25958fa7c8c0d16220f5))
+
 ## [1.0.2](https://github.com/stenjo/devops-metrics-action/compare/v1.0.1...v1.0.2) (2023-05-23)
 
 
