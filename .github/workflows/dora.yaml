@@ -35,7 +35,7 @@ jobs:
           mkdir tmp
 
       - name: Install jq
-        uses: dcarbone/install-jq-action@v2.0.0
+        uses: dcarbone/install-jq-action@v2.0.1
 
       # Store Deploy Rate history
       - name: Get deploys Gist
