@@ -37,6 +37,7 @@ describe.skip('Deployrate weekly should', () => {
   test('use single repo input ', () => {
     process.env['INPUT_REPO'] = 'Middager'
     process.env['INPUT_OWNER'] = 'stenjo'
+    process.env['INPUT_LOGGING'] = 'true'
 
     const np = process.execPath
     const ip = path.join(__dirname, '..', 'out', 'index.js')

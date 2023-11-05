@@ -52,10 +52,14 @@ async function run(): Promise<void> {
       token = process.env['GH_TOKEN']
     }
 
+    const logging: string | undefined = core.getInput('logging')
     const rel = new ReleaseAdapter(token, owner, repositories)
     const releaselist = (await rel.GetAllReleasesLastMonth()) as Release[]
     const df = new DeployFrequency(releaselist)
     core.setOutput('deploy-rate', df.rate())
+    if (logging === 'true') {
+      core.setOutput('deploy-rate-log', df.getLog().join('\n'))
+    }
 
     const prs = new PullRequestsAdapter(token, owner, repositories)
     const cmts = new CommitsAdapter(token)

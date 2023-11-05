@@ -6,8 +6,13 @@ import {Release} from './types/Release'
 const ONE_DAY = 1000 * 60 * 60 * 24
 
 export class DeployFrequency {
+  log: string[] = []
   today: Date = new Date()
   rList: Release[] = new Array<Release>()
+
+  getLog(): string[] {
+    return this.log
+  }
 
   constructor(releases: Release[] | null, dateString: string | null = null) {
     this.rList = releases as Release[]
@@ -25,6 +30,7 @@ export class DeployFrequency {
     for (const release of this.rList) {
       const relDate = new Date(release.published_at)
       if (this.days_between(this.today, relDate) < 8) {
+        this.log.push(`release->  ${release.name}:${release.published_at}`)
         releaseCount++
       }
     }
@@ -37,6 +43,7 @@ export class DeployFrequency {
     for (const release of this.rList) {
       const relDate = new Date(release.published_at)
       if (this.days_between(this.today, relDate) < 31) {
+        this.log.push(`release->  ${release.name}:${release.published_at}`)
         releaseCount++
       }
     }
