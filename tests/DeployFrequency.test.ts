@@ -47,4 +47,13 @@ describe('Deploy frequency should', () => {
 
     expect(t).toThrow('Empty release list')
   })
+  it('throw exception when release list is null', () => {
+    const emptyReleaseList: Release[] | null = null
+
+    const t = () => {
+      new DeployFrequency(emptyReleaseList)
+    }
+
+    expect(t).toThrow('Empty release list')
+  })
 })

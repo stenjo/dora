@@ -7,11 +7,11 @@ const ONE_DAY = 1000 * 60 * 60 * 24
 
 export class DeployFrequency {
   today: Date = new Date()
-  rlist: Release[] = new Array<Release>()
+  rList: Release[] = new Array<Release>()
 
-  constructor(releases: Release[], dateString: string | null = null) {
-    this.rlist = releases
-    if (this.rlist === null || this.rlist.length === 0) {
+  constructor(releases: Release[] | null, dateString: string | null = null) {
+    this.rList = releases as Release[]
+    if (this.rList === null || this.rList.length === 0) {
       throw new Error('Empty release list')
     }
 
@@ -21,27 +21,27 @@ export class DeployFrequency {
   }
 
   weekly(): number {
-    let releasecount = 0
-    for (const release of this.rlist) {
+    let releaseCount = 0
+    for (const release of this.rList) {
       const relDate = new Date(release.published_at)
       if (this.days_between(this.today, relDate) < 8) {
-        releasecount++
+        releaseCount++
       }
     }
 
-    return releasecount
+    return releaseCount
   }
 
   monthly(): number {
-    let releasecount = 0
-    for (const release of this.rlist) {
+    let releaseCount = 0
+    for (const release of this.rList) {
       const relDate = new Date(release.published_at)
       if (this.days_between(this.today, relDate) < 31) {
-        releasecount++
+        releaseCount++
       }
     }
 
-    return releasecount
+    return releaseCount
   }
 
   rate(): string {
