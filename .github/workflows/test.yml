@@ -69,3 +69,8 @@ jobs:
         echo "The deploy rate was ${{ steps.dora.outputs.deploy-rate }}"      # Use the output from the `dora` step
         echo "The log was:\n${{ steps.dora.outputs.deploy-rate-log }}"      # Use the output from the `dora` step
         echo "${{ steps.dora.outputs.deploy-rate-log }}" > deploy-rate-log.txt
+
+    - uses: actions/upload-artifact@v3
+      with:
+        name: *-log.txt
+        path: ./
