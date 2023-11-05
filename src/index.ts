@@ -52,25 +52,29 @@ async function run(): Promise<void> {
       token = process.env['GH_TOKEN']
     }
 
+    const logging: string | undefined = core.getInput('logging')
     const rel = new ReleaseAdapter(token, owner, repositories)
-    const releaselist = (await rel.GetAllReleasesLastMonth()) as Release[]
-    const df = new DeployFrequency(releaselist)
+    const releaseList = (await rel.GetAllReleasesLastMonth()) as Release[]
+    const df = new DeployFrequency(releaseList)
     core.setOutput('deploy-rate', df.rate())
+    if (logging === 'true') {
+      core.setOutput('deploy-rate-log', df.getLog().join('\n'))
+    }
 
     const prs = new PullRequestsAdapter(token, owner, repositories)
     const cmts = new CommitsAdapter(token)
     const pulls = (await prs.GetAllPRsLastMonth()) as PullRequest[]
-    const lt = new LeadTime(pulls, releaselist, cmts)
+    const lt = new LeadTime(pulls, releaseList, cmts)
     const leadTime = await lt.getLeadTime()
     core.setOutput('lead-time', leadTime)
 
     const issueAdapter = new IssuesAdapter(token, owner, repositories)
-    const issuelist: Issue[] | undefined =
+    const issueList: Issue[] | undefined =
       await issueAdapter.GetAllIssuesLastMonth()
-    if (issuelist) {
-      const cfr = new ChangeFailureRate(issuelist, releaselist)
+    if (issueList) {
+      const cfr = new ChangeFailureRate(issueList, releaseList)
       core.setOutput('change-failure-rate', cfr.Cfr())
-      const mttr = new MeanTimeToRestore(issuelist, releaselist)
+      const mttr = new MeanTimeToRestore(issueList, releaseList)
       core.setOutput('mttr', mttr.mttr())
     } else {
       core.setOutput('change-failure-rate', 'empty issue list')
