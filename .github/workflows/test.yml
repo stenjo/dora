@@ -72,5 +72,5 @@ jobs:
 
     - uses: actions/upload-artifact@v3
       with:
-        name: *-log.txt
-        path: ./
+        name: logs
+        path: ./*-log.txt

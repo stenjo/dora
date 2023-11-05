@@ -13066,8 +13066,8 @@ function run() {
             }
             const logging = core.getInput('logging');
             const rel = new ReleaseAdapter_1.ReleaseAdapter(token, owner, repositories);
-            const releaselist = (yield rel.GetAllReleasesLastMonth());
-            const df = new DeployFrequency_1.DeployFrequency(releaselist);
+            const releaseList = (yield rel.GetAllReleasesLastMonth());
+            const df = new DeployFrequency_1.DeployFrequency(releaseList);
             core.setOutput('deploy-rate', df.rate());
             if (logging === 'true') {
                 core.setOutput('deploy-rate-log', df.getLog().join('\n'));
@@ -13075,15 +13075,15 @@ function run() {
             const prs = new PullRequestsAdapter_1.PullRequestsAdapter(token, owner, repositories);
             const cmts = new CommitsAdapter_1.CommitsAdapter(token);
             const pulls = (yield prs.GetAllPRsLastMonth());
-            const lt = new LeadTime_1.LeadTime(pulls, releaselist, cmts);
+            const lt = new LeadTime_1.LeadTime(pulls, releaseList, cmts);
             const leadTime = yield lt.getLeadTime();
             core.setOutput('lead-time', leadTime);
             const issueAdapter = new IssuesAdapter_1.IssuesAdapter(token, owner, repositories);
-            const issuelist = yield issueAdapter.GetAllIssuesLastMonth();
-            if (issuelist) {
-                const cfr = new ChangeFailureRate_1.ChangeFailureRate(issuelist, releaselist);
+            const issueList = yield issueAdapter.GetAllIssuesLastMonth();
+            if (issueList) {
+                const cfr = new ChangeFailureRate_1.ChangeFailureRate(issueList, releaseList);
                 core.setOutput('change-failure-rate', cfr.Cfr());
-                const mttr = new MeanTimeToRestore_1.MeanTimeToRestore(issuelist, releaselist);
+                const mttr = new MeanTimeToRestore_1.MeanTimeToRestore(issueList, releaseList);
                 core.setOutput('mttr', mttr.mttr());
             }
             else {
