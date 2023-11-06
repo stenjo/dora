@@ -60,10 +60,10 @@ export class LeadTime {
         this.log.push(
           `release->  ${laterReleases[0].name}:${laterReleases[0].published}`
         )
-        const commmmits = (await this.commitsAdapter.getCommitsFromUrl(
+        const commits = (await this.commitsAdapter.getCommitsFromUrl(
           pull.commits_url
         )) as Commit[]
-        const commitTime: number = commmmits
+        const commitTime: number = commits
           .map(c => +new Date(c.commit.committer.date))
           .sort((a, b) => a - b)[0]
         leadTimes.push((deployTime - commitTime) / ONE_DAY)
