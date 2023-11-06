@@ -37,6 +37,10 @@ Owner of the repository. Default is current repository owner or organisation. On
 
 Access token for the repository.
 
+### `logging`
+
+Set to true to make event logs of metrics source avaiable.
+
 ## Outputs
 
 ### `deploy-frequency`
@@ -49,7 +53,9 @@ Decimal number. Elite performing teams has 7 as target (daily- or on-demand rele
 Time from issue is set to status doing until linked pull-requestis merged to main branch.
 Number in days (Integer)
 
-### `change-falure-rate`
+`lead-time-log` - a list of releases forming the basis for the metric, if `logging` is enabled.
+
+### `change-failure-rate`
 
 Number of registered issues tagged as bugs divided by number of release tags last month.
 By counting the bugs (github issues tagged as `bug`) between releases the last month and average this, we get the failures over releases rate.
