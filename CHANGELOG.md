@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.0](https://github.com/stenjo/devops-metrics-action/compare/v1.0.3...v1.1.0) (2023-11-06)
+
+
+### Features
+
+* **deploy rate:** add option to get list of issues/commits/releases that deploy frequency is based on ([#240](https://github.com/stenjo/devops-metrics-action/issues/240)) ([283a424](https://github.com/stenjo/devops-metrics-action/commit/283a42433fcdaa9f44d14c92625963787296738d))
+* **lead time:** add option to get list of issues/commits/releases th… ([#242](https://github.com/stenjo/devops-metrics-action/issues/242)) ([2f848c5](https://github.com/stenjo/devops-metrics-action/commit/2f848c511e3331e3d8a8a34e050964303616e117))
+
 ## [1.0.3](https://github.com/stenjo/devops-metrics-action/compare/v1.0.2...v1.0.3) (2023-06-07)
 
 
