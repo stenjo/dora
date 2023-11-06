@@ -12648,7 +12648,12 @@ class LeadTime {
         }
         this.pulls = pulls.filter(p => +new Date(p.merged_at) > this.today.valueOf() - 31 * ONE_DAY);
         this.releases = releases.map(r => {
-            return { published: +new Date(r.published_at), url: r.url, name: r.name };
+            return {
+                published: +new Date(r.published_at),
+                url: r.url,
+                name: r.name,
+                published_at: r.published_at
+            };
         });
         this.commitsAdapter = commitsAdapter;
     }
@@ -12673,12 +12678,20 @@ class LeadTime {
                         continue;
                     }
                     const deployTime = laterReleases[0].published;
-                    this.log.push(`release->  ${laterReleases[0].name}:${laterReleases[0].published}`);
-                    const commmmits = (yield this.commitsAdapter.getCommitsFromUrl(pull.commits_url));
-                    const commitTime = commmmits
+                    this.log.push(`pull->      ${pull.merged_at} : ${pull.title}`);
+                    const commits = (yield this.commitsAdapter.getCommitsFromUrl(pull.commits_url));
+                    const commitTime = commits
                         .map(c => +new Date(c.commit.committer.date))
                         .sort((a, b) => a - b)[0];
-                    leadTimes.push((deployTime - commitTime) / ONE_DAY);
+                    const firstCommit = commits.sort((a, b) => {
+                        return (+new Date(a.commit.committer.date) -
+                            +new Date(b.commit.committer.date));
+                    })[0];
+                    this.log.push(`  commit->  ${firstCommit.commit.committer.date} : ${firstCommit.commit.message}`);
+                    this.log.push(`  release-> ${laterReleases[0].published_at} : ${laterReleases[0].name}`);
+                    const leadTime = (deployTime - commitTime) / ONE_DAY;
+                    leadTimes.push(leadTime);
+                    this.log.push(`  ${leadTime} days`);
                 }
             }
             if (leadTimes.length === 0) {
@@ -13083,6 +13096,9 @@ function run() {
             const lt = new LeadTime_1.LeadTime(pulls, releaseList, cmts);
             const leadTime = yield lt.getLeadTime();
             core.setOutput('lead-time', leadTime);
+            if (logging === 'true') {
+                core.setOutput('lead-time-log', lt.getLog().join('\n'));
+            }
             const issueAdapter = new IssuesAdapter_1.IssuesAdapter(token, owner, repositories);
             const issueList = yield issueAdapter.GetAllIssuesLastMonth();
             if (issueList) {

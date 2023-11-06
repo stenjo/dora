@@ -48,12 +48,14 @@ Set to true to make event logs of metrics source avaiable.
 Rate of deploys (tagged releases) per week.
 Decimal number. Elite performing teams has 7 as target (daily- or on-demand release)
 
+`deploy-frequency-log` - a list of releases forming the basis for the metric, if `logging` is enabled.
+
 ### `lead-time`
 
 Time from issue is set to status doing until linked pull-requestis merged to main branch.
 Number in days (Integer)
 
-`lead-time-log` - a list of releases forming the basis for the metric, if `logging` is enabled.
+`lead-time-log` - a list of pull requests with matching first commit and re forming the basis for the metric, if `logging` is enabled.
 
 ### `change-failure-rate`
 

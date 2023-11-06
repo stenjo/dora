@@ -67,6 +67,9 @@ async function run(): Promise<void> {
     const lt = new LeadTime(pulls, releaseList, cmts)
     const leadTime = await lt.getLeadTime()
     core.setOutput('lead-time', leadTime)
+    if (logging === 'true') {
+      core.setOutput('lead-time-log', lt.getLog().join('\n'))
+    }
 
     const issueAdapter = new IssuesAdapter(token, owner, repositories)
     const issueList: Issue[] | undefined =
