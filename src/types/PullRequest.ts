@@ -9,4 +9,5 @@ export interface PullRequest {
       name: string
     }
   }
+  title: string
 }
