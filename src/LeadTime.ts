@@ -6,8 +6,9 @@ import {Commit} from './types/Commit'
 
 const ONE_DAY = 24 * 60 * 60 * 1000
 export class LeadTime {
+  log: string[] = []
   pulls: PullRequest[]
-  releases: {published: number; url: string}[]
+  releases: {published: number; url: string; name: string}[]
   today: Date
   commitsAdapter: ICommitsAdapter
 
@@ -27,11 +28,14 @@ export class LeadTime {
       p => +new Date(p.merged_at) > this.today.valueOf() - 31 * ONE_DAY
     )
     this.releases = releases.map(r => {
-      return {published: +new Date(r.published_at), url: r.url}
+      return {published: +new Date(r.published_at), url: r.url, name: r.name}
     })
     this.commitsAdapter = commitsAdapter
   }
 
+  getLog(): string[] {
+    return this.log
+  }
   async getLeadTime(): Promise<number> {
     if (this.pulls.length === 0 || this.releases.length === 0) {
       return 0
@@ -53,6 +57,9 @@ export class LeadTime {
           continue
         }
         const deployTime: number = laterReleases[0].published
+        this.log.push(
+          `release->  ${laterReleases[0].name}:${laterReleases[0].published}`
+        )
         const commmmits = (await this.commitsAdapter.getCommitsFromUrl(
           pull.commits_url
         )) as Commit[]
