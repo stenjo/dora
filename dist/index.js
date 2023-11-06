@@ -12475,11 +12475,15 @@ exports.DeployFrequency = void 0;
 // The number of milliseconds in one day
 const ONE_DAY = 1000 * 60 * 60 * 24;
 class DeployFrequency {
+    getLog() {
+        return this.log;
+    }
     constructor(releases, dateString = null) {
+        this.log = [];
         this.today = new Date();
-        this.rlist = new Array();
-        this.rlist = releases;
-        if (this.rlist === null || this.rlist.length === 0) {
+        this.rList = new Array();
+        this.rList = releases;
+        if (this.rList === null || this.rList.length === 0) {
             throw new Error('Empty release list');
         }
         if (dateString !== null) {
@@ -12487,24 +12491,26 @@ class DeployFrequency {
         }
     }
     weekly() {
-        let releasecount = 0;
-        for (const release of this.rlist) {
+        let releaseCount = 0;
+        for (const release of this.rList) {
             const relDate = new Date(release.published_at);
             if (this.days_between(this.today, relDate) < 8) {
-                releasecount++;
+                this.log.push(`release->  ${release.name}:${release.published_at}`);
+                releaseCount++;
             }
         }
-        return releasecount;
+        return releaseCount;
     }
     monthly() {
-        let releasecount = 0;
-        for (const release of this.rlist) {
+        let releaseCount = 0;
+        for (const release of this.rList) {
             const relDate = new Date(release.published_at);
             if (this.days_between(this.today, relDate) < 31) {
-                releasecount++;
+                this.log.push(`release->  ${release.name}:${release.published_at}`);
+                releaseCount++;
             }
         }
-        return releasecount;
+        return releaseCount;
     }
     rate() {
         return (Math.round(this.monthly() * 700) / 3000).toFixed(2);
@@ -12633,6 +12639,7 @@ exports.LeadTime = void 0;
 const ONE_DAY = 24 * 60 * 60 * 1000;
 class LeadTime {
     constructor(pulls, releases, commitsAdapter, today = null) {
+        this.log = [];
         if (today === null) {
             this.today = new Date();
         }
@@ -12641,9 +12648,17 @@ class LeadTime {
         }
         this.pulls = pulls.filter(p => +new Date(p.merged_at) > this.today.valueOf() - 31 * ONE_DAY);
         this.releases = releases.map(r => {
-            return { published: +new Date(r.published_at), url: r.url };
+            return {
+                published: +new Date(r.published_at),
+                url: r.url,
+                name: r.name,
+                published_at: r.published_at
+            };
         });
         this.commitsAdapter = commitsAdapter;
+    }
+    getLog() {
+        return this.log;
     }
     getLeadTime() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -12663,11 +12678,20 @@ class LeadTime {
                         continue;
                     }
                     const deployTime = laterReleases[0].published;
-                    const commmmits = (yield this.commitsAdapter.getCommitsFromUrl(pull.commits_url));
-                    const commitTime = commmmits
+                    this.log.push(`pull->      ${pull.merged_at} : ${pull.title}`);
+                    const commits = (yield this.commitsAdapter.getCommitsFromUrl(pull.commits_url));
+                    const commitTime = commits
                         .map(c => +new Date(c.commit.committer.date))
                         .sort((a, b) => a - b)[0];
-                    leadTimes.push((deployTime - commitTime) / ONE_DAY);
+                    const firstCommit = commits.sort((a, b) => {
+                        return (+new Date(a.commit.committer.date) -
+                            +new Date(b.commit.committer.date));
+                    })[0];
+                    this.log.push(`  commit->  ${firstCommit.commit.committer.date} : ${firstCommit.commit.message}`);
+                    this.log.push(`  release-> ${laterReleases[0].published_at} : ${laterReleases[0].name}`);
+                    const leadTime = (deployTime - commitTime) / ONE_DAY;
+                    leadTimes.push(leadTime);
+                    this.log.push(`  ${leadTime} days`);
                 }
             }
             if (leadTimes.length === 0) {
@@ -13058,22 +13082,29 @@ function run() {
                 // token = github.context.token;
                 token = process.env['GH_TOKEN'];
             }
+            const logging = core.getInput('logging');
             const rel = new ReleaseAdapter_1.ReleaseAdapter(token, owner, repositories);
-            const releaselist = (yield rel.GetAllReleasesLastMonth());
-            const df = new DeployFrequency_1.DeployFrequency(releaselist);
+            const releaseList = (yield rel.GetAllReleasesLastMonth());
+            const df = new DeployFrequency_1.DeployFrequency(releaseList);
             core.setOutput('deploy-rate', df.rate());
+            if (logging === 'true') {
+                core.setOutput('deploy-rate-log', df.getLog().join('\n'));
+            }
             const prs = new PullRequestsAdapter_1.PullRequestsAdapter(token, owner, repositories);
             const cmts = new CommitsAdapter_1.CommitsAdapter(token);
             const pulls = (yield prs.GetAllPRsLastMonth());
-            const lt = new LeadTime_1.LeadTime(pulls, releaselist, cmts);
+            const lt = new LeadTime_1.LeadTime(pulls, releaseList, cmts);
             const leadTime = yield lt.getLeadTime();
             core.setOutput('lead-time', leadTime);
+            if (logging === 'true') {
+                core.setOutput('lead-time-log', lt.getLog().join('\n'));
+            }
             const issueAdapter = new IssuesAdapter_1.IssuesAdapter(token, owner, repositories);
-            const issuelist = yield issueAdapter.GetAllIssuesLastMonth();
-            if (issuelist) {
-                const cfr = new ChangeFailureRate_1.ChangeFailureRate(issuelist, releaselist);
+            const issueList = yield issueAdapter.GetAllIssuesLastMonth();
+            if (issueList) {
+                const cfr = new ChangeFailureRate_1.ChangeFailureRate(issueList, releaseList);
                 core.setOutput('change-failure-rate', cfr.Cfr());
-                const mttr = new MeanTimeToRestore_1.MeanTimeToRestore(issuelist, releaselist);
+                const mttr = new MeanTimeToRestore_1.MeanTimeToRestore(issueList, releaseList);
                 core.setOutput('mttr', mttr.mttr());
             }
             else {

@@ -62,7 +62,25 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - uses: ./
+      id: dora
       with:
         owner: stenjo
         repo: '[dora,Middager]'
         token: ${{ secrets.GITHUB_TOKEN }}
+        logging: true
+
+    # Use the output from the `dora` step
+    - name: Get the output rate
+      run: |
+        echo "The deploy rate was ${{ steps.dora.outputs.deploy-rate }}"      # Use the output from the `dora` step
+        echo "The log was:\n${{ steps.dora.outputs.deploy-rate-log }}"      # Use the output from the `dora` step
+        echo "${{ steps.dora.outputs.deploy-rate-log }}" > deploy-rate-log.txt
+        echo "The lead time was ${{ steps.dora.outputs.lead-time }}"      # Use the output from the `dora` step
+        echo "The log was:\n${{ steps.dora.outputs.lead-time-log }}"      # Use the output from the `dora` step
+        echo "${{ steps.dora.outputs.lead-time-log }}" > lead-time-log.txt
+
+
+    - uses: actions/upload-artifact@v3
+      with:
+        name: logs
+        path: ./*-log.txt
