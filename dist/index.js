@@ -12639,6 +12639,7 @@ exports.LeadTime = void 0;
 const ONE_DAY = 24 * 60 * 60 * 1000;
 class LeadTime {
     constructor(pulls, releases, commitsAdapter, today = null) {
+        this.log = [];
         if (today === null) {
             this.today = new Date();
         }
@@ -12647,9 +12648,12 @@ class LeadTime {
         }
         this.pulls = pulls.filter(p => +new Date(p.merged_at) > this.today.valueOf() - 31 * ONE_DAY);
         this.releases = releases.map(r => {
-            return { published: +new Date(r.published_at), url: r.url };
+            return { published: +new Date(r.published_at), url: r.url, name: r.name };
         });
         this.commitsAdapter = commitsAdapter;
+    }
+    getLog() {
+        return this.log;
     }
     getLeadTime() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -12669,6 +12673,7 @@ class LeadTime {
                         continue;
                     }
                     const deployTime = laterReleases[0].published;
+                    this.log.push(`release->  ${laterReleases[0].name}:${laterReleases[0].published}`);
                     const commmmits = (yield this.commitsAdapter.getCommitsFromUrl(pull.commits_url));
                     const commitTime = commmmits
                         .map(c => +new Date(c.commit.committer.date))

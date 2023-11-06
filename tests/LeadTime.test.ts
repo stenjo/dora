@@ -451,7 +451,6 @@ describe('LeadTime should', () => {
   })
 
   it('get an empty log of releases or pulls', async () => {
-    
     const lt = new LeadTime([], [], commitsAdapter)
 
     expect(lt.getLog().length).toBe(0)
@@ -487,17 +486,17 @@ describe('LeadTime should', () => {
     const rels = [
       {
         url: 'https://api.github.com/repos/stenjo/devops-metrics-action/releases/101411508',
-        name: "v1.1.0",
+        name: 'v1.1.0',
         published_at: '2023-04-28T17:50:53Z'
       },
       {
         url: 'https://api.github.com/repos/stenjo/other-repo/releases/101411508',
-        name: "v0.1.0",
+        name: 'v0.1.0',
         published_at: '2023-04-29T17:50:53Z'
       },
       {
         url: 'https://api.github.com/repos/stenjo/devops-metrics-action/releases/101411508',
-        name: "v0.0.1",
+        name: 'v0.0.1',
         published_at: '2023-04-02T17:50:53Z'
       }
     ] as Release[]
