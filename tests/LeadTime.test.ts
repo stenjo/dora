@@ -571,6 +571,68 @@ describe('LeadTime should', () => {
     ).toBe(2)
   })
 
+  it('get event log list when lead time calculated and filtered', async () => {
+    commitsAdapter.getCommitsFromUrl = jest.fn(
+      (url: string): Promise<Commit[] | undefined> => {
+        return Promise.resolve(getCommits(url))
+      }
+    )
+    // getCommits()
+    // Returning commits from (10)=>22/4, (15)=>27/4 and (47)=>19/4
+
+    const pulls = [
+      {
+        merged_at: '2023-04-27T17:50:53Z', // Has a commit 19/4, first release is 29/4 -> Lead time 10 days
+        commits_url: '47',
+        base: {ref: 'main', repo: {name: 'other-repo'}},
+        title: 'feat(docs): better description'
+      },
+      {
+        merged_at: '2023-04-27T17:50:53Z', //  Has a commit 22/4, first release is 28/4 -> Lead time 6 days
+        commits_url: '10',
+        base: {ref: 'main', repo: {name: 'devops-metrics-action'}},
+        title: 'chore: cleaned up'
+      },
+      {
+        merged_at: '2023-04-29T17:50:53Z', //  Has a commit 27/4, first release is 30/4 -> Lead time 3 days
+        commits_url: '15',
+        base: {ref: 'main', repo: {name: 'devops-metrics-action'}},
+        title: 'fix: removed error message'
+      }
+    ] as PullRequest[]
+
+    const rels = [
+      {
+        url: 'https://api.github.com/repos/stenjo/devops-metrics-action/releases/101411508',
+        name: 'v1.1.0',
+        published_at: '2023-04-28T17:50:53Z'
+      },
+      {
+        url: 'https://api.github.com/repos/stenjo/other-repo/releases/101411508',
+        name: 'v0.1.0',
+        published_at: '2023-04-29T17:50:53Z'
+      },
+      {
+        url: 'https://api.github.com/repos/stenjo/devops-metrics-action/releases/101411508',
+        name: 'v0.0.1',
+        published_at: '2023-04-02T17:50:53Z'
+      }
+    ] as Release[]
+
+    const lt = new LeadTime(pulls, rels, commitsAdapter, new Date('2023-05-01'))
+    const leadTime = await lt.getLeadTime(true)
+
+    const log = lt.getLog()
+
+    expect(
+      log.filter(l => {
+        return l.includes('pull')
+      }).length
+    ).toBe(1)
+
+    expect(leadTime).toBe(10)
+  })
+
   // Returning commits from (10)=>22/4, (15)=>27/4 and (47)=>19/4
   async function getCommits(url: string): Promise<Commit[]> {
     if (url === '10') {

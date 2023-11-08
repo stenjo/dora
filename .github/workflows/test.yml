@@ -62,6 +62,7 @@ jobs:
         repo: '[dora,Middager]'
         token: ${{ secrets.GITHUB_TOKEN }}
         logging: true
+        filtered: true
 
     # Use the output from the `dora` step
     - name: Get the output rate
