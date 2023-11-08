@@ -1,3 +1,4 @@
+/* eslint-disable filenames/match-regex */
 import type {Config} from 'jest'
 
 export default async (): Promise<Config> => {
