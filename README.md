@@ -41,6 +41,10 @@ Access token for the repository.
 
 Set to true to make event logs of metrics source avaiable.
 
+### `filtered`
+
+Set to true to filter pulls to only include feat and fix as basis for the lead time metric
+
 ## Outputs
 
 ### `deploy-frequency`
@@ -102,4 +106,4 @@ To access the outputs anywhere in the workflow, refer to the output of the calcu
 
 More complex examples may be found in [.github/workflows/badges.yaml](https://github.com/stenjo/devops-metrics-action/blob/main/.github/workflows/badges.yaml) and [.github/workflows/dora.yaml](https://github.com/stenjo/devops-metrics-action/blob/main/.github/workflows/dora.yaml)
 
-Badges at the top of this file is generated throug the badges.yaml workflow. More on this in [Create badges for metrics output](badges.md)
+Badges at the top of this file is generated through the badges.yaml workflow. More on this in [Create badges for metrics output](badges.md)
