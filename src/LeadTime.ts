@@ -46,7 +46,7 @@ export class LeadTime {
   getLog(): string[] {
     return this.log
   }
-  async getLeadTime(): Promise<number> {
+  async getLeadTime(filtered = false): Promise<number> {
     if (this.pulls.length === 0 || this.releases.length === 0) {
       return 0
     }
@@ -59,6 +59,13 @@ export class LeadTime {
         pull.base.repo.name &&
         pull.base.ref === 'main'
       ) {
+        if (
+          filtered &&
+          !(pull.title.startsWith('feat') || pull.title.startsWith('fix'))
+        ) {
+          continue
+        }
+
         const mergeTime = +new Date(pull.merged_at)
         const laterReleases = this.releases.filter(
           r => r.published > mergeTime && r.url.includes(pull.base.repo.name)

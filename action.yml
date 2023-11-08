@@ -5,7 +5,7 @@ branding:
   icon: "align-justify"
   color: "green"
 inputs:
-  owner:  # organisation
+  owner:  # organization
     description: 'Owner of the repo. Org or user'
     required: false
   repo:  # repository
@@ -16,6 +16,9 @@ inputs:
     required: false
   logging: # history
     description: 'Logging and making the log available when true'
+    required: false
+  filtered:
+    description: 'Filtering only feat and fix as basis for lead time'
     required: false
 outputs:
   deploy-rate: # pull requests merged to main per week
@@ -31,7 +34,7 @@ outputs:
     description: 'Mean time to restore (days)'
 
   deploy-rate-log: # list of releases that forms the basis of the deployment rate
-    description: 'Release log if true'
+    description: 'Release log if logging true'
 
 runs:
   using: 'node16'
