@@ -100,7 +100,7 @@ export class LeadTime {
 
         const leadTime = (deployTime - commitTime) / ONE_DAY
         leadTimes.push(leadTime)
-        this.log.push(`  ${leadTime} days`)
+        this.log.push(`  ${leadTime.toFixed(2)} days`)
       }
     }
     if (leadTimes.length === 0) {
