@@ -12621,10 +12621,33 @@ exports.IssuesAdapter = IssuesAdapter;
 /***/ }),
 
 /***/ 2670:
-/***/ (function(__unused_webpack_module, exports) {
+/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 "use strict";
 
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -12636,6 +12659,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.LeadTime = void 0;
+const core = __importStar(__nccwpck_require__(2186));
 const ONE_DAY = 24 * 60 * 60 * 1000;
 class LeadTime {
     constructor(pulls, releases, commitsAdapter, today = null) {
@@ -12665,6 +12689,7 @@ class LeadTime {
             if (this.pulls.length === 0 || this.releases.length === 0) {
                 return 0;
             }
+            core.info(`getLeadTime filtered = ${filtered.toString()} registered.`);
             const leadTimes = [];
             for (const pull of this.pulls) {
                 if (typeof pull.merged_at === 'string' &&
@@ -13087,6 +13112,8 @@ function run() {
                 token = process.env['GH_TOKEN'];
             }
             const logging = core.getInput('logging');
+            const filtered = core.getInput('filtered') === 'true' ? true : false;
+            core.info(`filtered = ${filtered.toString()} registered.`);
             const rel = new ReleaseAdapter_1.ReleaseAdapter(token, owner, repositories);
             const releaseList = (yield rel.GetAllReleasesLastMonth());
             const df = new DeployFrequency_1.DeployFrequency(releaseList);
@@ -13095,10 +13122,10 @@ function run() {
                 core.setOutput('deploy-rate-log', df.getLog().join('\n'));
             }
             const prs = new PullRequestsAdapter_1.PullRequestsAdapter(token, owner, repositories);
-            const cmts = new CommitsAdapter_1.CommitsAdapter(token);
+            const commits = new CommitsAdapter_1.CommitsAdapter(token);
             const pulls = (yield prs.GetAllPRsLastMonth());
-            const lt = new LeadTime_1.LeadTime(pulls, releaseList, cmts);
-            const leadTime = yield lt.getLeadTime();
+            const lt = new LeadTime_1.LeadTime(pulls, releaseList, commits);
+            const leadTime = yield lt.getLeadTime(filtered);
             core.setOutput('lead-time', leadTime);
             if (logging === 'true') {
                 core.setOutput('lead-time-log', lt.getLog().join('\n'));

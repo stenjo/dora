@@ -1,3 +1,4 @@
+import * as core from '@actions/core'
 // import {Commit} from './interfaces/Commit'
 import {PullRequest} from './types/PullRequest'
 import {Release} from './types/Release'
@@ -50,6 +51,8 @@ export class LeadTime {
     if (this.pulls.length === 0 || this.releases.length === 0) {
       return 0
     }
+    core.info(`getLeadTime filtered = ${filtered.toString()} registered.`)
+
     const leadTimes: number[] = []
     for (const pull of this.pulls) {
       if (

@@ -56,6 +56,8 @@ async function run(): Promise<void> {
     const filtered: boolean | undefined =
       core.getInput('filtered') === 'true' ? true : false
 
+    core.info(`filtered = ${filtered.toString()} registered.`)
+
     const rel = new ReleaseAdapter(token, owner, repositories)
     const releaseList = (await rel.GetAllReleasesLastMonth()) as Release[]
     const df = new DeployFrequency(releaseList)

@@ -11,6 +11,5 @@
     "**/*.json",
     "**/*.ts",
     ".eslintrc.js",
-    "jest.config.js",
   ]
 }

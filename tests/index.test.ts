@@ -5,7 +5,7 @@ import * as dotenv from 'dotenv'
 
 dotenv.config()
 
-describe.skip('Deployrate weekly should', () => {
+describe.skip('Deploy rate weekly should', () => {
   test('read newline separated repo inputs', () => {
     process.env['INPUT_REPO'] = 'Middager \n devops-metrics-action'
     process.env['INPUT_OWNER'] = 'stenjo'
@@ -38,6 +38,7 @@ describe.skip('Deployrate weekly should', () => {
     process.env['INPUT_REPO'] = 'Middager'
     process.env['INPUT_OWNER'] = 'stenjo'
     process.env['INPUT_LOGGING'] = 'true'
+    process.env['INPUT_FILTERED'] = 'true'
 
     const np = process.execPath
     const ip = path.join(__dirname, '..', 'out', 'index.js')
