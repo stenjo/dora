@@ -631,7 +631,6 @@ describe('LeadTime should', () => {
     ).toBe(1)
 
     expect(leadTime).toBe(10)
-
   })
 
   // Returning commits from (10)=>22/4, (15)=>27/4 and (47)=>19/4
