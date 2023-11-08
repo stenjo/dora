@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "types": ["@types/node"],
+    "noEmit": true,
+    "allowJs": true
+  },
+  // "rootDirs": ["./src", "./"],                                   /* Allow multiple folders to be treated as one when resolving modules. */
+  "extends": "./tsconfig.json",
+  "include": [
+    "**/*test.ts",
+    "**/*.json",
+    "**/*.ts",
+    ".eslintrc.js",
+  ]
+}

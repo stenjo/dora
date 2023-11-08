@@ -37,6 +37,14 @@ Owner of the repository. Default is current repository owner or organisation. On
 
 Access token for the repository.
 
+### `logging`
+
+Set to true to make event logs of metrics source avaiable.
+
+### `filtered`
+
+Set to true to filter pulls to only include feat and fix as basis for the lead time metric
+
 ## Outputs
 
 ### `deploy-frequency`
@@ -44,12 +52,16 @@ Access token for the repository.
 Rate of deploys (tagged releases) per week.
 Decimal number. Elite performing teams has 7 as target (daily- or on-demand release)
 
+`deploy-frequency-log` - a list of releases forming the basis for the metric, if `logging` is enabled.
+
 ### `lead-time`
 
 Time from issue is set to status doing until linked pull-requestis merged to main branch.
 Number in days (Integer)
 
-### `change-falure-rate`
+`lead-time-log` - a list of pull requests with matching first commit and re forming the basis for the metric, if `logging` is enabled.
+
+### `change-failure-rate`
 
 Number of registered issues tagged as bugs divided by number of release tags last month.
 By counting the bugs (github issues tagged as `bug`) between releases the last month and average this, we get the failures over releases rate.
@@ -94,4 +106,4 @@ To access the outputs anywhere in the workflow, refer to the output of the calcu
 
 More complex examples may be found in [.github/workflows/badges.yaml](https://github.com/stenjo/devops-metrics-action/blob/main/.github/workflows/badges.yaml) and [.github/workflows/dora.yaml](https://github.com/stenjo/devops-metrics-action/blob/main/.github/workflows/dora.yaml)
 
-Badges at the top of this file is generated throug the badges.yaml workflow. More on this in [Create badges for metrics output](badges.md)
+Badges at the top of this file is generated through the badges.yaml workflow. More on this in [Create badges for metrics output](badges.md)
