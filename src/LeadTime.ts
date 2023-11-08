@@ -1,5 +1,3 @@
-import * as core from '@actions/core'
-// import {Commit} from './interfaces/Commit'
 import {PullRequest} from './types/PullRequest'
 import {Release} from './types/Release'
 import {ICommitsAdapter} from './interfaces/ICommitsAdapter'
@@ -51,7 +49,10 @@ export class LeadTime {
     if (this.pulls.length === 0 || this.releases.length === 0) {
       return 0
     }
-    core.info(`getLeadTime filtered = ${filtered.toString()} registered.`)
+
+    if (filtered) {
+      this.log.push(`\nLog is filtered - only feat and fix.`)
+    }
 
     const leadTimes: number[] = []
     for (const pull of this.pulls) {

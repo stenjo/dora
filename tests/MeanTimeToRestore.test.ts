@@ -3,7 +3,7 @@ import {Release} from '../src/types/Release'
 import fs from 'fs'
 import {BugTime, ReleaseDate, MeanTimeToRestore} from '../src/MeanTimeToRestore'
 
-describe.only('MeanTimeToRestore should', () => {
+describe('MeanTimeToRestore should', () => {
   const issues: Issue[] = JSON.parse(
     fs.readFileSync('./tests/test-data/issue-list.json').toString()
   )
