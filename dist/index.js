@@ -12660,7 +12660,7 @@ class LeadTime {
     getLog() {
         return this.log;
     }
-    getLeadTime() {
+    getLeadTime(filtered = false) {
         return __awaiter(this, void 0, void 0, function* () {
             if (this.pulls.length === 0 || this.releases.length === 0) {
                 return 0;
@@ -12672,6 +12672,10 @@ class LeadTime {
                     typeof pull.base.repo.name === 'string' &&
                     pull.base.repo.name &&
                     pull.base.ref === 'main') {
+                    if (filtered &&
+                        !(pull.title.startsWith('feat') || pull.title.startsWith('fix'))) {
+                        continue;
+                    }
                     const mergeTime = +new Date(pull.merged_at);
                     const laterReleases = this.releases.filter(r => r.published > mergeTime && r.url.includes(pull.base.repo.name));
                     if (laterReleases.length === 0) {
