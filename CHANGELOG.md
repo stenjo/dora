@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/stenjo/devops-metrics-action/compare/v1.1.0...v1.2.0) (2023-11-08)
+
+
+### Features
+
+* **lead time:** add option to count only feat and fix issues ([#248](https://github.com/stenjo/devops-metrics-action/issues/248)) ([821f312](https://github.com/stenjo/devops-metrics-action/commit/821f312a68de66b74a42c6348ebd32f5c37569aa))
+
 ## [1.1.0](https://github.com/stenjo/devops-metrics-action/compare/v1.0.3...v1.1.0) (2023-11-06)
 
 
