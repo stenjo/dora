@@ -1,5 +1,6 @@
 import {http, HttpResponse} from 'msw'
 import {setupServer} from 'msw/node'
+import {setFailed} from '@actions/core'
 import {ReleaseAdapter} from '../src/ReleaseAdapter'
 import {Release} from '../src/types/Release'
 import {Person} from '../src/types/Person'
@@ -55,9 +56,15 @@ const server = setupServer(
     }
   )
 )
+jest.mock('@actions/core', () => ({
+  setFailed: jest.fn()
+}))
 
 describe('Release Adapter should', () => {
-  beforeEach(() => server.listen())
+  beforeEach(() => {
+    server.listen()
+    jest.clearAllMocks()
+  })
 
   afterAll(() => server.close())
 
@@ -65,11 +72,30 @@ describe('Release Adapter should', () => {
     expect(true).toBe(true)
   })
 
-  it('return values', async () => {
+  it('return paged values', async () => {
     const r = new ReleaseAdapter(undefined, 'test-owner', ['project1'])
 
     const releases: Release[] = (await r.GetAllReleasesLastMonth()) as Release[]
 
     expect(releases.length).toBe(150)
+  })
+
+  it('handles access denied', async () => {
+    server.close()
+    const errorServer = setupServer(
+      http.get(
+        'https://api.github.com/repos/:owner/:rep/releases',
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        ({request, params, cookies}) => {
+          return new HttpResponse('access denied', {status: 401})
+        }
+      )
+    )
+    errorServer.listen()
+    const r = new ReleaseAdapter(undefined, 'test-owner', ['project1'])
+
+    expect(await r.GetAllReleasesLastMonth()).toThrowError
+    expect(setFailed).toHaveBeenCalledWith('access denied')
+    errorServer.close()
   })
 })
