@@ -13,7 +13,7 @@
     "eslint-comments/no-use": "off",
     "import/no-namespace": "off",
     "no-unused-vars": "off",
-    "filenames/match-regex": [2, "^[A-Z,a-z_]+$", true],
+    "filenames/match-regex": [2, "^[A-Z,a-z_.]+$", true],
     "filenames/match-exported": [ 2, "pascal" ],
     "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/explicit-member-accessibility": ["error", {"accessibility": "no-public"}],

@@ -8,12 +8,12 @@ describe('ChangeFailureRate should', () => {
     const issues: Issue[] = JSON.parse(
       fs.readFileSync('./tests/test-data/issue-list.json', 'utf8')
     )
-    const rels: Release[] = JSON.parse(
+    const releases: Release[] = JSON.parse(
       fs.readFileSync('./tests/test-data/releases.json', 'utf8')
     )
     const cfr = new ChangeFailureRate(
       issues,
-      rels,
+      releases,
       new Date('2023-04-23T16:50:53Z')
     )
 
@@ -26,12 +26,12 @@ describe('ChangeFailureRate should', () => {
     const bugs: Issue[] = JSON.parse(
       fs.readFileSync('./tests/test-data/issue-list.json', 'utf8')
     )
-    const rels: Release[] = JSON.parse(
+    const releases: Release[] = JSON.parse(
       fs.readFileSync('./tests/test-data/releases.json', 'utf8')
     )
     const cfr = new ChangeFailureRate(
       bugs,
-      rels,
+      releases,
       new Date('2023-04-23T16:50:53Z')
     )
 
@@ -44,11 +44,11 @@ describe('ChangeFailureRate should', () => {
     const bugs: Issue[] = JSON.parse(
       fs.readFileSync('./tests/test-data/issue-list.json', 'utf8')
     )
-    const rels: Release[] = []
+    const releases: Release[] = []
 
     const cfr = new ChangeFailureRate(
       bugs,
-      rels,
+      releases,
       new Date('2023-04-30T17:50:53Z')
     )
 
@@ -59,13 +59,13 @@ describe('ChangeFailureRate should', () => {
 
   it('calculate 0 failures on 0 issues', () => {
     const bugs: Issue[] = []
-    const rels: Release[] = JSON.parse(
+    const releases: Release[] = JSON.parse(
       fs.readFileSync('./tests/test-data/releases.json', 'utf8')
     )
 
     const cfr = new ChangeFailureRate(
       bugs,
-      rels,
+      releases,
       new Date('2023-04-30T17:50:53Z')
     )
 
@@ -83,7 +83,7 @@ describe('ChangeFailureRate should', () => {
       }
     ] as Issue[]
 
-    const rels = [
+    const releases = [
       {
         url: 'https://api.github.com/repos/stenjo/dora/releases/101411508',
         published_at: '2023-04-30T16:50:53Z'
@@ -92,13 +92,36 @@ describe('ChangeFailureRate should', () => {
 
     const cfr = new ChangeFailureRate(
       bugs,
-      rels,
+      releases,
       new Date('2023-04-30T17:50:53Z')
     )
 
     const value = cfr.Cfr()
 
     expect(value).toBe(100)
+  })
+
+  it('calculate 0% failures on 1 issues on 1 release when more than a month ago', () => {
+    const bugs = [
+      {
+        created_at: '2023-04-30T17:50:53Z',
+        labels: [{name: 'bug'}],
+        repository_url: 'https://api.github.com/repos/stenjo/dora'
+      }
+    ] as Issue[]
+
+    const releases = [
+      {
+        url: 'https://api.github.com/repos/stenjo/dora/releases/101411508',
+        published_at: '2023-04-30T16:50:53Z'
+      }
+    ] as Release[]
+
+    const cfr = new ChangeFailureRate(bugs, releases)
+
+    const value = cfr.Cfr()
+
+    expect(value).toBe(0)
   })
 
   it('calculate 0% failures on 1 issues on release on other repo', () => {
@@ -110,7 +133,7 @@ describe('ChangeFailureRate should', () => {
       }
     ] as Issue[]
 
-    const rels = [
+    const releases = [
       {
         url: 'https://api.github.com/repos/stenjo/other-repo/releases/101411508',
         published_at: '2023-04-30T16:50:53Z'
@@ -119,7 +142,7 @@ describe('ChangeFailureRate should', () => {
 
     const cfr = new ChangeFailureRate(
       bugs,
-      rels,
+      releases,
       new Date('2023-04-30T17:50:53Z')
     )
 
@@ -137,7 +160,7 @@ describe('ChangeFailureRate should', () => {
       }
     ] as Issue[]
 
-    const rels = [
+    const releases = [
       {
         published_at: '2023-04-30T16:50:53Z',
         url: 'path/with/repository/in/it'
@@ -150,7 +173,7 @@ describe('ChangeFailureRate should', () => {
 
     const cfr = new ChangeFailureRate(
       bugs,
-      rels,
+      releases,
       new Date('2023-04-30T17:50:53Z')
     )
 
@@ -168,7 +191,7 @@ describe('ChangeFailureRate should', () => {
       }
     ] as Issue[]
 
-    const rels = [
+    const releases = [
       {
         published_at: '2023-04-30T16:50:53Z',
         url: 'path/with/repository/in/it'
@@ -181,7 +204,7 @@ describe('ChangeFailureRate should', () => {
 
     const cfr = new ChangeFailureRate(
       bugs,
-      rels,
+      releases,
       new Date('2023-04-30T17:50:53Z')
     )
 
@@ -204,7 +227,7 @@ describe('ChangeFailureRate should', () => {
       }
     ] as Issue[]
 
-    const rels = [
+    const releases = [
       {
         published_at: '2023-04-30T16:50:53Z',
         url: 'path/with/repository/in/it'
@@ -217,7 +240,7 @@ describe('ChangeFailureRate should', () => {
 
     const cfr = new ChangeFailureRate(
       bugs,
-      rels,
+      releases,
       new Date('2023-04-30T17:50:53Z')
     )
 
@@ -240,7 +263,7 @@ describe('ChangeFailureRate should', () => {
       }
     ] as Issue[]
 
-    const rels = [
+    const releases = [
       {
         published_at: '2023-04-30T16:50:53Z',
         url: 'path/with/repository/in/it'
@@ -253,7 +276,7 @@ describe('ChangeFailureRate should', () => {
 
     const cfr = new ChangeFailureRate(
       bugs,
-      rels,
+      releases,
       new Date('2023-05-30T17:50:53Z')
     )
 
@@ -281,7 +304,7 @@ describe('ChangeFailureRate should', () => {
       }
     ] as Issue[]
 
-    const rels = [
+    const releases = [
       {
         published_at: '2023-04-30T16:50:53Z',
         url: 'path/with/repository/in/it'
@@ -294,7 +317,7 @@ describe('ChangeFailureRate should', () => {
 
     const cfr = new ChangeFailureRate(
       bugs,
-      rels,
+      releases,
       new Date('2023-04-30T17:50:53Z')
     )
 
@@ -322,7 +345,7 @@ describe('ChangeFailureRate should', () => {
       }
     ] as Issue[]
 
-    const rels = [
+    const releases = [
       {
         published_at: '2023-04-28T16:50:53Z',
         url: 'path/with/repository/in/it'
@@ -339,7 +362,7 @@ describe('ChangeFailureRate should', () => {
 
     const cfr = new ChangeFailureRate(
       bugs,
-      rels,
+      releases,
       new Date('2023-04-30T17:50:53Z')
     )
 
@@ -367,7 +390,7 @@ describe('ChangeFailureRate should', () => {
       }
     ] as Issue[]
 
-    const rels = [
+    const releases = [
       {
         published_at: '2023-04-28T16:50:53Z',
         url: 'path/with/repository/in/it'
@@ -388,7 +411,7 @@ describe('ChangeFailureRate should', () => {
 
     const cfr = new ChangeFailureRate(
       bugs,
-      rels,
+      releases,
       new Date('2023-04-30T17:50:53Z')
     )
 
@@ -416,7 +439,7 @@ describe('ChangeFailureRate should', () => {
       }
     ] as Issue[]
 
-    const rels = [
+    const releases = [
       {
         published_at: '2023-04-28T16:50:53Z',
         url: 'path/with/repository/in/it'
@@ -433,7 +456,7 @@ describe('ChangeFailureRate should', () => {
 
     const cfr = new ChangeFailureRate(
       bugs,
-      rels,
+      releases,
       new Date('2023-05-29T10:50:53Z')
     )
 
