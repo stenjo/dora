@@ -25,7 +25,7 @@ test('PullRequestsAdapter should', async () => {
     'dora'
   ])
   plrqs.getPRs = jest.fn(
-    (
+    async (
       octokit: Octokit,
       repo: string,
       since: Date,

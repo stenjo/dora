@@ -12883,6 +12883,7 @@ class PullRequestsAdapter {
                     result = result.concat(nextPage);
                     for (let page = 2; page < 100 && nextPage.length === 100; page++) {
                         nextPage = yield this.getPRs(octokit, repo, since, page);
+                        result = result.concat(nextPage);
                     }
                 }
                 return result;
