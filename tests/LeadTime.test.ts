@@ -3,17 +3,17 @@ import {Commit} from '../src/types/Commit'
 import {PullRequest} from '../src/types/PullRequest'
 import {Release} from '../src/types/Release'
 import {LeadTime} from '../src/LeadTime'
-import {expect, jest, test} from '@jest/globals'
+import {expect, jest} from '@jest/globals'
 
 describe('LeadTime should', () => {
   const commitsAdapter: CommitsAdapter = new CommitsAdapter('')
   commitsAdapter.getCommitsFromUrl = jest.fn(
-    (url: string): Promise<Commit[] | undefined> => {
+    async (): Promise<Commit[] | undefined> => {
       return Promise.resolve([{}] as Commit[])
     }
   )
 
-  it('return 0 on no pullrequests', async () => {
+  it('return 0 on no pull-requests', async () => {
     const pulls = [] as PullRequest[]
     const lt = new LeadTime(
       pulls,
@@ -27,7 +27,7 @@ describe('LeadTime should', () => {
     expect(leadTime).toBe(0)
   })
 
-  it('return 0 on no closed pullrequests', async () => {
+  it('return 0 on no closed pull-requests', async () => {
     const pulls = [
       {
         merged_at: ''
@@ -60,7 +60,7 @@ describe('LeadTime should', () => {
     expect(leadTime).toBe(0)
   })
 
-  it('return 0 on no pullrequests with base.ref = main', async () => {
+  it('return 0 on no pull-requests with base.ref = main', async () => {
     const pulls = [
       {
         merged_at: '2023-04-29T17:50:53Z',
@@ -85,7 +85,7 @@ describe('LeadTime should', () => {
     expect(leadTime).toBe(0)
   })
 
-  it('return 8 on pullrequests with base.ref = main', async () => {
+  it('return 8 on pull-requests with base.ref = main', async () => {
     const pullRequests = [
       {
         merged_at: '2023-04-28T17:50:53Z', // 30-22 = 8
@@ -99,7 +99,7 @@ describe('LeadTime should', () => {
       }
     ] as Release[]
     commitsAdapter.getCommitsFromUrl = jest.fn(
-      (url: string): Promise<Commit[] | undefined> => {
+      async (): Promise<Commit[] | undefined> => {
         return Promise.resolve([
           {
             commit: {
@@ -123,7 +123,7 @@ describe('LeadTime should', () => {
     expect(leadTime).toBe(8)
   })
 
-  it('return 8 on pullrequests with base.ref = main and earlier release on other repo', async () => {
+  it('return 8 on pull-requests with base.ref = main and earlier release on other repo', async () => {
     const pullRequests = [
       {
         merged_at: '2023-04-28T17:50:53Z', // 30-22 = 8
@@ -142,7 +142,7 @@ describe('LeadTime should', () => {
       }
     ] as Release[]
     commitsAdapter.getCommitsFromUrl = jest.fn(
-      (url: string): Promise<Commit[] | undefined> => {
+      async (): Promise<Commit[] | undefined> => {
         return Promise.resolve([
           {commit: {committer: {date: '2023-04-22T17:50:53Z'}}}
         ] as Commit[])
@@ -157,12 +157,14 @@ describe('LeadTime should', () => {
 
     const leadTime = await lt.getLeadTime()
 
+    // eslint-disable-next-line @typescript-eslint/unbound-method
     expect(commitsAdapter.getCommitsFromUrl).toBeCalled()
+    // eslint-disable-next-line @typescript-eslint/unbound-method
     expect(commitsAdapter.getCommitsFromUrl).lastCalledWith('path/to/commits/1')
     expect(leadTime).toBe(8)
   })
 
-  it('return 0 on too old pullrequests', async () => {
+  it('return 0 on too old pull-requests', async () => {
     const pulls = [
       {
         merged_at: '2023-04-29T17:50:53Z',
@@ -176,7 +178,7 @@ describe('LeadTime should', () => {
       }
     ] as Release[]
     commitsAdapter.getCommitsFromUrl = jest.fn(
-      (url: string): Promise<Commit[] | undefined> => {
+      async (): Promise<Commit[] | undefined> => {
         return Promise.resolve([
           {
             commit: {
@@ -199,7 +201,7 @@ describe('LeadTime should', () => {
 
     expect(leadTime).toBe(0)
   })
-  it('return 11 on pullrequests with two commits', async () => {
+  it('return 11 on pull-requests with two commits', async () => {
     const pulls = [
       {
         merged_at: '2023-04-29T17:50:53Z', // 30-19 = 11
@@ -213,7 +215,7 @@ describe('LeadTime should', () => {
       }
     ] as Release[]
     commitsAdapter.getCommitsFromUrl = jest.fn(
-      (url: string): Promise<Commit[] | undefined> => {
+      async (): Promise<Commit[] | undefined> => {
         return Promise.resolve([
           {commit: {committer: {date: '2023-04-22T17:50:53Z'}}},
           {commit: {committer: {date: '2023-04-19T17:50:53Z'}}}
@@ -228,7 +230,7 @@ describe('LeadTime should', () => {
     expect(leadTime).toBe(11)
   })
 
-  it('return 10.5 on pullrequests with two pulls on different repos', async () => {
+  it('return 10.5 on pull-requests with two pulls on different repos', async () => {
     const pulls = [
       {
         merged_at: '2023-04-29T17:50:53Z', // 30-19 = 11
@@ -250,7 +252,7 @@ describe('LeadTime should', () => {
       }
     ] as Release[]
     commitsAdapter.getCommitsFromUrl = jest.fn(
-      (url: string): Promise<Commit[] | undefined> => {
+      async (): Promise<Commit[] | undefined> => {
         return Promise.resolve([
           {commit: {committer: {date: '2023-04-22T17:50:53Z'}}},
           {commit: {committer: {date: '2023-04-19T17:50:53Z'}}}
@@ -265,9 +267,9 @@ describe('LeadTime should', () => {
     expect(leadTime).toBe(10.5)
   })
 
-  it('return 8.5 on two pullrequests with two commits', async () => {
+  it('return 8.5 on two pull-requests with two commits', async () => {
     commitsAdapter.getCommitsFromUrl = jest.fn(
-      (url: string): Promise<Commit[] | undefined> => {
+      async (url: string): Promise<Commit[] | undefined> => {
         return Promise.resolve(getCommits(url))
       }
     )
@@ -306,9 +308,9 @@ describe('LeadTime should', () => {
     expect(leadTime).toBe(8.5) // (11+6)/2
   })
 
-  it('return 6,67 on three pullrequests with one commit each', async () => {
+  it('return 6,67 on three pull-requests with one commit each', async () => {
     commitsAdapter.getCommitsFromUrl = jest.fn(
-      (url: string): Promise<Commit[] | undefined> => {
+      async (url: string): Promise<Commit[] | undefined> => {
         return Promise.resolve(getCommits(url))
       }
     )
@@ -355,9 +357,9 @@ describe('LeadTime should', () => {
     expect(leadTime).toBe(6.67) // (11+6+3)/3
   })
 
-  it('return 6 on three pullrequests with one commit each and two latest not released', async () => {
+  it('return 6 on three pull-requests with one commit each and two latest not released', async () => {
     commitsAdapter.getCommitsFromUrl = jest.fn(
-      (url: string): Promise<Commit[] | undefined> => {
+      async (url: string): Promise<Commit[] | undefined> => {
         return Promise.resolve(getCommits(url))
       }
     )
@@ -400,9 +402,9 @@ describe('LeadTime should', () => {
     expect(leadTime).toBe(6) // (6)/1
   })
 
-  it('return 8 on three pullrequests with one commit each and two repos, latest not released', async () => {
+  it('return 8 on three pull-requests with one commit each and two repos, latest not released', async () => {
     commitsAdapter.getCommitsFromUrl = jest.fn(
-      (url: string): Promise<Commit[] | undefined> => {
+      async (url: string): Promise<Commit[] | undefined> => {
         return Promise.resolve(getCommits(url))
       }
     )
@@ -457,7 +459,7 @@ describe('LeadTime should', () => {
 
   it('get release log list weekly when rate calculated', async () => {
     commitsAdapter.getCommitsFromUrl = jest.fn(
-      (url: string): Promise<Commit[] | undefined> => {
+      async (url: string): Promise<Commit[] | undefined> => {
         return Promise.resolve(getCommits(url))
       }
     )
@@ -511,7 +513,7 @@ describe('LeadTime should', () => {
   })
   it('get event log list when lead time calculated', async () => {
     commitsAdapter.getCommitsFromUrl = jest.fn(
-      (url: string): Promise<Commit[] | undefined> => {
+      async (url: string): Promise<Commit[] | undefined> => {
         return Promise.resolve(getCommits(url))
       }
     )
@@ -573,7 +575,7 @@ describe('LeadTime should', () => {
 
   it('get event log list when lead time calculated and filtered', async () => {
     commitsAdapter.getCommitsFromUrl = jest.fn(
-      (url: string): Promise<Commit[] | undefined> => {
+      async (url: string): Promise<Commit[] | undefined> => {
         return Promise.resolve(getCommits(url))
       }
     )

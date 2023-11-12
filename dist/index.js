@@ -12328,10 +12328,10 @@ function wrappy (fn, cb) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.ChangeFailureRate = void 0;
 class ChangeFailureRate {
-    constructor(issues, rels, today = null) {
+    constructor(issues, releases, today = null) {
         today === null ? (this.today = new Date()) : (this.today = today);
         this.issues = issues;
-        this.releases = rels
+        this.releases = releases
             .sort((a, b) => +new Date(a.published_at) < +new Date(b.published_at) ? -1 : 1)
             .filter(r => +new Date(r.published_at) >
             this.today.valueOf() - 31 * 24 * 60 * 60 * 1000);
