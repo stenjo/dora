@@ -38,6 +38,7 @@
     "jshint": "^2.13.6",
     "json-query": "^2.2.2",
     "node-fetch": "^3.3.2",
+    "nvm": "^0.0.4",
     "ts-node": "^10.9.1"
   },
   "devDependencies": {
@@ -62,6 +63,7 @@
     "eslint-plugin-prettier": "^5.0.0",
     "jest": "^29.7.0",
     "js-yaml": "^4.1.0",
+    "msw": "^2.0.5",
     "prettier": "3.0.3",
     "ts-jest": "^29.1.1",
     "typescript": "^5.2.2"

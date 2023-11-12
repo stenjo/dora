@@ -7,10 +7,10 @@ export class ChangeFailureRate {
   releases: Release[]
   repos: string[]
 
-  constructor(issues: Issue[], rels: Release[], today: Date | null = null) {
+  constructor(issues: Issue[], releases: Release[], today: Date | null = null) {
     today === null ? (this.today = new Date()) : (this.today = today)
     this.issues = issues
-    this.releases = rels
+    this.releases = releases
       .sort((a, b) =>
         +new Date(a.published_at) < +new Date(b.published_at) ? -1 : 1
       )
