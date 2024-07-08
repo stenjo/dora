@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/stenjo/devops-metrics-action/compare/v1.2.0...v1.2.1) (2024-07-08)
+
+
+### Bug Fixes
+
+* **node:** Update action.yml to run on node20 ([#269](https://github.com/stenjo/devops-metrics-action/issues/269)) ([9c619d3](https://github.com/stenjo/devops-metrics-action/commit/9c619d3856f9a49ad12e2999f0a78d334022bfec))
+
 ## [1.2.0](https://github.com/stenjo/devops-metrics-action/compare/v1.1.0...v1.2.0) (2023-11-08)
 
 
