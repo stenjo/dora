@@ -36,18 +36,9 @@ jobs:
           name: stryker.log
           path: stryker.log
 
-      ############################
-      # Save records if failure
-      - name: Save stryker JS run output
-        uses: actions/upload-artifact@v4
-        if: failure()
-        with:
-          name: stryker-js-output
-          path: out
-
       - name: Extract stryker score
         run: |
-          grep "All files" out > line
+          grep "All files" ${{ steps.stryker.outputs}} > line
           awk '{print $4}' line > fullscore
           awk '{split($0,a,"."); print a[1]}' fullscore > score
           echo $(echo -n 'stryker-score=' && cat score | tr -s '\n') >> $GITHUB_ENV
