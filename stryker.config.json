@@ -5,7 +5,7 @@
   "reporters": [
     "html",
     "clear-text",
-    "progress"
+    "json"
   ],
   "testRunner": "jest",
   "jest": {
