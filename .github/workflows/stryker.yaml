@@ -1,4 +1,4 @@
-name: Stryker mutation tests frontend
+name: Stryker mutation tests
 
 on:
   workflow_dispatch:
@@ -20,12 +20,13 @@ jobs:
 
       - name: Run StrykerJS
         continue-on-error: true
+        id: stryker
         run: |
-          yarn stryker run > out
+          yarn stryker run
 
       - name: Print output
         continue-on-error: true
-        run: cat out
+        run: cat ${{ steps.stryker.outcome}}
 
       - name: Save stryker JS log
         if: failure()
@@ -33,7 +34,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: stryker.log
-          path: ${{env.working-directory}}/stryker.log
+          path: stryker.log
 
       ############################
       # Save records if failure
@@ -55,7 +56,7 @@ jobs:
         uses: Schneegans/dynamic-badges-action@v1.7.0
         with:
           auth: ${{ secrets.GIST_AUTH_TOKEN }}
-          gistID: ebb0efc5ab5afb32eae4d0cdc60d563a
+          gistID: 9ce1ad7d8e9db99796e782b244eefa4a
           filename: dora-stryker.json
           label: Stryker score
           message: ${{ env.stryker-score }}%
