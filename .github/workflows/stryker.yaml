@@ -26,7 +26,7 @@ jobs:
 
       - name: Print output
         continue-on-error: true
-        run: cat ${{ steps.stryker.outputs}}
+        run: cat ${{ steps.stryker.outputs.*}}
 
       - name: Save stryker JS log
         if: failure()
@@ -38,7 +38,7 @@ jobs:
 
       - name: Extract stryker score
         run: |
-          grep "All files" ${{ steps.stryker.outputs}} > line
+          grep "All files" ${{ steps.stryker.outputs.*}} > line
           awk '{print $4}' line > fullscore
           awk '{split($0,a,"."); print a[1]}' fullscore > score
           echo $(echo -n 'stryker-score=' && cat score | tr -s '\n') >> $GITHUB_ENV

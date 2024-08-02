@@ -17,5 +17,6 @@
   "tsconfigFile": "tsconfig.json",
   "typescriptChecker": {
     "prioritizePerformanceOverAccuracy": true
-  }
+  },
+  "ignoreStatic": true
 }
