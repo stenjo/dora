@@ -26,7 +26,7 @@ jobs:
 
       - name: Print output
         continue-on-error: true
-        run: cat ${{ steps.stryker.outcome}}
+        run: cat ${{ steps.stryker.outputs}}
 
       - name: Save stryker JS log
         if: failure()
