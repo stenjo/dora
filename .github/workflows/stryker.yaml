@@ -3,10 +3,10 @@ name: Stryker mutation tests frontend
 on:
   workflow_dispatch:
   pull_request:
+  push:
     branches:
-      - main
-    paths:
-      -'*'
+       - main
+
 jobs:
   stryker-js:
     runs-on: ubuntu-latest
