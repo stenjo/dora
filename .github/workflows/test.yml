@@ -19,7 +19,7 @@ jobs:
 
     - name: Get branch name
       id: branch-name
-      uses: tj-actions/branch-names@v7
+      uses: tj-actions/branch-names@v8
       
     - name: Jest Coverage Comment
       id: coverageComment
@@ -75,7 +75,7 @@ jobs:
         echo "${{ steps.dora.outputs.lead-time-log }}" > lead-time-log.txt
 
 
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v4
       with:
         name: logs
         path: ./*-log.txt
