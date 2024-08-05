@@ -71,3 +71,4 @@ reports/**
 
 # stryker temp files
 .stryker-tmp
+**/.DS_Store
