@@ -12328,10 +12328,10 @@ function wrappy (fn, cb) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.ChangeFailureRate = void 0;
 class ChangeFailureRate {
-    constructor(issues, rels, today = null) {
+    constructor(issues, releases, today = null) {
         today === null ? (this.today = new Date()) : (this.today = today);
         this.issues = issues;
-        this.releases = rels
+        this.releases = releases
             .sort((a, b) => +new Date(a.published_at) < +new Date(b.published_at) ? -1 : 1)
             .filter(r => +new Date(r.published_at) >
             this.today.valueOf() - 31 * 24 * 60 * 60 * 1000);
@@ -12660,10 +12660,13 @@ class LeadTime {
     getLog() {
         return this.log;
     }
-    getLeadTime() {
+    getLeadTime(filtered = false) {
         return __awaiter(this, void 0, void 0, function* () {
             if (this.pulls.length === 0 || this.releases.length === 0) {
                 return 0;
+            }
+            if (filtered) {
+                this.log.push(`\nLog is filtered - only feat and fix.`);
             }
             const leadTimes = [];
             for (const pull of this.pulls) {
@@ -12672,6 +12675,10 @@ class LeadTime {
                     typeof pull.base.repo.name === 'string' &&
                     pull.base.repo.name &&
                     pull.base.ref === 'main') {
+                    if (filtered &&
+                        !(pull.title.startsWith('feat') || pull.title.startsWith('fix'))) {
+                        continue;
+                    }
                     const mergeTime = +new Date(pull.merged_at);
                     const laterReleases = this.releases.filter(r => r.published > mergeTime && r.url.includes(pull.base.repo.name));
                     if (laterReleases.length === 0) {
@@ -12691,7 +12698,7 @@ class LeadTime {
                     this.log.push(`  release-> ${laterReleases[0].published_at} : ${laterReleases[0].name}`);
                     const leadTime = (deployTime - commitTime) / ONE_DAY;
                     leadTimes.push(leadTime);
-                    this.log.push(`  ${leadTime} days`);
+                    this.log.push(`  ${leadTime.toFixed(2)} days`);
                 }
             }
             if (leadTimes.length === 0) {
@@ -12876,6 +12883,7 @@ class PullRequestsAdapter {
                     result = result.concat(nextPage);
                     for (let page = 2; page < 100 && nextPage.length === 100; page++) {
                         nextPage = yield this.getPRs(octokit, repo, since, page);
+                        result = result.concat(nextPage);
                     }
                 }
                 return result;
@@ -13083,6 +13091,7 @@ function run() {
                 token = process.env['GH_TOKEN'];
             }
             const logging = core.getInput('logging');
+            const filtered = core.getInput('filtered') === 'true' ? true : false;
             const rel = new ReleaseAdapter_1.ReleaseAdapter(token, owner, repositories);
             const releaseList = (yield rel.GetAllReleasesLastMonth());
             const df = new DeployFrequency_1.DeployFrequency(releaseList);
@@ -13091,10 +13100,10 @@ function run() {
                 core.setOutput('deploy-rate-log', df.getLog().join('\n'));
             }
             const prs = new PullRequestsAdapter_1.PullRequestsAdapter(token, owner, repositories);
-            const cmts = new CommitsAdapter_1.CommitsAdapter(token);
+            const commits = new CommitsAdapter_1.CommitsAdapter(token);
             const pulls = (yield prs.GetAllPRsLastMonth());
-            const lt = new LeadTime_1.LeadTime(pulls, releaseList, cmts);
-            const leadTime = yield lt.getLeadTime();
+            const lt = new LeadTime_1.LeadTime(pulls, releaseList, commits);
+            const leadTime = yield lt.getLeadTime(filtered);
             core.setOutput('lead-time', leadTime);
             if (logging === 'true') {
                 core.setOutput('lead-time-log', lt.getLog().join('\n'));

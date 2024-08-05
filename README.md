@@ -1,6 +1,6 @@
 # Get DevOps Metrics from GitHub project issues and releases
 
-[![CodeQL](https://github.com/stenjo/devops-metrics-action/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/stenjo/devops-metrics-action/actions/workflows/codeql-analysis.yml) [![units-test](https://github.com/stenjo/devops-metrics-action/actions/workflows/test.yml/badge.svg)](https://github.com/stenjo/devops-metrics-action/actions/workflows/test.yml) ![Coverage Badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/stenjo/9ce1ad7d8e9db99796e782b244eefa4a/raw/devops_metrics__main.json)
+[![CodeQL](https://github.com/stenjo/devops-metrics-action/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/stenjo/devops-metrics-action/actions/workflows/codeql-analysis.yml) [![units-test](https://github.com/stenjo/devops-metrics-action/actions/workflows/test.yml/badge.svg)](https://github.com/stenjo/devops-metrics-action/actions/workflows/test.yml) ![Coverage Badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/stenjo/9ce1ad7d8e9db99796e782b244eefa4a/raw/devops_metrics__main.json) ![Stryker-JS](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/stenjo/9ce1ad7d8e9db99796e782b244eefa4a/raw/dora-stryker.json)
 
 This GitHub Action will calculate a set of DevOps Research and Assessment (DORA) metrics based on status and dates from commits and issues.
 
@@ -40,6 +40,10 @@ Access token for the repository.
 ### `logging`
 
 Set to true to make event logs of metrics source avaiable.
+
+### `filtered`
+
+Set to true to filter pulls to only include feat and fix as basis for the lead time metric
 
 ## Outputs
 
@@ -102,4 +106,4 @@ To access the outputs anywhere in the workflow, refer to the output of the calcu
 
 More complex examples may be found in [.github/workflows/badges.yaml](https://github.com/stenjo/devops-metrics-action/blob/main/.github/workflows/badges.yaml) and [.github/workflows/dora.yaml](https://github.com/stenjo/devops-metrics-action/blob/main/.github/workflows/dora.yaml)
 
-Badges at the top of this file is generated throug the badges.yaml workflow. More on this in [Create badges for metrics output](badges.md)
+Badges at the top of this file is generated through the badges.yaml workflow. More on this in [Create badges for metrics output](badges.md)

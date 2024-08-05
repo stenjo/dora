@@ -1,4 +1,3 @@
-// import {Commit} from './interfaces/Commit'
 import {PullRequest} from './types/PullRequest'
 import {Release} from './types/Release'
 import {ICommitsAdapter} from './interfaces/ICommitsAdapter'
@@ -46,10 +45,15 @@ export class LeadTime {
   getLog(): string[] {
     return this.log
   }
-  async getLeadTime(): Promise<number> {
+  async getLeadTime(filtered = false): Promise<number> {
     if (this.pulls.length === 0 || this.releases.length === 0) {
       return 0
     }
+
+    if (filtered) {
+      this.log.push(`\nLog is filtered - only feat and fix.`)
+    }
+
     const leadTimes: number[] = []
     for (const pull of this.pulls) {
       if (
@@ -59,6 +63,13 @@ export class LeadTime {
         pull.base.repo.name &&
         pull.base.ref === 'main'
       ) {
+        if (
+          filtered &&
+          !(pull.title.startsWith('feat') || pull.title.startsWith('fix'))
+        ) {
+          continue
+        }
+
         const mergeTime = +new Date(pull.merged_at)
         const laterReleases = this.releases.filter(
           r => r.published > mergeTime && r.url.includes(pull.base.repo.name)
@@ -89,7 +100,7 @@ export class LeadTime {
 
         const leadTime = (deployTime - commitTime) / ONE_DAY
         leadTimes.push(leadTime)
-        this.log.push(`  ${leadTime} days`)
+        this.log.push(`  ${leadTime.toFixed(2)} days`)
       }
     }
     if (leadTimes.length === 0) {

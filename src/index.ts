@@ -53,6 +53,9 @@ async function run(): Promise<void> {
     }
 
     const logging: string | undefined = core.getInput('logging')
+    const filtered: boolean | undefined =
+      core.getInput('filtered') === 'true' ? true : false
+
     const rel = new ReleaseAdapter(token, owner, repositories)
     const releaseList = (await rel.GetAllReleasesLastMonth()) as Release[]
     const df = new DeployFrequency(releaseList)
@@ -62,10 +65,10 @@ async function run(): Promise<void> {
     }
 
     const prs = new PullRequestsAdapter(token, owner, repositories)
-    const cmts = new CommitsAdapter(token)
+    const commits = new CommitsAdapter(token)
     const pulls = (await prs.GetAllPRsLastMonth()) as PullRequest[]
-    const lt = new LeadTime(pulls, releaseList, cmts)
-    const leadTime = await lt.getLeadTime()
+    const lt = new LeadTime(pulls, releaseList, commits)
+    const leadTime = await lt.getLeadTime(filtered)
     core.setOutput('lead-time', leadTime)
     if (logging === 'true') {
       core.setOutput('lead-time-log', lt.getLog().join('\n'))
