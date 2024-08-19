@@ -81,8 +81,6 @@ jobs:
           printf "The log was:\n%s" ${{ steps.dora.outputs.deploy-rate-log }}      # Use the output from the `dora` step
           printf "${{ steps.dora.outputs.deploy-rate-log }}" > deploy-rate-log.txt
           echo "The lead time was ${{ steps.dora.outputs.lead-time }}"      # Use the output from the `dora` step
-          printf "The log was:\n%s" ${{ steps.dora.outputs.lead-time-log }}      # Use the output from the `dora` step
-          printf "%s" ${{ steps.dora.outputs.lead-time-log }} > lead-time-log.txt
 
       - uses: actions/upload-artifact@v4
         with:
