@@ -12,5 +12,6 @@
     "prioritizePerformanceOverAccuracy": true
   },
   "ignoreStatic": true,
-  "ignorePatterns": ["**/node_modules/**"]
+  "ignorePatterns": ["**/node_modules/**", "**/coverage/**"],
+  "disableTypeChecks": "{test,src,lib}/**/*.{js,ts,jsx,tsx,html,vue,cts,mts}"
 }
