@@ -26,7 +26,7 @@ jobs:
       - run: npm ci
       - name: Run tests
         run: |
-          npx jest --coverage | tee ./coverage.txt && exit ${PIPESTATUS[0]}
+          npx jest --coverage | tee ./coverage.txt && exit "${PIPESTATUS[0]}"
 
       - name: Get branch name
         id: branch-name
@@ -77,12 +77,12 @@ jobs:
       # Use the output from the `dora` step
       - name: Get the output rate
         run: |
-          echo "The deploy rate was ${{ steps.dora.outputs.deploy-rate }}"      # Use the output from the `dora` step
-          echo "The log was:\n${{ steps.dora.outputs.deploy-rate-log }}"      # Use the output from the `dora` step
-          echo "${{ steps.dora.outputs.deploy-rate-log }}" > deploy-rate-log.txt
+          printf "The deploy rate was %s" ${{ steps.dora.outputs.deploy-rate }}      # Use the output from the `dora` step
+          printf "The log was:\n%s" ${{ steps.dora.outputs.deploy-rate-log }}      # Use the output from the `dora` step
+          printf "${{ steps.dora.outputs.deploy-rate-log }}" > deploy-rate-log.txt
           echo "The lead time was ${{ steps.dora.outputs.lead-time }}"      # Use the output from the `dora` step
-          echo "The log was:\n${{ steps.dora.outputs.lead-time-log }}"      # Use the output from the `dora` step
-          echo "${{ steps.dora.outputs.lead-time-log }}" > lead-time-log.txt
+          printf "The log was:\n%s" ${{ steps.dora.outputs.lead-time-log }}      # Use the output from the `dora` step
+          printf "%s" ${{ steps.dora.outputs.lead-time-log }} > lead-time-log.txt
 
       - uses: actions/upload-artifact@v4
         with:
