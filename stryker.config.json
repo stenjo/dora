@@ -11,5 +11,6 @@
   "typescriptChecker": {
     "prioritizePerformanceOverAccuracy": true
   },
-  "ignoreStatic": true
+  "ignoreStatic": true,
+  "ignorePatterns": ["**/node_modules/**"]
 }
