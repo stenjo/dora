@@ -1,5 +1,5 @@
-import { CommitsAdapter } from '../src/CommitsAdapter'
-import { Commit } from '../src/types/Commit'
+import {CommitsAdapter} from '../src/CommitsAdapter'
+import {Commit} from '../src/types/Commit'
 import fs from 'fs'
 import * as dotenv from 'dotenv'
 

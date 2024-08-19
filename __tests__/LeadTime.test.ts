@@ -1,9 +1,9 @@
-import { CommitsAdapter } from '../src/CommitsAdapter'
-import { Commit } from '../src/types/Commit'
-import { PullRequest } from '../src/types/PullRequest'
-import { Release } from '../src/types/Release'
-import { LeadTime } from '../src/LeadTime'
-import { expect, jest } from '@jest/globals'
+import {CommitsAdapter} from '../src/CommitsAdapter'
+import {Commit} from '../src/types/Commit'
+import {PullRequest} from '../src/types/PullRequest'
+import {Release} from '../src/types/Release'
+import {LeadTime} from '../src/LeadTime'
+import {expect, jest} from '@jest/globals'
 
 describe('LeadTime should', () => {
   const commitsAdapter: CommitsAdapter = new CommitsAdapter('')
@@ -17,7 +17,7 @@ describe('LeadTime should', () => {
     const pulls = [] as PullRequest[]
     const lt = new LeadTime(
       pulls,
-      [{ published_at: '2023-04-30T17:50:53Z' }] as Release[],
+      [{published_at: '2023-04-30T17:50:53Z'}] as Release[],
       commitsAdapter,
       new Date()
     )
@@ -35,7 +35,7 @@ describe('LeadTime should', () => {
     ] as PullRequest[]
     const lt = new LeadTime(
       pulls,
-      [{ published_at: '2023-04-30T17:50:53Z' }] as Release[],
+      [{published_at: '2023-04-30T17:50:53Z'}] as Release[],
       commitsAdapter,
       new Date()
     )
@@ -49,7 +49,7 @@ describe('LeadTime should', () => {
     const pulls = [
       {
         merged_at: '2023-04-28T17:50:53Z', // 30-22 = 8
-        base: { ref: 'main' }
+        base: {ref: 'main'}
       }
     ] as PullRequest[]
 
@@ -89,7 +89,7 @@ describe('LeadTime should', () => {
     const pullRequests = [
       {
         merged_at: '2023-04-28T17:50:53Z', // 30-22 = 8
-        base: { ref: 'main', repo: { name: 'devops-metrics-action' } }
+        base: {ref: 'main', repo: {name: 'devops-metrics-action'}}
       }
     ] as PullRequest[]
     const releases = [
@@ -127,7 +127,7 @@ describe('LeadTime should', () => {
     const pullRequests = [
       {
         merged_at: '2023-04-28T17:50:53Z', // 30-22 = 8
-        base: { ref: 'main', repo: { name: 'devops-metrics-action' } },
+        base: {ref: 'main', repo: {name: 'devops-metrics-action'}},
         commits_url: 'path/to/commits/1'
       }
     ] as PullRequest[]
@@ -144,7 +144,7 @@ describe('LeadTime should', () => {
     commitsAdapter.getCommitsFromUrl = jest.fn(
       async (): Promise<Commit[] | undefined> => {
         return Promise.resolve([
-          { commit: { committer: { date: '2023-04-22T17:50:53Z' } } }
+          {commit: {committer: {date: '2023-04-22T17:50:53Z'}}}
         ] as Commit[])
       }
     )
@@ -170,7 +170,7 @@ describe('LeadTime should', () => {
     const pulls = [
       {
         merged_at: '2023-04-29T17:50:53Z',
-        base: { ref: 'main', repo: { name: 'devops-metrics-action' } }
+        base: {ref: 'main', repo: {name: 'devops-metrics-action'}}
       }
     ] as PullRequest[]
     const rels = [
@@ -207,7 +207,7 @@ describe('LeadTime should', () => {
     const pulls = [
       {
         merged_at: '2023-04-29T17:50:53Z', // 30-19 = 11
-        base: { ref: 'main', repo: { name: 'devops-metrics-action' } }
+        base: {ref: 'main', repo: {name: 'devops-metrics-action'}}
       }
     ] as PullRequest[]
     const rels = [
@@ -219,8 +219,8 @@ describe('LeadTime should', () => {
     commitsAdapter.getCommitsFromUrl = jest.fn(
       async (): Promise<Commit[] | undefined> => {
         return Promise.resolve([
-          { commit: { committer: { date: '2023-04-22T17:50:53Z' } } },
-          { commit: { committer: { date: '2023-04-19T17:50:53Z' } } }
+          {commit: {committer: {date: '2023-04-22T17:50:53Z'}}},
+          {commit: {committer: {date: '2023-04-19T17:50:53Z'}}}
         ] as Commit[])
       }
     )
@@ -236,11 +236,11 @@ describe('LeadTime should', () => {
     const pulls = [
       {
         merged_at: '2023-04-29T17:50:53Z', // 30-19 = 11
-        base: { ref: 'main', repo: { name: 'devops-metrics-action' } }
+        base: {ref: 'main', repo: {name: 'devops-metrics-action'}}
       },
       {
         merged_at: '2023-04-28T17:50:53Z', // 29-19 = 10
-        base: { ref: 'main', repo: { name: 'other-repo' } }
+        base: {ref: 'main', repo: {name: 'other-repo'}}
       }
     ] as PullRequest[]
     const rels = [
@@ -256,8 +256,8 @@ describe('LeadTime should', () => {
     commitsAdapter.getCommitsFromUrl = jest.fn(
       async (): Promise<Commit[] | undefined> => {
         return Promise.resolve([
-          { commit: { committer: { date: '2023-04-22T17:50:53Z' } } },
-          { commit: { committer: { date: '2023-04-19T17:50:53Z' } } }
+          {commit: {committer: {date: '2023-04-22T17:50:53Z'}}},
+          {commit: {committer: {date: '2023-04-19T17:50:53Z'}}}
         ] as Commit[])
       }
     )
@@ -281,12 +281,12 @@ describe('LeadTime should', () => {
       {
         merged_at: '2023-04-29T17:50:53Z', // 30-19 = 11
         commits_url: '47',
-        base: { ref: 'main', repo: { name: 'devops-metrics-action' } }
+        base: {ref: 'main', repo: {name: 'devops-metrics-action'}}
       },
       {
         merged_at: '2023-04-27T17:50:53Z', // 28-22 = 6
         commits_url: '10',
-        base: { ref: 'main', repo: { name: 'devops-metrics-action' } }
+        base: {ref: 'main', repo: {name: 'devops-metrics-action'}}
       }
     ] as PullRequest[]
     const rels = [
@@ -323,17 +323,17 @@ describe('LeadTime should', () => {
       {
         merged_at: '2023-04-29T17:50:53Z', // Has a commit 19/4, first release is 30/4 -> Lead time 11 days
         commits_url: '47',
-        base: { ref: 'main', repo: { name: 'devops-metrics-action' } }
+        base: {ref: 'main', repo: {name: 'devops-metrics-action'}}
       },
       {
         merged_at: '2023-04-27T17:50:53Z', //  Has a commit 22/4, first release is 28/4 -> Lead time 6 days
         commits_url: '10',
-        base: { ref: 'main', repo: { name: 'devops-metrics-action' } }
+        base: {ref: 'main', repo: {name: 'devops-metrics-action'}}
       },
       {
         merged_at: '2023-04-29T17:50:53Z', //  Has a commit 27/4, first release is 30/4 -> Lead time 3 days
         commits_url: '15',
-        base: { ref: 'main', repo: { name: 'devops-metrics-action' } }
+        base: {ref: 'main', repo: {name: 'devops-metrics-action'}}
       }
     ] as PullRequest[]
 
@@ -372,17 +372,17 @@ describe('LeadTime should', () => {
       {
         merged_at: '2023-04-29T17:50:53Z', // Has a commit 19/4, first release is 30/4 -> Lead time 11 days
         commits_url: '47',
-        base: { ref: 'main', repo: { name: 'devops-metrics-action' } }
+        base: {ref: 'main', repo: {name: 'devops-metrics-action'}}
       },
       {
         merged_at: '2023-04-27T17:50:53Z', //  Has a commit 22/4, first release is 28/4 -> Lead time 6 days
         commits_url: '10',
-        base: { ref: 'main', repo: { name: 'devops-metrics-action' } }
+        base: {ref: 'main', repo: {name: 'devops-metrics-action'}}
       },
       {
         merged_at: '2023-04-29T17:50:53Z', //  Has a commit 27/4, first release is 30/4 -> Lead time 3 days
         commits_url: '15',
-        base: { ref: 'main', repo: { name: 'devops-metrics-action' } }
+        base: {ref: 'main', repo: {name: 'devops-metrics-action'}}
       }
     ] as PullRequest[]
 
@@ -417,17 +417,17 @@ describe('LeadTime should', () => {
       {
         merged_at: '2023-04-27T17:50:53Z', // Has a commit 19/4, first release is 29/4 -> Lead time 10 days
         commits_url: '47',
-        base: { ref: 'main', repo: { name: 'other-repo' } }
+        base: {ref: 'main', repo: {name: 'other-repo'}}
       },
       {
         merged_at: '2023-04-27T17:50:53Z', //  Has a commit 22/4, first release is 28/4 -> Lead time 6 days
         commits_url: '10',
-        base: { ref: 'main', repo: { name: 'devops-metrics-action' } }
+        base: {ref: 'main', repo: {name: 'devops-metrics-action'}}
       },
       {
         merged_at: '2023-04-29T17:50:53Z', //  Has a commit 27/4, first release is 30/4 -> Lead time 3 days
         commits_url: '15',
-        base: { ref: 'main', repo: { name: 'devops-metrics-action' } }
+        base: {ref: 'main', repo: {name: 'devops-metrics-action'}}
       }
     ] as PullRequest[]
 
@@ -472,17 +472,17 @@ describe('LeadTime should', () => {
       {
         merged_at: '2023-04-27T17:50:53Z', // Has a commit 19/4, first release is 29/4 -> Lead time 10 days
         commits_url: '47',
-        base: { ref: 'main', repo: { name: 'other-repo' } }
+        base: {ref: 'main', repo: {name: 'other-repo'}}
       },
       {
         merged_at: '2023-04-27T17:50:53Z', //  Has a commit 22/4, first release is 28/4 -> Lead time 6 days
         commits_url: '10',
-        base: { ref: 'main', repo: { name: 'devops-metrics-action' } }
+        base: {ref: 'main', repo: {name: 'devops-metrics-action'}}
       },
       {
         merged_at: '2023-04-29T17:50:53Z', //  Has a commit 27/4, first release is 30/4 -> Lead time 3 days
         commits_url: '15',
-        base: { ref: 'main', repo: { name: 'devops-metrics-action' } }
+        base: {ref: 'main', repo: {name: 'devops-metrics-action'}}
       }
     ] as PullRequest[]
 
@@ -526,19 +526,19 @@ describe('LeadTime should', () => {
       {
         merged_at: '2023-04-27T17:50:53Z', // Has a commit 19/4, first release is 29/4 -> Lead time 10 days
         commits_url: '47',
-        base: { ref: 'main', repo: { name: 'other-repo' } },
+        base: {ref: 'main', repo: {name: 'other-repo'}},
         title: 'feat(docs): better description'
       },
       {
         merged_at: '2023-04-27T17:50:53Z', //  Has a commit 22/4, first release is 28/4 -> Lead time 6 days
         commits_url: '10',
-        base: { ref: 'main', repo: { name: 'devops-metrics-action' } },
+        base: {ref: 'main', repo: {name: 'devops-metrics-action'}},
         title: 'fix: removed error message'
       },
       {
         merged_at: '2023-04-29T17:50:53Z', //  Has a commit 27/4, first release is 30/4 -> Lead time 3 days
         commits_url: '15',
-        base: { ref: 'main', repo: { name: 'devops-metrics-action' } },
+        base: {ref: 'main', repo: {name: 'devops-metrics-action'}},
         title: 'feat: handle several repos'
       }
     ] as PullRequest[]
@@ -588,19 +588,19 @@ describe('LeadTime should', () => {
       {
         merged_at: '2023-04-27T17:50:53Z', // Has a commit 19/4, first release is 29/4 -> Lead time 10 days
         commits_url: '47',
-        base: { ref: 'main', repo: { name: 'other-repo' } },
+        base: {ref: 'main', repo: {name: 'other-repo'}},
         title: 'feat(docs): better description'
       },
       {
         merged_at: '2023-04-27T17:50:53Z', //  Has a commit 22/4, first release is 28/4 -> Lead time 6 days
         commits_url: '10',
-        base: { ref: 'main', repo: { name: 'devops-metrics-action' } },
+        base: {ref: 'main', repo: {name: 'devops-metrics-action'}},
         title: 'chore: cleaned up'
       },
       {
         merged_at: '2023-04-29T17:50:53Z', //  Has a commit 27/4, first release is 30/4 -> Lead time 3 days
         commits_url: '15',
-        base: { ref: 'main', repo: { name: 'devops-metrics-action' } },
+        base: {ref: 'main', repo: {name: 'devops-metrics-action'}},
         title: 'fix: removed error message'
       }
     ] as PullRequest[]
@@ -650,19 +650,19 @@ describe('LeadTime should', () => {
       {
         merged_at: '2023-04-27T17:50:53Z', // Has a commit 19/4, first release is 29/4 -> Lead time 10 days
         commits_url: '47',
-        base: { ref: 'main', repo: { name: 'other-repo' } },
+        base: {ref: 'main', repo: {name: 'other-repo'}},
         title: 'chore(docs): better description'
       },
       {
         merged_at: '2023-04-27T17:50:53Z', //  Has a commit 22/4, first release is 28/4 -> Lead time 6 days
         commits_url: '10',
-        base: { ref: 'main', repo: { name: 'devops-metrics-action' } },
+        base: {ref: 'main', repo: {name: 'devops-metrics-action'}},
         title: 'chore: cleaned up'
       },
       {
         merged_at: '2023-04-29T17:50:53Z', //  Has a commit 27/4, first release is 30/4 -> Lead time 3 days
         commits_url: '15',
-        base: { ref: 'main', repo: { name: 'devops-metrics-action' } },
+        base: {ref: 'main', repo: {name: 'devops-metrics-action'}},
         title: 'ci: removed error message'
       }
     ] as PullRequest[]

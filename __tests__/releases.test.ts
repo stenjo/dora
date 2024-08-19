@@ -1,5 +1,5 @@
-import { ReleaseAdapter } from '../src/ReleaseAdapter'
-import { Release } from '../src/types/Release'
+import {ReleaseAdapter} from '../src/ReleaseAdapter'
+import {Release} from '../src/types/Release'
 import fs from 'fs'
 
 describe('Mocked Release API should', () => {

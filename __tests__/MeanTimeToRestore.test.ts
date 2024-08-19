@@ -1,11 +1,7 @@
-import { Issue } from '../src/types/Issue'
-import { Release } from '../src/types/Release'
+import {Issue} from '../src/types/Issue'
+import {Release} from '../src/types/Release'
 import fs from 'fs'
-import {
-  BugTime,
-  ReleaseDate,
-  MeanTimeToRestore
-} from '../src/MeanTimeToRestore'
+import {BugTime, ReleaseDate, MeanTimeToRestore} from '../src/MeanTimeToRestore'
 
 describe('MeanTimeToRestore should', () => {
   const issues: Issue[] = JSON.parse(
@@ -127,13 +123,13 @@ describe('MeanTimeToRestore should', () => {
       {
         created_at: '2023-04-22T21:44:06Z',
         closed_at: '2023-04-23T16:47:40Z',
-        labels: [{ name: 'bug' }],
+        labels: [{name: 'bug'}],
         repository_url: 'some-path/repository'
       },
       {
         created_at: '2023-04-25T21:21:49Z',
         closed_at: '2023-04-29T12:54:45Z',
-        labels: [{ name: 'bug' }],
+        labels: [{name: 'bug'}],
         repository_url: 'some-path/repository'
       }
     ] as Issue[]
@@ -175,13 +171,13 @@ describe('MeanTimeToRestore should', () => {
       {
         created_at: '2023-04-22T21:44:06Z',
         closed_at: '2023-04-23T16:47:40Z',
-        labels: [{ name: 'bug' }],
+        labels: [{name: 'bug'}],
         repository_url: 'some-path/repository'
       },
       {
         created_at: '2023-04-25T21:21:49Z',
         closed_at: '2023-04-29T12:54:45Z',
-        labels: [{ name: 'bug' }],
+        labels: [{name: 'bug'}],
         repository_url: 'some-path/repository'
       }
     ] as Issue[]
@@ -219,13 +215,13 @@ describe('MeanTimeToRestore should', () => {
       {
         created_at: '2023-04-22T21:44:06Z',
         closed_at: '2023-04-23T16:47:40Z',
-        labels: [{ name: 'bug' }],
+        labels: [{name: 'bug'}],
         repository_url: 'some-path/repository'
       },
       {
         created_at: '2023-04-25T21:21:49Z',
         closed_at: '2023-04-29T12:54:45Z',
-        labels: [{ name: 'bug' }],
+        labels: [{name: 'bug'}],
         repository_url: 'some-path/repository'
       }
     ] as Issue[]
@@ -261,14 +257,14 @@ describe('MeanTimeToRestore should', () => {
         // 21 -> 24 = 3
         created_at: '2023-04-22T21:44:06Z',
         closed_at: '2023-04-23T16:47:40Z',
-        labels: [{ name: 'bug' }],
+        labels: [{name: 'bug'}],
         repository_url: 'some-path/other-repo'
       },
       {
         // 24 -> 30 = 6
         created_at: '2023-04-25T21:21:49Z',
         closed_at: '2023-04-29T12:54:45Z',
-        labels: [{ name: 'bug' }],
+        labels: [{name: 'bug'}],
         repository_url: 'some-path/repository'
       }
     ] as Issue[]
@@ -311,14 +307,14 @@ describe('MeanTimeToRestore should', () => {
         // 21 -> 24 = 3
         created_at: '2023-04-22T21:44:06Z',
         closed_at: '2023-04-23T16:47:40Z',
-        labels: [{ name: 'bug' }],
+        labels: [{name: 'bug'}],
         repository_url: 'some-path/other-repo'
       },
       {
         // 24 -> 30 = 6
         created_at: '2023-04-25T21:21:49Z',
         closed_at: '2023-04-29T12:54:45Z',
-        labels: [{ name: 'bug' }],
+        labels: [{name: 'bug'}],
         repository_url: 'some-path/repository'
       }
     ] as Issue[]

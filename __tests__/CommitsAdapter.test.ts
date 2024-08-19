@@ -1,9 +1,9 @@
-import { http, HttpResponse } from 'msw'
-import { setupServer } from 'msw/node'
-import { setFailed } from '@actions/core'
-import { CommitsAdapter } from '../src/CommitsAdapter'
+import {http, HttpResponse} from 'msw'
+import {setupServer} from 'msw/node'
+import {setFailed} from '@actions/core'
+import {CommitsAdapter} from '../src/CommitsAdapter'
 import fs from 'fs'
-import { Commit } from '../src/types/Commit'
+import {Commit} from '../src/types/Commit'
 
 const commitsUrl =
   'https://api.github.com/repos/stenjo/devops-metrics-action/pulls/69/commits'
@@ -11,7 +11,7 @@ const server = setupServer(
   http.get(
     commitsUrl,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    ({ request, params, cookies }) => {
+    ({request, params, cookies}) => {
       const commits: Commit[] = JSON.parse(
         fs.readFileSync('./__tests__/test-data/commits.json').toString()
       ) as Commit[]
@@ -51,8 +51,8 @@ describe('Commit Adapter should', () => {
       http.get(
         commitsUrl,
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        ({ request, params, cookies }) => {
-          return new HttpResponse('Bad credentials', { status: 401 })
+        ({request, params, cookies}) => {
+          return new HttpResponse('Bad credentials', {status: 401})
         }
       )
     )

@@ -5,7 +5,7 @@ on:
   pull_request:
   push:
     branches:
-       - main
+      - main
 
 jobs:
   stryker-js:
@@ -54,11 +54,11 @@ jobs:
           minColorRange: 50
           maxColorRange: 90
           valColorRange: ${{ env.stryker-score }}
-  
+
       - name: Upload results
         uses: actions/upload-artifact@v4
         with:
-            name: mutation-report
-            retention-days: 1
-            path: reports/mutation/
-            overwrite: true
+          name: mutation-report
+          retention-days: 1
+          path: reports/mutation/
+          overwrite: true

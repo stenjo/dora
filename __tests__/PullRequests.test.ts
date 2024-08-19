@@ -1,7 +1,7 @@
-import { PullRequest } from '../src/types/PullRequest'
-import { PullRequestsAdapter } from '../src/PullRequestsAdapter'
+import {PullRequest} from '../src/types/PullRequest'
+import {PullRequestsAdapter} from '../src/PullRequestsAdapter'
 import fs from 'fs'
-import { Octokit } from '@octokit/core'
+import {Octokit} from '@octokit/core'
 
 const ONE_DAY = 24 * 60 * 60 * 1000
 

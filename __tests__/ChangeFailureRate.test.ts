@@ -1,7 +1,7 @@
-import { Issue } from '../src/types/Issue'
+import {Issue} from '../src/types/Issue'
 import fs from 'fs'
-import { ChangeFailureRate } from '../src/ChangeFailureRate'
-import { Release } from '../src/types/Release'
+import {ChangeFailureRate} from '../src/ChangeFailureRate'
+import {Release} from '../src/types/Release'
 
 describe('ChangeFailureRate should', () => {
   it('get number of bugs created', () => {
@@ -78,7 +78,7 @@ describe('ChangeFailureRate should', () => {
     const bugs = [
       {
         created_at: '2023-04-30T17:50:53Z',
-        labels: [{ name: 'bug' }],
+        labels: [{name: 'bug'}],
         repository_url: 'https://api.github.com/repos/stenjo/dora'
       }
     ] as Issue[]
@@ -105,7 +105,7 @@ describe('ChangeFailureRate should', () => {
     const bugs = [
       {
         created_at: '2023-04-30T17:50:53Z',
-        labels: [{ name: 'bug' }],
+        labels: [{name: 'bug'}],
         repository_url: 'https://api.github.com/repos/stenjo/dora'
       }
     ] as Issue[]
@@ -128,7 +128,7 @@ describe('ChangeFailureRate should', () => {
     const bugs = [
       {
         created_at: '2023-04-30T17:50:53Z',
-        labels: [{ name: 'bug' }],
+        labels: [{name: 'bug'}],
         repository_url: 'https://api.github.com/repos/stenjo/dora'
       }
     ] as Issue[]
@@ -156,7 +156,7 @@ describe('ChangeFailureRate should', () => {
       {
         created_at: '2023-04-30T17:50:53Z',
         repository_url: 'somepath/repository',
-        labels: [{ name: 'bug' }]
+        labels: [{name: 'bug'}]
       }
     ] as Issue[]
 
@@ -187,7 +187,7 @@ describe('ChangeFailureRate should', () => {
       {
         created_at: '2023-04-30T17:50:53Z',
         repository_url: 'somepath/repository',
-        labels: [{ name: 'feature' }]
+        labels: [{name: 'feature'}]
       }
     ] as Issue[]
 
@@ -218,12 +218,12 @@ describe('ChangeFailureRate should', () => {
       {
         created_at: '2023-04-30T17:50:53Z',
         repository_url: 'somepath/repository',
-        labels: [{ name: 'bug' }]
+        labels: [{name: 'bug'}]
       },
       {
         created_at: '2023-04-30T17:50:53Z',
         repository_url: 'somepath/repository',
-        labels: [{ name: 'bug' }]
+        labels: [{name: 'bug'}]
       }
     ] as Issue[]
 
@@ -254,12 +254,12 @@ describe('ChangeFailureRate should', () => {
       {
         created_at: '2023-04-29T17:50:53Z',
         repository_url: 'somepath/repository',
-        labels: [{ name: 'bug' }]
+        labels: [{name: 'bug'}]
       },
       {
         created_at: '2023-04-31T17:50:53Z',
         repository_url: 'somepath/repository',
-        labels: [{ name: 'bug' }]
+        labels: [{name: 'bug'}]
       }
     ] as Issue[]
 
@@ -290,17 +290,17 @@ describe('ChangeFailureRate should', () => {
       {
         created_at: '2023-04-29T17:50:53Z',
         repository_url: 'somepath/repository',
-        labels: [{ name: 'bug' }]
+        labels: [{name: 'bug'}]
       },
       {
         created_at: '2023-04-30T17:50:53Z',
         repository_url: 'somepath/repository',
-        labels: [{ name: 'bug' }]
+        labels: [{name: 'bug'}]
       },
       {
         created_at: '2023-04-30T17:50:53Z',
         repository_url: 'somepath/repository',
-        labels: [{ name: 'bug' }]
+        labels: [{name: 'bug'}]
       }
     ] as Issue[]
 
@@ -331,17 +331,17 @@ describe('ChangeFailureRate should', () => {
       {
         created_at: '2023-04-29T17:50:53Z',
         repository_url: 'somepath/repository',
-        labels: [{ name: 'bug' }]
+        labels: [{name: 'bug'}]
       },
       {
         created_at: '2023-04-30T17:50:53Z',
         repository_url: 'somepath/repository',
-        labels: [{ name: 'bug' }]
+        labels: [{name: 'bug'}]
       },
       {
         created_at: '2023-04-30T17:50:53Z',
         repository_url: 'somepath/repository',
-        labels: [{ name: 'bug' }]
+        labels: [{name: 'bug'}]
       }
     ] as Issue[]
 
@@ -376,17 +376,17 @@ describe('ChangeFailureRate should', () => {
       {
         created_at: '2023-04-29T17:50:53Z', // bug on 28, repository
         repository_url: 'somepath/repository',
-        labels: [{ name: 'bug' }]
+        labels: [{name: 'bug'}]
       },
       {
         created_at: '2023-04-30T17:50:53Z', // bug on 20, other-repo
         repository_url: 'somepath/other-repo',
-        labels: [{ name: 'bug' }]
+        labels: [{name: 'bug'}]
       },
       {
         created_at: '2023-04-30T17:50:53Z', // bug on 28, repository
         repository_url: 'somepath/repository',
-        labels: [{ name: 'bug' }]
+        labels: [{name: 'bug'}]
       }
     ] as Issue[]
 
@@ -425,17 +425,17 @@ describe('ChangeFailureRate should', () => {
       {
         created_at: '2023-04-29T17:50:53Z',
         repository_url: 'somepath/repository',
-        labels: [{ name: 'bug' }]
+        labels: [{name: 'bug'}]
       },
       {
         created_at: '2023-04-30T17:50:53Z',
         repository_url: 'somepath/repository',
-        labels: [{ name: 'bug' }]
+        labels: [{name: 'bug'}]
       },
       {
         created_at: '2023-04-30T17:50:53Z',
         repository_url: 'somepath/repository',
-        labels: [{ name: 'bug' }]
+        labels: [{name: 'bug'}]
       }
     ] as Issue[]
 

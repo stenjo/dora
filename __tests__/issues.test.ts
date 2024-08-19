@@ -1,6 +1,6 @@
 import fs from 'fs'
-import { IssuesAdapter } from '../src/IssuesAdapter'
-import { Issue } from '../src/types/Issue'
+import {IssuesAdapter} from '../src/IssuesAdapter'
+import {Issue} from '../src/types/Issue'
 import * as dotenv from 'dotenv'
 
 dotenv.config()

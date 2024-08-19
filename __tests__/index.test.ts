@@ -12,7 +12,7 @@ describe.skip('Deploy rate weekly should', () => {
 
     const ip: string = path.join(__dirname, '../src/index.ts')
     const result: string = cp
-      .execSync(`npx ts-node ${ip}`, { env: process.env })
+      .execSync(`npx ts-node ${ip}`, {env: process.env})
       .toString()
 
     expect(result).toContain('2 repositor(y|ies) registered.')
