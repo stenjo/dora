@@ -22,18 +22,18 @@ repositories, either as one single string, as an array or all separated by
 newlines. Valid formats are:
 
 ```yaml
-repo: my-repo
+repo: my-repository
 ```
 
 ```yaml
-repo: [my-repo, my-other-repo]
+repo: [my-repository, my-other-repository]
 ```
 
 ```yaml
-repo: my-repo my-other-repo
+repo: my-repository my-other-repository
 ```
 
-Default repo value is repo where action is installed if no repos are spefied.
+Default repo value is repository where action is installed if no repositories are specified.
 
 ### `owner`
 
@@ -74,7 +74,7 @@ forming the basis for the metric, if `logging` is enabled.
 ### `change-failure-rate`
 
 Number of registered issues tagged as bugs divided by number of release tags
-last month. By counting the bugs (github issues tagged as `bug`) between
+last month. By counting the bugs (GitHub issues tagged as `bug`) between
 releases the last month and average this, we get the failures over releases
 rate. Number in range 0 - 100 (%)
 
@@ -82,7 +82,7 @@ rate. Number in range 0 - 100 (%)
 
 Mean time to restore. This metric is calculated based on the time between the
 last release before an issue tagged as a bug and the first release after the bug
-is closed. For this to work correctly we must assume github issues are created
+is closed. For this to work correctly we must assume GitHub issues are created
 for all unwanted issues in production and that all changes to production is done
 through releases. Number in hours (integer)
 
@@ -109,14 +109,15 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-This will base calculations on the repo where the workflow is installed and run
+This will base calculations on the repository where the workflow is installed and run
 12:30 AM every day. To access the outputs anywhere in the workflow, refer to the
 output of the calculation step via variable format
 `${{ steps.dora.outputs.deploy-rate }}`. Something like:
 
 ```yaml
 - name: Get the output rate
-  run: echo "The deploy rate was ${{ steps.dora.outputs.deploy-rate }}" # Use the output from the `dora` step
+  run: echo "The deploy rate was ${{ steps.dora.outputs.deploy-rate }}"
+  #  Use the output from the `dora` step
 ```
 
 More complex examples may be found in
