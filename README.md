@@ -33,11 +33,12 @@ repo: [my-repository, my-other-repository]
 repo: my-repository my-other-repository
 ```
 
-Default repo value is repository where action is installed if no repositories are specified.
+Default `repo` value is repository where action is installed
+if no repositories are specified.
 
 ### `owner`
 
-Owner of the repository. Default is current repository owner or organisation.
+Owner of the repository. Default is current repository owner or organization.
 Only one is handled.
 
 ### `token`
@@ -109,8 +110,9 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-This will base calculations on the repository where the workflow is installed and run
-12:30 AM every day. To access the outputs anywhere in the workflow, refer to the
+This will base calculations on the repository where the
+workflow is installed and run 12:30 AM every day. To
+access the outputs anywhere in the workflow, refer to the
 output of the calculation step via variable format
 `${{ steps.dora.outputs.deploy-rate }}`. Something like:
 
