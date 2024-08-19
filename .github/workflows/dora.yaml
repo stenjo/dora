@@ -12,6 +12,14 @@ jobs:
     runs-on: ubuntu-latest
     name: Checking the dora metrics
     steps:
+
+      - name: Setup Node.js
+        id: setup-node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+
       - name: Dora metrics
         uses: stenjo/devops-metrics-action@v1
         id: dora
