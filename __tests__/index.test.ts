@@ -1,14 +1,14 @@
-import * as process from 'process'
-import * as cp from 'child_process'
-import * as path from 'path'
+import * as process from 'node:process'
+import * as cp from 'node:child_process'
+import * as path from 'node:path'
 import * as dotenv from 'dotenv'
 
 dotenv.config()
 
 describe.skip('Deploy rate weekly should', () => {
   test('read newline separated repo inputs', () => {
-    process.env['INPUT_REPO'] = 'Middager \n devops-metrics-action'
-    process.env['INPUT_OWNER'] = 'stenjo'
+    process.env.INPUT_REPO = 'Middager \n devops-metrics-action'
+    process.env.INPUT_OWNER = 'stenjo'
 
     const ip: string = path.join(__dirname, '../src/index.ts')
     const result: string = cp
@@ -19,8 +19,8 @@ describe.skip('Deploy rate weekly should', () => {
   })
 
   test('use repo array list input', () => {
-    process.env['INPUT_REPO'] = '[Middager, dora]'
-    process.env['INPUT_OWNER'] = 'stenjo'
+    process.env.INPUT_REPO = '[Middager, dora]'
+    process.env.INPUT_OWNER = 'stenjo'
 
     const np = process.execPath
     const ip = path.join(__dirname, '..', 'out', 'index.js')
@@ -35,10 +35,10 @@ describe.skip('Deploy rate weekly should', () => {
   })
 
   test('use single repo input', () => {
-    process.env['INPUT_REPO'] = 'Middager'
-    process.env['INPUT_OWNER'] = 'stenjo'
-    process.env['INPUT_LOGGING'] = 'true'
-    process.env['INPUT_FILTERED'] = 'true'
+    process.env.INPUT_REPO = 'Middager'
+    process.env.INPUT_OWNER = 'stenjo'
+    process.env.INPUT_LOGGING = 'true'
+    process.env.INPUT_FILTERED = 'true'
 
     const np = process.execPath
     const ip = path.join(__dirname, '..', 'out', 'index.js')

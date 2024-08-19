@@ -1,6 +1,6 @@
 import {ReleaseAdapter} from '../src/ReleaseAdapter'
-import {Release} from '../src/types/Release'
-import fs from 'fs'
+import type {Release} from '../src/types/Release'
+import fs from 'node:fs'
 
 describe('Mocked Release API should', () => {
   it('return releases', async () => {
