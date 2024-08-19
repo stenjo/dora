@@ -42,7 +42,7 @@ jobs:
       - name: Get current date
         id: date
         run: |
-          echo "date=`$(date +'%m-%d')`" >> $GITHUB_OUTPUT
+          echo "date=$(date +'%m-%d')" >> $GITHUB_OUTPUT
           mkdir tmp
 
       - name: Install jq
