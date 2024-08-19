@@ -105,4 +105,3 @@ __tests__/runner/*
 # stryker temp files
 .stryker-tmp
 reports/**
-dist/**
