@@ -6,6 +6,9 @@ on:
       - main
   schedule:
     - cron: '30 0 * * *'
+    
+permissions:
+  contents: read
 
 jobs:
   update-metrics:
