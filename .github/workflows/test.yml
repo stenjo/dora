@@ -9,7 +9,7 @@ on:
 permissions:
   contents: read
   pull-requests: write
-  
+
 jobs:
   # unit tests
   units:
