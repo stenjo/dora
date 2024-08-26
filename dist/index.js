@@ -30609,6 +30609,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.run = run;
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const core = __importStar(__nccwpck_require__(2186));
 const github = __importStar(__nccwpck_require__(5438));
@@ -30651,7 +30652,7 @@ async function run() {
         let token = core.getInput('token');
         if (token === '' || token === null) {
             // token = github.context.token;
-            token = process.env['GH_TOKEN'];
+            token = process.env.GH_TOKEN;
         }
         const logging = core.getInput('logging');
         const filtered = core.getInput('filtered') === 'true' ? true : false;

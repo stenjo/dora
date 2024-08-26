@@ -1,12 +1,12 @@
-import fs from 'fs'
+import fs from 'node:fs'
 import {IssuesAdapter} from '../src/IssuesAdapter'
-import {Issue} from '../src/types/Issue'
+import type {Issue} from '../src/types/Issue'
 import * as dotenv from 'dotenv'
 
 dotenv.config()
 
 describe.skip('Real Issues API should', () => {
-  const issueAdapter = new IssuesAdapter(process.env['GH_TOKEN'], 'stenjo', [
+  const issueAdapter = new IssuesAdapter(process.env.GH_TOKEN, 'stenjo', [
     'dora'
   ])
 
@@ -18,7 +18,7 @@ describe.skip('Real Issues API should', () => {
 
 describe('mocked Issues API should', () => {
   test('return issues', async () => {
-    const issueAdapter = new IssuesAdapter(process.env['GH_TOKEN'], 'stenjo', [
+    const issueAdapter = new IssuesAdapter(process.env.GH_TOKEN, 'stenjo', [
       'dora'
     ])
     mockedGetIssuesReturns('./__tests__/test-data/issue-list.json')

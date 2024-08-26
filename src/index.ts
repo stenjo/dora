@@ -4,16 +4,16 @@ import * as github from '@actions/github'
 import {ReleaseAdapter} from './ReleaseAdapter'
 import {DeployFrequency} from './DeployFrequency'
 import {ChangeFailureRate} from './ChangeFailureRate'
-import {Issue} from './types/Issue'
+import type {Issue} from './types/Issue'
 import {IssuesAdapter} from './IssuesAdapter'
 import {MeanTimeToRestore} from './MeanTimeToRestore'
 import {PullRequestsAdapter} from './PullRequestsAdapter'
 import {CommitsAdapter} from './CommitsAdapter'
 import {LeadTime} from './LeadTime'
-import {Release} from './types/Release'
-import {PullRequest} from './types/PullRequest'
+import type {Release} from './types/Release'
+import type {PullRequest} from './types/PullRequest'
 
-async function run(): Promise<void> {
+export async function run(): Promise<void> {
   try {
     let repo: string = core.getInput('repo')
     if (repo === '' || repo === null) {
@@ -49,7 +49,7 @@ async function run(): Promise<void> {
     let token: string | undefined = core.getInput('token')
     if (token === '' || token === null) {
       // token = github.context.token;
-      token = process.env['GH_TOKEN']
+      token = process.env.GH_TOKEN
     }
 
     const logging: string | undefined = core.getInput('logging')
