@@ -72,3 +72,21 @@ jobs:
           retention-days: 1
           path: reports/mutation/
           overwrite: true
+
+      - name: Parse the json output and generate markdown
+        if: ${{ env.CHANGED_LINES != '' }}
+        continue-on-error: true
+        id: extract_from_json
+        run: |
+          python ./script/generate_md_report.py reports/mutation/mutation.json stryker-report.md https://stenjo.github.io/devops-metrics-action/reports/pr-${{ github.event.pull_request.number }}/mutation-report.html
+        shell: /usr/bin/bash -e {0}
+  
+      - name: Add formatted table to PR comment
+        uses: GrantBirki/comment@v2.1.0
+        continue-on-error: true
+        with:
+          comment-id: ${{ github.event.comment.id }}
+          edit-mode: replace
+          file: stryker-report.md
+
+  
