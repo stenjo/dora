@@ -45,7 +45,7 @@ describe('Commit Adapter should', () => {
     expect(releases.length).toBe(30)
   })
 
-  it.skip('handles access denied', async () => {
+  it('handles access denied', async () => {
     server.close()
     const errorServer = setupServer(
       http.get(
@@ -58,8 +58,8 @@ describe('Commit Adapter should', () => {
     )
     errorServer.listen()
     const r = new CommitsAdapter(commitsUrl)
-
-    expect(async () => await r.getCommitsFromUrl(commitsUrl)).toThrow()
+    const result = await r.getCommitsFromUrl(commitsUrl)
+    expect(result).toBe(undefined)
     expect(setFailed).toHaveBeenCalledWith('Bad credentials')
     errorServer.close()
   })

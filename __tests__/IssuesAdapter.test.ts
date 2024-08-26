@@ -43,7 +43,7 @@ describe('Issue Adapter should', () => {
     expect(issues.length).toBe(150)
   })
 
-  it.skip('handles access denied', async () => {
+  it('handles access denied', async () => {
     server.close()
     const errorServer = setupServer(
       http.get(
@@ -56,8 +56,8 @@ describe('Issue Adapter should', () => {
     )
     errorServer.listen()
     const r = new IssuesAdapter(undefined, 'test-owner', ['project1'])
-
-    expect(async () => await r.GetAllIssuesLastMonth()).toThrow()
+    const result = await r.GetAllIssuesLastMonth()
+    expect(result).toBe(undefined)
     expect(setFailed).toHaveBeenCalledWith('access denied')
     errorServer.close()
   })
