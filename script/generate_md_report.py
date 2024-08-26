@@ -7,7 +7,7 @@ from urllib.parse import quote
 
 def load_json_file(file_path: str) -> dict:
     """Load JSON data from a file."""
-    with open(file_path, 'r', encoding='utf-8') as file:
+    with open(file_path, "r", encoding="utf-8") as file:
         return json.load(file)
 
 
@@ -15,18 +15,18 @@ def count_mutation_statuses(report: dict) -> dict:
     status_counts = {}
     total_counts: int = defaultdict(int)
 
-    for file_name, file_data in report['files'].items():
+    for file_name, file_data in report["files"].items():
         counts: int = defaultdict(int)
 
-        for mutant in file_data['mutants']:
-            counts[mutant['status']] += 1
-            total_counts[mutant['status']] += 1
+        for mutant in file_data["mutants"]:
+            counts[mutant["status"]] += 1
+            total_counts[mutant["status"]] += 1
 
         # Calculate the mutation score as the percentage of killed mutants over
         # all mutants that are either killed, survived, or timed out.
-        killed = counts['Killed']
-        survived = counts['Survived']
-        timeout = counts['Timeout']
+        killed = counts["Killed"]
+        survived = counts["Survived"]
+        timeout = counts["Timeout"]
         total_relevant = killed + survived + timeout
 
         score = (killed / total_relevant * 100) if total_relevant > 0 else 0
@@ -37,28 +37,27 @@ def count_mutation_statuses(report: dict) -> dict:
             "killed": killed,
             "timeout": timeout,
             "survived": survived,
-            "no_cov": counts['NoCoverage'],
-            "errors": counts['CompileError'],
-            "file_name": file_name  # Store full path for linking
+            "no_cov": counts["NoCoverage"],
+            "errors": counts["CompileError"],
+            "file_name": file_name,  # Store full path for linking
         }
 
     # Calculate overall totals
-    total_killed = total_counts['Killed']
-    total_survived = total_counts['Survived']
-    total_timeout = total_counts['Timeout']
+    total_killed = total_counts["Killed"]
+    total_survived = total_counts["Survived"]
+    total_timeout = total_counts["Timeout"]
     total_relevant = total_killed + total_survived + total_timeout
 
-    total_score = (total_killed / total_relevant * 100)\
-        if total_relevant > 0 else 0
+    total_score = (total_killed / total_relevant * 100) if total_relevant > 0 else 0
 
-    status_counts['All'] = {
+    status_counts["All"] = {
         "score": total_score,
         "killed": total_killed,
         "timeout": total_timeout,
         "survived": total_survived,
-        "no_cov": total_counts['NoCoverage'],
-        "errors": total_counts['CompileError'],
-        "file_name": None  # No link for the total row
+        "no_cov": total_counts["NoCoverage"],
+        "errors": total_counts["CompileError"],
+        "file_name": None,  # No link for the total row
     }
 
     return status_counts
@@ -74,10 +73,10 @@ def generate_markdown_report(status_counts: dict, base_url: str) -> str:
         |-----------|------------|----------|----------|\n"
 
     for file_name, counts in status_counts.items():
-        if counts['file_name']:
+        if counts["file_name"]:
             # Remove 'src/' from the file path and create
             # a URL link to the mutation report
-            relative_path = counts['file_name'].replace('src/', '')
+            relative_path = counts["file_name"].replace("src/", "")
             link = f"{base_url}#mutant/{quote(relative_path)}"
             file_link = f"[{file_name}]({link})"
         else:
@@ -93,7 +92,7 @@ def generate_markdown_report(status_counts: dict, base_url: str) -> str:
 
 def save_markdown_file(markdown: str, output_path: str) -> None:
     """Save the generated Markdown report to a file."""
-    with open(output_path, 'w', encoding='utf-8') as file:
+    with open(output_path, "w", encoding="utf-8") as file:
         file.write(markdown)
     print(f"Markdown report generated at {output_path}")
 
@@ -115,8 +114,10 @@ def main(input_file: str, output_file: str, base_url: str):
 
 if __name__ == "__main__":
     if len(sys.argv) != 4:
-        print("Usage: python generate_stryker_report.py \
-            <input_json_file> <output_md_file> <base_url>")
+        print(
+            "Usage: python generate_stryker_report.py \
+            <input_json_file> <output_md_file> <base_url>"
+        )
         sys.exit(1)
 
     input_file = sys.argv[1]
