@@ -10,6 +10,7 @@ on:
 permissions:
   contents: read
   pull-requests: write
+  repository-projects: write
 
 jobs:
   stryker-js:
@@ -85,7 +86,7 @@ jobs:
         run: |
           python ./script/generate_md_report.py reports/mutation/mutation.json stryker-report.md https://stenjo.github.io/devops-metrics-action/reports/pr-${{ github.event.pull_request.number }}/mutation-report.html
         shell: /usr/bin/bash -e {0}
-  
+
       - name: Add formatted table to PR comment
         uses: GrantBirki/comment@v2.1.0
         continue-on-error: true
@@ -101,7 +102,7 @@ jobs:
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
-  
+
           # Create a new branch for GitHub Pages if it doesn't exist
           git fetch origin gh-pages:gh-pages || git checkout --orphan gh-pages
           git checkout gh-pages
@@ -118,4 +119,3 @@ jobs:
       - name: Output the URL
         run: |
           echo "Report available at: https://stenjo.github.io/devops-metrics-action/reports/pr-${{ github.event.pull_request.number }}/mutation-report.html"
-  
