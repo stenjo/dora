@@ -108,12 +108,12 @@ jobs:
           git checkout gh-pages
 
           # Create a directory for this PR and move the report there
-          mkdir -p reports/pr-${PR_NUMBER}
-          mv reports/mutation/mutation.html reports/pr-${PR_NUMBER}/mutation-report.html
+          mkdir -p reports/pr-${{env.PR_NUMBER}}
+          mv reports/mutation/mutation.html reports/pr-${{env.PR_NUMBER}}/mutation-report.html
 
           # Commit and push the changes
           git add -f reports/pr-${PR_NUMBER}/mutation-report.html
-          git commit -m "Deploy mutation report for PR #${PR_NUMBER}"
+          git commit -m "Deploy mutation report for PR #${{env.PR_NUMBER}}"
           git push origin gh-pages
 
       - name: Output the URL
