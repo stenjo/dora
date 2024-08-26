@@ -9,6 +9,7 @@ on:
 
 permissions:
   contents: read
+  pull-requests: write
 
 jobs:
   stryker-js:
@@ -93,4 +94,28 @@ jobs:
           edit-mode: replace
           file: stryker-report.md
 
+      - name: Deploy HTML Report to GitHub Pages
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+  
+          # Create a new branch for GitHub Pages if it doesn't exist
+          git fetch origin gh-pages:gh-pages || git checkout --orphan gh-pages
+          git checkout gh-pages
+
+          # Create a directory for this PR and move the report there
+          mkdir -p reports/pr-${PR_NUMBER}
+          mv reports/mutation/mutation.html reports/pr-${PR_NUMBER}/mutation-report.html
+
+          # Commit and push the changes
+          git add -f reports/pr-${PR_NUMBER}/mutation-report.html
+          git commit -m "Deploy mutation report for PR #${PR_NUMBER}"
+          git push origin gh-pages
+
+      - name: Output the URL
+        run: |
+          echo "Report available at: https://stenjo.github.io/devops-metrics-action/reports/pr-${{ github.event.pull_request.number }}/mutation-report.html"
   
