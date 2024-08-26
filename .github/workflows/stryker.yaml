@@ -112,7 +112,7 @@ jobs:
           mv reports/mutation/mutation.html reports/pr-${{env.PR_NUMBER}}/mutation-report.html
 
           # Commit and push the changes
-          git add -f reports/pr-${PR_NUMBER}/mutation-report.html
+          git add -f reports/pr-${{env.PR_NUMBER}}/mutation-report.html
           git commit -m "Deploy mutation report for PR #${{env.PR_NUMBER}}"
           git push origin gh-pages
 

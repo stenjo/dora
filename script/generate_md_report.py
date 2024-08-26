@@ -4,6 +4,7 @@ import sys
 from collections import defaultdict
 from urllib.parse import quote
 
+
 def load_json_file(file_path: str) -> dict:
     """Load JSON data from a file."""
     with open(file_path, 'r', encoding='utf-8') as file:
@@ -12,10 +13,10 @@ def load_json_file(file_path: str) -> dict:
 def count_mutation_statuses(report: dict) -> dict:
     """Count the occurrences of each mutation status for each file and calculate the score."""
     status_counts = {}
-    total_counts = defaultdict(int)
+    total_counts: int = defaultdict(int)
 
     for file_name, file_data in report['files'].items():
-        counts = defaultdict(int)
+        counts: int = defaultdict(int)
 
         for mutant in file_data['mutants']:
             counts[mutant['status']] += 1
