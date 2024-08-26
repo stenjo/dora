@@ -1,14 +1,12 @@
-import {PullRequest} from '../src/types/PullRequest'
+import type {PullRequest} from '../src/types/PullRequest'
 import {PullRequestsAdapter} from '../src/PullRequestsAdapter'
-import fs from 'fs'
-import {Octokit} from '@octokit/core'
+import fs from 'node:fs'
+import type {Octokit} from '@octokit/core'
 
 const ONE_DAY = 24 * 60 * 60 * 1000
 
 test.skip('fetches tags', async () => {
-  const prs = new PullRequestsAdapter(process.env['GH_TOKEN'], 'stenjo', [
-    'dora'
-  ])
+  const prs = new PullRequestsAdapter(process.env.GH_TOKEN, 'stenjo', ['dora'])
   const prlist = await prs.GetAllPRsLastMonth()
 
   expect(prlist).toBeDefined()
@@ -21,7 +19,7 @@ test.skip('fetches tags', async () => {
 })
 
 test('PullRequestsAdapter should', async () => {
-  const plrqs = new PullRequestsAdapter(process.env['GH_TOKEN'], 'stenjo', [
+  const plrqs = new PullRequestsAdapter(process.env.GH_TOKEN, 'stenjo', [
     'dora'
   ])
   plrqs.getPRs = jest.fn(

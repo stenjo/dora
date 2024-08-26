@@ -88,6 +88,8 @@
     "@typescript-eslint/eslint-plugin": "^7.17.0",
     "@typescript-eslint/parser": "^7.17.0",
     "@vercel/ncc": "^0.38.1",
+    "axios": "^1.7.4",
+    "axios-mock-adapter": "^2.0.0",
     "dotenv": "^16.4.5",
     "eslint": "^8.57.0",
     "eslint-plugin-github": "^5.0.1",

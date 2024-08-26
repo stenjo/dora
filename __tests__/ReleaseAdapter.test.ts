@@ -80,21 +80,22 @@ describe('Release Adapter should', () => {
     expect(releases.length).toBe(150)
   })
 
-  it.skip('handles access denied', async () => {
+  it('handles access denied', async () => {
     server.close()
     const errorServer = setupServer(
       http.get(
         'https://api.github.com/repos/:owner/:rep/releases',
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         ({request, params, cookies}) => {
-          throw new HttpResponse('access denied', {status: 400})
+          return new HttpResponse('access denied', {status: 401})
         }
       )
     )
     errorServer.listen()
     const r = new ReleaseAdapter(undefined, 'test-owner', ['project1'])
+    const result = await r.GetAllReleasesLastMonth()
 
-    expect(async () => await r.GetAllReleasesLastMonth()).toThrow()
+    expect(result).toBe(undefined)
     expect(setFailed).toHaveBeenCalledWith('access denied')
     errorServer.close()
   })

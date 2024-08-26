@@ -1,7 +1,11 @@
-import {Issue} from '../src/types/Issue'
-import {Release} from '../src/types/Release'
-import fs from 'fs'
-import {BugTime, ReleaseDate, MeanTimeToRestore} from '../src/MeanTimeToRestore'
+import type {Issue} from '../src/types/Issue'
+import type {Release} from '../src/types/Release'
+import fs from 'node:fs'
+import {
+  type BugTime,
+  type ReleaseDate,
+  MeanTimeToRestore
+} from '../src/MeanTimeToRestore'
 
 describe('MeanTimeToRestore should', () => {
   const issues: Issue[] = JSON.parse(

@@ -2,7 +2,7 @@ import {http, HttpResponse} from 'msw'
 import {setupServer} from 'msw/node'
 import {setFailed} from '@actions/core'
 import {PullRequestsAdapter} from '../src/PullRequestsAdapter'
-import {PullRequest} from '../src/types/PullRequest'
+import type {PullRequest} from '../src/types/PullRequest'
 
 const server = setupServer(
   http.get(
@@ -44,7 +44,7 @@ describe('PullRequest Adapter should', () => {
     expect(pullRequests.length).toBe(150)
   })
 
-  it.skip('handles access denied', async () => {
+  it('handles access denied', async () => {
     server.close()
     const errorServer = setupServer(
       http.get(
@@ -57,8 +57,8 @@ describe('PullRequest Adapter should', () => {
     )
     errorServer.listen()
     const r = new PullRequestsAdapter(undefined, 'test-owner', ['project1'])
-
-    expect(async () => await r.GetAllPRsLastMonth()).toThrow()
+    const result = await r.GetAllPRsLastMonth()
+    expect(result).toBe(undefined)
     expect(setFailed).toHaveBeenCalledWith('access denied')
     errorServer.close()
   })
