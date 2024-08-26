@@ -17,10 +17,12 @@ describe('Mocked Release API should', () => {
 
 function mockedGetReleasesReturns(file: string): void {
   const getIssuesMock = jest.spyOn(
-    ReleaseAdapter.prototype,
+    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+    // eslint-disable-next-line  @typescript-eslint/no-explicit-any
+    ReleaseAdapter.prototype as any,
     'getReleases'
   )
-  getIssuesMock.mockImplementation(async (): Promise<Release[] | udefined> => {
+  getIssuesMock.mockImplementation(async (): Promise<Release[]> => {
     return Promise.resolve(
       JSON.parse(fs.readFileSync(file).toString()) as Release[]
     )

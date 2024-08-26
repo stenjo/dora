@@ -37,8 +37,9 @@ export class ReleaseAdapter implements IReleaseAdapter {
       }
 
       return result
-    } catch (e: unknown) {
-      core.setFailed(e.message as string)
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (e: any) {
+      core.setFailed(e.message)
     }
   }
 

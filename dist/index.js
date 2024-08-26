@@ -30526,7 +30526,6 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.ReleaseAdapter = void 0;
-/* eslint-disable @typescript-eslint/no-explicit-any */
 const core_1 = __nccwpck_require__(6762);
 const core = __importStar(__nccwpck_require__(2186));
 class ReleaseAdapter {
@@ -30556,6 +30555,7 @@ class ReleaseAdapter {
                 }
             }
             return result;
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
         }
         catch (e) {
             core.setFailed(e.message);

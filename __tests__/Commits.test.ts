@@ -1,4 +1,4 @@
-import { CommitsAdapter } from '../src/CommitsAdapter'
+import {CommitsAdapter} from '../src/CommitsAdapter'
 import type {Commit} from '../src/types/Commit'
 import fs from 'node:fs'
 import * as dotenv from 'dotenv'
