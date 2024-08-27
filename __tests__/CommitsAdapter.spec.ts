@@ -36,7 +36,7 @@ describe('CommitsAdapter', () => {
     })
   })
 
-  it('should fetch commits successfully', async () => {
+  it('should fetch commits with the correct headers', async () => {
     const url = 'https://api.github.com/repos/owner/repo/commits'
     const mockCommits: Commit[] = [
       {
@@ -51,6 +51,46 @@ describe('CommitsAdapter', () => {
       headers: {'X-GitHub-Api-Version': '2022-11-28'}
     })
     expect(commits).toEqual(mockCommits)
+  })
+
+  it('should handle missing or incorrect headers', async () => {
+    const url = 'https://api.github.com/repos/owner/repo/commits'
+    mockRequest.mockImplementation((_url, options) => {
+      if (
+        !options.headers ||
+        options.headers['X-GitHub-Api-Version'] !== '2022-11-28'
+      ) {
+        throw new Error('Incorrect headers')
+      }
+      return {
+        data: [
+          {
+            /* mock commit data */
+          }
+        ]
+      }
+    })
+
+    // Test with missing headers
+    await expect(adapter.getCommitsFromUrl(url)).resolves.toBeDefined()
+
+    // Test with incorrect headers (empty object)
+    mockRequest.mockClear()
+    mockRequest.mockImplementation(() => {
+      throw new Error('Incorrect headers')
+    })
+    await expect(adapter.getCommitsFromUrl(url)).rejects.toThrow(
+      'Incorrect headers'
+    )
+
+    // Test with incorrect headers (empty value)
+    mockRequest.mockClear()
+    mockRequest.mockImplementation(() => {
+      throw new Error('Incorrect headers')
+    })
+    await expect(adapter.getCommitsFromUrl(url)).rejects.toThrow(
+      'Incorrect headers'
+    )
   })
 
   it('should handle errors during API call', async () => {

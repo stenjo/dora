@@ -90,7 +90,7 @@ jobs:
         uses: GrantBirki/comment@v2.1.0
         continue-on-error: true
         with:
-          comment-id: ${{ github.event.comment.id }}
+          comment-id: 1234${{ github.event.pull_request.number }}
           edit-mode: replace
           file: stryker-report.md
 
@@ -98,10 +98,9 @@ jobs:
         env:
           PR_NUMBER: ${{ github.event.pull_request.number }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PAT_TOKEN: ${{ secrets.DORA_PAT }}
         run: |
           git config --global user.name "github-actions"
-          git config --global user.email "sten@thinea.no"
+          git config --global user.email "github-actions@github.com"
 
           # Create a new branch for GitHub Pages if it doesn't exist
           git fetch origin gh-pages:gh-pages || git checkout --orphan gh-pages
@@ -114,7 +113,7 @@ jobs:
           # Commit and push the changes
           git add -f reports/pr-${{env.PR_NUMBER}}/mutation-report.html
           git commit -m "Deploy mutation report for PR #${{env.PR_NUMBER}}"
-          git push https://x-access-token:${{env.PAT_TOKEN}}@github.com/stenjo/devops-metrics-action.git gh-pages
+          git push origin gh-pages
 
       - name: Output the URL
         run: |
