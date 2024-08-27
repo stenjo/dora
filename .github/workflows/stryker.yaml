@@ -102,7 +102,7 @@ jobs:
           PAT_TOKEN: ${{ secrets.DORA_PAT }}
         run: |
           git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
+          git config --global user.email "sten@thinea.no"
 
           # Create a new branch for GitHub Pages if it doesn't exist
           git fetch origin gh-pages:gh-pages || git checkout --orphan gh-pages
