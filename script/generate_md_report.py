@@ -1,9 +1,11 @@
 """Generate MD report based on a json report"""
+
 import json
 import os
 import sys
 from collections import defaultdict
 from urllib.parse import quote
+
 
 def load_json_file(file_path: str) -> dict:
     """Load JSON data from a file."""
@@ -45,9 +47,15 @@ def count_mutation_statuses(report: dict) -> dict:
 
     # Calculate overall totals
     total_counts["Timeout"] = total_counts["Timeout"]
-    total_relevant = total_counts["Killed"] + total_counts["Survived"] + total_counts["Timeout"]
+    total_relevant = (
+        total_counts["Killed"] + total_counts["Survived"]
+        + total_counts["Timeout"]
+    )
 
-    total_score = (total_counts["Killed"] / total_relevant * 100) if total_relevant > 0 else 0
+    total_score = (
+        (total_counts["Killed"] / total_relevant * 100)
+        if total_relevant > 0 else 0
+    )
 
     status_counts["All"] = {
         "score": total_score,

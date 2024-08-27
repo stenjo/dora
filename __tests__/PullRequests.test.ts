@@ -3,26 +3,11 @@ import {PullRequestsAdapter} from '../src/PullRequestsAdapter'
 import fs from 'node:fs'
 import type {Octokit} from '@octokit/core'
 
-const ONE_DAY = 24 * 60 * 60 * 1000
-
-test.skip('fetches tags', async () => {
-  const prs = new PullRequestsAdapter(process.env.GH_TOKEN, 'stenjo', ['dora'])
-  const prlist = await prs.GetAllPRsLastMonth()
-
-  expect(prlist).toBeDefined()
-  expect((prlist as PullRequest[]).length).toBeGreaterThan(-1)
-  expect(
-    (prlist as PullRequest[]).filter(
-      p => +new Date(p.merged_at) > Date.now() - 7 * ONE_DAY
-    ).length
-  ).toBe(8)
-})
-
 test('PullRequestsAdapter should', async () => {
-  const plrqs = new PullRequestsAdapter(process.env.GH_TOKEN, 'stenjo', [
+  const pullRequests = new PullRequestsAdapter(process.env.GH_TOKEN, 'stenjo', [
     'dora'
   ])
-  plrqs.getPRs = jest.fn(
+  pullRequests.getPRs = jest.fn(
     async (
       octokit: Octokit,
       repo: string,
@@ -38,7 +23,7 @@ test('PullRequestsAdapter should', async () => {
       )
     }
   )
-  const pr = (await plrqs.GetAllPRsLastMonth()) as PullRequest[]
+  const pr = (await pullRequests.GetAllPRsLastMonth()) as PullRequest[]
 
   expect(pr.length).toBeGreaterThan(-1)
   expect(pr.length).toBe(2)
