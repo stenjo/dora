@@ -90,7 +90,7 @@ jobs:
         uses: GrantBirki/comment@v2.1.0
         continue-on-error: true
         with:
-          comment-id: 1234${{ github.event.pull_request.number }}
+          comment-id: ${{ github.event.comment.id }}
           edit-mode: replace
           file: stryker-report.md
 
