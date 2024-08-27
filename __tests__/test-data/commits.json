@@ -1,0 +1,2417 @@
+[
+  {
+    "sha": "5265568661241b8be64cf7df2ea455ba736908ee",
+    "node_id": "C_kwDOJTf0atoAKDUyNjU1Njg2NjEyNDFiOGJlNjRjZjdkZjJlYTQ1NWJhNzM2OTA4ZWU",
+    "commit": {
+      "author": {
+        "name": "Sten Otto Johnsen",
+        "email": "steoj@equinor.com",
+        "date": "2023-04-22T20:41:12Z"
+      },
+      "committer": {
+        "name": "Sten Otto Johnsen",
+        "email": "steoj@equinor.com",
+        "date": "2023-04-22T20:41:12Z"
+      },
+      "message": "fix: clean up",
+      "tree": {
+        "sha": "4f5618f8703c4dd70b5465590125bd238b88103f",
+        "url": "https://api.github.com/repos/stenjo/dora/git/trees/4f5618f8703c4dd70b5465590125bd238b88103f"
+      },
+      "url": "https://api.github.com/repos/stenjo/dora/git/commits/5265568661241b8be64cf7df2ea455ba736908ee",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/stenjo/dora/commits/5265568661241b8be64cf7df2ea455ba736908ee",
+    "html_url": "https://github.com/stenjo/dora/commit/5265568661241b8be64cf7df2ea455ba736908ee",
+    "comments_url": "https://api.github.com/repos/stenjo/dora/commits/5265568661241b8be64cf7df2ea455ba736908ee/comments",
+    "author": {
+      "login": "steoj",
+      "id": 46670655,
+      "node_id": "MDQ6VXNlcjQ2NjcwNjU1",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46670655?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/steoj",
+      "html_url": "https://github.com/steoj",
+      "followers_url": "https://api.github.com/users/steoj/followers",
+      "following_url": "https://api.github.com/users/steoj/following{/other_user}",
+      "gists_url": "https://api.github.com/users/steoj/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/steoj/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/steoj/subscriptions",
+      "organizations_url": "https://api.github.com/users/steoj/orgs",
+      "repos_url": "https://api.github.com/users/steoj/repos",
+      "events_url": "https://api.github.com/users/steoj/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/steoj/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "steoj",
+      "id": 46670655,
+      "node_id": "MDQ6VXNlcjQ2NjcwNjU1",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46670655?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/steoj",
+      "html_url": "https://github.com/steoj",
+      "followers_url": "https://api.github.com/users/steoj/followers",
+      "following_url": "https://api.github.com/users/steoj/following{/other_user}",
+      "gists_url": "https://api.github.com/users/steoj/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/steoj/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/steoj/subscriptions",
+      "organizations_url": "https://api.github.com/users/steoj/orgs",
+      "repos_url": "https://api.github.com/users/steoj/repos",
+      "events_url": "https://api.github.com/users/steoj/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/steoj/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "0c0bc245f50f8ac2a8bf02ae4bc97c902f14e52d",
+        "url": "https://api.github.com/repos/stenjo/dora/commits/0c0bc245f50f8ac2a8bf02ae4bc97c902f14e52d",
+        "html_url": "https://github.com/stenjo/dora/commit/0c0bc245f50f8ac2a8bf02ae4bc97c902f14e52d"
+      }
+    ]
+  },
+  {
+    "sha": "0c0bc245f50f8ac2a8bf02ae4bc97c902f14e52d",
+    "node_id": "C_kwDOJTf0atoAKDBjMGJjMjQ1ZjUwZjhhYzJhOGJmMDJhZTRiYzk3YzkwMmYxNGU1MmQ",
+    "commit": {
+      "author": {
+        "name": "Sten Otto Johnsen",
+        "email": "sten@thinea.no",
+        "date": "2023-04-22T20:28:15Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2023-04-22T20:28:15Z"
+      },
+      "message": "Merge pull request #12 from stenjo/release-please--branches--main--components--release-please-action\n\nchore(main): release 0.0.2",
+      "tree": {
+        "sha": "ee5b78054939770d01a8904f9869a8c4aecaa464",
+        "url": "https://api.github.com/repos/stenjo/dora/git/trees/ee5b78054939770d01a8904f9869a8c4aecaa464"
+      },
+      "url": "https://api.github.com/repos/stenjo/dora/git/commits/0c0bc245f50f8ac2a8bf02ae4bc97c902f14e52d",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJkRENfCRBK7hj4Ov3rIwAA604IAD+Wp9JUMtczpFoE3cexgqND\n+NyMPevMo6luJBzjI2NSlFqryFpWvvVgw2IUr1uoORvP2nbdCDhhf6D74r9kH/7u\nzgnS81TAmIUsqJYWqjvJ40p78ACecwYm6eUzvrAPf/dfpx2hTGtacT+ggR/vTjHX\nVId39Xa6Qdg84Tm8Nl9jpYikl3tIrJFUgJb94lSfdNZIijomw+60eIRuQ+gzByQS\nZBqG3qrFBrrGsJatSiG+tl6Ct7/1zh7ZhcUeyHiN8FQVTm/MTIIlpGOozSqPFVAf\nLKGOcG9in36JQnN8YY8Mw0jAC0tRBwuLtYCeQSsa+qPHogvmDedDIbxvcOJr6kQ=\n=FCRM\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree ee5b78054939770d01a8904f9869a8c4aecaa464\nparent 3f980dcb1ddd87b3ebada3123ac9be689f262b60\nparent 0da43637e35e57be7347a5a9fefa12141f6f43f5\nauthor Sten Otto Johnsen <sten@thinea.no> 1682195295 +0200\ncommitter GitHub <noreply@github.com> 1682195295 +0200\n\nMerge pull request #12 from stenjo/release-please--branches--main--components--release-please-action\n\nchore(main): release 0.0.2"
+      }
+    },
+    "url": "https://api.github.com/repos/stenjo/dora/commits/0c0bc245f50f8ac2a8bf02ae4bc97c902f14e52d",
+    "html_url": "https://github.com/stenjo/dora/commit/0c0bc245f50f8ac2a8bf02ae4bc97c902f14e52d",
+    "comments_url": "https://api.github.com/repos/stenjo/dora/commits/0c0bc245f50f8ac2a8bf02ae4bc97c902f14e52d/comments",
+    "author": {
+      "login": "stenjo",
+      "id": 668722,
+      "node_id": "MDQ6VXNlcjY2ODcyMg==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/668722?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/stenjo",
+      "html_url": "https://github.com/stenjo",
+      "followers_url": "https://api.github.com/users/stenjo/followers",
+      "following_url": "https://api.github.com/users/stenjo/following{/other_user}",
+      "gists_url": "https://api.github.com/users/stenjo/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/stenjo/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/stenjo/subscriptions",
+      "organizations_url": "https://api.github.com/users/stenjo/orgs",
+      "repos_url": "https://api.github.com/users/stenjo/repos",
+      "events_url": "https://api.github.com/users/stenjo/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/stenjo/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "3f980dcb1ddd87b3ebada3123ac9be689f262b60",
+        "url": "https://api.github.com/repos/stenjo/dora/commits/3f980dcb1ddd87b3ebada3123ac9be689f262b60",
+        "html_url": "https://github.com/stenjo/dora/commit/3f980dcb1ddd87b3ebada3123ac9be689f262b60"
+      },
+      {
+        "sha": "0da43637e35e57be7347a5a9fefa12141f6f43f5",
+        "url": "https://api.github.com/repos/stenjo/dora/commits/0da43637e35e57be7347a5a9fefa12141f6f43f5",
+        "html_url": "https://github.com/stenjo/dora/commit/0da43637e35e57be7347a5a9fefa12141f6f43f5"
+      }
+    ]
+  },
+  {
+    "sha": "0da43637e35e57be7347a5a9fefa12141f6f43f5",
+    "node_id": "C_kwDOJTf0atoAKDBkYTQzNjM3ZTM1ZTU3YmU3MzQ3YTVhOWZlZmExMjE0MWY2ZjQzZjU",
+    "commit": {
+      "author": {
+        "name": "github-actions[bot]",
+        "email": "41898282+github-actions[bot]@users.noreply.github.com",
+        "date": "2023-04-22T20:26:42Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2023-04-22T20:26:42Z"
+      },
+      "message": "chore(main): release 0.0.2",
+      "tree": {
+        "sha": "ee5b78054939770d01a8904f9869a8c4aecaa464",
+        "url": "https://api.github.com/repos/stenjo/dora/git/trees/ee5b78054939770d01a8904f9869a8c4aecaa464"
+      },
+      "url": "https://api.github.com/repos/stenjo/dora/git/commits/0da43637e35e57be7347a5a9fefa12141f6f43f5",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJkREMCCRBK7hj4Ov3rIwAAeugIAA9x5fp/iUEYRVndUzK5R9U0\nhehHxc+tz0MSBvnbRh9nQRe5sFgKTDxjTBnCqKQ0AE6Y6+IX5NMMHPRz76Q8vbCL\nktRI4je/rKDdZxzqqvg7429bKzB/AkFtXTyjgMYshPA2Fl8ob8NXEG6RWCZ3T9Sa\nQ2cs90fZTpLKRfnnGm2C34jvPzVrVuUp4LsUEnbrYYmgGkNdgMx9d5qIFh3aq9l8\ns0ctNCD+j9Y4Q/n1XLVoymkaNub9Gk13kp5aobp5mZ07r8sq5qwSLtBTrBcPM4cg\n0Kmhd0ipr1z2IMZ2SXdy20cwCvRim7BZyTWiWnwSXi0vq9mDHnLIrBqPCeWktZk=\n=g6+H\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree ee5b78054939770d01a8904f9869a8c4aecaa464\nparent 3f980dcb1ddd87b3ebada3123ac9be689f262b60\nauthor github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com> 1682195202 +0000\ncommitter GitHub <noreply@github.com> 1682195202 +0000\n\nchore(main): release 0.0.2"
+      }
+    },
+    "url": "https://api.github.com/repos/stenjo/dora/commits/0da43637e35e57be7347a5a9fefa12141f6f43f5",
+    "html_url": "https://github.com/stenjo/dora/commit/0da43637e35e57be7347a5a9fefa12141f6f43f5",
+    "comments_url": "https://api.github.com/repos/stenjo/dora/commits/0da43637e35e57be7347a5a9fefa12141f6f43f5/comments",
+    "author": {
+      "login": "github-actions[bot]",
+      "id": 41898282,
+      "node_id": "MDM6Qm90NDE4OTgyODI=",
+      "avatar_url": "https://avatars.githubusercontent.com/in/15368?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/github-actions%5Bbot%5D",
+      "html_url": "https://github.com/apps/github-actions",
+      "followers_url": "https://api.github.com/users/github-actions%5Bbot%5D/followers",
+      "following_url": "https://api.github.com/users/github-actions%5Bbot%5D/following{/other_user}",
+      "gists_url": "https://api.github.com/users/github-actions%5Bbot%5D/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/github-actions%5Bbot%5D/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/github-actions%5Bbot%5D/subscriptions",
+      "organizations_url": "https://api.github.com/users/github-actions%5Bbot%5D/orgs",
+      "repos_url": "https://api.github.com/users/github-actions%5Bbot%5D/repos",
+      "events_url": "https://api.github.com/users/github-actions%5Bbot%5D/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/github-actions%5Bbot%5D/received_events",
+      "type": "Bot",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "3f980dcb1ddd87b3ebada3123ac9be689f262b60",
+        "url": "https://api.github.com/repos/stenjo/dora/commits/3f980dcb1ddd87b3ebada3123ac9be689f262b60",
+        "html_url": "https://github.com/stenjo/dora/commit/3f980dcb1ddd87b3ebada3123ac9be689f262b60"
+      }
+    ]
+  },
+  {
+    "sha": "3f980dcb1ddd87b3ebada3123ac9be689f262b60",
+    "node_id": "C_kwDOJTf0atoAKDNmOTgwZGNiMWRkZDg3YjNlYmFkYTMxMjNhYzliZTY4OWYyNjJiNjA",
+    "commit": {
+      "author": {
+        "name": "Sten Otto Johnsen",
+        "email": "sten@thinea.no",
+        "date": "2023-04-22T20:26:14Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2023-04-22T20:26:14Z"
+      },
+      "message": "Merge pull request #11 from stenjo/9-featdeploy-add-deploy-rate-by-tag-rate\n\nfix(workflow): update release and dora workflows",
+      "tree": {
+        "sha": "1cf67e4f86a924d87b805ac620b8cc70b3f3c1dd",
+        "url": "https://api.github.com/repos/stenjo/dora/git/trees/1cf67e4f86a924d87b805ac620b8cc70b3f3c1dd"
+      },
+      "url": "https://api.github.com/repos/stenjo/dora/git/commits/3f980dcb1ddd87b3ebada3123ac9be689f262b60",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJkRELmCRBK7hj4Ov3rIwAAwi4IAHUsNg7b2L7r2JtoNWrPheXm\nl2wDs7t+2TK+ElTaBlWAwbqZndHWCZFJyA+oqivrH1aArkuNW2Apg9ljc6kQYBGq\n1ms44dEvCG3qOaDLJuk+yX9CbLqO4d0EeLBhHzZ1rxsOsIRKBZ+Bv4rpQ1P0XCoV\nHlUnylLTdDSGHfeTdS9CwBnx2ydCSDNGIXlNQyeUXLggTqOyzx2U2nl5InJsThrB\n+uEO6HauIq88EabFJXjsvBzDG50kyN73PuIYc4KV4cGtwQn8TAcZlbf+VWWWxO8D\nandgksdJmnMlVhhdDc/60COJneFSiJWYououmSs0D3cP8cOg/Ly5HIbOic7rj7U=\n=TZMJ\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree 1cf67e4f86a924d87b805ac620b8cc70b3f3c1dd\nparent 28c5fbd8f6c0df64348abd8e730e92ba9d917cd6\nparent 0dfc0d61c946b28808aa9d5a9dae1e34b312b2dc\nauthor Sten Otto Johnsen <sten@thinea.no> 1682195174 +0200\ncommitter GitHub <noreply@github.com> 1682195174 +0200\n\nMerge pull request #11 from stenjo/9-featdeploy-add-deploy-rate-by-tag-rate\n\nfix(workflow): update release and dora workflows"
+      }
+    },
+    "url": "https://api.github.com/repos/stenjo/dora/commits/3f980dcb1ddd87b3ebada3123ac9be689f262b60",
+    "html_url": "https://github.com/stenjo/dora/commit/3f980dcb1ddd87b3ebada3123ac9be689f262b60",
+    "comments_url": "https://api.github.com/repos/stenjo/dora/commits/3f980dcb1ddd87b3ebada3123ac9be689f262b60/comments",
+    "author": {
+      "login": "stenjo",
+      "id": 668722,
+      "node_id": "MDQ6VXNlcjY2ODcyMg==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/668722?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/stenjo",
+      "html_url": "https://github.com/stenjo",
+      "followers_url": "https://api.github.com/users/stenjo/followers",
+      "following_url": "https://api.github.com/users/stenjo/following{/other_user}",
+      "gists_url": "https://api.github.com/users/stenjo/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/stenjo/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/stenjo/subscriptions",
+      "organizations_url": "https://api.github.com/users/stenjo/orgs",
+      "repos_url": "https://api.github.com/users/stenjo/repos",
+      "events_url": "https://api.github.com/users/stenjo/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/stenjo/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "28c5fbd8f6c0df64348abd8e730e92ba9d917cd6",
+        "url": "https://api.github.com/repos/stenjo/dora/commits/28c5fbd8f6c0df64348abd8e730e92ba9d917cd6",
+        "html_url": "https://github.com/stenjo/dora/commit/28c5fbd8f6c0df64348abd8e730e92ba9d917cd6"
+      },
+      {
+        "sha": "0dfc0d61c946b28808aa9d5a9dae1e34b312b2dc",
+        "url": "https://api.github.com/repos/stenjo/dora/commits/0dfc0d61c946b28808aa9d5a9dae1e34b312b2dc",
+        "html_url": "https://github.com/stenjo/dora/commit/0dfc0d61c946b28808aa9d5a9dae1e34b312b2dc"
+      }
+    ]
+  },
+  {
+    "sha": "0dfc0d61c946b28808aa9d5a9dae1e34b312b2dc",
+    "node_id": "C_kwDOJTf0atoAKDBkZmMwZDYxYzk0NmIyODgwOGFhOWQ1YTlkYWUxZTM0YjMxMmIyZGM",
+    "commit": {
+      "author": {
+        "name": "Sten Otto Johnsen",
+        "email": "steoj@equinor.com",
+        "date": "2023-04-22T20:24:05Z"
+      },
+      "committer": {
+        "name": "Sten Otto Johnsen",
+        "email": "steoj@equinor.com",
+        "date": "2023-04-22T20:24:05Z"
+      },
+      "message": "fix(workflow): update release and dora workflows",
+      "tree": {
+        "sha": "1cf67e4f86a924d87b805ac620b8cc70b3f3c1dd",
+        "url": "https://api.github.com/repos/stenjo/dora/git/trees/1cf67e4f86a924d87b805ac620b8cc70b3f3c1dd"
+      },
+      "url": "https://api.github.com/repos/stenjo/dora/git/commits/0dfc0d61c946b28808aa9d5a9dae1e34b312b2dc",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/stenjo/dora/commits/0dfc0d61c946b28808aa9d5a9dae1e34b312b2dc",
+    "html_url": "https://github.com/stenjo/dora/commit/0dfc0d61c946b28808aa9d5a9dae1e34b312b2dc",
+    "comments_url": "https://api.github.com/repos/stenjo/dora/commits/0dfc0d61c946b28808aa9d5a9dae1e34b312b2dc/comments",
+    "author": {
+      "login": "steoj",
+      "id": 46670655,
+      "node_id": "MDQ6VXNlcjQ2NjcwNjU1",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46670655?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/steoj",
+      "html_url": "https://github.com/steoj",
+      "followers_url": "https://api.github.com/users/steoj/followers",
+      "following_url": "https://api.github.com/users/steoj/following{/other_user}",
+      "gists_url": "https://api.github.com/users/steoj/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/steoj/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/steoj/subscriptions",
+      "organizations_url": "https://api.github.com/users/steoj/orgs",
+      "repos_url": "https://api.github.com/users/steoj/repos",
+      "events_url": "https://api.github.com/users/steoj/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/steoj/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "steoj",
+      "id": 46670655,
+      "node_id": "MDQ6VXNlcjQ2NjcwNjU1",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46670655?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/steoj",
+      "html_url": "https://github.com/steoj",
+      "followers_url": "https://api.github.com/users/steoj/followers",
+      "following_url": "https://api.github.com/users/steoj/following{/other_user}",
+      "gists_url": "https://api.github.com/users/steoj/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/steoj/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/steoj/subscriptions",
+      "organizations_url": "https://api.github.com/users/steoj/orgs",
+      "repos_url": "https://api.github.com/users/steoj/repos",
+      "events_url": "https://api.github.com/users/steoj/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/steoj/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "56d7025457d70246354a1b0f90e5b2bd3ee22ef8",
+        "url": "https://api.github.com/repos/stenjo/dora/commits/56d7025457d70246354a1b0f90e5b2bd3ee22ef8",
+        "html_url": "https://github.com/stenjo/dora/commit/56d7025457d70246354a1b0f90e5b2bd3ee22ef8"
+      }
+    ]
+  },
+  {
+    "sha": "28c5fbd8f6c0df64348abd8e730e92ba9d917cd6",
+    "node_id": "C_kwDOJTf0atoAKDI4YzVmYmQ4ZjZjMGRmNjQzNDhhYmQ4ZTczMGU5MmJhOWQ5MTdjZDY",
+    "commit": {
+      "author": {
+        "name": "Sten Otto Johnsen",
+        "email": "sten@thinea.no",
+        "date": "2023-04-22T20:16:54Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2023-04-22T20:16:54Z"
+      },
+      "message": "Merge pull request #10 from stenjo/9-featdeploy-add-deploy-rate-by-tag-rate\n\nfeat(deploy): add deploy rate by tag rate",
+      "tree": {
+        "sha": "b8fc9e524c20fab58a3630b6ff3b4dfd926558f3",
+        "url": "https://api.github.com/repos/stenjo/dora/git/trees/b8fc9e524c20fab58a3630b6ff3b4dfd926558f3"
+      },
+      "url": "https://api.github.com/repos/stenjo/dora/git/commits/28c5fbd8f6c0df64348abd8e730e92ba9d917cd6",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJkREC2CRBK7hj4Ov3rIwAAuksIAAGNBgGZjk/dKczykBRXJMSd\n2QB55c/Y5NBB+brSQRVcZlMaqCXlbiCCjmLDO70Q/u1cApNrBCgU33jmtTCfHbPd\nq9ugucU8SgBQUTU6zJ0Nsl9kpM5NQqEIrIRnEz41tS/8Pqyr/7A3wCPkclsbNMaB\nyTP4J4sxUJhNIQJAoURZuCHwXO59jVbY6UyjMdfeytgYlFICc9dMgM9sZxMdq3qA\nbDkVIvXE+pUsGZsjuEtyd/O4Fplu1/Ak0y3AampD4hg95wZl7zxHvGtmToC1J2HD\n6EEI7JNA45uMp9hDH8lT7Xh2giuXeReHq8KlLSzQ+s6WWMUPSVdTgOFAzoijrlY=\n=yzyT\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree b8fc9e524c20fab58a3630b6ff3b4dfd926558f3\nparent 167c3dc7df5008954e1e6f9b3f4aa7f446e759ba\nparent 56d7025457d70246354a1b0f90e5b2bd3ee22ef8\nauthor Sten Otto Johnsen <sten@thinea.no> 1682194614 +0200\ncommitter GitHub <noreply@github.com> 1682194614 +0200\n\nMerge pull request #10 from stenjo/9-featdeploy-add-deploy-rate-by-tag-rate\n\nfeat(deploy): add deploy rate by tag rate"
+      }
+    },
+    "url": "https://api.github.com/repos/stenjo/dora/commits/28c5fbd8f6c0df64348abd8e730e92ba9d917cd6",
+    "html_url": "https://github.com/stenjo/dora/commit/28c5fbd8f6c0df64348abd8e730e92ba9d917cd6",
+    "comments_url": "https://api.github.com/repos/stenjo/dora/commits/28c5fbd8f6c0df64348abd8e730e92ba9d917cd6/comments",
+    "author": {
+      "login": "stenjo",
+      "id": 668722,
+      "node_id": "MDQ6VXNlcjY2ODcyMg==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/668722?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/stenjo",
+      "html_url": "https://github.com/stenjo",
+      "followers_url": "https://api.github.com/users/stenjo/followers",
+      "following_url": "https://api.github.com/users/stenjo/following{/other_user}",
+      "gists_url": "https://api.github.com/users/stenjo/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/stenjo/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/stenjo/subscriptions",
+      "organizations_url": "https://api.github.com/users/stenjo/orgs",
+      "repos_url": "https://api.github.com/users/stenjo/repos",
+      "events_url": "https://api.github.com/users/stenjo/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/stenjo/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "167c3dc7df5008954e1e6f9b3f4aa7f446e759ba",
+        "url": "https://api.github.com/repos/stenjo/dora/commits/167c3dc7df5008954e1e6f9b3f4aa7f446e759ba",
+        "html_url": "https://github.com/stenjo/dora/commit/167c3dc7df5008954e1e6f9b3f4aa7f446e759ba"
+      },
+      {
+        "sha": "56d7025457d70246354a1b0f90e5b2bd3ee22ef8",
+        "url": "https://api.github.com/repos/stenjo/dora/commits/56d7025457d70246354a1b0f90e5b2bd3ee22ef8",
+        "html_url": "https://github.com/stenjo/dora/commit/56d7025457d70246354a1b0f90e5b2bd3ee22ef8"
+      }
+    ]
+  },
+  {
+    "sha": "56d7025457d70246354a1b0f90e5b2bd3ee22ef8",
+    "node_id": "C_kwDOJTf0atoAKDU2ZDcwMjU0NTdkNzAyNDYzNTRhMWIwZjkwZTViMmJkM2VlMjJlZjg",
+    "commit": {
+      "author": {
+        "name": "Sten Otto Johnsen",
+        "email": "steoj@equinor.com",
+        "date": "2023-04-22T20:12:50Z"
+      },
+      "committer": {
+        "name": "Sten Otto Johnsen",
+        "email": "steoj@equinor.com",
+        "date": "2023-04-22T20:12:50Z"
+      },
+      "message": "all passing",
+      "tree": {
+        "sha": "b8fc9e524c20fab58a3630b6ff3b4dfd926558f3",
+        "url": "https://api.github.com/repos/stenjo/dora/git/trees/b8fc9e524c20fab58a3630b6ff3b4dfd926558f3"
+      },
+      "url": "https://api.github.com/repos/stenjo/dora/git/commits/56d7025457d70246354a1b0f90e5b2bd3ee22ef8",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/stenjo/dora/commits/56d7025457d70246354a1b0f90e5b2bd3ee22ef8",
+    "html_url": "https://github.com/stenjo/dora/commit/56d7025457d70246354a1b0f90e5b2bd3ee22ef8",
+    "comments_url": "https://api.github.com/repos/stenjo/dora/commits/56d7025457d70246354a1b0f90e5b2bd3ee22ef8/comments",
+    "author": {
+      "login": "steoj",
+      "id": 46670655,
+      "node_id": "MDQ6VXNlcjQ2NjcwNjU1",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46670655?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/steoj",
+      "html_url": "https://github.com/steoj",
+      "followers_url": "https://api.github.com/users/steoj/followers",
+      "following_url": "https://api.github.com/users/steoj/following{/other_user}",
+      "gists_url": "https://api.github.com/users/steoj/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/steoj/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/steoj/subscriptions",
+      "organizations_url": "https://api.github.com/users/steoj/orgs",
+      "repos_url": "https://api.github.com/users/steoj/repos",
+      "events_url": "https://api.github.com/users/steoj/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/steoj/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "steoj",
+      "id": 46670655,
+      "node_id": "MDQ6VXNlcjQ2NjcwNjU1",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46670655?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/steoj",
+      "html_url": "https://github.com/steoj",
+      "followers_url": "https://api.github.com/users/steoj/followers",
+      "following_url": "https://api.github.com/users/steoj/following{/other_user}",
+      "gists_url": "https://api.github.com/users/steoj/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/steoj/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/steoj/subscriptions",
+      "organizations_url": "https://api.github.com/users/steoj/orgs",
+      "repos_url": "https://api.github.com/users/steoj/repos",
+      "events_url": "https://api.github.com/users/steoj/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/steoj/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "32df6aaaf02a397a34647e8b3eb347356caee97d",
+        "url": "https://api.github.com/repos/stenjo/dora/commits/32df6aaaf02a397a34647e8b3eb347356caee97d",
+        "html_url": "https://github.com/stenjo/dora/commit/32df6aaaf02a397a34647e8b3eb347356caee97d"
+      }
+    ]
+  },
+  {
+    "sha": "32df6aaaf02a397a34647e8b3eb347356caee97d",
+    "node_id": "C_kwDOJTf0atoAKDMyZGY2YWFhZjAyYTM5N2EzNDY0N2U4YjNlYjM0NzM1NmNhZWU5N2Q",
+    "commit": {
+      "author": {
+        "name": "Sten Otto Johnsen",
+        "email": "steoj@equinor.com",
+        "date": "2023-04-22T17:29:44Z"
+      },
+      "committer": {
+        "name": "Sten Otto Johnsen",
+        "email": "steoj@equinor.com",
+        "date": "2023-04-22T17:29:44Z"
+      },
+      "message": "fix test",
+      "tree": {
+        "sha": "f7040744d2a5c854e74cfc987aa9e7ad8f60a36f",
+        "url": "https://api.github.com/repos/stenjo/dora/git/trees/f7040744d2a5c854e74cfc987aa9e7ad8f60a36f"
+      },
+      "url": "https://api.github.com/repos/stenjo/dora/git/commits/32df6aaaf02a397a34647e8b3eb347356caee97d",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/stenjo/dora/commits/32df6aaaf02a397a34647e8b3eb347356caee97d",
+    "html_url": "https://github.com/stenjo/dora/commit/32df6aaaf02a397a34647e8b3eb347356caee97d",
+    "comments_url": "https://api.github.com/repos/stenjo/dora/commits/32df6aaaf02a397a34647e8b3eb347356caee97d/comments",
+    "author": {
+      "login": "steoj",
+      "id": 46670655,
+      "node_id": "MDQ6VXNlcjQ2NjcwNjU1",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46670655?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/steoj",
+      "html_url": "https://github.com/steoj",
+      "followers_url": "https://api.github.com/users/steoj/followers",
+      "following_url": "https://api.github.com/users/steoj/following{/other_user}",
+      "gists_url": "https://api.github.com/users/steoj/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/steoj/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/steoj/subscriptions",
+      "organizations_url": "https://api.github.com/users/steoj/orgs",
+      "repos_url": "https://api.github.com/users/steoj/repos",
+      "events_url": "https://api.github.com/users/steoj/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/steoj/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "steoj",
+      "id": 46670655,
+      "node_id": "MDQ6VXNlcjQ2NjcwNjU1",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46670655?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/steoj",
+      "html_url": "https://github.com/steoj",
+      "followers_url": "https://api.github.com/users/steoj/followers",
+      "following_url": "https://api.github.com/users/steoj/following{/other_user}",
+      "gists_url": "https://api.github.com/users/steoj/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/steoj/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/steoj/subscriptions",
+      "organizations_url": "https://api.github.com/users/steoj/orgs",
+      "repos_url": "https://api.github.com/users/steoj/repos",
+      "events_url": "https://api.github.com/users/steoj/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/steoj/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "1e77d775fa5e6b53b183bcdb1b507b779158e4db",
+        "url": "https://api.github.com/repos/stenjo/dora/commits/1e77d775fa5e6b53b183bcdb1b507b779158e4db",
+        "html_url": "https://github.com/stenjo/dora/commit/1e77d775fa5e6b53b183bcdb1b507b779158e4db"
+      }
+    ]
+  },
+  {
+    "sha": "1e77d775fa5e6b53b183bcdb1b507b779158e4db",
+    "node_id": "C_kwDOJTf0atoAKDFlNzdkNzc1ZmE1ZTZiNTNiMTgzYmNkYjFiNTA3Yjc3OTE1OGU0ZGI",
+    "commit": {
+      "author": {
+        "name": "Sten Otto Johnsen",
+        "email": "steoj@equinor.com",
+        "date": "2023-04-22T17:24:08Z"
+      },
+      "committer": {
+        "name": "Sten Otto Johnsen",
+        "email": "steoj@equinor.com",
+        "date": "2023-04-22T17:24:08Z"
+      },
+      "message": "wip",
+      "tree": {
+        "sha": "841d57b091376d9290e319f267bed6a25528a262",
+        "url": "https://api.github.com/repos/stenjo/dora/git/trees/841d57b091376d9290e319f267bed6a25528a262"
+      },
+      "url": "https://api.github.com/repos/stenjo/dora/git/commits/1e77d775fa5e6b53b183bcdb1b507b779158e4db",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/stenjo/dora/commits/1e77d775fa5e6b53b183bcdb1b507b779158e4db",
+    "html_url": "https://github.com/stenjo/dora/commit/1e77d775fa5e6b53b183bcdb1b507b779158e4db",
+    "comments_url": "https://api.github.com/repos/stenjo/dora/commits/1e77d775fa5e6b53b183bcdb1b507b779158e4db/comments",
+    "author": {
+      "login": "steoj",
+      "id": 46670655,
+      "node_id": "MDQ6VXNlcjQ2NjcwNjU1",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46670655?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/steoj",
+      "html_url": "https://github.com/steoj",
+      "followers_url": "https://api.github.com/users/steoj/followers",
+      "following_url": "https://api.github.com/users/steoj/following{/other_user}",
+      "gists_url": "https://api.github.com/users/steoj/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/steoj/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/steoj/subscriptions",
+      "organizations_url": "https://api.github.com/users/steoj/orgs",
+      "repos_url": "https://api.github.com/users/steoj/repos",
+      "events_url": "https://api.github.com/users/steoj/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/steoj/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "steoj",
+      "id": 46670655,
+      "node_id": "MDQ6VXNlcjQ2NjcwNjU1",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46670655?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/steoj",
+      "html_url": "https://github.com/steoj",
+      "followers_url": "https://api.github.com/users/steoj/followers",
+      "following_url": "https://api.github.com/users/steoj/following{/other_user}",
+      "gists_url": "https://api.github.com/users/steoj/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/steoj/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/steoj/subscriptions",
+      "organizations_url": "https://api.github.com/users/steoj/orgs",
+      "repos_url": "https://api.github.com/users/steoj/repos",
+      "events_url": "https://api.github.com/users/steoj/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/steoj/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "630e7de501bd59aa0a705493e8bedac6e9a2cf6c",
+        "url": "https://api.github.com/repos/stenjo/dora/commits/630e7de501bd59aa0a705493e8bedac6e9a2cf6c",
+        "html_url": "https://github.com/stenjo/dora/commit/630e7de501bd59aa0a705493e8bedac6e9a2cf6c"
+      }
+    ]
+  },
+  {
+    "sha": "630e7de501bd59aa0a705493e8bedac6e9a2cf6c",
+    "node_id": "C_kwDOJTf0atoAKDYzMGU3ZGU1MDFiZDU5YWEwYTcwNTQ5M2U4YmVkYWM2ZTlhMmNmNmM",
+    "commit": {
+      "author": {
+        "name": "Sten Otto Johnsen",
+        "email": "steoj@equinor.com",
+        "date": "2023-04-22T17:14:32Z"
+      },
+      "committer": {
+        "name": "Sten Otto Johnsen",
+        "email": "steoj@equinor.com",
+        "date": "2023-04-22T17:14:32Z"
+      },
+      "message": "linting",
+      "tree": {
+        "sha": "1f52ad31754c713f45cd32d28cad40bdc05d762d",
+        "url": "https://api.github.com/repos/stenjo/dora/git/trees/1f52ad31754c713f45cd32d28cad40bdc05d762d"
+      },
+      "url": "https://api.github.com/repos/stenjo/dora/git/commits/630e7de501bd59aa0a705493e8bedac6e9a2cf6c",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/stenjo/dora/commits/630e7de501bd59aa0a705493e8bedac6e9a2cf6c",
+    "html_url": "https://github.com/stenjo/dora/commit/630e7de501bd59aa0a705493e8bedac6e9a2cf6c",
+    "comments_url": "https://api.github.com/repos/stenjo/dora/commits/630e7de501bd59aa0a705493e8bedac6e9a2cf6c/comments",
+    "author": {
+      "login": "steoj",
+      "id": 46670655,
+      "node_id": "MDQ6VXNlcjQ2NjcwNjU1",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46670655?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/steoj",
+      "html_url": "https://github.com/steoj",
+      "followers_url": "https://api.github.com/users/steoj/followers",
+      "following_url": "https://api.github.com/users/steoj/following{/other_user}",
+      "gists_url": "https://api.github.com/users/steoj/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/steoj/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/steoj/subscriptions",
+      "organizations_url": "https://api.github.com/users/steoj/orgs",
+      "repos_url": "https://api.github.com/users/steoj/repos",
+      "events_url": "https://api.github.com/users/steoj/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/steoj/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "steoj",
+      "id": 46670655,
+      "node_id": "MDQ6VXNlcjQ2NjcwNjU1",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46670655?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/steoj",
+      "html_url": "https://github.com/steoj",
+      "followers_url": "https://api.github.com/users/steoj/followers",
+      "following_url": "https://api.github.com/users/steoj/following{/other_user}",
+      "gists_url": "https://api.github.com/users/steoj/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/steoj/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/steoj/subscriptions",
+      "organizations_url": "https://api.github.com/users/steoj/orgs",
+      "repos_url": "https://api.github.com/users/steoj/repos",
+      "events_url": "https://api.github.com/users/steoj/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/steoj/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "63f34fcab2202a2ab5472f86d97b8764ad23caa1",
+        "url": "https://api.github.com/repos/stenjo/dora/commits/63f34fcab2202a2ab5472f86d97b8764ad23caa1",
+        "html_url": "https://github.com/stenjo/dora/commit/63f34fcab2202a2ab5472f86d97b8764ad23caa1"
+      }
+    ]
+  },
+  {
+    "sha": "63f34fcab2202a2ab5472f86d97b8764ad23caa1",
+    "node_id": "C_kwDOJTf0atoAKDYzZjM0ZmNhYjIyMDJhMmFiNTQ3MmY4NmQ5N2I4NzY0YWQyM2NhYTE",
+    "commit": {
+      "author": {
+        "name": "Sten Otto Johnsen",
+        "email": "steoj@equinor.com",
+        "date": "2023-04-22T16:44:45Z"
+      },
+      "committer": {
+        "name": "Sten Otto Johnsen",
+        "email": "steoj@equinor.com",
+        "date": "2023-04-22T16:44:45Z"
+      },
+      "message": "wip: changed to commonjs",
+      "tree": {
+        "sha": "439be896894a0406565ff91de373237ccb9b7117",
+        "url": "https://api.github.com/repos/stenjo/dora/git/trees/439be896894a0406565ff91de373237ccb9b7117"
+      },
+      "url": "https://api.github.com/repos/stenjo/dora/git/commits/63f34fcab2202a2ab5472f86d97b8764ad23caa1",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/stenjo/dora/commits/63f34fcab2202a2ab5472f86d97b8764ad23caa1",
+    "html_url": "https://github.com/stenjo/dora/commit/63f34fcab2202a2ab5472f86d97b8764ad23caa1",
+    "comments_url": "https://api.github.com/repos/stenjo/dora/commits/63f34fcab2202a2ab5472f86d97b8764ad23caa1/comments",
+    "author": {
+      "login": "steoj",
+      "id": 46670655,
+      "node_id": "MDQ6VXNlcjQ2NjcwNjU1",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46670655?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/steoj",
+      "html_url": "https://github.com/steoj",
+      "followers_url": "https://api.github.com/users/steoj/followers",
+      "following_url": "https://api.github.com/users/steoj/following{/other_user}",
+      "gists_url": "https://api.github.com/users/steoj/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/steoj/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/steoj/subscriptions",
+      "organizations_url": "https://api.github.com/users/steoj/orgs",
+      "repos_url": "https://api.github.com/users/steoj/repos",
+      "events_url": "https://api.github.com/users/steoj/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/steoj/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "steoj",
+      "id": 46670655,
+      "node_id": "MDQ6VXNlcjQ2NjcwNjU1",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46670655?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/steoj",
+      "html_url": "https://github.com/steoj",
+      "followers_url": "https://api.github.com/users/steoj/followers",
+      "following_url": "https://api.github.com/users/steoj/following{/other_user}",
+      "gists_url": "https://api.github.com/users/steoj/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/steoj/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/steoj/subscriptions",
+      "organizations_url": "https://api.github.com/users/steoj/orgs",
+      "repos_url": "https://api.github.com/users/steoj/repos",
+      "events_url": "https://api.github.com/users/steoj/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/steoj/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "988b3165df936e82ae5de581e58c29b64dc4d45f",
+        "url": "https://api.github.com/repos/stenjo/dora/commits/988b3165df936e82ae5de581e58c29b64dc4d45f",
+        "html_url": "https://github.com/stenjo/dora/commit/988b3165df936e82ae5de581e58c29b64dc4d45f"
+      }
+    ]
+  },
+  {
+    "sha": "988b3165df936e82ae5de581e58c29b64dc4d45f",
+    "node_id": "C_kwDOJTf0atoAKDk4OGIzMTY1ZGY5MzZlODJhZTVkZTU4MWU1OGMyOWI2NGRjNGQ0NWY",
+    "commit": {
+      "author": {
+        "name": "Sten Otto Johnsen",
+        "email": "steoj@equinor.com",
+        "date": "2023-04-22T16:36:44Z"
+      },
+      "committer": {
+        "name": "Sten Otto Johnsen",
+        "email": "steoj@equinor.com",
+        "date": "2023-04-22T16:36:44Z"
+      },
+      "message": "wip",
+      "tree": {
+        "sha": "8f690d8e7dcd218cf265471f5b6d53faa18bf1be",
+        "url": "https://api.github.com/repos/stenjo/dora/git/trees/8f690d8e7dcd218cf265471f5b6d53faa18bf1be"
+      },
+      "url": "https://api.github.com/repos/stenjo/dora/git/commits/988b3165df936e82ae5de581e58c29b64dc4d45f",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/stenjo/dora/commits/988b3165df936e82ae5de581e58c29b64dc4d45f",
+    "html_url": "https://github.com/stenjo/dora/commit/988b3165df936e82ae5de581e58c29b64dc4d45f",
+    "comments_url": "https://api.github.com/repos/stenjo/dora/commits/988b3165df936e82ae5de581e58c29b64dc4d45f/comments",
+    "author": {
+      "login": "steoj",
+      "id": 46670655,
+      "node_id": "MDQ6VXNlcjQ2NjcwNjU1",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46670655?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/steoj",
+      "html_url": "https://github.com/steoj",
+      "followers_url": "https://api.github.com/users/steoj/followers",
+      "following_url": "https://api.github.com/users/steoj/following{/other_user}",
+      "gists_url": "https://api.github.com/users/steoj/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/steoj/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/steoj/subscriptions",
+      "organizations_url": "https://api.github.com/users/steoj/orgs",
+      "repos_url": "https://api.github.com/users/steoj/repos",
+      "events_url": "https://api.github.com/users/steoj/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/steoj/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "steoj",
+      "id": 46670655,
+      "node_id": "MDQ6VXNlcjQ2NjcwNjU1",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46670655?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/steoj",
+      "html_url": "https://github.com/steoj",
+      "followers_url": "https://api.github.com/users/steoj/followers",
+      "following_url": "https://api.github.com/users/steoj/following{/other_user}",
+      "gists_url": "https://api.github.com/users/steoj/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/steoj/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/steoj/subscriptions",
+      "organizations_url": "https://api.github.com/users/steoj/orgs",
+      "repos_url": "https://api.github.com/users/steoj/repos",
+      "events_url": "https://api.github.com/users/steoj/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/steoj/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "27e1fe791b21bb0eb5759c4fc93ade510c258bf2",
+        "url": "https://api.github.com/repos/stenjo/dora/commits/27e1fe791b21bb0eb5759c4fc93ade510c258bf2",
+        "html_url": "https://github.com/stenjo/dora/commit/27e1fe791b21bb0eb5759c4fc93ade510c258bf2"
+      }
+    ]
+  },
+  {
+    "sha": "27e1fe791b21bb0eb5759c4fc93ade510c258bf2",
+    "node_id": "C_kwDOJTf0atoAKDI3ZTFmZTc5MWIyMWJiMGViNTc1OWM0ZmM5M2FkZTUxMGMyNThiZjI",
+    "commit": {
+      "author": {
+        "name": "Sten Otto Johnsen",
+        "email": "steoj@equinor.com",
+        "date": "2023-04-22T09:01:27Z"
+      },
+      "committer": {
+        "name": "Sten Otto Johnsen",
+        "email": "steoj@equinor.com",
+        "date": "2023-04-22T09:01:27Z"
+      },
+      "message": "wip: remove dist package.json",
+      "tree": {
+        "sha": "f2b4bebedaab2def4ba6f8c36dbe1bf4c5b70e7c",
+        "url": "https://api.github.com/repos/stenjo/dora/git/trees/f2b4bebedaab2def4ba6f8c36dbe1bf4c5b70e7c"
+      },
+      "url": "https://api.github.com/repos/stenjo/dora/git/commits/27e1fe791b21bb0eb5759c4fc93ade510c258bf2",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/stenjo/dora/commits/27e1fe791b21bb0eb5759c4fc93ade510c258bf2",
+    "html_url": "https://github.com/stenjo/dora/commit/27e1fe791b21bb0eb5759c4fc93ade510c258bf2",
+    "comments_url": "https://api.github.com/repos/stenjo/dora/commits/27e1fe791b21bb0eb5759c4fc93ade510c258bf2/comments",
+    "author": {
+      "login": "steoj",
+      "id": 46670655,
+      "node_id": "MDQ6VXNlcjQ2NjcwNjU1",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46670655?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/steoj",
+      "html_url": "https://github.com/steoj",
+      "followers_url": "https://api.github.com/users/steoj/followers",
+      "following_url": "https://api.github.com/users/steoj/following{/other_user}",
+      "gists_url": "https://api.github.com/users/steoj/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/steoj/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/steoj/subscriptions",
+      "organizations_url": "https://api.github.com/users/steoj/orgs",
+      "repos_url": "https://api.github.com/users/steoj/repos",
+      "events_url": "https://api.github.com/users/steoj/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/steoj/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "steoj",
+      "id": 46670655,
+      "node_id": "MDQ6VXNlcjQ2NjcwNjU1",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46670655?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/steoj",
+      "html_url": "https://github.com/steoj",
+      "followers_url": "https://api.github.com/users/steoj/followers",
+      "following_url": "https://api.github.com/users/steoj/following{/other_user}",
+      "gists_url": "https://api.github.com/users/steoj/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/steoj/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/steoj/subscriptions",
+      "organizations_url": "https://api.github.com/users/steoj/orgs",
+      "repos_url": "https://api.github.com/users/steoj/repos",
+      "events_url": "https://api.github.com/users/steoj/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/steoj/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "7b916145c566612923f8135c8909d5b1769f469e",
+        "url": "https://api.github.com/repos/stenjo/dora/commits/7b916145c566612923f8135c8909d5b1769f469e",
+        "html_url": "https://github.com/stenjo/dora/commit/7b916145c566612923f8135c8909d5b1769f469e"
+      }
+    ]
+  },
+  {
+    "sha": "7b916145c566612923f8135c8909d5b1769f469e",
+    "node_id": "C_kwDOJTf0atoAKDdiOTE2MTQ1YzU2NjYxMjkyM2Y4MTM1Yzg5MDlkNWIxNzY5ZjQ2OWU",
+    "commit": {
+      "author": {
+        "name": "Sten Otto Johnsen",
+        "email": "steoj@equinor.com",
+        "date": "2023-04-20T23:03:34Z"
+      },
+      "committer": {
+        "name": "Sten Otto Johnsen",
+        "email": "steoj@equinor.com",
+        "date": "2023-04-20T23:03:34Z"
+      },
+      "message": "wip",
+      "tree": {
+        "sha": "8f690d8e7dcd218cf265471f5b6d53faa18bf1be",
+        "url": "https://api.github.com/repos/stenjo/dora/git/trees/8f690d8e7dcd218cf265471f5b6d53faa18bf1be"
+      },
+      "url": "https://api.github.com/repos/stenjo/dora/git/commits/7b916145c566612923f8135c8909d5b1769f469e",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/stenjo/dora/commits/7b916145c566612923f8135c8909d5b1769f469e",
+    "html_url": "https://github.com/stenjo/dora/commit/7b916145c566612923f8135c8909d5b1769f469e",
+    "comments_url": "https://api.github.com/repos/stenjo/dora/commits/7b916145c566612923f8135c8909d5b1769f469e/comments",
+    "author": {
+      "login": "steoj",
+      "id": 46670655,
+      "node_id": "MDQ6VXNlcjQ2NjcwNjU1",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46670655?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/steoj",
+      "html_url": "https://github.com/steoj",
+      "followers_url": "https://api.github.com/users/steoj/followers",
+      "following_url": "https://api.github.com/users/steoj/following{/other_user}",
+      "gists_url": "https://api.github.com/users/steoj/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/steoj/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/steoj/subscriptions",
+      "organizations_url": "https://api.github.com/users/steoj/orgs",
+      "repos_url": "https://api.github.com/users/steoj/repos",
+      "events_url": "https://api.github.com/users/steoj/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/steoj/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "steoj",
+      "id": 46670655,
+      "node_id": "MDQ6VXNlcjQ2NjcwNjU1",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46670655?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/steoj",
+      "html_url": "https://github.com/steoj",
+      "followers_url": "https://api.github.com/users/steoj/followers",
+      "following_url": "https://api.github.com/users/steoj/following{/other_user}",
+      "gists_url": "https://api.github.com/users/steoj/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/steoj/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/steoj/subscriptions",
+      "organizations_url": "https://api.github.com/users/steoj/orgs",
+      "repos_url": "https://api.github.com/users/steoj/repos",
+      "events_url": "https://api.github.com/users/steoj/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/steoj/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "b34bd86ca17f43c88334dd3530fb8aa459b10910",
+        "url": "https://api.github.com/repos/stenjo/dora/commits/b34bd86ca17f43c88334dd3530fb8aa459b10910",
+        "html_url": "https://github.com/stenjo/dora/commit/b34bd86ca17f43c88334dd3530fb8aa459b10910"
+      }
+    ]
+  },
+  {
+    "sha": "b34bd86ca17f43c88334dd3530fb8aa459b10910",
+    "node_id": "C_kwDOJTf0atoAKGIzNGJkODZjYTE3ZjQzYzg4MzM0ZGQzNTMwZmI4YWE0NTliMTA5MTA",
+    "commit": {
+      "author": {
+        "name": "Sten Otto Johnsen",
+        "email": "steoj@equinor.com",
+        "date": "2023-04-20T22:43:50Z"
+      },
+      "committer": {
+        "name": "Sten Otto Johnsen",
+        "email": "steoj@equinor.com",
+        "date": "2023-04-20T22:43:50Z"
+      },
+      "message": "wip",
+      "tree": {
+        "sha": "7aea7ee2b605c74b17c9eb4c45e98c2ed3245e85",
+        "url": "https://api.github.com/repos/stenjo/dora/git/trees/7aea7ee2b605c74b17c9eb4c45e98c2ed3245e85"
+      },
+      "url": "https://api.github.com/repos/stenjo/dora/git/commits/b34bd86ca17f43c88334dd3530fb8aa459b10910",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/stenjo/dora/commits/b34bd86ca17f43c88334dd3530fb8aa459b10910",
+    "html_url": "https://github.com/stenjo/dora/commit/b34bd86ca17f43c88334dd3530fb8aa459b10910",
+    "comments_url": "https://api.github.com/repos/stenjo/dora/commits/b34bd86ca17f43c88334dd3530fb8aa459b10910/comments",
+    "author": {
+      "login": "steoj",
+      "id": 46670655,
+      "node_id": "MDQ6VXNlcjQ2NjcwNjU1",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46670655?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/steoj",
+      "html_url": "https://github.com/steoj",
+      "followers_url": "https://api.github.com/users/steoj/followers",
+      "following_url": "https://api.github.com/users/steoj/following{/other_user}",
+      "gists_url": "https://api.github.com/users/steoj/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/steoj/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/steoj/subscriptions",
+      "organizations_url": "https://api.github.com/users/steoj/orgs",
+      "repos_url": "https://api.github.com/users/steoj/repos",
+      "events_url": "https://api.github.com/users/steoj/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/steoj/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "steoj",
+      "id": 46670655,
+      "node_id": "MDQ6VXNlcjQ2NjcwNjU1",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46670655?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/steoj",
+      "html_url": "https://github.com/steoj",
+      "followers_url": "https://api.github.com/users/steoj/followers",
+      "following_url": "https://api.github.com/users/steoj/following{/other_user}",
+      "gists_url": "https://api.github.com/users/steoj/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/steoj/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/steoj/subscriptions",
+      "organizations_url": "https://api.github.com/users/steoj/orgs",
+      "repos_url": "https://api.github.com/users/steoj/repos",
+      "events_url": "https://api.github.com/users/steoj/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/steoj/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "804b5a7b87403aee9e67e7024195cdc21ee16482",
+        "url": "https://api.github.com/repos/stenjo/dora/commits/804b5a7b87403aee9e67e7024195cdc21ee16482",
+        "html_url": "https://github.com/stenjo/dora/commit/804b5a7b87403aee9e67e7024195cdc21ee16482"
+      }
+    ]
+  },
+  {
+    "sha": "804b5a7b87403aee9e67e7024195cdc21ee16482",
+    "node_id": "C_kwDOJTf0atoAKDgwNGI1YTdiODc0MDNhZWU5ZTY3ZTcwMjQxOTVjZGMyMWVlMTY0ODI",
+    "commit": {
+      "author": {
+        "name": "Sten Otto Johnsen",
+        "email": "steoj@equinor.com",
+        "date": "2023-04-20T22:41:32Z"
+      },
+      "committer": {
+        "name": "Sten Otto Johnsen",
+        "email": "steoj@equinor.com",
+        "date": "2023-04-20T22:41:32Z"
+      },
+      "message": "wip",
+      "tree": {
+        "sha": "2e8e342f651a2a0d89195204efd63f80dfc3fcf2",
+        "url": "https://api.github.com/repos/stenjo/dora/git/trees/2e8e342f651a2a0d89195204efd63f80dfc3fcf2"
+      },
+      "url": "https://api.github.com/repos/stenjo/dora/git/commits/804b5a7b87403aee9e67e7024195cdc21ee16482",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/stenjo/dora/commits/804b5a7b87403aee9e67e7024195cdc21ee16482",
+    "html_url": "https://github.com/stenjo/dora/commit/804b5a7b87403aee9e67e7024195cdc21ee16482",
+    "comments_url": "https://api.github.com/repos/stenjo/dora/commits/804b5a7b87403aee9e67e7024195cdc21ee16482/comments",
+    "author": {
+      "login": "steoj",
+      "id": 46670655,
+      "node_id": "MDQ6VXNlcjQ2NjcwNjU1",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46670655?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/steoj",
+      "html_url": "https://github.com/steoj",
+      "followers_url": "https://api.github.com/users/steoj/followers",
+      "following_url": "https://api.github.com/users/steoj/following{/other_user}",
+      "gists_url": "https://api.github.com/users/steoj/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/steoj/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/steoj/subscriptions",
+      "organizations_url": "https://api.github.com/users/steoj/orgs",
+      "repos_url": "https://api.github.com/users/steoj/repos",
+      "events_url": "https://api.github.com/users/steoj/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/steoj/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "steoj",
+      "id": 46670655,
+      "node_id": "MDQ6VXNlcjQ2NjcwNjU1",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46670655?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/steoj",
+      "html_url": "https://github.com/steoj",
+      "followers_url": "https://api.github.com/users/steoj/followers",
+      "following_url": "https://api.github.com/users/steoj/following{/other_user}",
+      "gists_url": "https://api.github.com/users/steoj/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/steoj/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/steoj/subscriptions",
+      "organizations_url": "https://api.github.com/users/steoj/orgs",
+      "repos_url": "https://api.github.com/users/steoj/repos",
+      "events_url": "https://api.github.com/users/steoj/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/steoj/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "0858039a55572ed8da54f5fd92d73e305ef273d2",
+        "url": "https://api.github.com/repos/stenjo/dora/commits/0858039a55572ed8da54f5fd92d73e305ef273d2",
+        "html_url": "https://github.com/stenjo/dora/commit/0858039a55572ed8da54f5fd92d73e305ef273d2"
+      }
+    ]
+  },
+  {
+    "sha": "0858039a55572ed8da54f5fd92d73e305ef273d2",
+    "node_id": "C_kwDOJTf0atoAKDA4NTgwMzlhNTU1NzJlZDhkYTU0ZjVmZDkyZDczZTMwNWVmMjczZDI",
+    "commit": {
+      "author": {
+        "name": "Sten Otto Johnsen",
+        "email": "steoj@equinor.com",
+        "date": "2023-04-20T22:37:27Z"
+      },
+      "committer": {
+        "name": "Sten Otto Johnsen",
+        "email": "steoj@equinor.com",
+        "date": "2023-04-20T22:37:27Z"
+      },
+      "message": "wip",
+      "tree": {
+        "sha": "5c4826046bb68ca9f887e1e2355275ae92c5eb5a",
+        "url": "https://api.github.com/repos/stenjo/dora/git/trees/5c4826046bb68ca9f887e1e2355275ae92c5eb5a"
+      },
+      "url": "https://api.github.com/repos/stenjo/dora/git/commits/0858039a55572ed8da54f5fd92d73e305ef273d2",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/stenjo/dora/commits/0858039a55572ed8da54f5fd92d73e305ef273d2",
+    "html_url": "https://github.com/stenjo/dora/commit/0858039a55572ed8da54f5fd92d73e305ef273d2",
+    "comments_url": "https://api.github.com/repos/stenjo/dora/commits/0858039a55572ed8da54f5fd92d73e305ef273d2/comments",
+    "author": {
+      "login": "steoj",
+      "id": 46670655,
+      "node_id": "MDQ6VXNlcjQ2NjcwNjU1",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46670655?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/steoj",
+      "html_url": "https://github.com/steoj",
+      "followers_url": "https://api.github.com/users/steoj/followers",
+      "following_url": "https://api.github.com/users/steoj/following{/other_user}",
+      "gists_url": "https://api.github.com/users/steoj/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/steoj/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/steoj/subscriptions",
+      "organizations_url": "https://api.github.com/users/steoj/orgs",
+      "repos_url": "https://api.github.com/users/steoj/repos",
+      "events_url": "https://api.github.com/users/steoj/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/steoj/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "steoj",
+      "id": 46670655,
+      "node_id": "MDQ6VXNlcjQ2NjcwNjU1",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46670655?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/steoj",
+      "html_url": "https://github.com/steoj",
+      "followers_url": "https://api.github.com/users/steoj/followers",
+      "following_url": "https://api.github.com/users/steoj/following{/other_user}",
+      "gists_url": "https://api.github.com/users/steoj/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/steoj/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/steoj/subscriptions",
+      "organizations_url": "https://api.github.com/users/steoj/orgs",
+      "repos_url": "https://api.github.com/users/steoj/repos",
+      "events_url": "https://api.github.com/users/steoj/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/steoj/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "43d3e0438a11ab8aa7cda8bade3baccc402a6431",
+        "url": "https://api.github.com/repos/stenjo/dora/commits/43d3e0438a11ab8aa7cda8bade3baccc402a6431",
+        "html_url": "https://github.com/stenjo/dora/commit/43d3e0438a11ab8aa7cda8bade3baccc402a6431"
+      }
+    ]
+  },
+  {
+    "sha": "43d3e0438a11ab8aa7cda8bade3baccc402a6431",
+    "node_id": "C_kwDOJTf0atoAKDQzZDNlMDQzOGExMWFiOGFhN2NkYThiYWRlM2JhY2NjNDAyYTY0MzE",
+    "commit": {
+      "author": {
+        "name": "Sten Otto Johnsen",
+        "email": "steoj@equinor.com",
+        "date": "2023-04-18T21:28:00Z"
+      },
+      "committer": {
+        "name": "Sten Otto Johnsen",
+        "email": "steoj@equinor.com",
+        "date": "2023-04-18T21:28:00Z"
+      },
+      "message": "Merge branch 'main' of github.com:stenjo/dora into 9-featdeploy-add-deploy-rate-by-tag-rate",
+      "tree": {
+        "sha": "609fac21193c2cb0242712525820aa13acba7f19",
+        "url": "https://api.github.com/repos/stenjo/dora/git/trees/609fac21193c2cb0242712525820aa13acba7f19"
+      },
+      "url": "https://api.github.com/repos/stenjo/dora/git/commits/43d3e0438a11ab8aa7cda8bade3baccc402a6431",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/stenjo/dora/commits/43d3e0438a11ab8aa7cda8bade3baccc402a6431",
+    "html_url": "https://github.com/stenjo/dora/commit/43d3e0438a11ab8aa7cda8bade3baccc402a6431",
+    "comments_url": "https://api.github.com/repos/stenjo/dora/commits/43d3e0438a11ab8aa7cda8bade3baccc402a6431/comments",
+    "author": {
+      "login": "steoj",
+      "id": 46670655,
+      "node_id": "MDQ6VXNlcjQ2NjcwNjU1",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46670655?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/steoj",
+      "html_url": "https://github.com/steoj",
+      "followers_url": "https://api.github.com/users/steoj/followers",
+      "following_url": "https://api.github.com/users/steoj/following{/other_user}",
+      "gists_url": "https://api.github.com/users/steoj/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/steoj/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/steoj/subscriptions",
+      "organizations_url": "https://api.github.com/users/steoj/orgs",
+      "repos_url": "https://api.github.com/users/steoj/repos",
+      "events_url": "https://api.github.com/users/steoj/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/steoj/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "steoj",
+      "id": 46670655,
+      "node_id": "MDQ6VXNlcjQ2NjcwNjU1",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46670655?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/steoj",
+      "html_url": "https://github.com/steoj",
+      "followers_url": "https://api.github.com/users/steoj/followers",
+      "following_url": "https://api.github.com/users/steoj/following{/other_user}",
+      "gists_url": "https://api.github.com/users/steoj/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/steoj/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/steoj/subscriptions",
+      "organizations_url": "https://api.github.com/users/steoj/orgs",
+      "repos_url": "https://api.github.com/users/steoj/repos",
+      "events_url": "https://api.github.com/users/steoj/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/steoj/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "547688fd602e4b05115d2cf8cb16584a4936b6fb",
+        "url": "https://api.github.com/repos/stenjo/dora/commits/547688fd602e4b05115d2cf8cb16584a4936b6fb",
+        "html_url": "https://github.com/stenjo/dora/commit/547688fd602e4b05115d2cf8cb16584a4936b6fb"
+      },
+      {
+        "sha": "167c3dc7df5008954e1e6f9b3f4aa7f446e759ba",
+        "url": "https://api.github.com/repos/stenjo/dora/commits/167c3dc7df5008954e1e6f9b3f4aa7f446e759ba",
+        "html_url": "https://github.com/stenjo/dora/commit/167c3dc7df5008954e1e6f9b3f4aa7f446e759ba"
+      }
+    ]
+  },
+  {
+    "sha": "547688fd602e4b05115d2cf8cb16584a4936b6fb",
+    "node_id": "C_kwDOJTf0atoAKDU0NzY4OGZkNjAyZTRiMDUxMTVkMmNmOGNiMTY1ODRhNDkzNmI2ZmI",
+    "commit": {
+      "author": {
+        "name": "Sten Otto Johnsen",
+        "email": "steoj@equinor.com",
+        "date": "2023-04-18T21:24:01Z"
+      },
+      "committer": {
+        "name": "Sten Otto Johnsen",
+        "email": "steoj@equinor.com",
+        "date": "2023-04-18T21:24:01Z"
+      },
+      "message": "installing jshint",
+      "tree": {
+        "sha": "99f744c6a7e2b0e6135491351bbb1673f9a86b39",
+        "url": "https://api.github.com/repos/stenjo/dora/git/trees/99f744c6a7e2b0e6135491351bbb1673f9a86b39"
+      },
+      "url": "https://api.github.com/repos/stenjo/dora/git/commits/547688fd602e4b05115d2cf8cb16584a4936b6fb",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/stenjo/dora/commits/547688fd602e4b05115d2cf8cb16584a4936b6fb",
+    "html_url": "https://github.com/stenjo/dora/commit/547688fd602e4b05115d2cf8cb16584a4936b6fb",
+    "comments_url": "https://api.github.com/repos/stenjo/dora/commits/547688fd602e4b05115d2cf8cb16584a4936b6fb/comments",
+    "author": {
+      "login": "steoj",
+      "id": 46670655,
+      "node_id": "MDQ6VXNlcjQ2NjcwNjU1",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46670655?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/steoj",
+      "html_url": "https://github.com/steoj",
+      "followers_url": "https://api.github.com/users/steoj/followers",
+      "following_url": "https://api.github.com/users/steoj/following{/other_user}",
+      "gists_url": "https://api.github.com/users/steoj/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/steoj/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/steoj/subscriptions",
+      "organizations_url": "https://api.github.com/users/steoj/orgs",
+      "repos_url": "https://api.github.com/users/steoj/repos",
+      "events_url": "https://api.github.com/users/steoj/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/steoj/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "steoj",
+      "id": 46670655,
+      "node_id": "MDQ6VXNlcjQ2NjcwNjU1",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46670655?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/steoj",
+      "html_url": "https://github.com/steoj",
+      "followers_url": "https://api.github.com/users/steoj/followers",
+      "following_url": "https://api.github.com/users/steoj/following{/other_user}",
+      "gists_url": "https://api.github.com/users/steoj/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/steoj/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/steoj/subscriptions",
+      "organizations_url": "https://api.github.com/users/steoj/orgs",
+      "repos_url": "https://api.github.com/users/steoj/repos",
+      "events_url": "https://api.github.com/users/steoj/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/steoj/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "971518d93a68b61fa3bad5904f634c1c94897aea",
+        "url": "https://api.github.com/repos/stenjo/dora/commits/971518d93a68b61fa3bad5904f634c1c94897aea",
+        "html_url": "https://github.com/stenjo/dora/commit/971518d93a68b61fa3bad5904f634c1c94897aea"
+      }
+    ]
+  },
+  {
+    "sha": "971518d93a68b61fa3bad5904f634c1c94897aea",
+    "node_id": "C_kwDOJTf0atoAKDk3MTUxOGQ5M2E2OGI2MWZhM2JhZDU5MDRmNjM0YzFjOTQ4OTdhZWE",
+    "commit": {
+      "author": {
+        "name": "Sten Otto Johnsen",
+        "email": "steoj@equinor.com",
+        "date": "2023-04-18T21:21:57Z"
+      },
+      "committer": {
+        "name": "Sten Otto Johnsen",
+        "email": "steoj@equinor.com",
+        "date": "2023-04-18T21:21:57Z"
+      },
+      "message": "conveerting to typescrip",
+      "tree": {
+        "sha": "f7b8576cce3700896656c75fe3e64fc089c716bb",
+        "url": "https://api.github.com/repos/stenjo/dora/git/trees/f7b8576cce3700896656c75fe3e64fc089c716bb"
+      },
+      "url": "https://api.github.com/repos/stenjo/dora/git/commits/971518d93a68b61fa3bad5904f634c1c94897aea",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/stenjo/dora/commits/971518d93a68b61fa3bad5904f634c1c94897aea",
+    "html_url": "https://github.com/stenjo/dora/commit/971518d93a68b61fa3bad5904f634c1c94897aea",
+    "comments_url": "https://api.github.com/repos/stenjo/dora/commits/971518d93a68b61fa3bad5904f634c1c94897aea/comments",
+    "author": {
+      "login": "steoj",
+      "id": 46670655,
+      "node_id": "MDQ6VXNlcjQ2NjcwNjU1",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46670655?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/steoj",
+      "html_url": "https://github.com/steoj",
+      "followers_url": "https://api.github.com/users/steoj/followers",
+      "following_url": "https://api.github.com/users/steoj/following{/other_user}",
+      "gists_url": "https://api.github.com/users/steoj/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/steoj/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/steoj/subscriptions",
+      "organizations_url": "https://api.github.com/users/steoj/orgs",
+      "repos_url": "https://api.github.com/users/steoj/repos",
+      "events_url": "https://api.github.com/users/steoj/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/steoj/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "steoj",
+      "id": 46670655,
+      "node_id": "MDQ6VXNlcjQ2NjcwNjU1",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46670655?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/steoj",
+      "html_url": "https://github.com/steoj",
+      "followers_url": "https://api.github.com/users/steoj/followers",
+      "following_url": "https://api.github.com/users/steoj/following{/other_user}",
+      "gists_url": "https://api.github.com/users/steoj/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/steoj/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/steoj/subscriptions",
+      "organizations_url": "https://api.github.com/users/steoj/orgs",
+      "repos_url": "https://api.github.com/users/steoj/repos",
+      "events_url": "https://api.github.com/users/steoj/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/steoj/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "138f4bc9437b22b31718e7cb8b61abeefaa8b48c",
+        "url": "https://api.github.com/repos/stenjo/dora/commits/138f4bc9437b22b31718e7cb8b61abeefaa8b48c",
+        "html_url": "https://github.com/stenjo/dora/commit/138f4bc9437b22b31718e7cb8b61abeefaa8b48c"
+      }
+    ]
+  },
+  {
+    "sha": "167c3dc7df5008954e1e6f9b3f4aa7f446e759ba",
+    "node_id": "C_kwDOJTf0atoAKDE2N2MzZGM3ZGY1MDA4OTU0ZTFlNmY5YjNmNGFhN2Y0NDZlNzU5YmE",
+    "commit": {
+      "author": {
+        "name": "Sten Otto Johnsen",
+        "email": "sten@thinea.no",
+        "date": "2023-04-12T22:33:11Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2023-04-12T22:33:11Z"
+      },
+      "message": "Merge pull request #8 from stenjo/release-please--branches--main--components--release-please-action\n\nchore(main): release 0.0.1",
+      "tree": {
+        "sha": "1e91bfc16a0f48b0030b162de97f028087b6f75c",
+        "url": "https://api.github.com/repos/stenjo/dora/git/trees/1e91bfc16a0f48b0030b162de97f028087b6f75c"
+      },
+      "url": "https://api.github.com/repos/stenjo/dora/git/commits/167c3dc7df5008954e1e6f9b3f4aa7f446e759ba",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJkNzGnCRBK7hj4Ov3rIwAAHv0IAKFimmNWY9dBpIiPuwBEXY6n\n13MxgVYdm5c61w3zO9C0uQ/gxtovb/ZzLQi1T5USq7AU32Eno3r6n+xWLgrAOxcW\niw93ON93IzhzgtiV325VKujz4fCTUc+NnxkK0FkcEK/27sUJHeWEmmm2fO2Ua8hn\nETDlo0dq+9LndrVUoJu6yhL9DGeey0aWW05WlmSHbxpyAUnnY5x0Pn1abBKQbmeP\n/IhSVs/DmdG5WLXOvJc97yp4LqPSAGGSbfISgjPDfdlCSHr4q2gpUOItQ/Vx5M9V\nuLfYOy8szH1E+V3Ab1WUKFQmUgDrvyY/eBsm5IuhjM+27LhiJeneMoNOw36F8Ck=\n=cF/W\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree 1e91bfc16a0f48b0030b162de97f028087b6f75c\nparent b14c2edc8e4a3954ab2b572f301e83a6e12172ef\nparent c867690b193e44710ce796bb777d6c5980b0d3e9\nauthor Sten Otto Johnsen <sten@thinea.no> 1681338791 +0200\ncommitter GitHub <noreply@github.com> 1681338791 +0200\n\nMerge pull request #8 from stenjo/release-please--branches--main--components--release-please-action\n\nchore(main): release 0.0.1"
+      }
+    },
+    "url": "https://api.github.com/repos/stenjo/dora/commits/167c3dc7df5008954e1e6f9b3f4aa7f446e759ba",
+    "html_url": "https://github.com/stenjo/dora/commit/167c3dc7df5008954e1e6f9b3f4aa7f446e759ba",
+    "comments_url": "https://api.github.com/repos/stenjo/dora/commits/167c3dc7df5008954e1e6f9b3f4aa7f446e759ba/comments",
+    "author": {
+      "login": "stenjo",
+      "id": 668722,
+      "node_id": "MDQ6VXNlcjY2ODcyMg==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/668722?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/stenjo",
+      "html_url": "https://github.com/stenjo",
+      "followers_url": "https://api.github.com/users/stenjo/followers",
+      "following_url": "https://api.github.com/users/stenjo/following{/other_user}",
+      "gists_url": "https://api.github.com/users/stenjo/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/stenjo/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/stenjo/subscriptions",
+      "organizations_url": "https://api.github.com/users/stenjo/orgs",
+      "repos_url": "https://api.github.com/users/stenjo/repos",
+      "events_url": "https://api.github.com/users/stenjo/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/stenjo/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "b14c2edc8e4a3954ab2b572f301e83a6e12172ef",
+        "url": "https://api.github.com/repos/stenjo/dora/commits/b14c2edc8e4a3954ab2b572f301e83a6e12172ef",
+        "html_url": "https://github.com/stenjo/dora/commit/b14c2edc8e4a3954ab2b572f301e83a6e12172ef"
+      },
+      {
+        "sha": "c867690b193e44710ce796bb777d6c5980b0d3e9",
+        "url": "https://api.github.com/repos/stenjo/dora/commits/c867690b193e44710ce796bb777d6c5980b0d3e9",
+        "html_url": "https://github.com/stenjo/dora/commit/c867690b193e44710ce796bb777d6c5980b0d3e9"
+      }
+    ]
+  },
+  {
+    "sha": "138f4bc9437b22b31718e7cb8b61abeefaa8b48c",
+    "node_id": "C_kwDOJTf0atoAKDEzOGY0YmM5NDM3YjIyYjMxNzE4ZTdjYjhiNjFhYmVlZmFhOGI0OGM",
+    "commit": {
+      "author": {
+        "name": "Sten Otto Johnsen",
+        "email": "steoj@equinor.com",
+        "date": "2023-04-12T22:20:00Z"
+      },
+      "committer": {
+        "name": "Sten Otto Johnsen",
+        "email": "steoj@equinor.com",
+        "date": "2023-04-12T22:20:00Z"
+      },
+      "message": "test: fix tests",
+      "tree": {
+        "sha": "5dc3f74525591d7de6e94170931cbc806bd896eb",
+        "url": "https://api.github.com/repos/stenjo/dora/git/trees/5dc3f74525591d7de6e94170931cbc806bd896eb"
+      },
+      "url": "https://api.github.com/repos/stenjo/dora/git/commits/138f4bc9437b22b31718e7cb8b61abeefaa8b48c",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/stenjo/dora/commits/138f4bc9437b22b31718e7cb8b61abeefaa8b48c",
+    "html_url": "https://github.com/stenjo/dora/commit/138f4bc9437b22b31718e7cb8b61abeefaa8b48c",
+    "comments_url": "https://api.github.com/repos/stenjo/dora/commits/138f4bc9437b22b31718e7cb8b61abeefaa8b48c/comments",
+    "author": {
+      "login": "steoj",
+      "id": 46670655,
+      "node_id": "MDQ6VXNlcjQ2NjcwNjU1",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46670655?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/steoj",
+      "html_url": "https://github.com/steoj",
+      "followers_url": "https://api.github.com/users/steoj/followers",
+      "following_url": "https://api.github.com/users/steoj/following{/other_user}",
+      "gists_url": "https://api.github.com/users/steoj/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/steoj/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/steoj/subscriptions",
+      "organizations_url": "https://api.github.com/users/steoj/orgs",
+      "repos_url": "https://api.github.com/users/steoj/repos",
+      "events_url": "https://api.github.com/users/steoj/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/steoj/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "steoj",
+      "id": 46670655,
+      "node_id": "MDQ6VXNlcjQ2NjcwNjU1",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46670655?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/steoj",
+      "html_url": "https://github.com/steoj",
+      "followers_url": "https://api.github.com/users/steoj/followers",
+      "following_url": "https://api.github.com/users/steoj/following{/other_user}",
+      "gists_url": "https://api.github.com/users/steoj/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/steoj/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/steoj/subscriptions",
+      "organizations_url": "https://api.github.com/users/steoj/orgs",
+      "repos_url": "https://api.github.com/users/steoj/repos",
+      "events_url": "https://api.github.com/users/steoj/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/steoj/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "b14c2edc8e4a3954ab2b572f301e83a6e12172ef",
+        "url": "https://api.github.com/repos/stenjo/dora/commits/b14c2edc8e4a3954ab2b572f301e83a6e12172ef",
+        "html_url": "https://github.com/stenjo/dora/commit/b14c2edc8e4a3954ab2b572f301e83a6e12172ef"
+      }
+    ]
+  },
+  {
+    "sha": "b14c2edc8e4a3954ab2b572f301e83a6e12172ef",
+    "node_id": "C_kwDOJTf0atoAKGIxNGMyZWRjOGU0YTM5NTRhYjJiNTcyZjMwMWU4M2E2ZTEyMTcyZWY",
+    "commit": {
+      "author": {
+        "name": "Sten Otto Johnsen",
+        "email": "sten@thinea.no",
+        "date": "2023-04-12T22:11:19Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2023-04-12T22:11:19Z"
+      },
+      "message": "Merge pull request #1 from stenjo/dependabot/github_actions/actions/setup-node-3.6.0\n\nBump actions/setup-node from 3.5.1 to 3.6.0",
+      "tree": {
+        "sha": "7fb8b7c5b46ad7c20b96611dd511fcb370ba8390",
+        "url": "https://api.github.com/repos/stenjo/dora/git/trees/7fb8b7c5b46ad7c20b96611dd511fcb370ba8390"
+      },
+      "url": "https://api.github.com/repos/stenjo/dora/git/commits/b14c2edc8e4a3954ab2b572f301e83a6e12172ef",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJkNyyHCRBK7hj4Ov3rIwAAkqQIAE4gRbO2XYzLxoi1sxL5IxeA\n4p/JtYaiQ7eWrVuxwIA4sceGL1aZdbZMMyc44+Nmh1BSUGIrM02c7l5CoUstnP8P\nMrtq0xXrLL8Go9zJDPdyzsccZ8FpUOC/N0l5jc0+Jnrob1cGw7GL4k25ZRKwovd8\n8g0b6JeHf2BQag13snLOLKxio/2n7T4sxbLEXqxKPPWlUSSoAOZ7FkuoNi130wBT\n4BuCxS4DuxvNVSqWp+JL1/U7vw51XpuoDdBXVyWVHLSuTcNvvCQ1p8icAeFdKxLn\nkvf8AJQYjCjKUONknly+nRP2q/qyyROhNpqcd4HoIWvVyDx/mCyxNKYC0TkAHwA=\n=ft7a\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree 7fb8b7c5b46ad7c20b96611dd511fcb370ba8390\nparent e2d2e0e0f4bbdca4bfbe9e2cc0513c9d4c274582\nparent d3abbd39106245e603ee7d7df696681b1c882f20\nauthor Sten Otto Johnsen <sten@thinea.no> 1681337479 +0200\ncommitter GitHub <noreply@github.com> 1681337479 +0200\n\nMerge pull request #1 from stenjo/dependabot/github_actions/actions/setup-node-3.6.0\n\nBump actions/setup-node from 3.5.1 to 3.6.0"
+      }
+    },
+    "url": "https://api.github.com/repos/stenjo/dora/commits/b14c2edc8e4a3954ab2b572f301e83a6e12172ef",
+    "html_url": "https://github.com/stenjo/dora/commit/b14c2edc8e4a3954ab2b572f301e83a6e12172ef",
+    "comments_url": "https://api.github.com/repos/stenjo/dora/commits/b14c2edc8e4a3954ab2b572f301e83a6e12172ef/comments",
+    "author": {
+      "login": "stenjo",
+      "id": 668722,
+      "node_id": "MDQ6VXNlcjY2ODcyMg==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/668722?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/stenjo",
+      "html_url": "https://github.com/stenjo",
+      "followers_url": "https://api.github.com/users/stenjo/followers",
+      "following_url": "https://api.github.com/users/stenjo/following{/other_user}",
+      "gists_url": "https://api.github.com/users/stenjo/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/stenjo/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/stenjo/subscriptions",
+      "organizations_url": "https://api.github.com/users/stenjo/orgs",
+      "repos_url": "https://api.github.com/users/stenjo/repos",
+      "events_url": "https://api.github.com/users/stenjo/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/stenjo/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "e2d2e0e0f4bbdca4bfbe9e2cc0513c9d4c274582",
+        "url": "https://api.github.com/repos/stenjo/dora/commits/e2d2e0e0f4bbdca4bfbe9e2cc0513c9d4c274582",
+        "html_url": "https://github.com/stenjo/dora/commit/e2d2e0e0f4bbdca4bfbe9e2cc0513c9d4c274582"
+      },
+      {
+        "sha": "d3abbd39106245e603ee7d7df696681b1c882f20",
+        "url": "https://api.github.com/repos/stenjo/dora/commits/d3abbd39106245e603ee7d7df696681b1c882f20",
+        "html_url": "https://github.com/stenjo/dora/commit/d3abbd39106245e603ee7d7df696681b1c882f20"
+      }
+    ]
+  },
+  {
+    "sha": "c867690b193e44710ce796bb777d6c5980b0d3e9",
+    "node_id": "C_kwDOJTf0atoAKGM4Njc2OTBiMTkzZTQ0NzEwY2U3OTZiYjc3N2Q2YzU5ODBiMGQzZTk",
+    "commit": {
+      "author": {
+        "name": "github-actions[bot]",
+        "email": "41898282+github-actions[bot]@users.noreply.github.com",
+        "date": "2023-04-12T22:11:07Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2023-04-12T22:11:07Z"
+      },
+      "message": "chore(main): release 0.0.1",
+      "tree": {
+        "sha": "428b2dc51900e3b511756139b4be865b3f86504a",
+        "url": "https://api.github.com/repos/stenjo/dora/git/trees/428b2dc51900e3b511756139b4be865b3f86504a"
+      },
+      "url": "https://api.github.com/repos/stenjo/dora/git/commits/c867690b193e44710ce796bb777d6c5980b0d3e9",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJkNyx8CRBK7hj4Ov3rIwAAAswIACnCaJNGReOpDWtcJgu1R/yZ\nk2LCUuCtxfXNB60SZnx+LjQ+4JyFtB/lSL66kQzb5MormplXvGWHh8DeyU8xuKQv\n8WjK89vm1BUOS5r00D89vJjrQsdOiaZI/53AJmqf63Z4K/k2wKbB1q/jVBzBTpjL\nZCK4B0gCp+GXX05UX5S90//X7aVx5P93J4s3FSM28zI4pn0Iffivhh+TCQ30DjrD\nzEghxDe5ZuiZDt5OBv4p74CJtI5UJcFfskOg3z2qxgEcFJYJPxTYzhjImbRX7rde\n3ZtL2kGM0/SkBk9dtn5UuuBFjDixfausL3PCV4kiUKjUkCDWOyeI7h2XvJJ1bUM=\n=urCV\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree 428b2dc51900e3b511756139b4be865b3f86504a\nparent e2d2e0e0f4bbdca4bfbe9e2cc0513c9d4c274582\nauthor github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com> 1681337467 +0000\ncommitter GitHub <noreply@github.com> 1681337467 +0000\n\nchore(main): release 0.0.1"
+      }
+    },
+    "url": "https://api.github.com/repos/stenjo/dora/commits/c867690b193e44710ce796bb777d6c5980b0d3e9",
+    "html_url": "https://github.com/stenjo/dora/commit/c867690b193e44710ce796bb777d6c5980b0d3e9",
+    "comments_url": "https://api.github.com/repos/stenjo/dora/commits/c867690b193e44710ce796bb777d6c5980b0d3e9/comments",
+    "author": {
+      "login": "github-actions[bot]",
+      "id": 41898282,
+      "node_id": "MDM6Qm90NDE4OTgyODI=",
+      "avatar_url": "https://avatars.githubusercontent.com/in/15368?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/github-actions%5Bbot%5D",
+      "html_url": "https://github.com/apps/github-actions",
+      "followers_url": "https://api.github.com/users/github-actions%5Bbot%5D/followers",
+      "following_url": "https://api.github.com/users/github-actions%5Bbot%5D/following{/other_user}",
+      "gists_url": "https://api.github.com/users/github-actions%5Bbot%5D/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/github-actions%5Bbot%5D/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/github-actions%5Bbot%5D/subscriptions",
+      "organizations_url": "https://api.github.com/users/github-actions%5Bbot%5D/orgs",
+      "repos_url": "https://api.github.com/users/github-actions%5Bbot%5D/repos",
+      "events_url": "https://api.github.com/users/github-actions%5Bbot%5D/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/github-actions%5Bbot%5D/received_events",
+      "type": "Bot",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "e2d2e0e0f4bbdca4bfbe9e2cc0513c9d4c274582",
+        "url": "https://api.github.com/repos/stenjo/dora/commits/e2d2e0e0f4bbdca4bfbe9e2cc0513c9d4c274582",
+        "html_url": "https://github.com/stenjo/dora/commit/e2d2e0e0f4bbdca4bfbe9e2cc0513c9d4c274582"
+      }
+    ]
+  },
+  {
+    "sha": "e2d2e0e0f4bbdca4bfbe9e2cc0513c9d4c274582",
+    "node_id": "C_kwDOJTf0atoAKGUyZDJlMGUwZjRiYmRjYTRiZmJlOWUyY2MwNTEzYzlkNGMyNzQ1ODI",
+    "commit": {
+      "author": {
+        "name": "Sten Otto Johnsen",
+        "email": "sten@thinea.no",
+        "date": "2023-04-12T22:10:45Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2023-04-12T22:10:45Z"
+      },
+      "message": "Merge pull request #3 from stenjo/dependabot/npm_and_yarn/jest-29.5.0\n\nBump jest from 27.4.5 to 29.5.0",
+      "tree": {
+        "sha": "72dafdcfa48ccfec4c842838cf9ddba6e50fabb6",
+        "url": "https://api.github.com/repos/stenjo/dora/git/trees/72dafdcfa48ccfec4c842838cf9ddba6e50fabb6"
+      },
+      "url": "https://api.github.com/repos/stenjo/dora/git/commits/e2d2e0e0f4bbdca4bfbe9e2cc0513c9d4c274582",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJkNyxlCRBK7hj4Ov3rIwAA3OUIAKz/XpHZIjLwC3YkciQHnyFw\nZu7fg9z26xTyS/gQUq4RSBiG/Z0/n8Am1WKGu4NpjTYIR2Guf4lK5LBfuj4tqSLm\n/Eif5IBRocVnqtO+WXwyQHkHWJNsl1+DGl32bEm2DloEARQseUtTksaQo+vMCnpG\n3OoPvtE8tMJCwF4rcFdZqR6A3Ju20o6KtKRK7J1WCT7yjPSTyKzFzYuFbwc7wLG0\nWpFwp+jowkTtarkD51fmW30UQ76c5CvIwNvMF36IBm4upAh3cPjC/djJuSY3gFU6\nImYk0YoRk/cWFKY/sICncD2Lqs+699iG0HdefQNi0n3iqxMtfkDkkXanCVbhPJU=\n=vTHw\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree 72dafdcfa48ccfec4c842838cf9ddba6e50fabb6\nparent 221ea9b8381103d5a061210895625ce6762afb32\nparent b9d7318893d5dc66c9ea5549507788d88f3bc406\nauthor Sten Otto Johnsen <sten@thinea.no> 1681337445 +0200\ncommitter GitHub <noreply@github.com> 1681337445 +0200\n\nMerge pull request #3 from stenjo/dependabot/npm_and_yarn/jest-29.5.0\n\nBump jest from 27.4.5 to 29.5.0"
+      }
+    },
+    "url": "https://api.github.com/repos/stenjo/dora/commits/e2d2e0e0f4bbdca4bfbe9e2cc0513c9d4c274582",
+    "html_url": "https://github.com/stenjo/dora/commit/e2d2e0e0f4bbdca4bfbe9e2cc0513c9d4c274582",
+    "comments_url": "https://api.github.com/repos/stenjo/dora/commits/e2d2e0e0f4bbdca4bfbe9e2cc0513c9d4c274582/comments",
+    "author": {
+      "login": "stenjo",
+      "id": 668722,
+      "node_id": "MDQ6VXNlcjY2ODcyMg==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/668722?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/stenjo",
+      "html_url": "https://github.com/stenjo",
+      "followers_url": "https://api.github.com/users/stenjo/followers",
+      "following_url": "https://api.github.com/users/stenjo/following{/other_user}",
+      "gists_url": "https://api.github.com/users/stenjo/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/stenjo/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/stenjo/subscriptions",
+      "organizations_url": "https://api.github.com/users/stenjo/orgs",
+      "repos_url": "https://api.github.com/users/stenjo/repos",
+      "events_url": "https://api.github.com/users/stenjo/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/stenjo/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "221ea9b8381103d5a061210895625ce6762afb32",
+        "url": "https://api.github.com/repos/stenjo/dora/commits/221ea9b8381103d5a061210895625ce6762afb32",
+        "html_url": "https://github.com/stenjo/dora/commit/221ea9b8381103d5a061210895625ce6762afb32"
+      },
+      {
+        "sha": "b9d7318893d5dc66c9ea5549507788d88f3bc406",
+        "url": "https://api.github.com/repos/stenjo/dora/commits/b9d7318893d5dc66c9ea5549507788d88f3bc406",
+        "html_url": "https://github.com/stenjo/dora/commit/b9d7318893d5dc66c9ea5549507788d88f3bc406"
+      }
+    ]
+  },
+  {
+    "sha": "b9d7318893d5dc66c9ea5549507788d88f3bc406",
+    "node_id": "C_kwDOJTf0atoAKGI5ZDczMTg4OTNkNWRjNjZjOWVhNTU0OTUwNzc4OGQ4OGYzYmM0MDY",
+    "commit": {
+      "author": {
+        "name": "Sten Otto Johnsen",
+        "email": "steoj@equinor.com",
+        "date": "2023-04-12T22:10:15Z"
+      },
+      "committer": {
+        "name": "Sten Otto Johnsen",
+        "email": "steoj@equinor.com",
+        "date": "2023-04-12T22:10:15Z"
+      },
+      "message": "fix: tags test",
+      "tree": {
+        "sha": "72dafdcfa48ccfec4c842838cf9ddba6e50fabb6",
+        "url": "https://api.github.com/repos/stenjo/dora/git/trees/72dafdcfa48ccfec4c842838cf9ddba6e50fabb6"
+      },
+      "url": "https://api.github.com/repos/stenjo/dora/git/commits/b9d7318893d5dc66c9ea5549507788d88f3bc406",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/stenjo/dora/commits/b9d7318893d5dc66c9ea5549507788d88f3bc406",
+    "html_url": "https://github.com/stenjo/dora/commit/b9d7318893d5dc66c9ea5549507788d88f3bc406",
+    "comments_url": "https://api.github.com/repos/stenjo/dora/commits/b9d7318893d5dc66c9ea5549507788d88f3bc406/comments",
+    "author": {
+      "login": "steoj",
+      "id": 46670655,
+      "node_id": "MDQ6VXNlcjQ2NjcwNjU1",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46670655?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/steoj",
+      "html_url": "https://github.com/steoj",
+      "followers_url": "https://api.github.com/users/steoj/followers",
+      "following_url": "https://api.github.com/users/steoj/following{/other_user}",
+      "gists_url": "https://api.github.com/users/steoj/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/steoj/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/steoj/subscriptions",
+      "organizations_url": "https://api.github.com/users/steoj/orgs",
+      "repos_url": "https://api.github.com/users/steoj/repos",
+      "events_url": "https://api.github.com/users/steoj/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/steoj/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "steoj",
+      "id": 46670655,
+      "node_id": "MDQ6VXNlcjQ2NjcwNjU1",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46670655?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/steoj",
+      "html_url": "https://github.com/steoj",
+      "followers_url": "https://api.github.com/users/steoj/followers",
+      "following_url": "https://api.github.com/users/steoj/following{/other_user}",
+      "gists_url": "https://api.github.com/users/steoj/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/steoj/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/steoj/subscriptions",
+      "organizations_url": "https://api.github.com/users/steoj/orgs",
+      "repos_url": "https://api.github.com/users/steoj/repos",
+      "events_url": "https://api.github.com/users/steoj/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/steoj/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "29a14fe3d21432f159cc8a29cd51658189bd4412",
+        "url": "https://api.github.com/repos/stenjo/dora/commits/29a14fe3d21432f159cc8a29cd51658189bd4412",
+        "html_url": "https://github.com/stenjo/dora/commit/29a14fe3d21432f159cc8a29cd51658189bd4412"
+      }
+    ]
+  },
+  {
+    "sha": "29a14fe3d21432f159cc8a29cd51658189bd4412",
+    "node_id": "C_kwDOJTf0atoAKDI5YTE0ZmUzZDIxNDMyZjE1OWNjOGEyOWNkNTE2NTgxODliZDQ0MTI",
+    "commit": {
+      "author": {
+        "name": "dependabot[bot]",
+        "email": "49699333+dependabot[bot]@users.noreply.github.com",
+        "date": "2023-04-12T22:06:30Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2023-04-12T22:06:30Z"
+      },
+      "message": "Bump jest from 27.4.5 to 29.5.0\n\nBumps [jest](https://github.com/facebook/jest/tree/HEAD/packages/jest) from 27.4.5 to 29.5.0.\n- [Release notes](https://github.com/facebook/jest/releases)\n- [Changelog](https://github.com/facebook/jest/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/facebook/jest/commits/v29.5.0/packages/jest)\n\n---\nupdated-dependencies:\n- dependency-name: jest\n  dependency-type: direct:development\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>",
+      "tree": {
+        "sha": "735563086cb694e730b84194257f17ea7ee8db42",
+        "url": "https://api.github.com/repos/stenjo/dora/git/trees/735563086cb694e730b84194257f17ea7ee8db42"
+      },
+      "url": "https://api.github.com/repos/stenjo/dora/git/commits/29a14fe3d21432f159cc8a29cd51658189bd4412",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJkNytmCRBK7hj4Ov3rIwAAgVsIAAaEn0CiQrqAZUQc2vphaC/I\nwwpn9F8uBmbDdvkvsd47mYxLN/L9aS2Zxdmor4VQaTnik9mPzB1vbvW8YFOkJ0+e\nQpKc4NRQy13miIZ3v3YkH+c9/LdakWrVbxuADvXsZqTVdWnqN5ldX7GIAsXAAO5O\nOCJEgIW06BaS1K8IBNp7y+GkX8Vw8pZQxbb7eyAuD/p9Fb5r3vItx+nw8O5hD2lu\nwFE1qb+b5FfjWtjiyTcRvd/XMvDiHEvIcj6FWKWMuWqXiDUjTT8TzeHT5GdgwHK3\nyaabt7aFb/YVnWC1O1HdjA5Q2fZtrUpJPHiKpQChLCKlC2pUIgKja4R46TkZk4I=\n=kWYz\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree 735563086cb694e730b84194257f17ea7ee8db42\nparent 221ea9b8381103d5a061210895625ce6762afb32\nauthor dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com> 1681337190 +0000\ncommitter GitHub <noreply@github.com> 1681337190 +0000\n\nBump jest from 27.4.5 to 29.5.0\n\nBumps [jest](https://github.com/facebook/jest/tree/HEAD/packages/jest) from 27.4.5 to 29.5.0.\n- [Release notes](https://github.com/facebook/jest/releases)\n- [Changelog](https://github.com/facebook/jest/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/facebook/jest/commits/v29.5.0/packages/jest)\n\n---\nupdated-dependencies:\n- dependency-name: jest\n  dependency-type: direct:development\n  update-type: version-update:semver-major\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>"
+      }
+    },
+    "url": "https://api.github.com/repos/stenjo/dora/commits/29a14fe3d21432f159cc8a29cd51658189bd4412",
+    "html_url": "https://github.com/stenjo/dora/commit/29a14fe3d21432f159cc8a29cd51658189bd4412",
+    "comments_url": "https://api.github.com/repos/stenjo/dora/commits/29a14fe3d21432f159cc8a29cd51658189bd4412/comments",
+    "author": {
+      "login": "dependabot[bot]",
+      "id": 49699333,
+      "node_id": "MDM6Qm90NDk2OTkzMzM=",
+      "avatar_url": "https://avatars.githubusercontent.com/in/29110?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/dependabot%5Bbot%5D",
+      "html_url": "https://github.com/apps/dependabot",
+      "followers_url": "https://api.github.com/users/dependabot%5Bbot%5D/followers",
+      "following_url": "https://api.github.com/users/dependabot%5Bbot%5D/following{/other_user}",
+      "gists_url": "https://api.github.com/users/dependabot%5Bbot%5D/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/dependabot%5Bbot%5D/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/dependabot%5Bbot%5D/subscriptions",
+      "organizations_url": "https://api.github.com/users/dependabot%5Bbot%5D/orgs",
+      "repos_url": "https://api.github.com/users/dependabot%5Bbot%5D/repos",
+      "events_url": "https://api.github.com/users/dependabot%5Bbot%5D/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/dependabot%5Bbot%5D/received_events",
+      "type": "Bot",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "221ea9b8381103d5a061210895625ce6762afb32",
+        "url": "https://api.github.com/repos/stenjo/dora/commits/221ea9b8381103d5a061210895625ce6762afb32",
+        "html_url": "https://github.com/stenjo/dora/commit/221ea9b8381103d5a061210895625ce6762afb32"
+      }
+    ]
+  },
+  {
+    "sha": "221ea9b8381103d5a061210895625ce6762afb32",
+    "node_id": "C_kwDOJTf0atoAKDIyMWVhOWI4MzgxMTAzZDVhMDYxMjEwODk1NjI1Y2U2NzYyYWZiMzI",
+    "commit": {
+      "author": {
+        "name": "Sten Otto Johnsen",
+        "email": "sten@thinea.no",
+        "date": "2023-04-12T22:05:45Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2023-04-12T22:05:45Z"
+      },
+      "message": "Merge pull request #5 from stenjo/dependabot/npm_and_yarn/eslint-8.38.0\n\nBump eslint from 8.25.0 to 8.38.0",
+      "tree": {
+        "sha": "ed18ab80ab2a39ab5c00b84489c103d82872fd46",
+        "url": "https://api.github.com/repos/stenjo/dora/git/trees/ed18ab80ab2a39ab5c00b84489c103d82872fd46"
+      },
+      "url": "https://api.github.com/repos/stenjo/dora/git/commits/221ea9b8381103d5a061210895625ce6762afb32",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJkNys5CRBK7hj4Ov3rIwAAJe8IAIRF6+kC9VCjjdvazOFPx2Bo\nI9LaZkzN+K5teMwdeQU+XqX8OHZ5nVc5bda4fp7AVShdQf+9TZNH8NNfVDw8MAyj\nrvPHhf/g6XeAwxuWQyoRo/J5odUOuDpuUnPKOkV21HFahO/vIImHfTQ+kVw28uJV\nr7tWT8cyvwZSDjgxGWTdIsjGeftv6HtGip/2KvujVRWnHW9L4hgdbYaqyubpKZ83\n9hF302L1EtcRRRvd0TvAClywenMn5xaq9ftyrccMoU7auStSbYoswjXr9fVy1dj4\ndS4xOHWfKdj7dkO/gOoyfe62ONDIZmYyIWK78yeBUw/0R7oFW28dknEVRUi9qrU=\n=rnMj\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree ed18ab80ab2a39ab5c00b84489c103d82872fd46\nparent 470507efd9c561eb638d24f24af394347cd4ef2f\nparent 7596b623405e45c6385c42efcbd7428b34ceec21\nauthor Sten Otto Johnsen <sten@thinea.no> 1681337145 +0200\ncommitter GitHub <noreply@github.com> 1681337145 +0200\n\nMerge pull request #5 from stenjo/dependabot/npm_and_yarn/eslint-8.38.0\n\nBump eslint from 8.25.0 to 8.38.0"
+      }
+    },
+    "url": "https://api.github.com/repos/stenjo/dora/commits/221ea9b8381103d5a061210895625ce6762afb32",
+    "html_url": "https://github.com/stenjo/dora/commit/221ea9b8381103d5a061210895625ce6762afb32",
+    "comments_url": "https://api.github.com/repos/stenjo/dora/commits/221ea9b8381103d5a061210895625ce6762afb32/comments",
+    "author": {
+      "login": "stenjo",
+      "id": 668722,
+      "node_id": "MDQ6VXNlcjY2ODcyMg==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/668722?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/stenjo",
+      "html_url": "https://github.com/stenjo",
+      "followers_url": "https://api.github.com/users/stenjo/followers",
+      "following_url": "https://api.github.com/users/stenjo/following{/other_user}",
+      "gists_url": "https://api.github.com/users/stenjo/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/stenjo/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/stenjo/subscriptions",
+      "organizations_url": "https://api.github.com/users/stenjo/orgs",
+      "repos_url": "https://api.github.com/users/stenjo/repos",
+      "events_url": "https://api.github.com/users/stenjo/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/stenjo/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "470507efd9c561eb638d24f24af394347cd4ef2f",
+        "url": "https://api.github.com/repos/stenjo/dora/commits/470507efd9c561eb638d24f24af394347cd4ef2f",
+        "html_url": "https://github.com/stenjo/dora/commit/470507efd9c561eb638d24f24af394347cd4ef2f"
+      },
+      {
+        "sha": "7596b623405e45c6385c42efcbd7428b34ceec21",
+        "url": "https://api.github.com/repos/stenjo/dora/commits/7596b623405e45c6385c42efcbd7428b34ceec21",
+        "html_url": "https://github.com/stenjo/dora/commit/7596b623405e45c6385c42efcbd7428b34ceec21"
+      }
+    ]
+  },
+  {
+    "sha": "470507efd9c561eb638d24f24af394347cd4ef2f",
+    "node_id": "C_kwDOJTf0atoAKDQ3MDUwN2VmZDljNTYxZWI2MzhkMjRmMjRhZjM5NDM0N2NkNGVmMmY",
+    "commit": {
+      "author": {
+        "name": "Sten Otto Johnsen",
+        "email": "sten@thinea.no",
+        "date": "2023-04-12T22:05:18Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2023-04-12T22:05:18Z"
+      },
+      "message": "Merge pull request #7 from stenjo/setting-up-comms-to-pull-requests\n\nfeat: add tags",
+      "tree": {
+        "sha": "9a21e3466e03c1c3b54790ab2bca7b2ec57b7e24",
+        "url": "https://api.github.com/repos/stenjo/dora/git/trees/9a21e3466e03c1c3b54790ab2bca7b2ec57b7e24"
+      },
+      "url": "https://api.github.com/repos/stenjo/dora/git/commits/470507efd9c561eb638d24f24af394347cd4ef2f",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJkNyseCRBK7hj4Ov3rIwAAOsMIAHnfZ9g4HLA0oDxlj7c9uPR9\nFiUwF+9/inlMV5lR/b4rWPHZcgZl26QrhOgkXgwJq/5cP9KRBKXzabz6AZg+e537\ngYh2VJe28Y2BkpCo1Npn0tlY/U42yN7/Z0AfSIikDsBt6mFiAm1MAjzWWC1dwADL\n2syjHwki8Kt7TbS+ubxx21VZSg14rUHmb3RLNDUGaVmwxCYrQtS/liu68S6TZrWB\nRQZpJ/uyRMe9eVGmRnkQ5PjLrvBm4+mevLsZopCZpHyQmXjIoH22zyBXj3ouqix4\nQJgV9YD1X/xAUETaZe8xRIIjfN5HFuY1PZ9FgsFcw5jlrqhYar5fWndTU7c4Fd0=\n=yGkv\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree 9a21e3466e03c1c3b54790ab2bca7b2ec57b7e24\nparent 0fc9f14b56931d0187b86396ee9cf521d31310b8\nparent 00bb2635dd6f1ba48d4ddd60495a4ff7571c1452\nauthor Sten Otto Johnsen <sten@thinea.no> 1681337118 +0200\ncommitter GitHub <noreply@github.com> 1681337118 +0200\n\nMerge pull request #7 from stenjo/setting-up-comms-to-pull-requests\n\nfeat: add tags"
+      }
+    },
+    "url": "https://api.github.com/repos/stenjo/dora/commits/470507efd9c561eb638d24f24af394347cd4ef2f",
+    "html_url": "https://github.com/stenjo/dora/commit/470507efd9c561eb638d24f24af394347cd4ef2f",
+    "comments_url": "https://api.github.com/repos/stenjo/dora/commits/470507efd9c561eb638d24f24af394347cd4ef2f/comments",
+    "author": {
+      "login": "stenjo",
+      "id": 668722,
+      "node_id": "MDQ6VXNlcjY2ODcyMg==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/668722?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/stenjo",
+      "html_url": "https://github.com/stenjo",
+      "followers_url": "https://api.github.com/users/stenjo/followers",
+      "following_url": "https://api.github.com/users/stenjo/following{/other_user}",
+      "gists_url": "https://api.github.com/users/stenjo/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/stenjo/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/stenjo/subscriptions",
+      "organizations_url": "https://api.github.com/users/stenjo/orgs",
+      "repos_url": "https://api.github.com/users/stenjo/repos",
+      "events_url": "https://api.github.com/users/stenjo/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/stenjo/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "0fc9f14b56931d0187b86396ee9cf521d31310b8",
+        "url": "https://api.github.com/repos/stenjo/dora/commits/0fc9f14b56931d0187b86396ee9cf521d31310b8",
+        "html_url": "https://github.com/stenjo/dora/commit/0fc9f14b56931d0187b86396ee9cf521d31310b8"
+      },
+      {
+        "sha": "00bb2635dd6f1ba48d4ddd60495a4ff7571c1452",
+        "url": "https://api.github.com/repos/stenjo/dora/commits/00bb2635dd6f1ba48d4ddd60495a4ff7571c1452",
+        "html_url": "https://github.com/stenjo/dora/commit/00bb2635dd6f1ba48d4ddd60495a4ff7571c1452"
+      }
+    ]
+  },
+  {
+    "sha": "00bb2635dd6f1ba48d4ddd60495a4ff7571c1452",
+    "node_id": "C_kwDOJTf0atoAKDAwYmIyNjM1ZGQ2ZjFiYTQ4ZDRkZGQ2MDQ5NWE0ZmY3NTcxYzE0NTI",
+    "commit": {
+      "author": {
+        "name": "Sten Otto Johnsen",
+        "email": "steoj@equinor.com",
+        "date": "2023-04-12T21:59:34Z"
+      },
+      "committer": {
+        "name": "Sten Otto Johnsen",
+        "email": "steoj@equinor.com",
+        "date": "2023-04-12T21:59:34Z"
+      },
+      "message": "feat: add tags",
+      "tree": {
+        "sha": "447efdc9abba983b3444b96c987785892bc2a2cb",
+        "url": "https://api.github.com/repos/stenjo/dora/git/trees/447efdc9abba983b3444b96c987785892bc2a2cb"
+      },
+      "url": "https://api.github.com/repos/stenjo/dora/git/commits/00bb2635dd6f1ba48d4ddd60495a4ff7571c1452",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null
+      }
+    },
+    "url": "https://api.github.com/repos/stenjo/dora/commits/00bb2635dd6f1ba48d4ddd60495a4ff7571c1452",
+    "html_url": "https://github.com/stenjo/dora/commit/00bb2635dd6f1ba48d4ddd60495a4ff7571c1452",
+    "comments_url": "https://api.github.com/repos/stenjo/dora/commits/00bb2635dd6f1ba48d4ddd60495a4ff7571c1452/comments",
+    "author": {
+      "login": "steoj",
+      "id": 46670655,
+      "node_id": "MDQ6VXNlcjQ2NjcwNjU1",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46670655?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/steoj",
+      "html_url": "https://github.com/steoj",
+      "followers_url": "https://api.github.com/users/steoj/followers",
+      "following_url": "https://api.github.com/users/steoj/following{/other_user}",
+      "gists_url": "https://api.github.com/users/steoj/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/steoj/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/steoj/subscriptions",
+      "organizations_url": "https://api.github.com/users/steoj/orgs",
+      "repos_url": "https://api.github.com/users/steoj/repos",
+      "events_url": "https://api.github.com/users/steoj/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/steoj/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "steoj",
+      "id": 46670655,
+      "node_id": "MDQ6VXNlcjQ2NjcwNjU1",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46670655?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/steoj",
+      "html_url": "https://github.com/steoj",
+      "followers_url": "https://api.github.com/users/steoj/followers",
+      "following_url": "https://api.github.com/users/steoj/following{/other_user}",
+      "gists_url": "https://api.github.com/users/steoj/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/steoj/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/steoj/subscriptions",
+      "organizations_url": "https://api.github.com/users/steoj/orgs",
+      "repos_url": "https://api.github.com/users/steoj/repos",
+      "events_url": "https://api.github.com/users/steoj/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/steoj/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "5527cb3b14efb1bfc86cb045261850bdfb0cbc27",
+        "url": "https://api.github.com/repos/stenjo/dora/commits/5527cb3b14efb1bfc86cb045261850bdfb0cbc27",
+        "html_url": "https://github.com/stenjo/dora/commit/5527cb3b14efb1bfc86cb045261850bdfb0cbc27"
+      }
+    ]
+  }
+]

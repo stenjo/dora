@@ -5,7 +5,11 @@ on:
   pull_request:
   push:
     branches:
-       - main
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
 
 jobs:
   stryker-js:
@@ -15,6 +19,18 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
+      - name: Setup Node.js
+        id: setup-node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+
+      - name: Install Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
       - name: Install dependencies
         run: npm install
 
@@ -22,7 +38,7 @@ jobs:
         continue-on-error: true
         id: stryker
         run: |
-          yarn stryker run > out
+          npm run stryker > out
 
       - name: Print output
         continue-on-error: true
@@ -41,7 +57,7 @@ jobs:
           grep "All files" out > line
           awk '{print $4}' line > fullscore
           awk '{split($0,a,"."); print a[1]}' fullscore > score
-          echo $(echo -n 'stryker-score=' && cat score | tr -s '\n') >> $GITHUB_ENV
+          echo "stryker-score=$(tr -s '\n' < score)" >> "$GITHUB_ENV"
 
       - name: Create the Badge for Deploy Rate
         uses: Schneegans/dynamic-badges-action@v1.7.0
@@ -54,11 +70,51 @@ jobs:
           minColorRange: 50
           maxColorRange: 90
           valColorRange: ${{ env.stryker-score }}
-  
+
       - name: Upload results
         uses: actions/upload-artifact@v4
         with:
-            name: mutation-report
-            retention-days: 1
-            path: reports/mutation/
-            overwrite: true
+          name: mutation-report
+          retention-days: 1
+          path: reports/mutation/
+          overwrite: true
+
+      - name: Parse the json output and generate markdown
+        continue-on-error: true
+        id: extract_from_json
+        run: |
+          python ./script/generate_md_report.py reports/mutation/mutation.json stryker-report.md https://stenjo.github.io/devops-metrics-action/reports/pr-${{ github.event.pull_request.number }}/mutation-report.html
+        shell: /usr/bin/bash -e {0}
+
+      - name: Add formatted table to PR comment
+        uses: GrantBirki/comment@v2.1.0
+        continue-on-error: true
+        with:
+          comment-id: ${{ github.event.comment.id }}
+          edit-mode: replace
+          file: stryker-report.md
+
+      - name: Deploy HTML Report to GitHub Pages
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+
+          # Create a new branch for GitHub Pages if it doesn't exist
+          git fetch origin gh-pages:gh-pages || git checkout --orphan gh-pages
+          git checkout gh-pages
+
+          # Create a directory for this PR and move the report there
+          mkdir -p reports/pr-${{env.PR_NUMBER}}
+          mv reports/mutation/mutation.html reports/pr-${{env.PR_NUMBER}}/mutation-report.html
+
+          # Commit and push the changes
+          git add -f reports/pr-${{env.PR_NUMBER}}/mutation-report.html
+          git commit -m "Deploy mutation report for PR #${{env.PR_NUMBER}}"
+          git push origin gh-pages
+
+      - name: Output the URL
+        run: |
+          echo "Report available at: https://stenjo.github.io/devops-metrics-action/reports/pr-${{ github.event.pull_request.number }}/mutation-report.html"
