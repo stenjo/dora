@@ -7,10 +7,10 @@ on:
     branches:
       - main
 
-permissions:
-  contents: read
-  pull-requests: write
-  repository-projects: write
+# permissions:
+#   contents: read
+#   pull-requests: write
+#   repository-projects: write
 
 jobs:
   stryker-js:
