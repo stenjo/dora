@@ -16,10 +16,10 @@ def load_json_file(file_path: str) -> dict:
 def count_mutation_statuses(report: dict) -> dict:
     """Count the mutation statuses"""
     status_counts = {}
-    total_counts: int = defaultdict(int)
+    total_counts: dict = defaultdict(int)
 
     for file_name, file_data in report["files"].items():
-        counts: int = defaultdict(int)
+        counts: dict = defaultdict(int)
 
         for mutant in file_data["mutants"]:
             counts[mutant["status"]] += 1
@@ -48,13 +48,11 @@ def count_mutation_statuses(report: dict) -> dict:
     # Calculate overall totals
     total_counts["Timeout"] = total_counts["Timeout"]
     total_relevant = (
-        total_counts["Killed"] + total_counts["Survived"]
-        + total_counts["Timeout"]
+        total_counts["Killed"] + total_counts["Survived"] + total_counts["Timeout"]
     )
 
     total_score = (
-        (total_counts["Killed"] / total_relevant * 100)
-        if total_relevant > 0 else 0
+        (total_counts["Killed"] / total_relevant * 100) if total_relevant > 0 else 0
     )
 
     status_counts["All"] = {
