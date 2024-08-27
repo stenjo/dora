@@ -24,8 +24,16 @@ describe('CommitsAdapter', () => {
   })
 
   it('should initialize with the correct token', () => {
-    expect(adapter.token).toBe(token)
-    expect(adapter.octokit).toBeDefined()
+    expect(Octokit).toHaveBeenCalledWith({
+      auth: token
+    })
+  })
+
+  it('should initialize with an undefined token', () => {
+    new CommitsAdapter(undefined)
+    expect(Octokit).toHaveBeenCalledWith({
+      auth: undefined
+    })
   })
 
   it('should fetch commits successfully', async () => {
@@ -64,7 +72,7 @@ describe('CommitsAdapter', () => {
     expect(commits).toBeUndefined()
   })
 
-  it('should handle undefined token', () => {
+  it('should handle undefined token gracefully', () => {
     const adapterWithoutToken = new CommitsAdapter(undefined)
     expect(adapterWithoutToken.token).toBeUndefined()
     expect(adapterWithoutToken.octokit).toBeDefined() // Octokit should still be initialized
