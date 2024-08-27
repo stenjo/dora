@@ -115,7 +115,7 @@ jobs:
           # Commit and push the changes
           git add -f reports/pr-${{env.PR_NUMBER}}/mutation-report.html
           git commit -m "Deploy mutation report for PR #${{env.PR_NUMBER}}"
-          git push origin gh-pages
+          git push https://x-access-token:${{env.PAT_TOKEN}}@github.com/stenjo/devops-metrics-action.git gh-pages
 
       - name: Output the URL
         run: |
