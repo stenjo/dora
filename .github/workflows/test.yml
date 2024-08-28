@@ -14,6 +14,9 @@ jobs:
   # unit tests
   units:
     runs-on: ubuntu-latest
+    env:
+      covGistPrefix: 'https://gist.githubusercontent.com/stenjo/9ce1ad7d8e9db99796e782b244eefa4a/raw/a0658e8f80e2c639f2af405c15eeb89b41798a59'
+
     steps:
       - uses: actions/checkout@v4
 
@@ -61,12 +64,35 @@ jobs:
           color: ${{ steps.coverageComment.outputs.color }}
           namedLogo: jest
 
-      - name: Comment Test Coverage
-        uses: AthleticNet/comment-test-coverage@1.2.2
+      - name: Gist Sync File
+        uses: danielmcconville/gist-sync-file-action@v2.0.0
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          path: coverage/coverage-summary.json
-          title: Jest Test Coverage
+          gistPat: ${{ secrets.GIST_AUTH_TOKEN }}
+          action: update
+          filename: coverage-summary.json
+          gistId: 9ce1ad7d8e9db99796e782b244eefa4a
+          working-directory: ./coverage
+
+        # https://gist.githubusercontent.com/stenjo/9ce1ad7d8e9db99796e782b244eefa4a/raw/a0658e8f80e2c639f2af405c15eeb89b41798a59/devops_metrics__main.json
+      - name: Get coverage Gist
+        if: steps.branch-name.outputs.current_branch != 'main'
+        run: |
+          curl -o main-coverage.json ${{ env.covGistPrefix }}/devops_metrics__main.json
+          function diff {     diff="$(echo $2 - $1 | bc -l | sed -e 's/^\./0./' -e 's/^-\./-0./')";     echo $diff; }
+          pctLineChange=$(diff $(jq .linecoverage main-coverage.json) $(jq .linecoverage coverage/coverage-summary.json))
+          echo '**Code Coverage change **' > coverage.txt
+          echo 'This PR changes coverage by' $pctLineChange '%' >> coverage.txt
+          echo 'Component coverage will change from ' $(jq .linecoverage main-coverage.json)'% to ' $(jq .linecoverage ${{ inputs.tag }}-coverage-main.json)'%.' >> coverage.txt
+          echo "$(<coverage.txt)"
+
+      - name: Add PR Comment with coverage diff
+        uses: mshick/add-pr-comment@v2
+        with:
+          message-path: coverage.txt
+          update-only: false
+          refresh-message-position: true
+          allow-repeats: false
+          message-id: 'add-pr-diff-comment-${{ inputs.tag }}'
 
   # test action works running from the graph
   test:
