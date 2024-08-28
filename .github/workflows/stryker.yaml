@@ -93,6 +93,15 @@ jobs:
           comment-id: ${{ github.event.comment.id }}
           edit-mode: replace
           file: stryker-report.md
+        
+      - name: Add formatted table to PR comment
+        uses: mshick/add-pr-comment@v2
+        with:
+          message-path: stryker-report.md
+          update-only: false
+          refresh-message-position: true
+          allow-repeats: false
+          message-id: 'add-pr-stryker-comment-${{ github.event.pull_request.number }}'
 
       - name: Deploy HTML Report to GitHub Pages
         env:
