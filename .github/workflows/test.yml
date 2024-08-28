@@ -15,7 +15,7 @@ jobs:
   units:
     runs-on: ubuntu-latest
     env:
-      covGistPrefix: 'https://gist.githubusercontent.com/stenjo/9ce1ad7d8e9db99796e782b244eefa4a/raw/f52cd85b82dd774ba0ce9d052f7ff2be505ea2d0/'
+      covGistPrefix: 'https://gist.githubusercontent.com/stenjo/9ce1ad7d8e9db99796e782b244eefa4a/raw/f52cd85b82dd774ba0ce9d052f7ff2be505ea2d0'
 
     steps:
       - uses: actions/checkout@v4
