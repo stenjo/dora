@@ -80,16 +80,16 @@ jobs:
         run: |
           curl -o main-coverage.json "${{ env.covGistPrefix }}"/coverage-summary.json
           function diff {     diff="$(echo "$2" - "$1" | bc -l | sed -e 's/^\./0./' -e 's/^-\./-0./')";     echo "$diff"; }
-          pctLineChange=$(diff "$(jq .total.lines.pct main-coverage.json)" "$(jq .total.lines.pct coverage/coverage-summary.json)")
-          echo '**Code Coverage change **' > coverage.txt
-          echo 'This PR changes coverage by' "$pctLineChange" '%' >> coverage.txt
-          echo 'Component coverage will change from ' "$(jq .total.lines.pct main-coverage.json)"'% to ' "$(jq .total.lines.pct coverage/coverage-summary.json)"'%.' >> coverage.txt
-          echo "$(<coverage.txt)"
+          pctLineChange=$(diff $(jq .total.lines.pct main-coverage.json) $(jq .total.lines.pct coverage/coverage-summary.json))
+          echo '**Code Coverage change**' > coverage.md
+          echo 'This PR changes coverage by' "$pctLineChange" '%' >> coverage.md
+          echo 'Component coverage will change from ' "$(jq .total.lines.pct main-coverage.json)"'% to ' "$(jq .total.lines.pct coverage/coverage-summary.json)"'%.' >> coverage.md
+          echo "$(<coverage.md)"
 
       - name: Add PR Comment with coverage diff
         uses: mshick/add-pr-comment@v2
         with:
-          message-path: coverage.txt
+          message-path: coverage.md
           update-only: false
           refresh-message-position: true
           allow-repeats: false
