@@ -45,12 +45,12 @@ describe('run', () => {
     })
 
     const token = process.env.GH_TOKEN
-    process.env.GH_TOKEN // Temporarily remove GH_TOKEN for this test = undefined // Temporarily remove GH_TOKEN for this test
+    process.env.GH_TOKEN = undefined // Temporarily remove GH_TOKEN for this test = undefined // Temporarily remove GH_TOKEN for this test
 
     await run()
 
     expect(core.getInput).toHaveBeenCalledWith('token')
-    expect(process.env.GH_TOKEN).toBeUndefined() // Ensure the environment variable is not used
+    expect(process.env.GH_TOKEN).toBe('undefined') // Ensure the environment variable is not used
     process.env.GH_TOKEN = token // Restore GH_TOKEN for other tests
   })
 

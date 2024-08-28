@@ -1,5 +1,5 @@
-import {Issue} from './types/Issue'
-import {Release} from './types/Release'
+import type {Issue} from './types/Issue'
+import type {Release} from './types/Release'
 
 export class ChangeFailureRate {
   today: Date
@@ -8,7 +8,7 @@ export class ChangeFailureRate {
   repos: string[]
 
   constructor(issues: Issue[], releases: Release[], today: Date | null = null) {
-    today === null ? (this.today = new Date()) : (this.today = today)
+    this.today = today === null ? new Date() : today
     this.issues = issues
     this.releases = releases
       .sort((a, b) =>
