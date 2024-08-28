@@ -15,7 +15,7 @@ jobs:
   units:
     runs-on: ubuntu-latest
     env:
-      covGistPrefix: 'https://gist.githubusercontent.com/stenjo/9ce1ad7d8e9db99796e782b244eefa4a/raw/a0658e8f80e2c639f2af405c15eeb89b41798a59'
+      covGistPrefix: 'https://gist.githubusercontent.com/stenjo/9ce1ad7d8e9db99796e782b244eefa4a/raw/f52cd85b82dd774ba0ce9d052f7ff2be505ea2d0/'
 
     steps:
       - uses: actions/checkout@v4
@@ -74,7 +74,6 @@ jobs:
           filename: coverage-summary.json
           gistId: 9ce1ad7d8e9db99796e782b244eefa4a
 
-        # https://gist.githubusercontent.com/stenjo/9ce1ad7d8e9db99796e782b244eefa4a/raw/a0658e8f80e2c639f2af405c15eeb89b41798a59/devops_metrics__main.json
       - name: Get coverage Gist
         if: steps.branch-name.outputs.current_branch != 'main'
         run: |
