@@ -85,7 +85,7 @@ jobs:
           pctLineChange=$(diff "$main" "$current")
           echo '**Code Coverage change**' > coverage.md
           echo 'This PR changes coverage by' "$pctLineChange" '%' >> coverage.md
-          echo 'Component coverage will change from ' $(jq .total.lines.pct main-coverage.json)'% to ' $(jq .total.lines.pct coverage/coverage-summary.json)'%.' >> coverage.md
+          echo 'Component coverage will change from ' "$main"'% to ' "$current"'%.' >> coverage.md
           echo "$(<coverage.md)"
 
       - name: Add PR Comment with coverage diff
