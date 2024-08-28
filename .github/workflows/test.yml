@@ -80,7 +80,7 @@ jobs:
         run: |
           curl -o main-coverage.json "${{ env.covGistPrefix }}"/coverage-summary.json
           function diff {     diff="$(echo "$2" - "$1" | bc -l | sed -e 's/^\./0./' -e 's/^-\./-0./')";     echo "$diff"; }
-          current=$(jq .total.lines.pct coverage/coverage-summary.json)
+          current=$(jq .total.lines.pct coverage-summary.json)
           main=$(jq .total.lines.pct main-coverage.json)
           pctLineChange=$(diff "$main" "$current")
           echo '**Code Coverage change**' > coverage.md
