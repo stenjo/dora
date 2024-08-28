@@ -51,6 +51,7 @@ jobs:
           echo "Coverage Percentage - ${{ steps.coverageComment.outputs.coverage }}"
           echo "Coverage Color - ${{ steps.coverageComment.outputs.color }}"
           echo "Summary HTML - ${{ steps.coverageComment.outputs.summaryHtml }}"
+          mv coverage/coverage-summary.json .
 
       - name: Create the Badge
         uses: schneegans/dynamic-badges-action@v1.7.0
@@ -71,7 +72,6 @@ jobs:
           action: update
           filename: coverage-summary.json
           gistId: 9ce1ad7d8e9db99796e782b244eefa4a
-          working-directory: ./coverage
 
         # https://gist.githubusercontent.com/stenjo/9ce1ad7d8e9db99796e782b244eefa4a/raw/a0658e8f80e2c639f2af405c15eeb89b41798a59/devops_metrics__main.json
       - name: Get coverage Gist
