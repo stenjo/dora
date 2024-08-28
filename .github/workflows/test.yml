@@ -78,12 +78,14 @@ jobs:
       - name: Get coverage Gist
         if: steps.branch-name.outputs.current_branch != 'main'
         run: |
+          #!/bin/sh
+          # shellcheck disable=SC2046
           curl -o main-coverage.json "${{ env.covGistPrefix }}"/coverage-summary.json
           function diff {     diff="$(echo "$2" - "$1" | bc -l | sed -e 's/^\./0./' -e 's/^-\./-0./')";     echo "$diff"; }
           pctLineChange=$(diff $(jq .total.lines.pct main-coverage.json) $(jq .total.lines.pct coverage/coverage-summary.json))
           echo '**Code Coverage change**' > coverage.md
           echo 'This PR changes coverage by' "$pctLineChange" '%' >> coverage.md
-          echo 'Component coverage will change from ' "$(jq .total.lines.pct main-coverage.json)"'% to ' "$(jq .total.lines.pct coverage/coverage-summary.json)"'%.' >> coverage.md
+          echo 'Component coverage will change from ' $(jq .total.lines.pct main-coverage.json)'% to ' $(jq .total.lines.pct coverage/coverage-summary.json)'%.' >> coverage.md
           echo "$(<coverage.md)"
 
       - name: Add PR Comment with coverage diff
