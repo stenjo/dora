@@ -75,6 +75,7 @@ jobs:
           auth: ${{ secrets.GIST_AUTH_TOKEN }}
           gist_url: https://gist.github.com/stenjo/73bb1ba5fe7f17151197d27cfe2d9b41
           gist_title: deploy-rate.json
+          gist_description: Deploy rate
           github_file: ./deploy-rate.json
 
       # Store Lead Time history
@@ -105,6 +106,7 @@ jobs:
           auth: ${{ secrets.GIST_AUTH_TOKEN }}
           gist_url: https://gist.github.com/stenjo/73bb1ba5fe7f17151197d27cfe2d9b41
           gist_title: lead-time.json
+          gist_description: Lead time
           github_file: ./lead-time.json
 
       # Store Change Failure Rate
@@ -138,6 +140,7 @@ jobs:
           auth: ${{ secrets.GIST_AUTH_TOKEN }}
           gist_url: https://gist.github.com/stenjo/73bb1ba5fe7f17151197d27cfe2d9b41
           gist_title: change-failure-rate.json
+          gist_description: Change failure rate
           github_file: ./change-failure-rate.json
 
       # Store Mean time to Repair
@@ -171,4 +174,5 @@ jobs:
           auth: ${{ secrets.GIST_AUTH_TOKEN }}
           gist_url: https://gist.github.com/stenjo/73bb1ba5fe7f17151197d27cfe2d9b41
           gist_title: mttr.json
+          gist_description: Mean time to recover
           github_file: ./mttr.json
