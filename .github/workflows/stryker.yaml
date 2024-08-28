@@ -87,12 +87,13 @@ jobs:
         shell: /usr/bin/bash -e {0}
 
       - name: Add formatted table to PR comment
-        uses: GrantBirki/comment@v2.1.0
-        continue-on-error: true
+        uses: mshick/add-pr-comment@v2
         with:
-          comment-id: ${{ github.event.comment.id }}
-          edit-mode: replace
-          file: stryker-report.md
+          message-path: stryker-report.md
+          update-only: false
+          refresh-message-position: true
+          allow-repeats: false
+          message-id: 'add-pr-stryker-comment-${{ github.event.pull_request.number }}'
 
       - name: Deploy HTML Report to GitHub Pages
         env:

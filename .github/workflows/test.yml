@@ -14,6 +14,9 @@ jobs:
   # unit tests
   units:
     runs-on: ubuntu-latest
+    env:
+      covGistPrefix: 'https://gist.githubusercontent.com/stenjo/9ce1ad7d8e9db99796e782b244eefa4a/raw/f52cd85b82dd774ba0ce9d052f7ff2be505ea2d0'
+
     steps:
       - uses: actions/checkout@v4
 
@@ -48,6 +51,7 @@ jobs:
           echo "Coverage Percentage - ${{ steps.coverageComment.outputs.coverage }}"
           echo "Coverage Color - ${{ steps.coverageComment.outputs.color }}"
           echo "Summary HTML - ${{ steps.coverageComment.outputs.summaryHtml }}"
+          mv coverage/coverage-summary.json .
 
       - name: Create the Badge
         uses: schneegans/dynamic-badges-action@v1.7.0
@@ -60,6 +64,37 @@ jobs:
           message: ${{ steps.coverageComment.outputs.coverage }}%
           color: ${{ steps.coverageComment.outputs.color }}
           namedLogo: jest
+
+      - name: Gist Sync File
+        uses: danielmcconville/gist-sync-file-action@v2.0.0
+        if: steps.branch-name.outputs.current_branch == 'main'
+        with:
+          gistPat: ${{ secrets.GIST_AUTH_TOKEN }}
+          action: update
+          filename: coverage-summary.json
+          gistId: 9ce1ad7d8e9db99796e782b244eefa4a
+
+      - name: Get coverage Gist
+        if: steps.branch-name.outputs.current_branch != 'main'
+        run: |
+          curl -o main-coverage.json ${{ env.covGistPrefix }}/coverage-summary.json
+          function diff {     diff="$(echo "$2" - "$1" | bc -l | sed -e 's/^\./0./' -e 's/^-\./-0./')";     echo "$diff"; }
+          current=$(jq .total.lines.pct coverage-summary.json)
+          main=$(jq .total.lines.pct main-coverage.json)
+          pctLineChange=$(diff "$main" "$current")
+          echo '**Code Coverage change**' > coverage.md
+          echo 'This PR changes coverage by' "$pctLineChange" '%' >> coverage.md
+          echo 'Component coverage will change from ' "$main"'% to ' "$current"'%.' >> coverage.md
+          echo "$(<coverage.md)"
+
+      - name: Add PR Comment with coverage diff
+        uses: mshick/add-pr-comment@v2
+        with:
+          message-path: coverage.md
+          update-only: false
+          refresh-message-position: true
+          allow-repeats: false
+          message-id: 'add-pr-diff-comment-${{ github.event.pull_request.number }}'
 
   # test action works running from the graph
   test:

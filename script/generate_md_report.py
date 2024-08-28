@@ -71,7 +71,7 @@ def count_mutation_statuses(report: dict) -> dict:
 def generate_markdown_report(status_counts: dict, url: str) -> str:
     """Generate a Markdown report summarizing
     mutation status counts per file."""
-    markdown = "# Stryker report for changed files\n\n"
+    markdown = "# Stryker report\n\n"
     markdown += "| File                  | % score | # killed \
         | # timeout | # survived | # no cov | # errors |\n"
     markdown += "|-----------------------|---------|----------\
