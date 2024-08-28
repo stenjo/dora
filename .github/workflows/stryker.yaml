@@ -93,7 +93,7 @@ jobs:
           comment-id: ${{ github.event.comment.id }}
           edit-mode: replace
           file: stryker-report.md
-        
+
       - name: Add formatted table to PR comment
         uses: mshick/add-pr-comment@v2
         with:
