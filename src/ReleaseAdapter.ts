@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import {Octokit} from '@octokit/core'
 import * as core from '@actions/core'
-import {Release} from './types/Release'
-import {IReleaseAdapter} from './interfaces/IReleaseAdapter'
+import type {Release} from './types/Release'
+import type {IReleaseAdapter} from './interfaces/IReleaseAdapter'
 
 export class ReleaseAdapter implements IReleaseAdapter {
   token: string | undefined
@@ -38,6 +37,7 @@ export class ReleaseAdapter implements IReleaseAdapter {
       }
 
       return result
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (e: any) {
       core.setFailed(e.message)
     }

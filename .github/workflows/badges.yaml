@@ -1,17 +1,27 @@
 name: Create Badge on DevOps Metrics
 
-on: 
+on:
   push:
     branches:
-    - main
+      - main
   schedule:
-  - cron: '30 0 * * *'
+    - cron: '30 0 * * *'
+
+permissions:
+  contents: read
 
 jobs:
   update-metrics:
     runs-on: ubuntu-latest
     name: Checking the dora metrics
     steps:
+      - name: Setup Node.js
+        id: setup-node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+
       - name: DevOps Metrics from GitHub
         uses: stenjo/devops-metrics-action@v1
         id: dora
@@ -22,11 +32,12 @@ jobs:
 
       # Use the output from the `dora` step
       - name: Get the output rate
-        run: echo "The deploy rate was ${{ steps.dora.outputs.deploy-rate }}"      # Use the output from the `dora` step
+        run: echo "The deploy rate was ${{ steps.dora.outputs.deploy-rate }}" # Use the output from the `dora` step
       - name: Get the lead time
-        run: echo "The lead time was ${{ steps.dora.outputs.lead-time }}"      # Use the output from the `dora` step
+        run: echo "The lead time was ${{ steps.dora.outputs.lead-time }}" # Use the output from the `dora` step
       - name: Get the change failure rate
-        run: echo "The change failure rate was ${{ steps.dora.outputs.change-failure-rate }}"
+        run: echo "The change failure rate was ${{
+          steps.dora.outputs.change-failure-rate }}"
       - name: Get the mean time to restore
         run: echo "The mean time to restore was ${{ steps.dora.outputs.mttr }}"
 

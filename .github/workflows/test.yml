@@ -1,4 +1,4 @@
-name: "units-test"
+name: 'units-test'
 on:
   pull_request:
   push:
@@ -6,48 +6,60 @@ on:
       - main
       - 'releases/*'
 
+permissions:
+  contents: read
+  pull-requests: write
+
 jobs:
   # unit tests
   units:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - run: npm ci
-    - name: Run tests
-      run: |
-        npx jest --coverage | tee ./coverage.txt && exit ${PIPESTATUS[0]}
+      - uses: actions/checkout@v4
 
-    - name: Get branch name
-      id: branch-name
-      uses: tj-actions/branch-names@v8
-      
-    - name: Jest Coverage Comment
-      id: coverageComment
-      uses: MishaKav/jest-coverage-comment@main
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        summary-title: Jest Coverage (summary)
-        title: Test Coverage
-        coverage-summary-path: coverage/coverage-summary.json
-        coverage-path: ./coverage.txt
+      - name: Setup Node.js
+        id: setup-node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
 
-    - name: Check the output coverage
-      run: |
-        echo "Coverage Percentage - ${{ steps.coverageComment.outputs.coverage }}"
-        echo "Coverage Color - ${{ steps.coverageComment.outputs.color }}"
-        echo "Summary HTML - ${{ steps.coverageComment.outputs.summaryHtml }}"
+      - run: npm ci
+      - name: Run tests
+        run: |
+          npx jest --coverage | tee ./coverage.txt && exit "${PIPESTATUS[0]}"
 
-    - name: Create the Badge
-      uses: schneegans/dynamic-badges-action@v1.7.0
-      if: steps.branch-name.outputs.current_branch == 'main'
-      with:
-        auth: ${{ secrets.GIST_AUTH_TOKEN }}
-        gistID: 9ce1ad7d8e9db99796e782b244eefa4a
-        filename: devops_metrics__${{ steps.branch-name.outputs.current_branch }}.json
-        label: Test Coverage
-        message: ${{ steps.coverageComment.outputs.coverage }}%
-        color: ${{ steps.coverageComment.outputs.color }}
-        namedLogo: jest
+      - name: Get branch name
+        id: branch-name
+        uses: tj-actions/branch-names@v8
+
+      - name: Jest Coverage Comment
+        id: coverageComment
+        uses: MishaKav/jest-coverage-comment@main
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          summary-title: Jest Coverage (summary)
+          title: Test Coverage
+          coverage-summary-path: coverage/coverage-summary.json
+          coverage-path: ./coverage.txt
+
+      - name: Check the output coverage
+        run: |
+          echo "Coverage Percentage - ${{ steps.coverageComment.outputs.coverage }}"
+          echo "Coverage Color - ${{ steps.coverageComment.outputs.color }}"
+          echo "Summary HTML - ${{ steps.coverageComment.outputs.summaryHtml }}"
+
+      - name: Create the Badge
+        uses: schneegans/dynamic-badges-action@v1.7.0
+        if: steps.branch-name.outputs.current_branch == 'main'
+        with:
+          auth: ${{ secrets.GIST_AUTH_TOKEN }}
+          gistID: 9ce1ad7d8e9db99796e782b244eefa4a
+          filename: devops_metrics__${{ steps.branch-name.outputs.current_branch }}.json
+          label: Test Coverage
+          message: ${{ steps.coverageComment.outputs.coverage }}%
+          color: ${{ steps.coverageComment.outputs.color }}
+          namedLogo: jest
 
     - name: Comment Test Coverage
       uses: AthleticNet/comment-test-coverage@1.2.2
@@ -60,28 +72,25 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - uses: ./
-      id: dora
-      with:
-        owner: stenjo
-        repo: '[dora,Middager]'
-        token: ${{ secrets.GITHUB_TOKEN }}
-        logging: true
-        filtered: true
+      - uses: actions/checkout@v4
+      - uses: ./
+        id: dora
+        with:
+          owner: stenjo
+          repo: '[dora,Middager]'
+          token: ${{ secrets.GITHUB_TOKEN }}
+          logging: true
+          filtered: true
 
-    # Use the output from the `dora` step
-    - name: Get the output rate
-      run: |
-        echo "The deploy rate was ${{ steps.dora.outputs.deploy-rate }}"      # Use the output from the `dora` step
-        echo "The log was:\n${{ steps.dora.outputs.deploy-rate-log }}"      # Use the output from the `dora` step
-        echo "${{ steps.dora.outputs.deploy-rate-log }}" > deploy-rate-log.txt
-        echo "The lead time was ${{ steps.dora.outputs.lead-time }}"      # Use the output from the `dora` step
-        echo "The log was:\n${{ steps.dora.outputs.lead-time-log }}"      # Use the output from the `dora` step
-        echo "${{ steps.dora.outputs.lead-time-log }}" > lead-time-log.txt
+      # Use the output from the `dora` step
+      - name: Get the output rate
+        run: |
+          printf "The deploy rate was %s" ${{ steps.dora.outputs.deploy-rate }}      # Use the output from the `dora` step
+          printf "The log was:\n%s" ${{ steps.dora.outputs.deploy-rate-log }}      # Use the output from the `dora` step
+          printf "${{ steps.dora.outputs.deploy-rate-log }}" > deploy-rate-log.txt
+          echo "The lead time was ${{ steps.dora.outputs.lead-time }}"      # Use the output from the `dora` step
 
-
-    - uses: actions/upload-artifact@v4
-      with:
-        name: logs
-        path: ./*-log.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: logs
+          path: ./*-log.txt
