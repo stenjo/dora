@@ -601,6 +601,12 @@ describe('LeadTime should', () => {
 
     const pulls = [
       {
+        merged_at: '2023-04-26T17:50:53Z', // Filtered out
+        commits_url: '10',
+        base: {ref: 'main', repo: {name: 'other-repo'}},
+        title: 'fix: extra filtered out'
+      },
+      {
         merged_at: '2023-04-27T17:50:53Z', // Has a commit 19/4, first release is 29/4 -> Lead time 10 days
         commits_url: '47',
         base: {ref: 'main', repo: {name: 'other-repo'}},
@@ -638,7 +644,12 @@ describe('LeadTime should', () => {
       }
     ] as Release[]
 
-    const lt = new LeadTime(pulls, rels, commitsAdapter, new Date('2023-05-01'))
+    const lt = new LeadTime(
+      pulls,
+      rels,
+      commitsAdapter,
+      new Date('2023-05-27T17:50:53Z')
+    )
     const leadTime = await lt.getLeadTime(true)
 
     const log = lt.getLog().filter(l => {

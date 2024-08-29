@@ -1,7 +1,7 @@
-import {PullRequest} from './types/PullRequest'
-import {Release} from './types/Release'
-import {ICommitsAdapter} from './interfaces/ICommitsAdapter'
-import {Commit} from './types/Commit'
+import type {PullRequest} from './types/PullRequest'
+import type {Release} from './types/Release'
+import type {ICommitsAdapter} from './interfaces/ICommitsAdapter'
+import type {Commit} from './types/Commit'
 
 const ONE_DAY = 24 * 60 * 60 * 1000
 export class LeadTime {
@@ -51,7 +51,7 @@ export class LeadTime {
     }
 
     if (filtered) {
-      this.log.push(`\nLog is filtered - only feat and fix.`)
+      this.log.push('\nLog is filtered - only feat and fix.')
     }
 
     const leadTimes: number[] = []

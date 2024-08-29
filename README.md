@@ -6,8 +6,8 @@
 ![Stryker-JS](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/stenjo/9ce1ad7d8e9db99796e782b244eefa4a/raw/dora-stryker.json)
 
 This GitHub Action will calculate a set of DevOps Research and Assessment (DORA)
-metrics based on status and dates from commits and issues. Requires GitHub projects and
-that github issues are used as virtual cards for features and bugs.
+metrics based on status and dates from commits and issues. Requires GitHub projects
+and that GitHub issues are used as virtual cards for features and bugs.
 
 ![badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/stenjo/ebb0efc5ab5afb32eae4d0cdc60d563a/raw/deploy-rate.json)
 ![badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/stenjo/ebb0efc5ab5afb32eae4d0cdc60d563a/raw/lead-time.json)
