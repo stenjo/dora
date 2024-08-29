@@ -568,11 +568,13 @@ describe('LeadTime should', () => {
 
     // console.log(log)
 
-    expect(
-      log.filter(l => {
-        return l.includes('pull')
-      }).length
-    ).toBe(2)
+    const logItems = log.filter(l => {
+      return l.includes('pull')
+    })
+    expect(logItems.length).toBe(2)
+    expect(logItems.pop()).toBe(
+      'pull->      2023-04-27T17:50:53Z : fix: removed error message'
+    )
   })
 
   it('get event log list when lead time calculated and filtered', async () => {
@@ -626,13 +628,14 @@ describe('LeadTime should', () => {
     const lt = new LeadTime(pulls, rels, commitsAdapter, new Date('2023-05-01'))
     const leadTime = await lt.getLeadTime(true)
 
-    const log = lt.getLog()
+    const log = lt.getLog().filter(l => {
+      return l.includes('pull')
+    })
 
-    expect(
-      log.filter(l => {
-        return l.includes('pull')
-      }).length
-    ).toBe(1)
+    expect(log.length).toBe(1)
+    expect(log[0]).toBe(
+      'pull->      2023-04-27T17:50:53Z : feat(docs): better description'
+    )
 
     expect(leadTime).toBe(10)
   })
