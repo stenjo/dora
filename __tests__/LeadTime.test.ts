@@ -505,13 +505,26 @@ describe('LeadTime should', () => {
     ] as Release[]
 
     const lt = new LeadTime(pulls, rels, commitsAdapter, new Date('2023-05-01'))
-    await lt.getLeadTime()
+    const leadTime = await lt.getLeadTime()
 
-    expect(
-      lt.getLog().filter(l => {
-        return l.includes('release')
-      }).length
-    ).toBe(2)
+    const releaseLogItems = lt.getLog().filter(l => {
+      return l.includes('release')
+    })
+    expect(releaseLogItems.length).toBe(2)
+    expect(releaseLogItems[0]).toBe('  release-> 2023-04-29T17:50:53Z : v0.1.0')
+
+    const commitLogItems = lt.getLog().filter(l => {
+      return l.includes('commit')
+    })
+    expect(commitLogItems.length).toBe(2)
+    expect(commitLogItems[0]).toBe(
+      '  commit->  2023-04-19T17:50:53Z : all passing'
+    )
+
+    expect(lt.getLog()).toContain('  10.00 days')
+    expect(lt.getLog()).toContain('  6.00 days')
+
+    expect(leadTime).toBe(8)
   })
   it('get event log list when lead time calculated', async () => {
     commitsAdapter.getCommitsFromUrl = jest.fn(
