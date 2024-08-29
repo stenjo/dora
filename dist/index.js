@@ -29525,7 +29525,7 @@ class LeadTime {
             return 0;
         }
         if (filtered) {
-            this.log.push(`\nLog is filtered - only feat and fix.`);
+            this.log.push('\nLog is filtered - only feat and fix.');
         }
         const leadTimes = [];
         for (const pull of this.pulls) {
