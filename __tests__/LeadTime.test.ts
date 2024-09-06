@@ -505,13 +505,26 @@ describe('LeadTime should', () => {
     ] as Release[]
 
     const lt = new LeadTime(pulls, rels, commitsAdapter, new Date('2023-05-01'))
-    await lt.getLeadTime()
+    const leadTime = await lt.getLeadTime()
 
-    expect(
-      lt.getLog().filter(l => {
-        return l.includes('release')
-      }).length
-    ).toBe(2)
+    const releaseLogItems = lt.getLog().filter(l => {
+      return l.includes('release')
+    })
+    expect(releaseLogItems.length).toBe(2)
+    expect(releaseLogItems[0]).toBe('  release-> 2023-04-29T17:50:53Z : v0.1.0')
+
+    const commitLogItems = lt.getLog().filter(l => {
+      return l.includes('commit')
+    })
+    expect(commitLogItems.length).toBe(2)
+    expect(commitLogItems[0]).toBe(
+      '  commit->  2023-04-19T17:50:53Z : all passing'
+    )
+
+    expect(lt.getLog()).toContain('  10.00 days')
+    expect(lt.getLog()).toContain('  6.00 days')
+
+    expect(leadTime).toBe(8)
   })
   it('get event log list when lead time calculated', async () => {
     commitsAdapter.getCommitsFromUrl = jest.fn(
@@ -568,11 +581,13 @@ describe('LeadTime should', () => {
 
     // console.log(log)
 
-    expect(
-      log.filter(l => {
-        return l.includes('pull')
-      }).length
-    ).toBe(2)
+    const logItems = log.filter(l => {
+      return l.includes('pull')
+    })
+    expect(logItems.length).toBe(2)
+    expect(logItems.pop()).toBe(
+      'pull->      2023-04-27T17:50:53Z : fix: removed error message'
+    )
   })
 
   it('get event log list when lead time calculated and filtered', async () => {
@@ -585,6 +600,12 @@ describe('LeadTime should', () => {
     // Returning commits from (10)=>22/4, (15)=>27/4 and (47)=>19/4
 
     const pulls = [
+      {
+        merged_at: '2023-04-26T17:50:53Z', // Filtered out
+        commits_url: '10',
+        base: {ref: 'main', repo: {name: 'other-repo'}},
+        title: 'fix: extra filtered out'
+      },
       {
         merged_at: '2023-04-27T17:50:53Z', // Has a commit 19/4, first release is 29/4 -> Lead time 10 days
         commits_url: '47',
@@ -623,16 +644,22 @@ describe('LeadTime should', () => {
       }
     ] as Release[]
 
-    const lt = new LeadTime(pulls, rels, commitsAdapter, new Date('2023-05-01'))
+    const lt = new LeadTime(
+      pulls,
+      rels,
+      commitsAdapter,
+      new Date('2023-05-27T17:50:53Z')
+    )
     const leadTime = await lt.getLeadTime(true)
 
-    const log = lt.getLog()
+    const log = lt.getLog().filter(l => {
+      return l.includes('pull')
+    })
 
-    expect(
-      log.filter(l => {
-        return l.includes('pull')
-      }).length
-    ).toBe(1)
+    expect(log.length).toBe(1)
+    expect(log[0]).toBe(
+      'pull->      2023-04-27T17:50:53Z : feat(docs): better description'
+    )
 
     expect(leadTime).toBe(10)
   })

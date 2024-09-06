@@ -6,7 +6,8 @@
 ![Stryker-JS](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/stenjo/9ce1ad7d8e9db99796e782b244eefa4a/raw/dora-stryker.json)
 
 This GitHub Action will calculate a set of DevOps Research and Assessment (DORA)
-metrics based on status and dates from commits and issues.
+metrics based on status and dates from commits and issues. Requires GitHub projects
+and that GitHub issues are used as virtual cards for features and bugs.
 
 ![badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/stenjo/ebb0efc5ab5afb32eae4d0cdc60d563a/raw/deploy-rate.json)
 ![badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/stenjo/ebb0efc5ab5afb32eae4d0cdc60d563a/raw/lead-time.json)
@@ -47,7 +48,7 @@ Access token for the repository.
 
 ### `logging`
 
-Set to true to make event logs of metrics source avaiable.
+Set to true to make event logs of metrics source available.
 
 ### `filtered`
 
@@ -66,7 +67,7 @@ teams has 7 as target (daily- or on-demand release)
 
 ### `lead-time`
 
-Time from issue is set to status doing until linked pull-requestis merged to
+Time from issue is set to status doing until linked pull-requests merged to
 main branch. Number in days (Integer)
 
 `lead-time-log` - a list of pull requests with matching first commit and re

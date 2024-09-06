@@ -1,7 +1,7 @@
 //
 import {DeployFrequency} from '../src/DeployFrequency'
-import fs from 'fs'
-import {Release} from '../src/types/Release'
+import fs from 'node:fs'
+import type {Release} from '../src/types/Release'
 
 describe('Deploy frequency should', () => {
   // Release v0.0.1:2023-04-14, v0.0.2:2023-04-22
@@ -86,11 +86,12 @@ describe('Deploy frequency should', () => {
 
     df.weekly()
 
-    expect(
-      df.getLog().map(l => {
-        return l.includes('release')
-      }).length
-    ).toBe(5)
+    const logItems = df.getLog().map(l => {
+      return l.includes('release') ? l : undefined
+    })
+
+    expect(logItems.length).toBe(5)
+    expect(logItems.pop()).toBe('release->  v0.1.0:2023-04-29T06:18:36Z')
   })
 
   it('get release log list monthly when rate calculated', () => {
@@ -98,11 +99,11 @@ describe('Deploy frequency should', () => {
 
     df.monthly()
 
-    expect(
-      df.getLog().map(l => {
-        return l.includes('release')
-      }).length
-    ).toBe(6)
+    const logItems = df.getLog().map(l => {
+      return l.includes('release') ? l : undefined
+    })
+    expect(logItems.length).toBe(6)
+    expect(logItems.pop()).toBe('release->  v0.0.2:2023-04-22T20:28:29Z')
   })
 
   it('get release log list when rate calculated', () => {
