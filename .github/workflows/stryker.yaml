@@ -32,7 +32,7 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - uses: getsentry/action-github-app-token@v3.1
+      - uses: getsentry/action-github-app-token@v3.0.0
         id: app-token
         with:
           app_id: ${{ vars.GIST_APP_ID }}
