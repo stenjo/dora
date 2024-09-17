@@ -57,10 +57,17 @@ jobs:
           awk '{split($0,a,"."); print a[1]}' fullscore > score
           echo "stryker-score=$(tr -s '\n' < score)" >> "$GITHUB_ENV"
 
+      - uses: actions/create-github-app-token@v1
+        id: app-token
+        with:
+          app-id: ${{ vars.GIST_APP_ID }}
+          private-key: ${{ secrets.GIST_APP_KEY }}
+  
+
       - name: Create the Badge for Deploy Rate
         uses: Schneegans/dynamic-badges-action@v1.7.0
         with:
-          auth: ${{ secrets.GIST_ACCESS_TOKEN }}
+          auth: ${{ steps.app-token.outputs.token }}
           gistID: 9ce1ad7d8e9db99796e782b244eefa4a
           filename: dora-stryker.json
           label: Stryker score
