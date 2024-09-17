@@ -23,33 +23,33 @@ jobs:
         with:
           node-version-file: .node-version
           cache: npm
-
-      - name: Install Python
+          
+      - name: Install Python    
         uses: actions/setup-python@v5
         with:
           python-version: '3.x'
-
-      - name: Install dependencies
+          
+      - name: Install dependencies    
         run: npm install
-
-      - uses: getsentry/action-github-app-token@v3.0.0
+            
+      - uses: actions/create-github-app-token@v1
         id: app-token
         with:
-          app_id: ${{ vars.GIST_APP_ID }}
-          private_key: ${{ secrets.GIST_APP_KEY }}
-          # owner: ${{ github.repository_owner }}
+          app-id: ${{ vars.GIST_APP_ID }}
+          private-key: ${{ secrets.GIST_APP_KEY }}
+          owner: ${{ github.repository_owner }}
 
-      - name: Run StrykerJS
+      - name: Run StrykerJS  
         continue-on-error: true
         id: stryker
         run: |
           npm run stryker > out
 
-      - name: Print output
+      - name: Print output    
         continue-on-error: true
         run: cat out
 
-      - name: Save stryker JS log
+      - name: Save stryker JS log  
         if: failure()
         continue-on-error: true
         uses: actions/upload-artifact@v4
@@ -57,13 +57,13 @@ jobs:
           name: stryker.log
           path: stryker.log
 
-      - name: Extract stryker score
+      - name: Extract stryker score    
         run: |
           grep "All files" out > line
           awk '{print $4}' line > fullscore
           awk '{split($0,a,"."); print a[1]}' fullscore > score
           echo "stryker-score=$(tr -s '\n' < score)" >> "$GITHUB_ENV"
-
+    
       - name: Create the Badge for Deploy Rate
         uses: Schneegans/dynamic-badges-action@v1.7.0
         with:
