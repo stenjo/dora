@@ -62,7 +62,6 @@ jobs:
         with:
           app-id: ${{ vars.GIST_APP_ID }}
           private-key: ${{ secrets.GIST_APP_KEY }}
-  
 
       - name: Create the Badge for Deploy Rate
         uses: Schneegans/dynamic-badges-action@v1.7.0
