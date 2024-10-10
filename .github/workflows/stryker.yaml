@@ -7,11 +7,11 @@ on:
     branches:
       - main
 
-# permissions:
-#   contents: write
-#   issues: write
-#   pull-requests: write
-#   pages: write
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+  pages: write
 
 jobs:
   stryker-js:
@@ -45,7 +45,6 @@ jobs:
 
       - name: Get the user's personal access token
         run: |
-          curl -H "Authorization: token ${{ steps.app-token.outputs.token }}" https://api.github.com/rate_limit
           curl -H "Authorization: token ${{ steps.app-token.outputs.token }}" https://api.github.com/user
           curl -H "Authorization: token ${{ steps.app-token.outputs.token }}" https://api.github.com/gists
 
