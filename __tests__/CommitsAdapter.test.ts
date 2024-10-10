@@ -1,66 +1,71 @@
-import {http, HttpResponse} from 'msw'
-import {setupServer} from 'msw/node'
-import {setFailed} from '@actions/core'
-import {CommitsAdapter} from '../src/CommitsAdapter'
-import fs from 'fs'
-import {Commit} from '../src/types/Commit'
+import type {Octokit} from '@octokit/rest'
+import * as core from '@actions/core'
+import {CommitsAdapter} from '../src/CommitsAdapter' // Adjust the import path as necessary
 
-const commitsUrl =
-  'https://api.github.com/repos/stenjo/devops-metrics-action/pulls/69/commits'
-const server = setupServer(
-  http.get(
-    commitsUrl,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    ({request, params, cookies}) => {
-      const commits: Commit[] = JSON.parse(
-        fs.readFileSync('./__tests__/test-data/commits.json').toString()
-      ) as Commit[]
-      return HttpResponse.json(commits)
-    }
-  )
-)
-jest.mock('@actions/core', () => ({
-  setFailed: jest.fn()
-}))
+jest.mock('@octokit/rest')
+jest.mock('@actions/core')
 
-describe('Commit Adapter should', () => {
+describe('CommitsAdapter', () => {
+  let commitsAdapter: CommitsAdapter
+  let octokitMock: jest.Mocked<Octokit>
+
   beforeEach(() => {
-    server.listen()
+    octokitMock = {
+      request: jest.fn()
+    } as unknown as jest.Mocked<Octokit>
+    commitsAdapter = new CommitsAdapter('fake-token')
+    commitsAdapter.octokit = octokitMock as never
+  })
+
+  afterEach(() => {
     jest.clearAllMocks()
   })
 
-  afterAll(() => server.close())
+  it('should return commits when the request is successful', async () => {
+    const mockCommits = [{sha: '123', commit: {message: 'test commit'}}]
+    octokitMock.request.mockResolvedValue({
+      data: mockCommits,
+      headers: {},
+      status: 200,
+      url: 'https://api.github.com/repos/user/repo/commits'
+    })
 
-  it('ice breaker', () => {
-    expect(true).toBe(true)
-  })
-
-  it('return unpaged values', async () => {
-    const r = new CommitsAdapter(undefined)
-
-    const releases: Commit[] = (await r.getCommitsFromUrl(
-      commitsUrl
-    )) as Commit[]
-
-    expect(releases.length).toBe(30)
-  })
-
-  it('handles access denied', async () => {
-    server.close()
-    const errorServer = setupServer(
-      http.get(
-        commitsUrl,
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        ({request, params, cookies}) => {
-          return new HttpResponse('Bad credentials', {status: 401})
-        }
-      )
+    const result = await commitsAdapter.getCommitsFromUrl(
+      'https://api.github.com/repos/user/repo/commits'
     )
-    errorServer.listen()
-    const r = new CommitsAdapter(commitsUrl)
-    const result = await r.getCommitsFromUrl(commitsUrl)
-    expect(result).toBe(undefined)
-    expect(setFailed).toHaveBeenCalledWith('Bad credentials')
-    errorServer.close()
+
+    expect(result).toEqual(mockCommits)
+    expect(octokitMock.request).toHaveBeenCalledWith(
+      'https://api.github.com/repos/user/repo/commits',
+      {
+        headers: {
+          'X-GitHub-Api-Version': '2022-11-28'
+        }
+      }
+    )
+  })
+
+  it('should throw an error and call core.setFailed when the request fails', async () => {
+    const errorMessage = 'Request failed'
+    octokitMock.request.mockRejectedValue(new Error(errorMessage))
+
+    await expect(
+      commitsAdapter.getCommitsFromUrl(
+        'https://api.github.com/repos/user/repo/commits'
+      )
+    ).rejects.toThrow(errorMessage)
+    expect(core.setFailed).toHaveBeenCalledWith(errorMessage)
+  })
+
+  it('should throw an error and call core.setFailed when headers are incorrect', async () => {
+    const errorMessage = 'Bad headers'
+    octokitMock.request.mockRejectedValue(new Error(errorMessage))
+
+    await expect(
+      commitsAdapter.getCommitsFromUrl(
+        'https://api.github.com/repos/user/repo/commits'
+      )
+    ).rejects.toThrow(errorMessage)
+    expect(core.setFailed).toHaveBeenCalledWith(errorMessage)
   })
 })

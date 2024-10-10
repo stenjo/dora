@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import {Octokit} from '@octokit/core'
 import * as core from '@actions/core'
-import {Commit} from './types/Commit'
-import {ICommitsAdapter} from './interfaces/ICommitsAdapter'
+import type {Commit} from './types/Commit'
+import type {ICommitsAdapter} from './interfaces/ICommitsAdapter'
 
 export class CommitsAdapter implements ICommitsAdapter {
   token: string | undefined
@@ -19,8 +18,13 @@ export class CommitsAdapter implements ICommitsAdapter {
       const result = await this.getCommits(this.octokit, url)
 
       return result
-    } catch (e: any) {
-      core.setFailed(e.message)
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        core.setFailed(e.message)
+      } else {
+        core.setFailed('An unknown error occurred')
+      }
+      throw e
     }
   }
 
