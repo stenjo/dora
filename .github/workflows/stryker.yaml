@@ -69,6 +69,7 @@ jobs:
           echo "stryker-score=$(tr -s '\n' < score)" >> "$GITHUB_ENV"
 
       - name: Create the Badge for Deploy Rate
+        continue-on-error: true
         uses: Schneegans/dynamic-badges-action@v1.7.0
         with:
           auth: ${{ steps.app-token.outputs.token }}
