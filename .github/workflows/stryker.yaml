@@ -7,11 +7,7 @@ on:
     branches:
       - main
 
-permissions:
-  contents: write
-  issues: write
-  pull-requests: write
-  pages: write
+permissions: write-all
 
 jobs:
   stryker-js:
@@ -49,7 +45,7 @@ jobs:
         with:
           name: stryker.log
           path: stryker.log
-            
+
       - name: Print output
         continue-on-error: true
         run: cat out
@@ -68,7 +64,7 @@ jobs:
           app-id: ${{ vars.GIST_APP_ID }}
           private-key: ${{ secrets.GIST_APP_KEY }}
           owner: ${{ github.repository_owner }}
-  
+
       - name: Create the Badge for Deploy Rate
         continue-on-error: true
         uses: Schneegans/dynamic-badges-action@v1.7.0
