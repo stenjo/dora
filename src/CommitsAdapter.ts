@@ -21,8 +21,6 @@ export class CommitsAdapter implements ICommitsAdapter {
     } catch (e: unknown) {
       if (e instanceof Error) {
         core.setFailed(e.message)
-      } else {
-        core.setFailed('An unknown error occurred')
       }
       throw e
     }
@@ -34,7 +32,8 @@ export class CommitsAdapter implements ICommitsAdapter {
   ): Promise<Commit[] | undefined> {
     const result = await octokit.request(url, {
       headers: {
-        'X-GitHub-Api-Version': '2022-11-28'
+        'X-GitHub-Api-Version': '2022-11-28',
+        Authorization: `token ${this.token}`
       }
     })
 

@@ -39,7 +39,8 @@ describe('CommitsAdapter', () => {
       'https://api.github.com/repos/user/repo/commits',
       {
         headers: {
-          'X-GitHub-Api-Version': '2022-11-28'
+          'X-GitHub-Api-Version': '2022-11-28',
+          Authorization: 'token fake-token'
         }
       }
     )
@@ -67,5 +68,29 @@ describe('CommitsAdapter', () => {
       )
     ).rejects.toThrow(errorMessage)
     expect(core.setFailed).toHaveBeenCalledWith(errorMessage)
+  })
+
+  it('should send the token as an authorization parameter', async () => {
+    const mockCommits = [{sha: '123', commit: {message: 'test commit'}}]
+    octokitMock.request.mockResolvedValue({
+      data: mockCommits,
+      headers: {},
+      status: 200,
+      url: 'https://api.github.com/repos/user/repo/commits'
+    })
+
+    await commitsAdapter.getCommitsFromUrl(
+      'https://api.github.com/repos/user/repo/commits'
+    )
+
+    expect(octokitMock.request).toHaveBeenCalledWith(
+      'https://api.github.com/repos/user/repo/commits',
+      {
+        headers: {
+          'X-GitHub-Api-Version': '2022-11-28',
+          Authorization: 'token fake-token'
+        }
+      }
+    )
   })
 })
