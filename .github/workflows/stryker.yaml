@@ -32,6 +32,17 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - uses: actions/create-github-app-token@v1
+        id: app-token
+        with:
+          app-id: ${{ vars.GIST_APP_ID }}
+          private-key: ${{ secrets.GIST_APP_KEY }}
+          owner: ${{ github.repository_owner }}
+
+      - name: Get the user's personal access token
+        run: |
+          curl -H "Authorization: token ${{ steps.app-token.outputs.token }}" https://api.github.com/user
+
       - name: Run StrykerJS
         continue-on-error: true
         id: stryker
@@ -57,13 +68,6 @@ jobs:
           awk '{print $4}' line > fullscore
           awk '{split($0,a,"."); print a[1]}' fullscore > score
           echo "stryker-score=$(tr -s '\n' < score)" >> "$GITHUB_ENV"
-
-      - uses: actions/create-github-app-token@v1
-        id: app-token
-        with:
-          app-id: ${{ vars.GIST_APP_ID }}
-          private-key: ${{ secrets.GIST_APP_KEY }}
-          owner: ${{ github.repository_owner }}
 
       - name: Create the Badge for Deploy Rate
         continue-on-error: true
