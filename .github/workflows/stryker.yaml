@@ -43,6 +43,10 @@ jobs:
           private-key: ${{ secrets.GIST_APP_KEY }}
           owner: ${{ github.repository_owner }}
 
+      - name: Debug JWT
+        run: |
+          echo "JWT: ${{ steps.app-token.outputs.token }}"
+
       - name: Get the user's personal access token
         run: |
           curl -H "Authorization: token ${{ steps.app-token.outputs.token }}" https://api.github.com/user
