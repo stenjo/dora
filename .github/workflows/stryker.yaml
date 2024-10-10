@@ -49,8 +49,9 @@ jobs:
 
       - name: Get the user's personal access token
         run: |
+          curl -H "Authorization: token ${{ steps.app-token.outputs.token }}" https://api.github.com/rate_limit
           curl -H "Authorization: token ${{ steps.app-token.outputs.token }}" https://api.github.com/user
-          curl -H "Authorization: token ${{ steps.app-token.outputs.token }}" https://api.github.com/app
+          curl -H "Authorization: token ${{ steps.app-token.outputs.token }}" https://api.github.com/gists
 
       - name: Run StrykerJS
         continue-on-error: true
