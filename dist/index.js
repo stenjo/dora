@@ -29303,7 +29303,6 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.CommitsAdapter = void 0;
-/* eslint-disable @typescript-eslint/no-explicit-any */
 const core_1 = __nccwpck_require__(6762);
 const core = __importStar(__nccwpck_require__(2186));
 class CommitsAdapter {
@@ -29321,13 +29320,17 @@ class CommitsAdapter {
             return result;
         }
         catch (e) {
-            core.setFailed(e.message);
+            if (e instanceof Error) {
+                core.setFailed(e.message);
+            }
+            throw e;
         }
     }
     async getCommits(octokit, url) {
         const result = await octokit.request(url, {
             headers: {
-                'X-GitHub-Api-Version': '2022-11-28'
+                'X-GitHub-Api-Version': '2022-11-28',
+                Authorization: `token ${this.token}`
             }
         });
         return Promise.resolve(result.data);
